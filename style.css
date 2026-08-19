@@ -1,0 +1,156 @@
+/* ============================================
+   1. RESET & BASE
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* This one line is what makes clicking a nav link glide to the
+     section instead of jumping instantly. */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #1a1a1a;
+  background-color: #faf9f6;
+  line-height: 1.6;
+}
+
+/* ============================================
+   2. COLOR & TYPE TOKENS
+   Change these once, and the whole site updates.
+   ============================================ */
+:root {
+  --ink: #1a1a1a;
+  --paper: #faf9f6;
+  --accent: #2f4b3c;      /* deep pine green — swap for your brand color */
+  --muted: #6b6b66;
+  --display-font: 'Fraunces', Georgia, serif;
+}
+
+/* ============================================
+   3. HEADER + INDEX NAV
+   ============================================ */
+.site-header {
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  border-bottom: 1px solid #e4e2db;
+}
+
+.site-title {
+  font-family: var(--display-font);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+.site-subtitle {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+}
+
+.index-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.index-nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.index-nav a:hover,
+.index-nav a:focus-visible {
+  border-color: var(--accent);
+}
+
+/* ============================================
+   4. SECTIONS
+   scroll-margin-top keeps a section from being hidden
+   under a fixed header when jumped to — increase this
+   if you add a sticky nav bar later.
+   ============================================ */
+.section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  scroll-margin-top: 2rem;
+}
+
+.section h2 {
+  font-family: var(--display-font);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* ============================================
+   5. PROJECT GRID
+   ============================================ */
+.project-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.project-card a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 1.5rem;
+  border: 1px solid #e4e2db;
+  border-radius: 4px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-card a:hover,
+.project-card a:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-card h3 {
+  font-family: var(--display-font);
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+}
+
+.project-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ============================================
+   6. FOOTER
+   ============================================ */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   7. ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
