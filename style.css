@@ -52,15 +52,26 @@ body {
   top: 0;
   z-index: 10;
   background-color: var(--paper);
-  padding: 1.5rem 1.5rem 2.5rem;
-  text-align: center;
+  padding: 1.25rem 1.5rem;
   border-bottom: 1px solid #e4e2db;
 }
 
-.index-nav ul {
+.header-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+}
+
+.index-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
   list-style: none;
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
 }
@@ -82,15 +93,78 @@ body {
   border-color: var(--accent);
 }
 
+/* Logo stays perfectly centered regardless of how wide the nav is */
 .logo-link {
-  display: inline-block;
-  margin-top: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .site-logo {
-  max-width: 320px;
-  width: 60vw;
+  width: clamp(160px, 40vw, 200px);
+  /*max-width: 200px;
+  width: 50vw;*/
   height: auto;
+  display: block;
+}
+
+/* Hamburger button: hidden on desktop, shown only on mobile (see media query) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  color: var(--ink);
+  position: relative;
+  z-index: 11;
+}
+
+.menu-toggle .material-symbols-outlined {
+  font-size: 28px;
+  display: block;
+}
+
+.menu-toggle .menu-icon-close {
+  display: none;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon-open {
+  display: none;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon-close {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1.25rem);
+    left: -1.5rem;
+    right: -1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background-color: var(--paper);
+    border-bottom: 1px solid #e4e2db;
+    padding: 1.5rem;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .site-logo {
+    max-width: 140px;
+    width: 50vw;
+  }
 }
 
 /* ============================================
@@ -156,7 +230,6 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   padding: 1.25rem;
-  /*background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 55%);*/
   background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 95%);
   opacity: 0;
   transition: opacity 0.3s ease;
