@@ -35,25 +35,26 @@ body {
 /* ============================================
    3. HEADER + INDEX NAV
    ============================================ */
+
+/* Hides text visually but keeps it for screen readers + SEO.
+   Used on the H1/H2 that the logo image now visually replaces. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .site-header {
-  padding: 4rem 1.5rem 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--paper);
+  padding: 1.5rem 1.5rem 2.5rem;
   text-align: center;
   border-bottom: 1px solid #e4e2db;
-}
-
-.site-title {
-  font-family: var(--display-font);
-  font-weight: 600;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  letter-spacing: -0.02em;
-}
-
-.site-subtitle {
-  margin-top: 0.5rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.85rem;
 }
 
 .index-nav ul {
@@ -61,7 +62,6 @@ body {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: 2rem;
   flex-wrap: wrap;
 }
 
@@ -69,7 +69,9 @@ body {
   color: var(--ink);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   border-bottom: 2px solid transparent;
   padding-bottom: 2px;
   transition: border-color 0.2s ease;
@@ -78,6 +80,17 @@ body {
 .index-nav a:hover,
 .index-nav a:focus-visible {
   border-color: var(--accent);
+}
+
+.logo-link {
+  display: inline-block;
+  margin-top: 2rem;
+}
+
+.site-logo {
+  max-width: 320px;
+  width: 60vw;
+  height: auto;
 }
 
 /* ============================================
@@ -109,31 +122,73 @@ body {
   gap: 2rem;
 }
 
+.section--projects {
+  padding-top: 3rem;
+}
+
 .project-card a {
   display: block;
   text-decoration: none;
   color: var(--ink);
-  padding: 1.5rem;
-  border: 1px solid #e4e2db;
+}
+
+.project-image {
+  position: relative;
+  overflow: hidden;
   border-radius: 4px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  aspect-ratio: 1 / 1;
+  background-color: #ece9e2; /* shows while the image loads */
 }
 
-.project-card a:hover,
-.project-card a:focus-visible {
-  border-color: var(--accent);
-  transform: translateY(-2px);
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-.project-card h3 {
+/* The caption sits on top of the image, invisible until hovered */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  /*background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 55%);*/
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 95%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-overlay h3 {
   font-family: var(--display-font);
   font-size: 1.15rem;
-  margin-bottom: 0.4rem;
+  color: #fff;
 }
 
-.project-meta {
+.project-overlay .project-meta {
   font-size: 0.85rem;
-  color: var(--muted);
+  color: #f0efe9;
+  margin-top: 0.25rem;
+}
+
+.project-card a:hover .project-image img,
+.project-card a:focus-visible .project-image img {
+  transform: scale(1.06);
+}
+
+.project-card a:hover .project-overlay,
+.project-card a:focus-visible .project-overlay {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-image img,
+  .project-overlay {
+    transition: none;
+  }
 }
 
 /* ============================================
@@ -153,4 +208,92 @@ body {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* ============================================
+   8. PROJECT PAGE (used by files inside /projects/)
+   ============================================ */
+.project-header {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  color: var(--accent);
+}
+
+.project-header h1 {
+  font-family: var(--display-font);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+}
+
+.project-header .project-meta {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.project-hero {
+  max-width: 960px;
+  margin: 0 auto 3rem;
+  padding: 0 1.5rem;
+}
+
+.project-hero img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+.project-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+.project-body h2 {
+  font-family: var(--display-font);
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.project-body h2:first-child {
+  margin-top: 0;
+}
+
+.project-body p {
+  margin-bottom: 1rem;
+}
+
+.project-nav {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e4e2db;
+  padding-top: 2rem;
+}
+
+.project-nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.project-nav a:hover,
+.project-nav a:focus-visible {
+  color: var(--accent);
 }

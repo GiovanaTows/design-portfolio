@@ -14,11 +14,8 @@
 </head>
 <body>
 
-  <!-- ===== HEADER: your name (H1) + the "index" nav that scrolls to sections ===== -->
+  <!-- ===== HEADER: sticky nav + logo, matching the old Adobe Portfolio layout ===== -->
   <header class="site-header">
-    <h1 class="site-title">Giovana Tows</h1>
-    <p class="site-subtitle">Product Design — UX/UI - TEST GIT HUB</p>
-
     <!-- This is your "index with links". Each href="#id" points at a section id below.
          Clicking it jumps/scrolls to that section — no JavaScript required,
          the smooth animation comes from CSS (see style.css, html { scroll-behavior: smooth }) -->
@@ -29,72 +26,127 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+
+    <a href="#projects" class="logo-link">
+      <img src="images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+    </a>
+    <h1 class="visually-hidden">Giovana Tows</h1>
   </header>
 
   <main>
     <!-- ===== PROJECTS SECTION ===== -->
-    <section id="projects" class="section">
-      <h2>Design Projects</h2>
+    <section id="projects" class="section section--projects">
+      <h2 class="visually-hidden">Design Projects</h2>
 
       <ul class="project-grid">
         <li class="project-card">
-          <a href="/projects/plots.html">
-            <h3>Design System — Plots</h3>
-            <p class="project-meta">2025 · Product Design (UX/UI)</p>
+          <a href="projects/plots.html">
+            <div class="project-image">
+              <img src="images/project-covers/plots.webp" alt="Design System — Plots cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Design System — Plots</h3>
+                <p class="project-meta">2025 · Product Design (UX/UI)</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/civi.html">
-            <h3>Civi — Mobile App</h3>
-            <p class="project-meta">2023 · Product Design (UX/UI)</p>
+          <a href="projects/civi.html">
+            <div class="project-image">
+              <img src="images/project-covers/civi.webp" alt="Civi mobile app cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Civi — Mobile App</h3>
+                <p class="project-meta">2023 · Product Design (UX/UI)</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/omnitrack-website.html">
-            <h3>Omnitrack Website</h3>
-            <p class="project-meta">2024 · UX/UI Design</p>
+          <a href="projects/omnitrack-website.html">
+            <div class="project-image">
+              <img src="images/project-covers/omnitrack-website.webp" alt="Omnitrack website cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Omnitrack Website</h3>
+                <p class="project-meta">2024 · UX/UI Design</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/supplycyber.html">
-            <h3>SupplyCyber</h3>
-            <p class="project-meta">2023 · Product Design / UX/UI Design</p>
+          <a href="projects/supplycyber.html">
+            <div class="project-image">
+              <img src="images/project-covers/supply-cyber.webp" alt="SupplyCyber cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>SupplyCyber</h3>
+                <p class="project-meta">2023 · Product Design / UX/UI Design</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/omnitrack-catalogue.html">
-            <h3>Omnitrack Catalogue</h3>
-            <p class="project-meta">2020 · Graphic Design / Editorial</p>
+          <a href="projects/omnitrack-catalogue.html">
+            <div class="project-image">
+              <img src="images/project-covers/omnitrack-catalogue.webp" alt="Omnitrack catalogue cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Omnitrack Catalogue</h3>
+                <p class="project-meta">2020 · Graphic Design / Editorial</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/motion-graphics.html">
-            <h3>Motion Graphics</h3>
-            <p class="project-meta">2020 · Motion Design / Digital Animation</p>
+          <a href="projects/motion-graphics.html">
+            <div class="project-image">
+              <img src="images/project-covers/motion.webp" alt="Motion graphics reel cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Motion Graphics</h3>
+                <p class="project-meta">2020 · Motion Design / Digital Animation</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/design-sprint-civi.html">
-            <h3>Design Sprint 2.0 — Civi</h3>
-            <p class="project-meta">2022 · Product Design / User Research</p>
+          <a href="projects/design-sprint-civi.html">
+            <div class="project-image">
+              <img src="images/project-covers/design-sprint.webp" alt="Design Sprint 2.0 Civi cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Design Sprint 2.0 — Civi</h3>
+                <p class="project-meta">2022 · Product Design / User Research</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/haus.html">
-            <h3>Haus Website and App</h3>
-            <p class="project-meta">2017 · UI/UX Design / Web Design</p>
+          <a href="projects/haus.html">
+            <div class="project-image">
+              <img src="images/project-covers/haus.webp" alt="Haus website and app cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Haus Website and App</h3>
+                <p class="project-meta">2017 · UI/UX Design / Web Design</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/enkontra.html">
-            <h3>Enkontra.com Website</h3>
-            <p class="project-meta">2016 · UI/UX Design / Web Design</p>
+          <a href="projects/enkontra.html">
+            <div class="project-image">
+              <img src="images/project-covers/enkontra.webp" alt="Enkontra.com website cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Enkontra.com Website</h3>
+                <p class="project-meta">2016 · UI/UX Design / Web Design</p>
+              </div>
+            </div>
           </a>
         </li>
         <li class="project-card">
-          <a href="/projects/motor-diferencial.html">
-            <h3>Apresentação Motor Diferencial</h3>
-            <p class="project-meta">2017 · Graphic Design / Illustration</p>
+          <a href="projects/motor-diferencial.html">
+            <div class="project-image">
+              <img src="images/project-covers/motor-diferencial.webp" alt="Apresentação Motor Diferencial cover image" loading="lazy">
+              <div class="project-overlay">
+                <h3>Apresentação Motor Diferencial</h3>
+                <p class="project-meta">2017 · Graphic Design / Illustration</p>
+              </div>
+            </div>
           </a>
         </li>
       </ul>
@@ -126,4 +178,3 @@
 
 </body>
 </html>
-
