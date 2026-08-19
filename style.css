@@ -137,7 +137,7 @@ body {
 }
 
 /* max-width: 640px */
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   .menu-toggle {
     display: block;
   }
@@ -181,7 +181,7 @@ body {
 }
 
 /* max-width: 640px*/
-@media (max-width: 1000px) and (prefers-reduced-motion: reduce) {
+@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
   .nav-links {
     transition: none;
   }
