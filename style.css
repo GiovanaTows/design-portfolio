@@ -102,9 +102,7 @@ body {
 }
 
 .site-logo {
-  width: clamp(160px, 40vw, 200px);
-  /*max-width: 200px;
-  width: 50vw;*/
+  width: clamp(110px, 40vw, 160px);
   height: auto;
   display: block;
 }
@@ -138,13 +136,13 @@ body {
   display: block;
 }
 
-@media (max-width: 640px) {
+/* max-width: 640px */
+@media (max-width: 1000px) {
   .menu-toggle {
     display: block;
   }
 
   .nav-links {
-    display: none;
     position: absolute;
     top: calc(100% + 1.25rem);
     left: -1.5rem;
@@ -154,16 +152,38 @@ body {
     gap: 1.25rem;
     background-color: var(--paper);
     border-bottom: 1px solid #e4e2db;
-    padding: 1.5rem;
+    padding: 0 1.5rem;
+ 
+    /* Collapsed state: zero height, invisible, and unreachable by
+       keyboard/click — this is what makes the animation possible,
+       since "display: none" can't be transitioned smoothly. */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    /* Closing Animation: fade the text out immediately (no delay), while height and position collapse over their own durations. */
+    transition: max-height 0.35s ease, opacity 0.2s ease, transform 0.3s ease, padding 0.35s ease;
   }
 
   .nav-links.open {
-    display: flex;
+    /* Tall enough to fit all the links comfortably; the transition
+       animates up to this value, so it just needs to be bigger than
+       the real content height. */
+    max-height: 320px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 1.5rem;
+    pointer-events: auto;
+    /* Opening: hold opacity/transform back by 0.1s so the box has already started growing before the text starts fading/sliding in — this is what removes the "text visible before there's room" flash. */
+    transition: max-height 0.35s ease, opacity 0.25s ease 0.1s, transform 0.3s ease 0.1s, padding 0.35s ease;
   }
+}
 
-  .site-logo {
-    max-width: 140px;
-    width: 50vw;
+/* max-width: 640px*/
+@media (max-width: 1000px) and (prefers-reduced-motion: reduce) {
+  .nav-links {
+    transition: none;
   }
 }
 
