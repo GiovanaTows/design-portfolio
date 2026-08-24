@@ -295,6 +295,108 @@ body {
 }
 
 /* ============================================
+   7a. LIGHTBOX (click-to-zoom on project images)
+   ============================================ */
+.project-hero img,
+.project-figure img {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.92);
+  padding: 4.5rem 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 2px;
+  cursor: zoom-out;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-caption {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #f0efe9;
+  font-size: 0.85rem;
+  padding: 0 4.5rem;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover,
+.lightbox-close:focus-visible,
+.lightbox-prev:focus-visible,
+.lightbox-next:focus-visible {
+  opacity: 1;
+}
+
+.lightbox-close svg,
+.lightbox-prev svg,
+.lightbox-next svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.lightbox-close {
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+.lightbox-prev {
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 640px) {
+  .lightbox-prev,
+  .lightbox-next {
+    display: none;
+  }
+}
+
+/* ============================================
    7. ACCESSIBILITY
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
