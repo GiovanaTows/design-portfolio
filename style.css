@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #1a1a1a;
   background-color: #faf9f6;
   line-height: 1.6;
@@ -29,7 +29,7 @@ body {
   --paper: #faf9f6;
   --accent: #2f4b3c;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
-  --display-font: 'Fraunces', Georgia, serif;
+  --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 /* ============================================
@@ -336,6 +336,33 @@ body {
   font-size: 0.95rem;
 }
 
+/* Quick-facts list (role, team, timeline, tool) under the H1 */
+.project-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e4e2db;
+}
+
+.project-stats div {
+  max-width: 420px;
+}
+
+.project-stats dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.project-stats dd {
+  font-size: 0.95rem;
+}
+
 .project-hero {
   max-width: 960px;
   margin: 0 auto 3rem;
@@ -366,8 +393,60 @@ body {
   margin-top: 0;
 }
 
+.project-body h3 {
+  font-family: var(--display-font);
+  font-size: 1.05rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
 .project-body p {
   margin-bottom: 1rem;
+}
+
+.project-body ul {
+  margin: 0 0 1rem 1.25rem;
+}
+
+.project-body li {
+  margin-bottom: 0.5rem;
+}
+
+/* Case-study screenshots: image + caption, full width of the text column */
+.project-figure {
+  margin: 2rem 0;
+}
+
+.project-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  background-color: #ece9e2;
+}
+
+.project-figure figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Related screenshots shown side by side instead of one long stack */
+.figure-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.figure-grid .project-figure {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .figure-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .project-nav {

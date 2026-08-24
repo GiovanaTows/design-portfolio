@@ -6,9 +6,6 @@
   <title>Design System — Plots | Giovana Tows</title>
   <meta name="description" content="Case study: building a design system for Plots, a product design (UX/UI) project by Giovana Tows.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
   <!-- Note the "../" — this file lives inside /projects/, so it needs to
        step one folder UP to find style.css sitting next to index.html -->
   <link rel="stylesheet" href="../style.css">
@@ -18,45 +15,195 @@
   <header class="project-header">
     <a class="back-link" href="../index.html#projects">← Back to projects</a>
     <h1>Design System — Plots</h1>
-    <p class="project-meta">2025 · Product Design (UX/UI)</p>
+    <p class="project-meta">Bringing structure and consistency to a product that had none.</p>
+
+    <dl class="project-stats">
+      <div>
+        <dt>Role</dt>
+        <dd>UI Designer (freelance)</dd>
+      </div>
+      <div>
+        <dt>Team</dt>
+        <dd>Worked alongside UX/UI designer Kaio Sermann as part of Plots' design team. Kaio focused on flows and new features and gave input and direction on the new design system, while I was fully focused on building and implementing it.</dd>
+      </div>
+      <div>
+        <dt>Timeline</dt>
+        <dd>Jan–Oct 2025 (10 months), part-time</dd>
+      </div>
+      <div>
+        <dt>Tool</dt>
+        <dd>Figma</dd>
+      </div>
+    </dl>
   </header>
 
-  <!-- Swap this src for your real cover image once it's in an /images/ folder -->
   <div class="project-hero">
-    <img src="../images/project-covers/plots.webp" alt="Plots design system color palette and component library">
+    <img src="../images/projects/plots/hero-cover.jpg" alt="Plots design system color palette and component library">
   </div>
-  <!--<div class="project-hero">
-    <img src="https://via.placeholder.com/1200x700?text=Plots+cover+image" alt="Plots design system cover image">
-  </div>-->
 
   <main class="project-body">
     <h2>Overview</h2>
     <p>
-      One or two sentences on what Plots is and what your role was.
-      This is the section a recruiter skims first — make it count.
+      Plots didn't have a documented design system, so I joined the team to build one from the ground up.
     </p>
+    <p>
+      Over 10 months, I audited the existing product, built a library of 60+ reusable components in Figma, and defined visual guidelines the team could use going forward. Below you can see the old structure of the Plots app before I started — without a consistent identity.
+    </p>
+
+    <figure class="project-figure">
+      <img src="../images/projects/plots/old-app-overview.jpg" alt="Old version of the Plots app (01/2025), showing screens without a consistent visual identity">
+      <figcaption>Old version of the Plots app (01/2025). This is all the material we had to work with — flows of screens in Figma without master components.</figcaption>
+    </figure>
 
     <h2>The problem</h2>
     <p>
-      What wasn't working before this project, and why it mattered.
+      Plots' app had been acquired from another company and evolved from there, with the design growing alongside the product without a structured system.
+    </p>
+    <p>
+      Components were built individually rather than as linked master components — so as the design evolved, older parts of the app kept using outdated elements instead of updating alongside newer screens. Over time, this created a patchwork: buttons, cards, and inputs each existed in multiple slightly different versions depending on when that part of the app was last touched.
+    </p>
+    <p>
+      This hit the development team especially hard. Without master components to reference, engineers often didn't know which version to use, and ended up rebuilding elements from scratch for nearly every new screen — adding unnecessary dev time and making the app even harder to keep visually consistent.
     </p>
 
-    <h2>Process</h2>
+    <div class="figure-grid">
+      <figure class="project-figure">
+        <img src="../images/projects/plots/old-app-toast-snackbars.jpg" alt="Inconsistent toast bars and snack bars found on the old version of the Plots app">
+        <figcaption>Inconsistent toast bars and snack bars.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/plots/old-app-buttons.jpg" alt="Inconsistent buttons found on the old version of the Plots app">
+        <figcaption>Inconsistent buttons.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/plots/old-app-user-lists.jpg" alt="Inconsistent user lists found on the old version of the Plots app">
+        <figcaption>Inconsistent user lists.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/plots/old-app-bottom-sheets.png" alt="Inconsistent bottom sheets found on the old version of the Plots app">
+        <figcaption>Inconsistent bottom sheets.</figcaption>
+      </figure>
+    </div>
+
+    <h2>My process</h2>
+    <ul>
+      <li>Audited existing screens to catalog inconsistencies — how many variants of each component existed, and where patterns diverged.</li>
+      <li>Built a reusable component library in Figma — 60+ components including buttons, inputs, cards, lists, tags, placeholders, and bottom sheets.</li>
+      <li>Defined visual guidelines (spacing, typography, color usage) to keep the system consistent as it scaled.</li>
+      <li>Worked in parallel with a second designer who was redesigning flows and features — my components fed directly into that work.</li>
+    </ul>
+
+    <h2>Component system</h2>
     <p>
-      How you approached it — research, sketches, iterations. This is a
-      good place for more images: duplicate the .project-hero block above
-      wherever you want to drop one in.
+      Instead of one-off styling decisions, I built components with defined states — default, hover, disabled — so any designer on the team could use them consistently without reinventing patterns.
     </p>
+
+    <div class="figure-grid">
+      <figure class="project-figure">
+        <img src="../images/projects/plots/selector-components-1.jpg" alt="Selector components — checkbox, radio button, toggle and stepper — for the Plots design system">
+        <figcaption>Selector components: checkbox, radio button, toggle, and stepper.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/plots/selector-components-2.jpg" alt="Selector component state variations, checked and unchecked">
+        <figcaption>State variations — checked (on/off).</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/plots/selector-components-3.jpg" alt="Selector component state variations, disabled">
+        <figcaption>State variations — disabled (on/off).</figcaption>
+      </figure>
+    </div>
+
+    <h2>Final design system</h2>
+    <p>Below is the result of the Plots design system (02/2025).</p>
+
+    <figure class="project-figure">
+      <img src="../images/projects/plots/design-system-colors.jpg" alt="Plots design system — color palette">
+      <figcaption>Colors</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/design-system-buttons.jpg" alt="Plots design system — button components">
+      <figcaption>Buttons</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/design-system-image-components.jpg" alt="Plots design system — image components">
+      <figcaption>Image components</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/design-system-text-components.jpg" alt="Plots design system — text components">
+      <figcaption>Text components</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/design-system-cards-lists.jpg" alt="Plots design system — cards and lists">
+      <figcaption>Cards and lists</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/design-system-bottom-sheets.jpg" alt="Plots design system — bottom sheets">
+      <figcaption>Bottom sheets</figcaption>
+    </figure>
+
+    <h2>Screens: before / after</h2>
+    <p>
+      Below are before-and-after comparisons of key flows and screens. As I built the design system, I replaced inconsistent, unlinked components with linked master components — giving each flow a unified visual language. Because components were linked, updates (like rebranding) could propagate everywhere at once, letting the team apply changes quickly and work in parallel as the product evolved.
+    </p>
+
+    <figure class="project-figure">
+      <img src="../images/projects/plots/comparison-onboarding.jpg" alt="Before and after comparison of the onboarding flow of Plots">
+      <figcaption>Onboarding flow.</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/comparison-guest-list.jpg" alt="Before and after comparison of the Guest List flow of Plots">
+      <figcaption>Guest List flow.</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/comparison-sms-blast.jpg" alt="Before and after comparison of the SMS Blast flow of Plots">
+      <figcaption>SMS Blast flow.</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/comparison-user-profile.png" alt="Before and after comparison of the User Profile screen of Plots">
+      <figcaption>User Profile screen.</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/comparison-event.png" alt="Before and after comparison of the Event screen of Plots">
+      <figcaption>Event screen.</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/comparison-edit-event.png" alt="Before and after comparison of the Edit Event screen of Plots">
+      <figcaption>Edit Event screen.</figcaption>
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/comparison-promotional-content.png" alt="Before and after comparison of the Promotional Content screen of Plots">
+      <figcaption>Promotional Content screen.</figcaption>
+    </figure>
+
+    <h2>Guidelines</h2>
+    <p>
+      For more complex components like buttons, we created a guideline document with rules, explanations, and best-practice advice for using them. This helps the team keep screens and flows consistent as the app grows.
+    </p>
+
+    <figure class="project-figure">
+      <img src="../images/projects/plots/guidelines-example.jpg" alt="Example of component usage guidelines from the Plots design system">
+      <figcaption>Example of component guidelines included in the Plots design system.</figcaption>
+    </figure>
 
     <h2>Outcome</h2>
     <p>
-      What shipped, and any results or feedback worth mentioning.
+      Plots now has a documented, reusable component system that didn't exist before — a shared foundation the team could build from instead of designing screens from scratch each time.
     </p>
+    <p>
+      This made it faster to create new screens and flows, and gave the team a consistent base to expand Plots into a web version using the same components.
+    </p>
+    <p>
+      The stronger visual consistency also helped reinforce the Plots brand identity, giving users a more intuitive, trustworthy experience. In the months following the design system's rollout, weekly active users grew from under 10K to over 85K. First-month retention increased from around 27% to over 60%, and 10-week retention grew from around 18% to over 40%. Other product changes launched in this period too, but the team saw a clear connection between the more consistent design and this growth.
+    </p>
+
+    <figure class="project-figure">
+      <img src="../images/projects/plots/metrics-growth-chart.png" alt="Chart showing growth in active users and retention after the design system rollout">
+      <figcaption>Impact of the new design system on active users and retention.</figcaption>
+    </figure>
   </main>
 
   <nav class="project-nav">
     <a href="../index.html#projects">← All projects</a>
-    <a href="civi.html">Next: Civi →</a>
   </nav>
 
 </body>
