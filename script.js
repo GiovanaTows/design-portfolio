@@ -41,7 +41,9 @@ if (zoomableImages.length) {
     <button type="button" class="lightbox-prev" aria-label="Previous image">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
     </button>
-    <img src="" alt="">
+    <div class="lightbox-img-wrap">
+      <img src="" alt="">
+    </div>
     <button type="button" class="lightbox-next" aria-label="Next image">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
     </button>
@@ -49,6 +51,7 @@ if (zoomableImages.length) {
   `;
   document.body.appendChild(lightbox);
 
+  const lightboxImgWrap = lightbox.querySelector('.lightbox-img-wrap');
   const lightboxImg = lightbox.querySelector('img');
   const lightboxCaption = lightbox.querySelector('.lightbox-caption');
   const closeBtn = lightbox.querySelector('.lightbox-close');
@@ -64,12 +67,21 @@ if (zoomableImages.length) {
     return figcaption ? figcaption.textContent : img.alt;
   }
 
+  // Clicking the image toggles between fit-to-screen and its full
+  // native size (scrollable, so you can pan around to see detail).
+  function setZoomed(zoomed) {
+    lightboxImgWrap.classList.toggle('zoomed', zoomed);
+    lightboxImgWrap.scrollTop = 0;
+    lightboxImgWrap.scrollLeft = 0;
+  }
+
   function show(index) {
     currentIndex = (index + zoomableImages.length) % zoomableImages.length;
     const img = zoomableImages[currentIndex];
     lightboxImg.src = img.currentSrc || img.src;
     lightboxImg.alt = img.alt;
     lightboxCaption.textContent = captionFor(img);
+    setZoomed(false);
   }
 
   function open(index) {
@@ -88,6 +100,11 @@ if (zoomableImages.length) {
 
   zoomableImages.forEach((img, index) => {
     img.addEventListener('click', () => open(index));
+  });
+
+  lightboxImg.addEventListener('click', (event) => {
+    event.stopPropagation();
+    setZoomed(!lightboxImgWrap.classList.contains('zoomed'));
   });
 
   closeBtn.addEventListener('click', close);
