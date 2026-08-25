@@ -23,6 +23,50 @@ if (menuToggle && navLinks) {
   });
 }
 
+// Project page table of contents: auto-built from whatever H2/H3s exist
+// in .project-body, inserted right after the Role/Tool/Timeline/Team
+// stats. Anchor links + the site's smooth-scroll CSS handle the jump.
+const projectStats = document.querySelector('.project-stats');
+const projectBody = document.querySelector('.project-body');
+
+if (projectStats && projectBody) {
+  const headings = Array.from(projectBody.querySelectorAll('h2, h3'));
+
+  if (headings.length) {
+    const usedIds = new Set();
+    const slugify = (text) => {
+      const base = text.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      let slug = base;
+      let suffix = 2;
+      while (usedIds.has(slug)) slug = `${base}-${suffix++}`;
+      usedIds.add(slug);
+      return slug;
+    };
+
+    const toc = document.createElement('nav');
+    toc.className = 'project-toc';
+    toc.setAttribute('aria-label', 'On this page');
+
+    const list = document.createElement('ul');
+    headings.forEach((heading) => {
+      if (!heading.id) heading.id = slugify(heading.textContent);
+
+      const item = document.createElement('li');
+      if (heading.tagName === 'H3') item.className = 'project-toc-sub';
+
+      const link = document.createElement('a');
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent;
+
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+
+    toc.appendChild(list);
+    projectStats.insertAdjacentElement('afterend', toc);
+  }
+}
+
 // Image lightbox: click any project image (hero or case-study figure)
 // to view it enlarged, with keyboard/button navigation between all
 // images on the page. Builds one shared overlay and reuses it.
