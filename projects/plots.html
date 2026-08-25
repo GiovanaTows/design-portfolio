@@ -80,33 +80,40 @@
     </figure>
 
     <h2>The problem</h2>
-    <p>
-      Plots' app had been acquired from another company and evolved from there, with the design growing alongside the product without a structured system.
-    </p>
-    <p>
-      Components were built individually rather than as linked master components — so as the design evolved, older parts of the app kept using outdated elements instead of updating alongside newer screens. Over time, this created a patchwork: buttons, cards, and inputs each existed in multiple slightly different versions depending on when that part of the app was last touched.
-    </p>
-    <p>
-      This hit the development team especially hard. Without master components to reference, engineers often didn't know which version to use, and ended up rebuilding elements from scratch for nearly every new screen — adding unnecessary dev time and making the app even harder to keep visually consistent.
-    </p>
 
-    <div class="figure-grid">
-      <figure class="project-figure">
-        <img src="../images/projects/plots/old-app-toast-snackbars.jpg" alt="Inconsistent toast bars and snack bars found on the old version of the Plots app">
-        <figcaption>Inconsistent toast bars and snack bars.</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../images/projects/plots/old-app-buttons.jpg" alt="Inconsistent buttons found on the old version of the Plots app">
-        <figcaption>Inconsistent buttons.</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../images/projects/plots/old-app-user-lists.jpg" alt="Inconsistent user lists found on the old version of the Plots app">
-        <figcaption>Inconsistent user lists.</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../images/projects/plots/old-app-bottom-sheets.png" alt="Inconsistent bottom sheets found on the old version of the Plots app">
-        <figcaption>Inconsistent bottom sheets.</figcaption>
-      </figure>
+    <!-- Example: two-column layout (see .split-columns in style.css).
+         Images on the left, text on the right — swap the two
+         .split-column blocks below to flip which side is which. -->
+    <div class="split-columns">
+      <div class="split-column">
+        <figure class="project-figure">
+          <img src="../images/projects/plots/old-app-toast-snackbars.jpg" alt="Inconsistent toast bars and snack bars found on the old version of the Plots app">
+          <figcaption>Inconsistent toast bars and snack bars.</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/plots/old-app-buttons.jpg" alt="Inconsistent buttons found on the old version of the Plots app">
+          <figcaption>Inconsistent buttons.</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/plots/old-app-user-lists.jpg" alt="Inconsistent user lists found on the old version of the Plots app">
+          <figcaption>Inconsistent user lists.</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/plots/old-app-bottom-sheets.png" alt="Inconsistent bottom sheets found on the old version of the Plots app">
+          <figcaption>Inconsistent bottom sheets.</figcaption>
+        </figure>
+      </div>
+      <div class="split-column">
+        <p>
+          Plots' app had been acquired from another company and evolved from there, with the design growing alongside the product without a structured system.
+        </p>
+        <p>
+          Components were built individually rather than as linked master components — so as the design evolved, older parts of the app kept using outdated elements instead of updating alongside newer screens. Over time, this created a patchwork: buttons, cards, and inputs each existed in multiple slightly different versions depending on when that part of the app was last touched.
+        </p>
+        <p>
+          This hit the development team especially hard. Without master components to reference, engineers often didn't know which version to use, and ended up rebuilding elements from scratch for nearly every new screen — adding unnecessary dev time and making the app even harder to keep visually consistent.
+        </p>
+      </div>
     </div>
 
     <h2>My process</h2>
@@ -117,28 +124,29 @@
       <li>Worked in parallel with a second designer who was redesigning flows and features — my components fed directly into that work.</li>
     </ul>
 
+    <figure class="project-figure">
+      <img src="../images/projects/plots/selector-components-1.jpg" alt="Selector components — checkbox, radio button, toggle and stepper — for the Plots design system">
+    </figure>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/selector-components-2.jpg" alt="Selector component state variations, checked and unchecked">
+    </figure>
+
     <h2>Component system</h2>
     <p>
-      Instead of one-off styling decisions, I built components with defined states — default, hover, disabled — so any designer on the team could use them consistently without reinventing patterns.
+      Instead of one-off styling decisions, I built components with defined states and variations — default, hover, disabled — so any designer on the team could use them consistently without reinventing patterns.
     </p>
 
-    <div class="figure-grid">
-      <figure class="project-figure">
-        <img src="../images/projects/plots/selector-components-1.jpg" alt="Selector components — checkbox, radio button, toggle and stepper — for the Plots design system">
-        <figcaption>Selector components: checkbox, radio button, toggle, and stepper.</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../images/projects/plots/selector-components-2.jpg" alt="Selector component state variations, checked and unchecked">
-        <figcaption>State variations — checked (on/off).</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../images/projects/plots/selector-components-3.jpg" alt="Selector component state variations, disabled">
-        <figcaption>State variations — disabled (on/off).</figcaption>
-      </figure>
-    </div>
+    <figure class="project-figure">
+      <img src="../images/projects/plots/selector-components-3.jpg" alt="Selector component state variations, disabled">
+      <figcaption>Selector components (checkbox, radio button, toggle and stepper) created for the Plots design system.</figcaption>
+    </figure>
 
     <h2>Final design system</h2>
     <p>Below is the result of the Plots design system (02/2025).</p>
+    
+    <div>
+      <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="1200" height="500" src="https://embed.figma.com/design/oXxQ2W3jDRJFCxAFqqJGG4/Plots-Design-2026?node-id=177-609292&embed-host=share" allowfullscreen></iframe>
+    </div>
 
     <figure class="project-figure">
       <img src="../images/projects/plots/design-system-colors.jpg" alt="Plots design system — color palette">

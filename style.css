@@ -501,7 +501,7 @@ body {
 }
 
 .project-body {
-  max-width: 800px; /* 720px */
+  max-width: 1200px; /* 720px */
   margin: 0 auto;
   padding: 0 1.5rem 5rem;
 }
@@ -553,6 +553,7 @@ body {
   margin-top: 0.6rem;
   font-size: 0.85rem;
   color: var(--muted);
+  text-align: center;
 }
 
 /* Related screenshots shown side by side instead of one long stack */
@@ -570,6 +571,31 @@ body {
 @media (max-width: 640px) {
   .figure-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Two-column layout: put images in one .split-column and text in the
+   other. Order in the HTML decides left vs. right — put the images
+   markup first for image-left/text-right, or swap it for the reverse.
+   items: start keeps each column's own height (the taller one doesn't
+   stretch the other), and it collapses to a single stacked column on
+   narrow screens. */
+.split-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin: 2rem 0;
+}
+
+.split-column .project-figure:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .split-columns {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
