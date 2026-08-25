@@ -431,7 +431,7 @@ body {
    8. PROJECT PAGE (used by files inside /projects/)
    ============================================ */
 .project-header {
-  max-width: 720px;
+  max-width: 1200px; /* 720px */
   margin: 0 auto;
   padding: 3rem 1.5rem 2rem;
 }
@@ -464,6 +464,10 @@ body {
 .project-stats {
   display: flex;
   flex-wrap: wrap;
+
+  justify-content: center;  /* centers items horizontally */
+  /*align-items: center;      /* centers items vertically within each line */
+
   gap: 1.5rem 3rem;
   margin-top: 2rem;
   padding-top: 2rem;
@@ -509,7 +513,7 @@ body {
 .project-body h2 {
   font-family: var(--display-font);
   font-size: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 4rem; /* 3rem; */
   margin-bottom: 1rem;
 }
 
@@ -590,6 +594,7 @@ body {
 
 .split-column .project-figure:first-child {
   margin-top: 0;
+  
 }
 
 @media (max-width: 700px) {
@@ -600,7 +605,7 @@ body {
 }
 
 .project-nav {
-  max-width: 720px;
+  max-width: 1200px; /* 720px */
   margin: 0 auto;
   padding: 0 1.5rem 4rem;
   display: flex;

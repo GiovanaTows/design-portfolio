@@ -44,7 +44,7 @@
     <dl class="project-stats">
       <div>
         <dt>Role</dt>
-        <dd>UI Designer (freelance)</dd>
+        <dd>UI Designer (freelancer)</dd>
       </div>
       <div>
         <dt>Tool</dt>
@@ -52,11 +52,11 @@
       </div>
       <div>
         <dt>Timeline</dt>
-        <dd>Jan–Oct 2025 (10 months), part-time</dd>
+        <dd>Jan – Oct, 2025 (10 months) part-time</dd>
       </div>
       <div>
         <dt>Team</dt>
-        <dd>Worked alongside UX/UI designer Kaio Sermann as part of Plots' design team. Kaio focused on flows and new features and gave input and direction on the new design system, while I was fully focused on building and implementing it.</dd>
+        <dd>Worked alongside UX/UI designer <a href="https://www.kaiosermann.com/" target="_blank">Kaio Sermann</a> as part of Plots' design team. Kaio focused on flows and new features and gave input and direction on the new design system, while I was fully focused on building and implementing it.</dd>
       </div>
     </dl>
   </header>
@@ -66,18 +66,36 @@
   </div>
 
   <main class="project-body">
-    <h2>Overview</h2>
-    <p>
-      Plots didn't have a documented design system, so I joined the team to build one from the ground up.
-    </p>
-    <p>
-      Over 10 months, I audited the existing product, built a library of 60+ reusable components in Figma, and defined visual guidelines the team could use going forward. Below you can see the old structure of the Plots app before I started — without a consistent identity.
-    </p>
+    <div class="split-columns" style="grid-template-columns: 1fr 2fr;">
+      <div class="split-column">
+        <h2>Overview</h2>
+        <p>
+          Plots didn't have a documented design system, so I joined the team to build one from the scratch.
+        </p>
+        <p>
+          Over 10 months, I audited the existing product, built a library of 60+ reusable components in Figma, and defined visual guidelines the team could use going forward.
+        </p>
+        <p>
+          On the right you can see the old structure of the Plots app before I started — without a consistent identity and without master components.
+        </p>
+      </div>
+      <div class="split-column">
+        <!--
+        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="400" src="https://embed.figma.com/design/oXxQ2W3jDRJFCxAFqqJGG4/Plots-Design-2026?node-id=244-620008&embed-host=share" allowfullscreen></iframe>
+        -->
+          
+        <figure class="project-figure">
+          <img src="../images/projects/plots/old-app-overview.jpg" alt="Old version of the Plots app (01/2025), showing screens without a consistent visual identity">
+          <figcaption>Old version of the Plots app (01/2025). This is all the material we had to work with.</figcaption>
+        </figure>
+        
+      </div>
+    </div> 
 
-    <figure class="project-figure">
-      <img src="../images/projects/plots/old-app-overview.jpg" alt="Old version of the Plots app (01/2025), showing screens without a consistent visual identity">
-      <figcaption>Old version of the Plots app (01/2025). This is all the material we had to work with — flows of screens in Figma without master components.</figcaption>
-    </figure>
+    
+    
+
+
 
     <h2>The problem</h2>
 
@@ -86,43 +104,68 @@
          .split-column blocks below to flip which side is which. -->
     <div class="split-columns">
       <div class="split-column">
-        <figure class="project-figure">
-          <img src="../images/projects/plots/old-app-toast-snackbars.jpg" alt="Inconsistent toast bars and snack bars found on the old version of the Plots app">
-          <figcaption>Inconsistent toast bars and snack bars.</figcaption>
-        </figure>
-        <figure class="project-figure">
-          <img src="../images/projects/plots/old-app-buttons.jpg" alt="Inconsistent buttons found on the old version of the Plots app">
-          <figcaption>Inconsistent buttons.</figcaption>
-        </figure>
-        <figure class="project-figure">
-          <img src="../images/projects/plots/old-app-user-lists.jpg" alt="Inconsistent user lists found on the old version of the Plots app">
-          <figcaption>Inconsistent user lists.</figcaption>
-        </figure>
-        <figure class="project-figure">
-          <img src="../images/projects/plots/old-app-bottom-sheets.png" alt="Inconsistent bottom sheets found on the old version of the Plots app">
-          <figcaption>Inconsistent bottom sheets.</figcaption>
-        </figure>
-      </div>
-      <div class="split-column">
         <p>
           Plots' app had been acquired from another company and evolved from there, with the design growing alongside the product without a structured system.
         </p>
         <p>
           Components were built individually rather than as linked master components — so as the design evolved, older parts of the app kept using outdated elements instead of updating alongside newer screens. Over time, this created a patchwork: buttons, cards, and inputs each existed in multiple slightly different versions depending on when that part of the app was last touched.
         </p>
+      </div>
+      <div class="split-column">
         <p>
           This hit the development team especially hard. Without master components to reference, engineers often didn't know which version to use, and ended up rebuilding elements from scratch for nearly every new screen — adding unnecessary dev time and making the app even harder to keep visually consistent.
         </p>
       </div>
     </div>
 
+      <figure class="project-figure">
+        <img src="../images/projects/plots/old-app-toast-snackbars.jpg" alt="Inconsistent toast bars and snack bars found on the old version of the Plots app">
+        <figcaption>Inconsistent toast bars and snack bars.</figcaption>
+      </figure>
+      
+      <figure class="project-figure">
+        <img src="../images/projects/plots/old-app-buttons.jpg" alt="Inconsistent buttons found on the old version of the Plots app">
+        <figcaption>Inconsistent buttons.</figcaption>
+      </figure>
+
+    <div class="figure-grid">
+      
+
+      <figure class="project-figure">
+        <img src="../images/projects/plots/old-app-bottom-sheets.png" alt="Inconsistent bottom sheets found on the old version of the Plots app">
+        <figcaption>Inconsistent bottom sheets.</figcaption>
+      </figure>
+
+      <figure class="project-figure">
+        <img src="../images/projects/plots/old-app-user-lists.jpg" alt="Inconsistent user lists found on the old version of the Plots app">
+        <figcaption>Inconsistent user lists.</figcaption>
+      </figure>
+    </div>
+
     <h2>My process</h2>
-    <ul>
-      <li>Audited existing screens to catalog inconsistencies — how many variants of each component existed, and where patterns diverged.</li>
-      <li>Built a reusable component library in Figma — 60+ components including buttons, inputs, cards, lists, tags, placeholders, and bottom sheets.</li>
-      <li>Defined visual guidelines (spacing, typography, color usage) to keep the system consistent as it scaled.</li>
-      <li>Worked in parallel with a second designer who was redesigning flows and features — my components fed directly into that work.</li>
-    </ul>
+  <!--  
+    <div class="split-columns">
+      <div class="split-column"></div>
+      <div class="split-column"></div>
+    </div>
+  -->
+
+    <div class="split-columns">
+      <div class="split-column">
+        <ul>
+          <li>1. Audited existing screens to catalog inconsistencies — how many variants of each component existed, and where patterns diverged.</li>
+          <li>2. Built a reusable component library in Figma — 60+ components including buttons, inputs, cards, lists, tags, placeholders, and bottom sheets.</li>
+        </ul>
+      </div>
+      <div class="split-column">
+        <ul>
+          <li>3. Defined visual guidelines (spacing, typography, color usage) to keep the system consistent as it scaled.</li>
+          <li>4. Worked in parallel with a second designer who was redesigning flows and features — my components fed directly into that work.</li>
+        </ul>
+      </div>
+    </div>
+
+    
 
     <figure class="project-figure">
       <img src="../images/projects/plots/selector-components-1.jpg" alt="Selector components — checkbox, radio button, toggle and stepper — for the Plots design system">
@@ -131,15 +174,24 @@
       <img src="../images/projects/plots/selector-components-2.jpg" alt="Selector component state variations, checked and unchecked">
     </figure>
 
-    <h2>Component system</h2>
-    <p>
-      Instead of one-off styling decisions, I built components with defined states and variations — default, hover, disabled — so any designer on the team could use them consistently without reinventing patterns.
-    </p>
+    
+    <div class="split-columns" style="grid-template-columns: 1fr 3fr; margin-top: 5rem; align-items: center;">
+      <div class="split-column">
+        <h2>Component system</h2>
+        <p>
+          Instead of one-off styling decisions, I built components with defined states and variations — default, hover, disabled — so any designer on the team could use them consistently without reinventing patterns.
+        </p>
+      </div>
+      <div class="split-column">
+        <figure class="project-figure">
+          <img src="../images/projects/plots/selector-components-3.jpg" alt="Selector component state variations, disabled">
+          <figcaption>Selector components (checkbox, radio button, toggle and stepper) created for the Plots design system.</figcaption>
+        </figure>
+      </div>
+    </div>
+    
 
-    <figure class="project-figure">
-      <img src="../images/projects/plots/selector-components-3.jpg" alt="Selector component state variations, disabled">
-      <figcaption>Selector components (checkbox, radio button, toggle and stepper) created for the Plots design system.</figcaption>
-    </figure>
+
 
     <h2>Final design system</h2>
     <p>Below is the result of the Plots design system (02/2025).</p>
@@ -148,35 +200,51 @@
       <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="1200" height="500" src="https://embed.figma.com/design/oXxQ2W3jDRJFCxAFqqJGG4/Plots-Design-2026?node-id=177-609292&embed-host=share" allowfullscreen></iframe>
     </div>
 
-    <figure class="project-figure">
-      <img src="../images/projects/plots/design-system-colors.jpg" alt="Plots design system — color palette">
-      <figcaption>Colors</figcaption>
-    </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/design-system-buttons.jpg" alt="Plots design system — button components">
-      <figcaption>Buttons</figcaption>
-    </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/design-system-image-components.jpg" alt="Plots design system — image components">
-      <figcaption>Image components</figcaption>
-    </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/design-system-text-components.jpg" alt="Plots design system — text components">
-      <figcaption>Text components</figcaption>
-    </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/design-system-cards-lists.jpg" alt="Plots design system — cards and lists">
-      <figcaption>Cards and lists</figcaption>
-    </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/design-system-bottom-sheets.jpg" alt="Plots design system — bottom sheets">
-      <figcaption>Bottom sheets</figcaption>
-    </figure>
+    <div class="figure-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;">
+      <figure class="project-figure">
+        <img src="../images/projects/plots/design-system-colors.jpg" alt="Plots design system — color palette">
+        <figcaption>Colors</figcaption>
+      </figure>
+
+      <figure class="project-figure">
+        <img src="../images/projects/plots/design-system-buttons.jpg" alt="Plots design system — button components">
+        <figcaption>Buttons</figcaption>
+      </figure>
+
+      <figure class="project-figure">
+        <img src="../images/projects/plots/design-system-image-components.jpg" alt="Plots design system — image components">
+        <figcaption>Image components</figcaption>
+      </figure>
+
+      <figure class="project-figure">
+        <img src="../images/projects/plots/design-system-text-components.jpg" alt="Plots design system — text components">
+        <figcaption>Text components</figcaption>
+      </figure>
+
+      <figure class="project-figure">
+        <img src="../images/projects/plots/design-system-cards-lists.jpg" alt="Plots design system — cards and lists">
+        <figcaption>Cards and lists</figcaption>
+      </figure>
+
+      <figure class="project-figure">
+        <img src="../images/projects/plots/design-system-bottom-sheets.jpg" alt="Plots design system — bottom sheets">
+        <figcaption>Bottom sheets</figcaption>
+      </figure>
+    </div>
 
     <h2>Screens: before / after</h2>
-    <p>
-      Below are before-and-after comparisons of key flows and screens. As I built the design system, I replaced inconsistent, unlinked components with linked master components — giving each flow a unified visual language. Because components were linked, updates (like rebranding) could propagate everywhere at once, letting the team apply changes quickly and work in parallel as the product evolved.
-    </p>
+    <div class="split-columns" style="grid-template-columns: 1fr 1fr;">
+      <div class="split-column">
+        <p>
+          Below are before-and-after comparisons of key flows and screens. As I built the design system, I replaced inconsistent, unlinked components with linked master components — giving each flow a unified visual language.
+        </p>
+      </div>
+       <div class="split-column">
+        <p>
+          Because components were linked, updates (like rebranding) could propagate everywhere at once, letting the team apply changes quickly and work in parallel as the product evolved.
+        </p>
+      </div>
+    </div>  
 
     <figure class="project-figure">
       <img src="../images/projects/plots/comparison-onboarding.jpg" alt="Before and after comparison of the onboarding flow of Plots">
@@ -190,43 +258,59 @@
       <img src="../images/projects/plots/comparison-sms-blast.jpg" alt="Before and after comparison of the SMS Blast flow of Plots">
       <figcaption>SMS Blast flow.</figcaption>
     </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/comparison-user-profile.png" alt="Before and after comparison of the User Profile screen of Plots">
-      <figcaption>User Profile screen.</figcaption>
-    </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/comparison-event.png" alt="Before and after comparison of the Event screen of Plots">
-      <figcaption>Event screen.</figcaption>
-    </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/comparison-edit-event.png" alt="Before and after comparison of the Edit Event screen of Plots">
-      <figcaption>Edit Event screen.</figcaption>
-    </figure>
-    <figure class="project-figure">
-      <img src="../images/projects/plots/comparison-promotional-content.png" alt="Before and after comparison of the Promotional Content screen of Plots">
-      <figcaption>Promotional Content screen.</figcaption>
-    </figure>
 
-    <h2>Guidelines</h2>
-    <p>
-      For more complex components like buttons, we created a guideline document with rules, explanations, and best-practice advice for using them. This helps the team keep screens and flows consistent as the app grows.
-    </p>
+    <div class="figure-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+      <figure class="project-figure">
+        <img src="../images/projects/plots/comparison-user-profile.png" alt="Before and after comparison of the User Profile screen of Plots">
+        <figcaption>User Profile screen.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/plots/comparison-event.png" alt="Before and after comparison of the Event screen of Plots">
+        <figcaption>Event screen.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/plots/comparison-edit-event.png" alt="Before and after comparison of the Edit Event screen of Plots">
+        <figcaption>Edit Event screen.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/plots/comparison-promotional-content.png" alt="Before and after comparison of the Promotional Content screen of Plots">
+        <figcaption>Promotional Content screen.</figcaption>
+      </figure>
+    </div>
 
-    <figure class="project-figure">
-      <img src="../images/projects/plots/guidelines-example.jpg" alt="Example of component usage guidelines from the Plots design system">
-      <figcaption>Example of component guidelines included in the Plots design system.</figcaption>
-    </figure>
+    <div class="split-columns" style="grid-template-columns: 1fr 3fr; margin-top: 5rem; align-items: center;">
+      <div class="split-column">
+        <h2>Guidelines</h2>
+        <p>
+          For more complex components like buttons, we created a guideline document with rules, explanations, and best-practice advice for using them. This helps the team keep screens and flows consistent as the app grows.
+        </p>
+      </div>
+      <div class="split-column">
+          <figure class="project-figure">
+            <img src="../images/projects/plots/guidelines-example.jpg" alt="Example of component usage guidelines from the Plots design system">
+            <figcaption>Example of component guidelines included in the Plots design system.</figcaption>
+          </figure>
+      </div>
+    </div>
+    
 
     <h2>Outcome</h2>
-    <p>
-      Plots now has a documented, reusable component system that didn't exist before — a shared foundation the team could build from instead of designing screens from scratch each time.
-    </p>
-    <p>
-      This made it faster to create new screens and flows, and gave the team a consistent base to expand Plots into a web version using the same components.
-    </p>
-    <p>
-      The stronger visual consistency also helped reinforce the Plots brand identity, giving users a more intuitive, trustworthy experience. In the months following the design system's rollout, weekly active users grew from under 10K to over 85K. First-month retention increased from around 27% to over 60%, and 10-week retention grew from around 18% to over 40%. Other product changes launched in this period too, but the team saw a clear connection between the more consistent design and this growth.
-    </p>
+    <div class="split-columns" style="grid-template-columns: 1fr 1fr;">
+      <div class="split-column">
+        <p>
+          Plots now has a documented, reusable component system that didn't exist before — a shared foundation the team could build from instead of designing screens from scratch each time.
+        </p>
+        <p>
+          This made it faster to create new screens and flows, and gave the team a consistent base to expand Plots into a web version using the same components.
+        </p>
+      </div>
+      <div class="split-column">
+        <p>
+          The stronger visual consistency also helped reinforce the Plots brand identity, giving users a more intuitive, trustworthy experience. In the months following the design system's rollout, weekly active users grew from under 10K to over 85K. First-month retention increased from around 27% to over 60%, and 10-week retention grew from around 18% to over 40%. Other product changes launched in this period too, but the team saw a clear connection between the more consistent design and this growth.
+        </p>
+      </div>
+    </div>
+
 
     <figure class="project-figure">
       <img src="../images/projects/plots/metrics-growth-chart.png" alt="Chart showing growth in active users and retention after the design system rollout">
