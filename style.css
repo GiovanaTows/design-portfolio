@@ -561,7 +561,7 @@ body {
 .project-body {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
-  padding: 0 1.5rem 5rem;
+  padding: 0 1.5rem 2rem;
 }
 
 .project-body h2 {
@@ -636,8 +636,26 @@ body {
 
 .topic-divider{
   border-bottom: 1px solid #e4e2db;
-  padding-top: 2rem;
+  padding-top: 3rem;
 }
+
+/* Project header: stats (3fr) next to the "On this page" index (1fr).
+   Below 900px there isn't room for both, so the index drops under the
+   stats and both go full width. */
+.project-header-columns {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (max-width: 900px) {
+  .project-header-columns {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 
 /* Two-column layout: put images in one .split-column and text in the
    other. Order in the HTML decides left vs. right — put the images
@@ -675,7 +693,7 @@ body {
   grid-template-columns: minmax(300px, 1fr) minmax(auto, 3fr);
   gap: 3rem;
   align-items: center;
-  margin: 2rem 0;
+  /*margin: 2rem 0;*/
 }
 
 @media (max-width: 1024px) {
@@ -705,11 +723,11 @@ body {
 .project-nav {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  padding: 0 2rem 4rem;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #e4e2db;
-  padding-top: 2rem;
+  /*border-top: 1px solid #e4e2db;
+  padding-top: 2rem;*/
 }
 
 .project-nav a {
