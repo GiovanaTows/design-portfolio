@@ -471,24 +471,16 @@ body {
   }
 }
 
-/* Quick-facts list (role, team, timeline, tool) under the H1 */
-.project-stats {
+/* Quick-facts list (role, team, timeline, tool) under the H1 — each
+   entry stacked in a column, like a plain list. */
+.project-specs {
   display: flex;
-  flex-direction: line;
-  min-width: 590px;
-  gap: 4rem;
+  flex-direction: column;
+  gap: 1.25rem;
   margin-top: 2rem;
-
-  /*display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e4e2db;*/
 }
 
-.project-stats dt {
+.project-specs dt {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -497,7 +489,7 @@ body {
   margin-bottom: 0.35rem;
 }
 
-.project-stats dd {
+.project-specs dd {
   font-size: 0.95rem;
 }
 
@@ -649,9 +641,13 @@ body {
   gap: 3rem;
 }
 
+/* Below 900px there's no room for the wide 3fr/1fr split, but the
+   specs (now a compact list) and the index are both short enough to
+   still sit side by side in two narrower, equal columns. */
 @media (max-width: 900px) {
   .project-header-columns {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
     gap: 1.5rem;
   }
 }
