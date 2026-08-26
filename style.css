@@ -634,6 +634,16 @@ body {
   }
 }
 
+.topic-divider{
+  border-bottom: 1px solid #e4e2db;
+  padding-top: 3rem;
+}
+
+.figm-imbeded{
+  style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;"
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* Two-column layout: put images in one .split-column and text in the
    other. Order in the HTML decides left vs. right — put the images
    markup first for image-left/text-right, or swap it for the reverse.
@@ -667,17 +677,28 @@ body {
    Reuses .split-column for the two children, same as .split-columns. */
 .text-image-columns {
   display: grid;
-  grid-template-columns: minmax(280px, 1fr) minmax(700px, 3fr);
+  grid-template-columns: minmax(300px, 1fr) minmax(auto, 3fr);
   gap: 3rem;
-  align-items: start;
+  align-items: center;
   margin: 2rem 0;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1024px) {
   .text-image-columns {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+}
+
+/* Figma embed: always keeps a 16:9 frame — width fills its container,
+   height is derived from that width rather than a fixed pixel value,
+   so it stays proportional (and doesn't overflow) at any screen size. */
+.figma-imbeded {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .project-nav {
