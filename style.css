@@ -27,8 +27,11 @@ body {
 :root {
   --ink: #1a1a1a;
   --paper: #faf9f6;
+  --index: #eeece6;
   --accent: #2f4b3c;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
+  --link: #2455e6;
+  --linkhover: #002db4;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -472,23 +475,50 @@ body {
 }
 
 /* Quick-facts list (role, team, timeline, tool) under the H1 */
-.project-stats {
-  display: flex;
-  flex-direction: line;
-  min-width: 590px;
-  gap: 4rem;
-  margin-top: 2rem;
 
-  /*display: grid;
-  grid-template-columns: 1fr 1fr;
+.project-specs {
+  display: grid;
+  grid-template-columns: fit-content(170px) fit-content(200px) auto;
   gap: 3rem;
-  align-items: start;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e4e2db;*/
+  align-items: top;
+  margin-bottom: 1.5rem;
+  /*margin: 2rem 0;*/
 }
 
-.project-stats dt {
+.project-specs-2 {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 3rem;
+  align-items: center;
+  /*margin: 2rem 0;*/
+}
+
+@media (max-width: 890px) {
+  .project-specs {
+    grid-template-columns: fit-content(80px) fit-content(200px) fit-content(150px);
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .project-specs {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 660px) {
+  .project-specs {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-specs-2 {
+    gap: 1.5rem;
+  }
+}
+
+.project-specs dt,
+.project-specs-2 dt {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -497,20 +527,24 @@ body {
   margin-bottom: 0.35rem;
 }
 
-.project-stats dd {
+.project-specs dd,
+.project-specs-2 dd {
   font-size: 0.95rem;
 }
 
 /* Table of contents, auto-built by script.js from the page's H2/H3s */
-.project-toc {
-  min-width: 180px;
+.project-index {
+  min-width: 210px;
   align-items: center; /* start | end | center | stretch */
+  background-color: var(--index);
+  padding: 1.5rem;
+  border-radius: 4px;
   
   /*border-left: 1px solid rgb(228, 226, 219);
   padding-left: 2rem;*/
 }
 
-.project-toc-label {
+.project-index-label {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -519,29 +553,29 @@ body {
   margin-bottom: 0.75rem;
 }
 
-.project-toc ul {
+.project-index ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.project-toc a {
-  color: var(--muted);
+.project-header a {
+  color: var(--link);
   text-decoration: none;
   font-size: 0.9rem;
 }
 
-.project-toc a:hover,
-.project-toc a:focus-visible {
-  color: var(--accent);
+.project-header a:hover,
+.project-header a:focus-visible {
+  color: var(--linkhover);
 }
 
-.project-toc-sub {
+.project-index-sub {
   margin-left: 1.25rem;
 }
 
-.project-toc-sub a {
+.project-index-sub a {
   font-size: 0.85rem;
 }
 
@@ -647,12 +681,12 @@ body {
   grid-template-columns: 3fr 1fr;
   align-items: center;
   gap: 3rem;
+  margin-top: 2rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   .project-header-columns {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 }
 
@@ -682,6 +716,9 @@ body {
     gap: 1.5rem;
   }
 }
+
+
+
 
 /* Text next to a large image, in a fixed 1:3 ratio (text:image) once
    there's room for both at their minimum widths. Below 1200px wide —
