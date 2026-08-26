@@ -41,24 +41,47 @@
     <h1>Design System — Plots</h1>
     <p class="project-meta">Bringing structure and consistency to a product that had none.</p>
 
-    <dl class="project-stats">
-      <div>
-        <dt>Role</dt>
-        <dd>UI Designer (freelancer)</dd>
-      </div>
-      <div>
-        <dt>Tool</dt>
-        <dd>Figma</dd>
-      </div>
-      <div>
-        <dt>Timeline</dt>
-        <dd>Jan – Oct, 2025 (10 months) part-time</dd>
-      </div>
-      <div>
-        <dt>Team</dt>
-        <dd>Worked alongside UX/UI designer <a href="https://www.kaiosermann.com/" target="_blank">Kaio Sermann</a> as part of Plots' design team. Kaio focused on flows and new features and gave input and direction on the new design system, while I was fully focused on building and implementing it.</dd>
-      </div>
-    </dl>
+    <!-- Two columns: stats on the left, jump-to-section index on the
+         right. Change grid-template-columns in style.css (.project-meta-grid)
+         to resize them, or reorder these two blocks to swap sides. -->
+    <div class="project-meta-grid">
+      <dl class="project-stats">
+        <div>
+          <dt>Role</dt>
+          <dd>UI Designer (freelancer)</dd>
+        </div>
+        <div>
+          <dt>Tool</dt>
+          <dd>Figma</dd>
+        </div>
+        <div>
+          <dt>Timeline</dt>
+          <dd>Jan – Oct, 2025 (10 months) part-time</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Worked alongside UX/UI designer <a href="https://www.kaiosermann.com/" target="_blank">Kaio Sermann</a> as part of Plots' design team. Kaio focused on flows and new features and gave input and direction on the new design system, while I was fully focused on building and implementing it.</dd>
+        </div>
+      </dl>
+
+      <!-- Each link points at the matching h2's id in the body below.
+           Add/remove/reorder <li> items to match — this list isn't
+           auto-generated on this page, so it won't update itself if
+           you add or rename a section. -->
+      <nav class="project-toc" aria-label="On this page">
+        <p class="project-toc-label">On this page</p>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#the-problem">The problem</a></li>
+          <li><a href="#my-process">My process</a></li>
+          <li><a href="#component-system">Component system</a></li>
+          <li><a href="#final-design-system">Final design system</a></li>
+          <li><a href="#screens-before-after">Screens: before / after</a></li>
+          <li><a href="#guidelines">Guidelines</a></li>
+          <li><a href="#outcome">Outcome</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <div class="project-hero">
@@ -68,7 +91,7 @@
   <main class="project-body">
     <div class="split-columns" style="grid-template-columns: 1fr 2fr;">
       <div class="split-column">
-        <h2>Overview</h2>
+        <h2 id="overview">Overview</h2>
         <p>
           Plots didn't have a documented design system, so I joined the team to build one from the scratch.
         </p>
@@ -97,7 +120,7 @@
 
 
 
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 
     <!-- Example: two-column layout (see .split-columns in style.css).
          Images on the left, text on the right — swap the two
@@ -142,7 +165,7 @@
       </figure>
     </div>
 
-    <h2>My process</h2>
+    <h2 id="my-process">My process</h2>
   <!--  
     <div class="split-columns">
       <div class="split-column"></div>
@@ -177,7 +200,7 @@
     
     <div class="split-columns" style="grid-template-columns: 1fr 3fr; margin-top: 5rem; align-items: center;">
       <div class="split-column">
-        <h2>Component system</h2>
+        <h2 id="component-system">Component system</h2>
         <p>
           Instead of one-off styling decisions, I built components with defined states and variations — default, hover, disabled — so any designer on the team could use them consistently without reinventing patterns.
         </p>
@@ -193,7 +216,7 @@
 
 
 
-    <h2>Final design system</h2>
+    <h2 id="final-design-system">Final design system</h2>
     <p>Below is the result of the Plots design system (02/2025).</p>
     
     <div>
@@ -232,7 +255,7 @@
       </figure>
     </div>
 
-    <h2>Screens: before / after</h2>
+    <h2 id="screens-before-after">Screens: before / after</h2>
     <div class="split-columns" style="grid-template-columns: 1fr 1fr;">
       <div class="split-column">
         <p>
@@ -280,7 +303,7 @@
 
     <div class="split-columns" style="grid-template-columns: 1fr 3fr; margin-top: 5rem; align-items: center;">
       <div class="split-column">
-        <h2>Guidelines</h2>
+        <h2 id="guidelines">Guidelines</h2>
         <p>
           For more complex components like buttons, we created a guideline document with rules, explanations, and best-practice advice for using them. This helps the team keep screens and flows consistent as the app grows.
         </p>
@@ -294,7 +317,7 @@
     </div>
     
 
-    <h2>Outcome</h2>
+    <h2 id="outcome">Outcome</h2>
     <div class="split-columns" style="grid-template-columns: 1fr 1fr;">
       <div class="split-column">
         <p>

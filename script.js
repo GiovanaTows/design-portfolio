@@ -23,15 +23,19 @@ if (menuToggle && navLinks) {
   });
 }
 
-// Project page table of contents: auto-built from whatever H2/H3s exist
-// in .project-body. Wraps the existing Role/Tool/Timeline/Team stats
-// and the new TOC together in .project-meta-grid (a two-column layout —
-// see style.css to reposition or restack them). Anchor links + the
-// site's smooth-scroll CSS handle the jump.
+// Project page table of contents. If a project page already writes its
+// own <nav class="project-toc"> (see projects/plots.html for an example
+// you can copy/edit directly), this leaves it alone. Otherwise it's a
+// fallback: auto-builds one from whatever H2/H3s exist in .project-body
+// and wraps it with the Role/Tool/Timeline/Team stats in
+// .project-meta-grid (a two-column layout — see style.css to reposition
+// or restack them). Anchor links + the site's smooth-scroll CSS handle
+// the jump either way.
 const projectStats = document.querySelector('.project-stats');
 const projectBody = document.querySelector('.project-body');
+const hasStaticToc = document.querySelector('.project-toc');
 
-if (projectStats && projectBody) {
+if (projectStats && projectBody && !hasStaticToc) {
   const headings = Array.from(projectBody.querySelectorAll('h2, h3'));
 
   if (headings.length) {
