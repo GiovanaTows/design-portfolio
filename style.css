@@ -26,12 +26,15 @@ body {
    ============================================ */
 :root {
   --ink: #1a1a1a;
+  --ink-hover: #4e4e4e;
   --paper: #faf9f6;
   --index: #eeece6;
   --accent: #2f4b3c;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
+  --button: rgba(250, 249, 246, 0.6);
+  --button-hover: rgba(250, 249, 246, 0.7);
   --link: #2455e6;
-  --linkhover: #002db4;
+  --link-hover: #002db4;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -615,7 +618,7 @@ body {
 
 .project-header a:hover,
 .project-header a:focus-visible {
-  color: var(--linkhover);
+  color: var(--link-hover);
 }
 
 .project-index-sub {
@@ -791,19 +794,25 @@ body {
 .carousel-prev,
 .carousel-next {
   position: absolute;
-  top: 50%;
+  top: 48%;
   transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
-  background-color: rgba(250, 249, 246, 0.9);
+  background-color: var(--button);
   color: var(--ink);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: var(--button-hover);
+  color: var(--ink-hover);
 }
 
 .carousel-prev svg,
@@ -937,6 +946,13 @@ body {
   .grid {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }
 
