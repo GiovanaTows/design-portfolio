@@ -645,7 +645,8 @@ body {
 
 .project-figure figcaption {
   margin-top: 0.6rem;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
   color: var(--muted);
   text-align: center;
 }
@@ -668,9 +669,167 @@ body {
   }
 }
 
+.figure-grid-4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 700px) {
+  .figure-grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.figure-grid-6 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 900px) {
+  .figure-grid-6 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .figure-grid-6 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+
+/* Carousel: alternates between however many .carousel-slide elements
+   are inside it. script.js builds the dots and wires up prev/next —
+   this just handles the visuals. */
+.project-carousel {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #ece9e2;
+  aspect-ratio: 4 / 3;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    transition: none;
+  }
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: zoom-in;
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(250, 249, 246, 0.9);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-prev svg,
+.carousel-next svg {
+  width: 20px;
+  height: 20px;
+}
+
+.carousel-prev {
+  left: 0.75rem;
+}
+
+.carousel-next {
+  right: 0.75rem;
+}
+
+.carousel-caption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background-color: #d8d5cc;
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background-color: var(--accent);
+}
+
 .topic-divider{
   border-bottom: 1px solid #e4e2db;
   padding-top: 3rem;
+  padding-bottom: 1.5rem;
+}
+
+.topic-divider-first{
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .topic-divider{
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .topic-divider-first{
+    padding-top: 0rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .topic-divider{
+    padding-top: 1.5rem;
+    padding-bottom: 0rem;
+  }
+
+  .topic-divider-first{
+    padding-top: 0rem;
+  }
 }
 
 /* Project header: stats (3fr) next to the "On this page" index (1fr).
@@ -682,6 +841,7 @@ body {
   align-items: center;
   gap: 3rem;
   margin-top: 2rem;
+  justify-content: center;
 }
 
 @media (max-width: 600px) {
@@ -714,6 +874,21 @@ body {
   .split-columns {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin: 2rem 0;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
   }
 }
 

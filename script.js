@@ -83,10 +83,47 @@ if (projectStats && projectBody && !hasStaticToc) {
   }
 }
 
+// Carousel: alternates between however many .carousel-slide elements
+// are inside a .project-carousel. Builds the dots to match, and wires
+// up the prev/next buttons — see projects/plots.html for an example.
+document.querySelectorAll('.project-carousel').forEach((carousel) => {
+  const track = carousel.querySelector('.carousel-track');
+  const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+  const prevBtn = carousel.querySelector('.carousel-prev');
+  const nextBtn = carousel.querySelector('.carousel-next');
+  const caption = carousel.querySelector('.carousel-caption');
+  const dotsWrap = carousel.querySelector('.carousel-dots');
+  if (!track || slides.length < 2) return;
+
+  const dots = slides.map((slide, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot';
+    dot.setAttribute('aria-label', `Show image ${index + 1}`);
+    dot.addEventListener('click', () => show(index));
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  let current = 0;
+
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    if (caption) caption.textContent = slides[current].dataset.caption || '';
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+  }
+
+  prevBtn?.addEventListener('click', () => show(current - 1));
+  nextBtn?.addEventListener('click', () => show(current + 1));
+
+  show(0);
+});
+
 // Image lightbox: click any project image (hero or case-study figure)
 // to view it enlarged, with keyboard/button navigation between all
 // images on the page. Builds one shared overlay and reuses it.
-const zoomableImages = Array.from(document.querySelectorAll('.project-hero img, .project-figure img'));
+const zoomableImages = Array.from(document.querySelectorAll('.project-hero img, .project-figure img, .carousel-slide img'));
 
 if (zoomableImages.length) {
   const lightbox = document.createElement('div');

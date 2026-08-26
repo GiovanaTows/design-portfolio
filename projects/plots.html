@@ -95,9 +95,9 @@
   </div>
 
   <main class="project-body">
-    <div class="topic-divider">
+    <div class="topic-divider topic-divider-first">
       <div class="text-image-columns">
-        <div class="split-column">
+        <div class="split-column" style="max-width:700px;">
           <h2 id="overview">Overview</h2>
           <p>
             Plots didn't have a documented design system, so I joined the team to build one from the scratch.
@@ -114,10 +114,37 @@
           <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="400" src="https://embed.figma.com/design/oXxQ2W3jDRJFCxAFqqJGG4/Plots-Design-2026?node-id=244-620008&embed-host=share" allowfullscreen></iframe>
           -->
 
+          <!--
           <figure class="project-figure">
             <img src="../images/projects/plots/old-app-overview.jpg" alt="Old version of the Plots app (01/2025), showing screens without a consistent visual identity">
             <figcaption>Old version of the Plots app (01/2025). This is all the material we had to work with.</figcaption>
           </figure>
+          -->
+
+          <!-- Carousel: script.js finds any .project-carousel, builds the
+               dots to match however many .carousel-slide children it has,
+               and wires up the prev/next buttons. Add or remove slides
+               freely — nothing else needs to change. -->
+          <div class="project-carousel">
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Old version of the Plots Host (01/2025). This is all the material we had to work with.">
+                  <img src="../images/projects/plots/plots-host-old-01-2025.png" alt="Old version of the Plots Host (01/2025), showing screens without a consistent visual identity">
+                </div>
+                <div class="carousel-slide" data-caption="Old version of the Plots User (01/2025). This is all the material we had to work with.">
+                  <img src="../images/projects/plots/plots-user-old-01-2025.png" alt="Old version of the Plots User (01/2025), showing screens without a consistent visual identity">
+                </div>
+              </div>
+            </div>
+            <button type="button" class="carousel-prev" aria-label="Previous image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <button type="button" class="carousel-next" aria-label="Next image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
 
         </div>
       </div>
@@ -175,18 +202,18 @@
     <div class="topic-divider">
       <h2 id="my-process">My process</h2>
 
-      <div class="split-columns">
-        <div class="split-column">
-          <ul>
-            <li>1. Audited existing screens to catalog inconsistencies — how many variants of each component existed, and where patterns diverged.</li>
-            <li>2. Built a reusable component library in Figma — 60+ components including buttons, inputs, cards, lists, tags, placeholders, and bottom sheets.</li>
-          </ul>
+      <div class="grid">
+        <div class="grid-cell">
+          <p>1. Audited existing screens to catalog inconsistencies — how many variants of each component existed, and where patterns diverged.</p>
         </div>
-        <div class="split-column">
-          <ul>
-            <li>3. Defined visual guidelines (spacing, typography, color usage) to keep the system consistent as it scaled.</li>
-            <li>4. Worked in parallel with a second designer who was redesigning flows and features — my components fed directly into that work.</li>
-          </ul>
+        <div class="grid-cell">
+          <p>2. Built a reusable component library with variations — 60+ components including buttons, inputs, cards, lists, tags, placeholders, and bottom sheets.</p>
+        </div>
+        <div class="grid-cell">
+          <p>3. Defined visual guidelines to use the components — when and how to apply each variation — to keep the system consistent as it scales.</p>
+        </div>
+        <div class="grid-cell">
+          <p>4. Worked in parallel with another designer who was redesigning flows and features — my components fed directly into that work.</p>
         </div>
       </div>
 
@@ -201,7 +228,7 @@
     <div class="topic-divider">
       <div class="text-image-columns">
         <div class="split-column">
-          <h2 id="component-system">Component's system</h2>
+          <h2 id="component-system">Component system</h2>
           <p>
             Instead of one-off styling decisions, I built components with defined states and variations — default, hover, disabled — so any designer on the team could use them consistently without reinventing patterns.
           </p>
@@ -223,7 +250,7 @@
         <iframe class="figma-imbeded" src="https://embed.figma.com/design/oXxQ2W3jDRJFCxAFqqJGG4/Plots-Design-2026?node-id=177-609292&embed-host=share" allowfullscreen></iframe>
       </div>
 
-      <div class="figure-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;">
+      <div class="figure-grid figure-grid-6">
         <figure class="project-figure">
           <img src="../images/projects/plots/design-system-colors.jpg" alt="Plots design system — color palette">
           <figcaption>Colors</figcaption>
@@ -273,33 +300,33 @@
 
       <figure class="project-figure">
         <img src="../images/projects/plots/comparison-onboarding.jpg" alt="Before and after comparison of the onboarding flow of Plots">
-        <figcaption>Onboarding flow.</figcaption>
+        <figcaption>Onboarding flow - Before and after comparison</figcaption>
       </figure>
       <figure class="project-figure">
         <img src="../images/projects/plots/comparison-guest-list.jpg" alt="Before and after comparison of the Guest List flow of Plots">
-        <figcaption>Guest List flow.</figcaption>
+        <figcaption>"Guest List" flow - Before and after comparison</figcaption>
       </figure>
       <figure class="project-figure">
         <img src="../images/projects/plots/comparison-sms-blast.jpg" alt="Before and after comparison of the SMS Blast flow of Plots">
-        <figcaption>SMS Blast flow.</figcaption>
+        <figcaption>"SMS Blast" flow - Before and after comparison</figcaption>
       </figure>
 
-      <div class="figure-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+      <div class="figure-grid figure-grid-4">
         <figure class="project-figure">
           <img src="../images/projects/plots/comparison-user-profile.png" alt="Before and after comparison of the User Profile screen of Plots">
-          <figcaption>User Profile screen.</figcaption>
+          <figcaption>"User Profile" screen - Before and after comparison</figcaption>
         </figure>
         <figure class="project-figure">
           <img src="../images/projects/plots/comparison-event.png" alt="Before and after comparison of the Event screen of Plots">
-          <figcaption>Event screen.</figcaption>
+          <figcaption>"Event" screen - Before and after comparison</figcaption>
         </figure>
         <figure class="project-figure">
           <img src="../images/projects/plots/comparison-edit-event.png" alt="Before and after comparison of the Edit Event screen of Plots">
-          <figcaption>Edit Event screen.</figcaption>
+          <figcaption>"Edit Event" screen - Before and after comparison</figcaption>
         </figure>
         <figure class="project-figure">
           <img src="../images/projects/plots/comparison-promotional-content.png" alt="Before and after comparison of the Promotional Content screen of Plots">
-          <figcaption>Promotional Content screen.</figcaption>
+          <figcaption>"Promotional Content" screen - Before and after comparison</figcaption>
         </figure>
       </div>
     </div>
