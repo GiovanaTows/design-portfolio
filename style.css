@@ -708,7 +708,8 @@ body {
 .carousel-viewport {
   overflow: hidden;
   border-radius: 4px;
-  background-color: #ece9e2;
+  /*background-color: #ece9e2;*/
+  background-color: #363636;
   aspect-ratio: 4 / 3;
 }
 
@@ -902,7 +903,7 @@ body {
    Reuses .split-column for the two children, same as .split-columns. */
 .text-image-columns {
   display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(auto, 3fr);
+  grid-template-columns: minmax(300px, 1fr) minmax(auto, 2fr);
   gap: 3rem;
   align-items: center;
   /*margin: 2rem 0;*/
