@@ -24,8 +24,10 @@ if (menuToggle && navLinks) {
 }
 
 // Project page table of contents: auto-built from whatever H2/H3s exist
-// in .project-body, inserted right after the Role/Tool/Timeline/Team
-// stats. Anchor links + the site's smooth-scroll CSS handle the jump.
+// in .project-body. Wraps the existing Role/Tool/Timeline/Team stats
+// and the new TOC together in .project-meta-grid (a two-column layout —
+// see style.css to reposition or restack them). Anchor links + the
+// site's smooth-scroll CSS handle the jump.
 const projectStats = document.querySelector('.project-stats');
 const projectBody = document.querySelector('.project-body');
 
@@ -47,6 +49,11 @@ if (projectStats && projectBody) {
     toc.className = 'project-toc';
     toc.setAttribute('aria-label', 'On this page');
 
+    const label = document.createElement('p');
+    label.className = 'project-toc-label';
+    label.textContent = 'On this page';
+    toc.appendChild(label);
+
     const list = document.createElement('ul');
     headings.forEach((heading) => {
       if (!heading.id) heading.id = slugify(heading.textContent);
@@ -63,7 +70,12 @@ if (projectStats && projectBody) {
     });
 
     toc.appendChild(list);
-    projectStats.insertAdjacentElement('afterend', toc);
+
+    const metaGrid = document.createElement('div');
+    metaGrid.className = 'project-meta-grid';
+    projectStats.insertAdjacentElement('afterend', metaGrid);
+    metaGrid.appendChild(projectStats);
+    metaGrid.appendChild(toc);
   }
 }
 
