@@ -266,6 +266,10 @@ body {
   color: #f0efe9;
   margin-top: 0.25rem;
 }
+.divider {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(228, 226, 219);
+}
 
 .project-card a:hover .project-image img,
 .project-card a:focus-visible .project-image img {
@@ -460,21 +464,6 @@ body {
   font-size: 0.95rem;
 }
 
-/* Wraps the quick-facts (Role/Tool/Timeline/Team) and the table of
-   contents side by side. Change grid-template-columns (or reorder
-   the two children in the HTML/script.js) to reposition either one —
-   e.g. swap the column widths, or drop to a single column to stack
-   the TOC above or below the stats instead of beside them. */
-.project-meta-grid {
-  display: grid;
-  grid-template-columns: minmax(220px, 340px) 1fr;
-  gap: 3rem;
-  align-items: start;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e4e2db;
-}
-
 @media (max-width: 700px) {
   .project-meta-grid {
     grid-template-columns: 1fr;
@@ -485,8 +474,18 @@ body {
 /* Quick-facts list (role, team, timeline, tool) under the H1 */
 .project-stats {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  flex-direction: line;
+  min-width: 590px;
+  gap: 4rem;
+  margin-top: 2rem;
+
+  /*display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e4e2db;*/
 }
 
 .project-stats dt {
@@ -503,6 +502,14 @@ body {
 }
 
 /* Table of contents, auto-built by script.js from the page's H2/H3s */
+.project-toc {
+  min-width: 180px;
+  align-items: center; /* start | end | center | stretch */
+  
+  /*border-left: 1px solid rgb(228, 226, 219);
+  padding-left: 2rem;*/
+}
+
 .project-toc-label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -648,6 +655,26 @@ body {
 
 @media (max-width: 700px) {
   .split-columns {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Text next to a large image, in a fixed 1:3 ratio (text:image) once
+   there's room for both at their minimum widths. Below 1200px wide —
+   or whenever 280px + 700px + the gap won't fit — the media query
+   drops it to a single column, image below text, both full width.
+   Reuses .split-column for the two children, same as .split-columns. */
+.text-image-columns {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(700px, 3fr);
+  gap: 3rem;
+  align-items: start;
+  margin: 2rem 0;
+}
+
+@media (max-width: 1199px) {
+  .text-image-columns {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
