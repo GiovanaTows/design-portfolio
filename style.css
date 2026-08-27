@@ -1107,6 +1107,28 @@ body {
   }
 }
 
+/* Desktop: the index floats to the right of the specs instead of
+   sharing a grid track with them — reserve room on the right for it
+   (padding-right) and pin it there (position: absolute, relative to
+   this container so it lines up with the top of the specs row
+   regardless of how tall the H1/subtitle above happen to be). It's
+   positioned only — it scrolls away normally with the rest of the
+   header, it doesn't stay pinned as you scroll the page. */
+@media (min-width: 601px) {
+  .project-header-columns {
+    position: relative;
+    grid-template-columns: 1fr;
+    padding-right: 300px;
+  }
+
+  .project-index {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 260px;
+  }
+}
+
 
 /* Two-column layout: put images in one .split-column and text in the
    other. Order in the HTML decides left vs. right — put the images
