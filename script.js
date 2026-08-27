@@ -117,6 +117,65 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
   prevBtn?.addEventListener('click', () => show(current - 1));
   nextBtn?.addEventListener('click', () => show(current + 1));
 
+  // Swipe: track the pointer 1:1 while dragging (no waiting for a
+  // "swipeleft"-type gesture event, so it can be redirected mid-drag),
+  // then commit to the nearest slide based on how far it moved.
+  const viewport = carousel.querySelector('.carousel-viewport');
+  let pointerId = null;
+  let startX = 0;
+  let dragX = 0;
+  let dragging = false;
+  let didSwipe = false;
+
+  function setDragTransform(offset) {
+    track.style.transition = 'none';
+    track.style.transform = `translateX(calc(-${current * 100}% + ${offset}px))`;
+  }
+
+  viewport.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    dragX = 0;
+    dragging = true;
+    didSwipe = false;
+    try {
+      viewport.setPointerCapture(pointerId);
+    } catch {
+      // Rare browser edge cases can reject capture; the drag still
+      // works via normal event bubbling, just without it.
+    }
+  });
+
+  viewport.addEventListener('pointermove', (event) => {
+    if (!dragging || event.pointerId !== pointerId) return;
+    dragX = event.clientX - startX;
+    if (Math.abs(dragX) > 10) didSwipe = true;
+    setDragTransform(dragX);
+  });
+
+  function endDrag(event) {
+    if (!dragging || event.pointerId !== pointerId) return;
+    dragging = false;
+    track.style.transition = '';
+    const threshold = viewport.getBoundingClientRect().width * 0.15;
+    if (dragX < -threshold) show(current + 1);
+    else if (dragX > threshold) show(current - 1);
+    else show(current); // snap back
+  }
+
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+
+  // A swipe shouldn't also open the lightbox — only a real tap should.
+  viewport.addEventListener('click', (event) => {
+    if (didSwipe) {
+      event.preventDefault();
+      event.stopPropagation();
+      didSwipe = false;
+    }
+  }, true);
+
   show(0);
 });
 
@@ -181,18 +240,64 @@ if (zoomableImages.length) {
     setZoomed(false);
   }
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Sets lightboxImg's transform so it visually overlaps `sourceEl`'s
+  // current on-screen position/size, even though it's laid out at its
+  // normal centered lightbox size. Clearing the transform afterwards
+  // (see open/close) is what makes it animate from there to centered,
+  // or centered back to there — growing from/shrinking to the thumbnail
+  // instead of just cross-fading in place.
+  function setOriginTransform(sourceEl) {
+    const sourceRect = sourceEl.getBoundingClientRect();
+    const targetRect = lightboxImg.getBoundingClientRect();
+    if (!targetRect.width || !targetRect.height) return false;
+
+    const scaleX = sourceRect.width / targetRect.width;
+    const scaleY = sourceRect.height / targetRect.height;
+    const originX = (sourceRect.left + sourceRect.width / 2) - (targetRect.left + targetRect.width / 2);
+    const originY = (sourceRect.top + sourceRect.height / 2) - (targetRect.top + targetRect.height / 2);
+
+    lightboxImg.style.transition = 'none';
+    lightboxImg.style.transform = `translate(${originX}px, ${originY}px) scale(${scaleX}, ${scaleY})`;
+    lightboxImg.offsetHeight; // force reflow so the browser registers the start position
+    lightboxImg.style.transition = '';
+    return true;
+  }
+
   function open(index) {
     lastFocused = document.activeElement;
+    const sourceImg = zoomableImages[index];
     show(index);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
     closeBtn.focus();
+
+    if (!prefersReducedMotion) {
+      requestAnimationFrame(() => {
+        if (setOriginTransform(sourceImg)) {
+          requestAnimationFrame(() => { lightboxImg.style.transform = ''; });
+        }
+      });
+    }
   }
 
   function close() {
-    lightbox.classList.remove('open');
+    const sourceImg = zoomableImages[currentIndex];
     document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
+
+    // Reset zoom first so the source rect below is measured against the
+    // fit-to-screen image, not a possibly-huge zoomed-in one.
+    setZoomed(false);
+
+    const animated = !prefersReducedMotion && setOriginTransform(sourceImg);
+    lightbox.classList.remove('open');
+    if (animated) {
+      window.setTimeout(() => { lightboxImg.style.transform = ''; }, 400);
+    } else {
+      lightboxImg.style.transform = '';
+    }
   }
 
   zoomableImages.forEach((img, index) => {

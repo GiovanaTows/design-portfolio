@@ -57,9 +57,29 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: var(--paper);
+  background-color: rgba(250, 249, 246, 0.75);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid #e4e2db;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+}
+
+/* Frosted glass needs a solid fallback for reduced-transparency and for
+   browsers without backdrop-filter support, so content underneath never
+   reads illegibly through the header. */
+@supports not (backdrop-filter: blur(1px)) {
+  .site-header {
+    background-color: var(--paper);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-header {
+    background-color: var(--paper);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid #e4e2db;
+  }
 }
 
 .header-row {
@@ -123,6 +143,11 @@ body {
   color: var(--ink);
   position: relative;
   z-index: 11;
+  transition: transform 0.1s ease-out;
+}
+
+.menu-toggle:active {
+  transform: scale(0.88);
 }
 
 .menu-toggle .material-symbols-outlined {
@@ -209,6 +234,8 @@ body {
 .section h2 {
   font-family: var(--display-font);
   font-size: 2rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   margin-bottom: 2rem;
 }
 
@@ -348,6 +375,15 @@ body {
   border-radius: 2px;
   cursor: zoom-in;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  /* Grow-from-thumbnail on open, shrink-back-to-thumbnail on close —
+     script.js sets the starting transform, this animates it to identity. */
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-img-wrap img {
+    transition: none;
+  }
 }
 
 /* Zoomed-in state: show the image at its full native size and let
@@ -464,6 +500,10 @@ body {
   background-color: var(--accent);
 }
 
+.back-to-top.visible:active {
+  transform: translateY(0) scale(0.9);
+}
+
 .back-to-top svg {
   width: 20px;
   height: 20px;
@@ -510,6 +550,7 @@ body {
   font-family: var(--display-font);
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .project-header .project-meta {
@@ -651,6 +692,8 @@ body {
 .project-body h2 {
   font-family: var(--display-font);
   font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   margin-top: 4rem; /* 3rem; */
   margin-bottom: 1rem;
   scroll-margin-top: 6rem; /* clears the sticky site header when linked to */
@@ -761,6 +804,14 @@ body {
   /*background-color: #ece9e2;*/
   background-color: #363636;
   aspect-ratio: 4 / 3;
+  /* Let JS own horizontal swipe; the browser still handles vertical
+     page scroll, so the two gestures don't fight each other. */
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.carousel-viewport:active {
+  cursor: grabbing;
 }
 
 .carousel-track {
@@ -796,8 +847,8 @@ body {
   position: absolute;
   top: 48%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: none;
   background-color: var(--button);
@@ -807,12 +858,18 @@ body {
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s ease-out, background-color 0.2s ease;
 }
 
 .carousel-prev:hover,
 .carousel-next:hover {
   background-color: var(--button-hover);
   color: var(--ink-hover);
+}
+
+.carousel-prev:active,
+.carousel-next:active {
+  transform: translateY(-50%) scale(0.9);
 }
 
 .carousel-prev svg,
