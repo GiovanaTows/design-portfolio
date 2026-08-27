@@ -679,6 +679,18 @@ body {
   padding: 3rem 1.5rem 2rem;
 }
 
+.project-header-content {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
+@media (max-width: 1100px) {
+  .project-header-content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .back-link {
   display: inline-block;
   color: var(--muted) !important;
@@ -1114,7 +1126,7 @@ body {
    regardless of how tall the H1/subtitle above happen to be). It's
    positioned only — it scrolls away normally with the rest of the
    header, it doesn't stay pinned as you scroll the page. */
-@media (min-width: 601px) {
+@media (min-width: 800px) {
   .project-header-columns {
     position: relative;
     grid-template-columns: 1fr;
@@ -1123,9 +1135,15 @@ body {
 
   .project-index {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -160px;
+    right: 6rem;
     width: 260px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .project-index {
+    right: 0;
   }
 }
 
