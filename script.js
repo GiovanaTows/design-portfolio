@@ -272,7 +272,7 @@ if (zoomableImages.length) {
   // layout size and doesn't gain real scrollable area.
   const ZOOM_MIN = 1;
   const ZOOM_MAX = 3;
-  const ZOOM_STEP = 0.25;
+  const ZOOM_STEP = 0.5;
   let zoomLevel = ZOOM_MIN;
   let baseSize = null; // the fit-to-screen {width, height}, measured lazily per image
 
