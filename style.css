@@ -31,8 +31,8 @@ body {
   --index: #eeece6;
   --accent: #2f4b3c;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
-  --button: rgba(250, 249, 246, 0.3);
-  --button-hover: rgba(250, 249, 246, 0.45);
+  --button: rgba(250, 249, 246, 0.45);
+  --button-hover: rgba(250, 249, 246, 0.6);
   --link: #2455e6;
   --link-hover: #002db4;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -375,6 +375,12 @@ body {
   padding: 4.5rem 1.5rem;
   opacity: 0;
   visibility: hidden;
+  /* Nothing in here is meant to be text-selected — a stray click-drag
+     (easy to do reaching for the zoom/nav buttons) was highlighting
+     the image in the browser's selection blue instead of doing
+     anything useful. */
+  user-select: none;
+  -webkit-user-select: none;
   /* visibility has its own 0s transition, delayed until the opacity
      fade finishes closing — without this, visibility (which can't be
      animated) snaps to hidden the instant .open is removed, cutting
@@ -414,6 +420,7 @@ body {
   border-radius: 2px;
   cursor: zoom-in;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  -webkit-user-drag: none;
   /* transform/opacity: grow-from-thumbnail on open, shrink-back on
      close, and the prev/next slide — script.js drives all three by
      setting a starting transform/opacity and clearing it. Zoom level
