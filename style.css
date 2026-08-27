@@ -36,6 +36,7 @@ body {
   --link: #2455e6;
   --link-hover: #002db4;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --image-radius: 4px;    /* project cards, hero/figure/carousel images, lightbox */
 }
 
 /* ============================================
@@ -287,7 +288,7 @@ body {
 .project-image {
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: var(--image-radius);
   aspect-ratio: 1 / 1;
   background-color: #ece9e2; /* shows while the image loads */
 }
@@ -417,7 +418,7 @@ body {
   max-height: 100%;
   width: auto;
   height: auto;
-  border-radius: 4px;
+  border-radius: var(--image-radius);
   cursor: zoom-in;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   -webkit-user-drag: none;
@@ -824,7 +825,7 @@ body {
 .project-hero img {
   width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: var(--image-radius);
   display: block;
 }
 
@@ -876,7 +877,7 @@ body {
 .project-figure img {
   width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: var(--image-radius);
   display: block;
   background-color: #ece9e2;
 }
@@ -945,7 +946,7 @@ body {
 
 .carousel-viewport {
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: var(--image-radius);
   /*background-color: #ece9e2;*/
   background-color: #363636;
   aspect-ratio: 4 / 3;
