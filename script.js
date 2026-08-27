@@ -28,8 +28,20 @@ if (menuToggle && navLinks) {
 // in style.css for the actual size change.
 const siteHeader = document.querySelector('.site-header');
 if (siteHeader) {
+  // Two thresholds with a dead zone between them, not one — a single
+  // cutoff means the tiniest scroll jitter right at that pixel (normal
+  // with a trackpad) flips the class back and forth rapidly, which
+  // shows up as the header trembling instead of settling into either
+  // state.
+  let headerScrolled = false;
   const toggleHeaderScrolled = () => {
-    siteHeader.classList.toggle('scrolled', window.scrollY > 40);
+    if (!headerScrolled && window.scrollY > 80) {
+      headerScrolled = true;
+      siteHeader.classList.add('scrolled');
+    } else if (headerScrolled && window.scrollY < 30) {
+      headerScrolled = false;
+      siteHeader.classList.remove('scrolled');
+    }
   };
   toggleHeaderScrolled();
   window.addEventListener('scroll', toggleHeaderScrolled, { passive: true });
@@ -145,7 +157,12 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
   }
 
   viewport.addEventListener('pointerdown', (event) => {
-    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    // Swipe is for touch/pen only. On a mouse, dragging the pointer
+    // capture through pointerdown/up was intermittently swallowing the
+    // plain click that should open the lightbox — desktop has no need
+    // for swipe anyway, since the prev/next buttons are always visible
+    // and easy to click.
+    if (event.pointerType === 'mouse') return;
     pointerId = event.pointerId;
     startX = event.clientX;
     dragX = 0;
@@ -255,7 +272,7 @@ if (zoomableImages.length) {
   // layout size and doesn't gain real scrollable area.
   const ZOOM_MIN = 1;
   const ZOOM_MAX = 3;
-  const ZOOM_STEP = 0.5;
+  const ZOOM_STEP = 0.25;
   let zoomLevel = ZOOM_MIN;
   let baseSize = null; // the fit-to-screen {width, height}, measured lazily per image
 

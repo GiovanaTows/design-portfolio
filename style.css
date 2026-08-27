@@ -69,7 +69,7 @@ body {
 }
 
 .site-header.scrolled {
-  padding: 0.65rem 1.5rem;
+  padding: 0.4rem 1.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -149,7 +149,7 @@ body {
 }
 
 .site-header.scrolled .site-logo {
-  width: clamp(95px, 30vw, 135px);
+  width: clamp(75px, 22vw, 105px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -409,9 +409,11 @@ body {
   /* transform: grow-from-thumbnail on open, shrink-back on close, and
      the prev/next slide — script.js drives all three by setting a
      starting transform/opacity and clearing it.
-     width/height: smooth steps between zoom levels. */
+     width/height: smooth steps between zoom levels, same easing as
+     the transform above so every image motion here feels like one
+     consistent material rather than several different animations. */
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease,
-    width 0.3s ease, height 0.3s ease;
+    width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -541,7 +543,9 @@ body {
   }
 }
 
-/* Zoom controls: a small pill, bottom-center, above the caption. */
+/* Zoom controls: bottom-center on narrow/mobile screens (centered is
+   easiest to reach with a thumb); bottom-right on desktop, out of the
+   way of the centered caption. Both stay above the caption's row. */
 .lightbox-zoom {
   position: absolute;
   bottom: 4.5rem;
@@ -555,6 +559,14 @@ body {
   -webkit-backdrop-filter: blur(8px) saturate(180%);
   padding: 0.4rem 0.75rem;
   border-radius: 999px;
+}
+
+@media (min-width: 900px) {
+  .lightbox-zoom {
+    left: auto;
+    right: 1.5rem;
+    transform: none;
+  }
 }
 
 .lightbox-zoom-level {
