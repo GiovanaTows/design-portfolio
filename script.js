@@ -278,20 +278,43 @@ if (zoomableImages.length) {
 
   function applyZoom() {
     const zoomed = zoomLevel > ZOOM_MIN;
-    lightboxImgWrap.classList.toggle('zoomed', zoomed);
 
-    if (zoomed) {
-      if (!baseSize) {
-        lightboxImg.style.width = '';
-        lightboxImg.style.height = '';
-        const rect = lightboxImg.getBoundingClientRect();
-        baseSize = { width: rect.width, height: rect.height };
-      }
-      lightboxImg.style.width = `${baseSize.width * zoomLevel}px`;
-      lightboxImg.style.height = `${baseSize.height * zoomLevel}px`;
-    } else {
+    if (!baseSize) {
+      // Measure the fit-to-screen size — with .zoomed forced off, so
+      // max-width/max-height:100% are definitely constraining it. If
+      // this ran with .zoomed already added (e.g. establishing the
+      // baseline lazily on the first zoom-in click), the image would
+      // render at its unconstrained native size instead of its
+      // on-screen fit size, poisoning every zoom-level calculation
+      // from then on.
+      lightboxImgWrap.classList.remove('zoomed');
       lightboxImg.style.width = '';
       lightboxImg.style.height = '';
+      const rect = lightboxImg.getBoundingClientRect();
+      // If the image hasn't actually rendered yet (rect is 0x0 — e.g.
+      // this ran before it finished loading), don't cache that: pinning
+      // a 0px size would get stuck there permanently, since baseSize
+      // only gets remeasured on the next image. Leave it null so the
+      // next zoom attempt measures again instead.
+      if (rect.width && rect.height) {
+        baseSize = { width: rect.width, height: rect.height };
+      }
+    }
+
+    lightboxImgWrap.classList.toggle('zoomed', zoomed);
+
+    // Always set an explicit pixel size, even back at 100% — CSS
+    // transitions don't reliably animate to/from "auto", which is what
+    // clearing the inline style back to '' would fall back to. Setting
+    // 1x the base size here looks identical to "auto" but keeps every
+    // zoom step, including zooming back out, a smooth number-to-number
+    // transition.
+    if (baseSize) {
+      lightboxImg.style.width = `${baseSize.width * zoomLevel}px`;
+      lightboxImg.style.height = `${baseSize.height * zoomLevel}px`;
+    }
+
+    if (!zoomed) {
       lightboxImgWrap.scrollTop = 0;
       lightboxImgWrap.scrollLeft = 0;
     }

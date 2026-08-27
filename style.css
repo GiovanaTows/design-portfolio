@@ -149,7 +149,7 @@ body {
 }
 
 .site-header.scrolled .site-logo {
-  width: clamp(75px, 22vw, 105px);
+  width: clamp(95px, 30vw, 135px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -563,6 +563,10 @@ body {
 
 @media (min-width: 900px) {
   .lightbox-zoom {
+    /* Same bottom offset as .lightbox-caption, so the zoom pill (right
+       corner) and the caption (centered) sit on the same row instead
+       of the pill floating above it. */
+    bottom: 1.25rem;
     left: auto;
     right: 1.5rem;
     transform: none;
