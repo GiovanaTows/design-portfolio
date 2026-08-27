@@ -393,9 +393,26 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+  /* "safe center" keeps the image centered while it fits, but falls
+     back to start-aligned once it's bigger than the wrap — so zooming
+     in doesn't clip the overflow on the far side out of scroll reach.
+     Declared twice: browsers that don't understand "safe" (an older
+     Safari) ignore that whole line and keep the plain "center" above
+     it instead of dropping alignment entirely. */
   align-items: center;
+  align-items: safe center;
   justify-content: center;
-  overflow: hidden;
+  justify-content: safe center;
+  overflow: auto;
+  /* Lets the re-centering scroll (see script.js) animate alongside the
+     width/height grow instead of snapping instantly. */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-img-wrap {
+    scroll-behavior: auto;
+  }
 }
 
 .lightbox-img-wrap img {
@@ -423,13 +440,14 @@ body {
 }
 
 /* Zoomed-in state: the image is sized above its fit-to-screen size
-   (script.js sets explicit width/height), and the wrapper scrolls so
-   you can pan around to see detail. */
-.lightbox-img-wrap.zoomed {
-  display: block;
-  overflow: auto;
-}
-
+   (script.js sets explicit width/height). display/overflow don't need
+   to change here anymore — the wrap is always flex + overflow: auto
+   (see above) — this just swaps the cursor and lets the explicit size
+   exceed the fit-to-screen max-width/max-height. Switching display
+   between flex and block here used to be the bug behind the "jumps to
+   a corner" zoom animation: display isn't animatable, so centering
+   vanished the instant you zoomed, before the width/height had
+   actually finished growing. */
 .lightbox-img-wrap.zoomed img {
   max-width: none;
   max-height: none;
@@ -445,6 +463,10 @@ body {
   color: #f0efe9;
   font-size: 0.85rem;
   padding: 0 4.5rem;
+  /* Its box spans the full width even though the text is centered and
+     padded — without this, it sits on top of (and swallows clicks on)
+     anything sharing this row, like the zoom controls on desktop. */
+  pointer-events: none;
 }
 
 /* Shared round icon-button look, used by the lightbox controls (close,

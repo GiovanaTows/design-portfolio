@@ -314,7 +314,15 @@ if (zoomableImages.length) {
       lightboxImg.style.height = `${baseSize.height * zoomLevel}px`;
     }
 
-    if (!zoomed) {
+    // Keep the same point centered as it grows/shrinks, rather than
+    // leaving the scroll position wherever it happened to land — this
+    // is what makes zooming via the buttons (as opposed to a
+    // pointer-anchored pinch) still feel like it's zooming "into the
+    // middle" instead of drifting toward a corner.
+    if (zoomed) {
+      lightboxImgWrap.scrollLeft = (lightboxImgWrap.scrollWidth - lightboxImgWrap.clientWidth) / 2;
+      lightboxImgWrap.scrollTop = (lightboxImgWrap.scrollHeight - lightboxImgWrap.clientHeight) / 2;
+    } else {
       lightboxImgWrap.scrollTop = 0;
       lightboxImgWrap.scrollLeft = 0;
     }
