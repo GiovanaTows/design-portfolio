@@ -278,40 +278,46 @@ if (zoomableImages.length) {
 
   function applyZoom() {
     const zoomed = zoomLevel > ZOOM_MIN;
-
-    if (!baseSize) {
-      // Measure the fit-to-screen size — with .zoomed forced off, so
-      // max-width/max-height:100% are definitely constraining it. If
-      // this ran with .zoomed already added (e.g. establishing the
-      // baseline lazily on the first zoom-in click), the image would
-      // render at its unconstrained native size instead of its
-      // on-screen fit size, poisoning every zoom-level calculation
-      // from then on.
-      lightboxImgWrap.classList.remove('zoomed');
-      lightboxImg.style.width = '';
-      lightboxImg.style.height = '';
-      const rect = lightboxImg.getBoundingClientRect();
-      // If the image hasn't actually rendered yet (rect is 0x0 — e.g.
-      // this ran before it finished loading), don't cache that: pinning
-      // a 0px size would get stuck there permanently, since baseSize
-      // only gets remeasured on the next image. Leave it null so the
-      // next zoom attempt measures again instead.
-      if (rect.width && rect.height) {
-        baseSize = { width: rect.width, height: rect.height };
-      }
-    }
-
     lightboxImgWrap.classList.toggle('zoomed', zoomed);
 
-    // Always set an explicit pixel size, even back at 100% — CSS
-    // transitions don't reliably animate to/from "auto", which is what
-    // clearing the inline style back to '' would fall back to. Setting
-    // 1x the base size here looks identical to "auto" but keeps every
-    // zoom step, including zooming back out, a smooth number-to-number
-    // transition.
-    if (baseSize) {
-      lightboxImg.style.width = `${baseSize.width * zoomLevel}px`;
-      lightboxImg.style.height = `${baseSize.height * zoomLevel}px`;
+    if (!zoomed) {
+      // At rest, don't pin an explicit size at all — let CSS
+      // (max-width/max-height: 100%, width/height: auto) size it from
+      // whatever the image's real natural dimensions are. That's
+      // always correct regardless of load timing. Explicitly pinning
+      // a measured size here (even one equal to "auto") used to be
+      // needed to support a width/height transition, but that
+      // animation is gone now, and pinning a size measured before the
+      // image had actually finished loading (e.g. right after
+      // switching via prev/next) was locking in the *previous*
+      // image's box — squishing the new one into it once it loaded.
+      lightboxImg.style.width = '';
+      lightboxImg.style.height = '';
+    } else {
+      if (!baseSize && lightboxImg.complete && lightboxImg.naturalWidth) {
+        // Measure the fit-to-screen size — with .zoomed forced off, so
+        // max-width/max-height:100% are definitely constraining it —
+        // and only once the image has actually finished loading, so
+        // this reflects its real aspect ratio rather than whatever was
+        // on screen a moment ago.
+        lightboxImgWrap.classList.remove('zoomed');
+        lightboxImg.style.width = '';
+        lightboxImg.style.height = '';
+        const rect = lightboxImg.getBoundingClientRect();
+        if (rect.width && rect.height) {
+          baseSize = { width: rect.width, height: rect.height };
+        }
+        lightboxImgWrap.classList.add('zoomed');
+      }
+
+      if (baseSize) {
+        lightboxImg.style.width = `${baseSize.width * zoomLevel}px`;
+        lightboxImg.style.height = `${baseSize.height * zoomLevel}px`;
+      }
+      // Still loading and no baseSize yet: leave width/height alone
+      // (unconstrained by .zoomed's max-width/max-height:none, so it
+      // just shows at natural size for a moment) rather than guess —
+      // it'll size correctly on the next zoom interaction once loaded.
     }
 
     // Keep the same point centered as it grows/shrinks, rather than
