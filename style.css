@@ -404,15 +404,6 @@ body {
   justify-content: center;
   justify-content: safe center;
   overflow: auto;
-  /* Lets the re-centering scroll (see script.js) animate alongside the
-     width/height grow instead of snapping instantly. */
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lightbox-img-wrap {
-    scroll-behavior: auto;
-  }
 }
 
 .lightbox-img-wrap img {
@@ -423,14 +414,12 @@ body {
   border-radius: 2px;
   cursor: zoom-in;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  /* transform: grow-from-thumbnail on open, shrink-back on close, and
-     the prev/next slide — script.js drives all three by setting a
-     starting transform/opacity and clearing it.
-     width/height: smooth steps between zoom levels, same easing as
-     the transform above so every image motion here feels like one
-     consistent material rather than several different animations. */
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease,
-    width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* transform/opacity: grow-from-thumbnail on open, shrink-back on
+     close, and the prev/next slide — script.js drives all three by
+     setting a starting transform/opacity and clearing it. Zoom level
+     changes (width/height) are intentionally NOT in this list — they
+     apply instantly rather than animating. */
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
