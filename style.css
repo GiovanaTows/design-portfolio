@@ -261,7 +261,6 @@ body {
   font-family: var(--display-font);
   font-size: 2rem;
   line-height: 1.15;
-  letter-spacing: -0.02em;
   margin-bottom: 2rem;
 }
 
@@ -696,7 +695,6 @@ body {
   font-family: var(--display-font);
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.15;
-  letter-spacing: -0.02em;
 }
 
 .project-header .project-meta {
@@ -839,7 +837,6 @@ body {
   font-family: var(--display-font);
   font-size: 1.5rem;
   line-height: 1.15;
-  letter-spacing: -0.02em;
   margin-top: 4rem; /* 3rem; */
   margin-bottom: 1rem;
   scroll-margin-top: 6rem; /* clears the sticky site header when linked to */
