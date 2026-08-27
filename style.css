@@ -976,7 +976,7 @@ body {
   overflow: hidden;
   border-radius: var(--image-radius);
   background-color: var(--carousel-bg);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   /* Let JS own horizontal swipe; the browser still handles vertical
      page scroll, so the two gestures don't fight each other. */
   touch-action: pan-y;
@@ -1074,7 +1074,7 @@ body {
 }
 
 .topic-divider-first{
-  padding-top: 1.5rem;
+  padding-top: 0;
 }
 
 @media (max-width: 900px) {
