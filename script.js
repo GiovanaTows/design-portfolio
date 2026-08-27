@@ -23,6 +23,18 @@ if (menuToggle && navLinks) {
   });
 }
 
+// Sticky header: shrinks a little once you've scrolled past the very
+// top, and returns to full size back at the top — see .site-header.scrolled
+// in style.css for the actual size change.
+const siteHeader = document.querySelector('.site-header');
+if (siteHeader) {
+  const toggleHeaderScrolled = () => {
+    siteHeader.classList.toggle('scrolled', window.scrollY > 40);
+  };
+  toggleHeaderScrolled();
+  window.addEventListener('scroll', toggleHeaderScrolled, { passive: true });
+}
+
 // Project page table of contents. If a project page already writes its
 // own <nav class="project-toc"> (see projects/plots.html for an example
 // you can copy/edit directly), this leaves it alone. Otherwise it's a
@@ -191,18 +203,27 @@ if (zoomableImages.length) {
   lightbox.setAttribute('aria-modal', 'true');
   lightbox.setAttribute('aria-label', 'Image viewer');
   lightbox.innerHTML = `
-    <button type="button" class="lightbox-close" aria-label="Close">
+    <button type="button" class="lightbox-btn lightbox-close" aria-label="Close">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <button type="button" class="lightbox-prev" aria-label="Previous image">
+    <button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous image">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
     </button>
     <div class="lightbox-img-wrap">
       <img src="" alt="">
     </div>
-    <button type="button" class="lightbox-next" aria-label="Next image">
+    <button type="button" class="lightbox-btn lightbox-next" aria-label="Next image">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
     </button>
+    <div class="lightbox-zoom">
+      <button type="button" class="lightbox-btn lightbox-zoom-out" aria-label="Zoom out">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+      </button>
+      <span class="lightbox-zoom-level">100%</span>
+      <button type="button" class="lightbox-btn lightbox-zoom-in" aria-label="Zoom in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
     <p class="lightbox-caption"></p>
   `;
   document.body.appendChild(lightbox);
@@ -213,9 +234,13 @@ if (zoomableImages.length) {
   const closeBtn = lightbox.querySelector('.lightbox-close');
   const prevBtn = lightbox.querySelector('.lightbox-prev');
   const nextBtn = lightbox.querySelector('.lightbox-next');
+  const zoomInBtn = lightbox.querySelector('.lightbox-zoom-in');
+  const zoomOutBtn = lightbox.querySelector('.lightbox-zoom-out');
+  const zoomLevelLabel = lightbox.querySelector('.lightbox-zoom-level');
 
   let currentIndex = 0;
   let lastFocused = null;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Prefer the figcaption (case-study images); fall back to alt text (hero).
   function captionFor(img) {
@@ -223,24 +248,89 @@ if (zoomableImages.length) {
     return figcaption ? figcaption.textContent : img.alt;
   }
 
-  // Clicking the image toggles between fit-to-screen and its full
-  // native size (scrollable, so you can pan around to see detail).
-  function setZoomed(zoomed) {
+  // --- Zoom: stepped levels (not just fit/native), with +/- controls for
+  // navigating detail-heavy images. Uses real width/height (not
+  // transform: scale) so the wrap's overflow: auto actually has
+  // somewhere to scroll to — a scaled-only box keeps its original
+  // layout size and doesn't gain real scrollable area.
+  const ZOOM_MIN = 1;
+  const ZOOM_MAX = 3;
+  const ZOOM_STEP = 0.5;
+  let zoomLevel = ZOOM_MIN;
+  let baseSize = null; // the fit-to-screen {width, height}, measured lazily per image
+
+  function applyZoom() {
+    const zoomed = zoomLevel > ZOOM_MIN;
     lightboxImgWrap.classList.toggle('zoomed', zoomed);
-    lightboxImgWrap.scrollTop = 0;
-    lightboxImgWrap.scrollLeft = 0;
+
+    if (zoomed) {
+      if (!baseSize) {
+        lightboxImg.style.width = '';
+        lightboxImg.style.height = '';
+        const rect = lightboxImg.getBoundingClientRect();
+        baseSize = { width: rect.width, height: rect.height };
+      }
+      lightboxImg.style.width = `${baseSize.width * zoomLevel}px`;
+      lightboxImg.style.height = `${baseSize.height * zoomLevel}px`;
+    } else {
+      lightboxImg.style.width = '';
+      lightboxImg.style.height = '';
+      lightboxImgWrap.scrollTop = 0;
+      lightboxImgWrap.scrollLeft = 0;
+    }
+
+    zoomInBtn.disabled = zoomLevel >= ZOOM_MAX;
+    zoomOutBtn.disabled = zoomLevel <= ZOOM_MIN;
+    zoomLevelLabel.textContent = `${Math.round(zoomLevel * 100)}%`;
   }
 
-  function show(index) {
-    currentIndex = (index + zoomableImages.length) % zoomableImages.length;
-    const img = zoomableImages[currentIndex];
-    lightboxImg.src = img.currentSrc || img.src;
-    lightboxImg.alt = img.alt;
-    lightboxCaption.textContent = captionFor(img);
-    setZoomed(false);
+  function setZoomLevel(level) {
+    zoomLevel = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, level));
+    applyZoom();
   }
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resetZoom() {
+    zoomLevel = ZOOM_MIN;
+    baseSize = null;
+    applyZoom();
+  }
+
+  // --- Show a given image. `direction` (1 = next, -1 = prev, 0 = no
+  // animation — used when first opening) makes it slide out toward
+  // where you're headed and the new one slide in from where it came
+  // from, instead of just popping to the new image.
+  function show(index, direction = 0) {
+    const nextIndex = (index + zoomableImages.length) % zoomableImages.length;
+
+    const swap = () => {
+      currentIndex = nextIndex;
+      const img = zoomableImages[currentIndex];
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = captionFor(img);
+      resetZoom();
+    };
+
+    if (!direction || prefersReducedMotion) {
+      swap();
+      return;
+    }
+
+    lightboxImg.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+    lightboxImg.style.opacity = '0';
+    lightboxImg.style.transform = `translateX(${direction > 0 ? -24 : 24}px)`;
+
+    window.setTimeout(() => {
+      swap();
+      lightboxImg.style.transition = 'none';
+      lightboxImg.style.transform = `translateX(${direction > 0 ? 24 : -24}px)`;
+      lightboxImg.offsetHeight; // force reflow before animating back in
+      lightboxImg.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+      lightboxImg.style.opacity = '1';
+      lightboxImg.style.transform = 'translateX(0)';
+      window.setTimeout(() => { lightboxImg.style.transition = ''; }, 200);
+    }, 150);
+  }
 
   // Sets lightboxImg's transform so it visually overlaps `sourceEl`'s
   // current on-screen position/size, even though it's laid out at its
@@ -289,12 +379,12 @@ if (zoomableImages.length) {
 
     // Reset zoom first so the source rect below is measured against the
     // fit-to-screen image, not a possibly-huge zoomed-in one.
-    setZoomed(false);
+    resetZoom();
 
     const animated = !prefersReducedMotion && setOriginTransform(sourceImg);
     lightbox.classList.remove('open');
     if (animated) {
-      window.setTimeout(() => { lightboxImg.style.transform = ''; }, 400);
+      window.setTimeout(() => { lightboxImg.style.transform = ''; }, 350);
     } else {
       lightboxImg.style.transform = '';
     }
@@ -304,14 +394,19 @@ if (zoomableImages.length) {
     img.addEventListener('click', () => open(index));
   });
 
+  // Clicking the image is a quick toggle between fit and 2x; the +/-
+  // buttons give finer control for images with a lot of detail.
   lightboxImg.addEventListener('click', (event) => {
     event.stopPropagation();
-    setZoomed(!lightboxImgWrap.classList.contains('zoomed'));
+    setZoomLevel(zoomLevel > ZOOM_MIN ? ZOOM_MIN : ZOOM_MIN + 1);
   });
 
+  zoomInBtn.addEventListener('click', () => setZoomLevel(zoomLevel + ZOOM_STEP));
+  zoomOutBtn.addEventListener('click', () => setZoomLevel(zoomLevel - ZOOM_STEP));
+
   closeBtn.addEventListener('click', close);
-  prevBtn.addEventListener('click', () => show(currentIndex - 1));
-  nextBtn.addEventListener('click', () => show(currentIndex + 1));
+  prevBtn.addEventListener('click', () => show(currentIndex - 1, -1));
+  nextBtn.addEventListener('click', () => show(currentIndex + 1, 1));
 
   // Clicking the dark backdrop (not the image or a control) closes it.
   lightbox.addEventListener('click', (event) => {
@@ -321,8 +416,8 @@ if (zoomableImages.length) {
   document.addEventListener('keydown', (event) => {
     if (!lightbox.classList.contains('open')) return;
     if (event.key === 'Escape') close();
-    if (event.key === 'ArrowLeft') show(currentIndex - 1);
-    if (event.key === 'ArrowRight') show(currentIndex + 1);
+    if (event.key === 'ArrowLeft') show(currentIndex - 1, -1);
+    if (event.key === 'ArrowRight') show(currentIndex + 1, 1);
   });
 }
 

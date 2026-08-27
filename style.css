@@ -62,6 +62,20 @@ body {
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   padding: 1.25rem 1.5rem;
   box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+  /* .scrolled is toggled by script.js once you're past the very top —
+     shrinks the header (and the logo, below) so it takes up less room
+     while you're reading, then relaxes back to full size at the top. */
+  transition: padding 0.25s ease;
+}
+
+.site-header.scrolled {
+  padding: 0.65rem 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
 }
 
 /* Frosted glass needs a solid fallback for reduced-transparency and for
@@ -128,9 +142,20 @@ body {
 }
 
 .site-logo {
-  width: clamp(110px, 40vw, 160px);
+  width: clamp(130px, 40vw, 190px);
   height: auto;
   display: block;
+  transition: width 0.25s ease;
+}
+
+.site-header.scrolled .site-logo {
+  width: clamp(95px, 30vw, 135px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-logo {
+    transition: none;
+  }
 }
 
 /* Hamburger button: hidden on desktop, shown only on mobile (see media query) */
@@ -350,12 +375,18 @@ body {
   padding: 4.5rem 1.5rem;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease;
+  /* visibility has its own 0s transition, delayed until the opacity
+     fade finishes closing — without this, visibility (which can't be
+     animated) snaps to hidden the instant .open is removed, cutting
+     off the fade-out and the image's shrink-to-thumbnail animation
+     before either gets a chance to actually play. */
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
 }
 
 .lightbox.open {
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.35s ease, visibility 0s linear 0s;
 }
 
 .lightbox-img-wrap {
@@ -375,9 +406,12 @@ body {
   border-radius: 2px;
   cursor: zoom-in;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  /* Grow-from-thumbnail on open, shrink-back-to-thumbnail on close —
-     script.js sets the starting transform, this animates it to identity. */
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* transform: grow-from-thumbnail on open, shrink-back on close, and
+     the prev/next slide — script.js drives all three by setting a
+     starting transform/opacity and clearing it.
+     width/height: smooth steps between zoom levels. */
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease,
+    width 0.3s ease, height 0.3s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -386,8 +420,9 @@ body {
   }
 }
 
-/* Zoomed-in state: show the image at its full native size and let
-   the wrapper scroll so you can pan around to see detail. */
+/* Zoomed-in state: the image is sized above its fit-to-screen size
+   (script.js sets explicit width/height), and the wrapper scrolls so
+   you can pan around to see detail. */
 .lightbox-img-wrap.zoomed {
   display: block;
   overflow: auto;
@@ -410,51 +445,93 @@ body {
   padding: 0 4.5rem;
 }
 
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next {
-  position: absolute;
-  background: none;
+/* Shared round icon-button look, used by the lightbox controls (close,
+   prev/next, zoom in/out) and the carousel's prev/next — a translucent
+   frosted-glass circle rather than a flat/bare icon, so every "button
+   floating over an image" on the site reads as the same kind of
+   control. Dark ink icon on a light frosted pill reads clearly against
+   both the lightbox's near-black overlay and the carousel's dark
+   viewport background. */
+.lightbox-btn,
+.carousel-prev,
+.carousel-next {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   border: none;
-  color: #fff;
+  background-color: var(--button);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  padding: 0.5rem;
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s ease-out, background-color 0.2s ease;
 }
 
-.lightbox-close:hover,
-.lightbox-prev:hover,
-.lightbox-next:hover,
-.lightbox-close:focus-visible,
-.lightbox-prev:focus-visible,
-.lightbox-next:focus-visible {
-  opacity: 1;
+.lightbox-btn:hover,
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: var(--button-hover);
+  color: var(--ink-hover);
 }
 
-.lightbox-close svg,
-.lightbox-prev svg,
-.lightbox-next svg {
-  width: 28px;
-  height: 28px;
+.lightbox-btn:active,
+.carousel-prev:active,
+.carousel-next:active {
+  transform: scale(0.9);
+}
+
+.lightbox-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+.lightbox-btn svg,
+.carousel-prev svg,
+.carousel-next svg {
+  width: 20px;
+  height: 20px;
   display: block;
 }
 
+@supports not (backdrop-filter: blur(1px)) {
+  .lightbox-btn,
+  .carousel-prev,
+  .carousel-next {
+    background-color: rgba(250, 249, 246, 0.92);
+  }
+}
+
 .lightbox-close {
+  position: absolute;
   top: 1.25rem;
   right: 1.25rem;
 }
 
 .lightbox-prev {
+  position: absolute;
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
 
+.lightbox-prev:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
 .lightbox-next {
+  position: absolute;
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.lightbox-next:active {
+  transform: translateY(-50%) scale(0.9);
 }
 
 @media (max-width: 640px) {
@@ -462,6 +539,40 @@ body {
   .lightbox-next {
     display: none;
   }
+}
+
+/* Zoom controls: a small pill, bottom-center, above the caption. */
+.lightbox-zoom {
+  position: absolute;
+  bottom: 4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+}
+
+.lightbox-zoom-level {
+  color: #fff;
+  font-size: 0.8rem;
+  min-width: 3.2em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.lightbox-zoom .lightbox-btn {
+  width: 32px;
+  height: 32px;
+}
+
+.lightbox-zoom .lightbox-btn svg {
+  width: 16px;
+  height: 16px;
 }
 
 /* ============================================
@@ -842,40 +953,19 @@ body {
   cursor: zoom-in;
 }
 
+/* Visual style (size, background, hover/active) lives on the shared
+   .lightbox-btn, .carousel-prev, .carousel-next rule near the lightbox
+   styles — this is just positioning within the carousel. */
 .carousel-prev,
 .carousel-next {
   position: absolute;
   top: 48%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--button);
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-  transition: transform 0.1s ease-out, background-color 0.2s ease;
-}
-
-.carousel-prev:hover,
-.carousel-next:hover {
-  background-color: var(--button-hover);
-  color: var(--ink-hover);
 }
 
 .carousel-prev:active,
 .carousel-next:active {
   transform: translateY(-50%) scale(0.9);
-}
-
-.carousel-prev svg,
-.carousel-next svg {
-  width: 20px;
-  height: 20px;
 }
 
 .carousel-prev {
