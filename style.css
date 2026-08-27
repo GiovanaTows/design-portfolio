@@ -31,8 +31,8 @@ body {
   --index: #eeece6;
   --accent: #2f4b3c;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
-  --button: rgba(250, 249, 246, 0.6);
-  --button-hover: rgba(250, 249, 246, 0.7);
+  --button: rgba(250, 249, 246, 0.3);
+  --button-hover: rgba(250, 249, 246, 0.45);
   --link: #2455e6;
   --link-hover: #002db4;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
