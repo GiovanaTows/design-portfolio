@@ -29,13 +29,14 @@ body {
   --ink-hover: #4e4e4e;
   --paper: #faf9f6;
   --index: #eeece6;
-  --accent: #2f4b3c;      /* deep pine green — swap for your brand color */
+  --accent: #2455e6;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
   --button: rgba(250, 249, 246, 0.45);
   --button-hover: rgba(250, 249, 246, 0.6);
   --link: #2455e6;
   --link-hover: #002db4;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --carousel-bg:#363636;
   --image-radius: 4px;    /* project cards, hero/figure/carousel images, lightbox */
 }
 
@@ -909,11 +910,11 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-@media (max-width: 700px) {
+/*@media (max-width: 700px) {
   .figure-grid-4 {
     grid-template-columns: 1fr 1fr;
   }
-}
+}*/
 
 .figure-grid-6 {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -944,8 +945,7 @@ body {
 .carousel-viewport {
   overflow: hidden;
   border-radius: var(--image-radius);
-  /*background-color: #ece9e2;*/
-  background-color: #363636;
+  background-color: var(--carousel-bg);
   aspect-ratio: 4 / 3;
   /* Let JS own horizontal swipe; the browser still handles vertical
      page scroll, so the two gestures don't fight each other. */
@@ -1040,6 +1040,7 @@ body {
   border-bottom: 1px solid #e4e2db;
   padding-top: 3rem;
   padding-bottom: 1.5rem;
+  scroll-margin-top: 4rem; /* tucks the previous divider's border under the docked header (~3.3rem), then padding-top below gives the h2 breathing room */
 }
 
 .topic-divider-first{
@@ -1050,6 +1051,7 @@ body {
   .topic-divider{
     padding-top: 2rem;
     padding-bottom: 0.5rem;
+    scroll-margin-top: 3.25rem;
   }
 
   .topic-divider-first{
@@ -1061,6 +1063,7 @@ body {
   .topic-divider{
     padding-top: 1.5rem;
     padding-bottom: 0rem;
+    scroll-margin-top: 2.5rem;
   }
 
   .topic-divider-first{
@@ -1164,7 +1167,7 @@ body {
 .figma-imbeded {
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 3 / 1;
   height: auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
