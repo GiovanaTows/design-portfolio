@@ -881,6 +881,15 @@ body {
   display: block;
 }
 
+@media (max-width: 640px) {
+  /* Matches the <picture> source swap to plots-cover-mobile.webp in
+     the HTML — that image is shot/cropped for this ratio. */
+  .project-hero img {
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+  }
+}
+
 .project-body {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
