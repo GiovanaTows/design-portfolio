@@ -34,7 +34,7 @@ body {
   --button: rgba(250, 249, 246, 0.45);
   --button-hover: rgba(250, 249, 246, 0.6);
   --link: #2455e6;
-  --link-hover: #002db4;
+  --link-hover: #2232c1;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --carousel-bg:#363636;
   --image-radius: 4px;    /* project cards, hero/figure/carousel images, lightbox */
@@ -121,7 +121,7 @@ body {
 .index-nav a {
   color: var(--ink);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -490,6 +490,12 @@ body {
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   transition: transform 0.1s ease-out, background-color 0.2s ease;
+  /* The close button gets focused programmatically on open (for
+     keyboard users tabbing through afterward), which was showing the
+     browser's default blue focus ring even though nobody "selected"
+     it — the background-color change on :focus-visible below is
+     already a clear enough focus indicator on its own. */
+  outline: none;
 }
 
 .lightbox-btn:hover,
@@ -560,6 +566,15 @@ body {
   .lightbox-next {
     display: none;
   }
+
+  /* Stops native pinch/double-tap zoom from grabbing the lightbox —
+     without our own zoom feature here, a stray pinch would otherwise
+     zoom the browser viewport itself, dragging the fixed background
+     and buttons out of place instead of leaving them locked in the
+     overlay. */
+  .lightbox {
+    touch-action: none;
+  }
 }
 
 /* Zoom controls: bottom-center on narrow/mobile screens (centered is
@@ -589,6 +604,14 @@ body {
     left: auto;
     right: 1.5rem;
     transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  /* No zoom controls on mobile at all — the click-to-zoom toggle is
+     also disabled in script.js to match. */
+  .lightbox-zoom {
+    display: none;
   }
 }
 
@@ -643,7 +666,7 @@ body {
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  background-color: var(--accent);
+  background-color: var(--link-hover);
 }
 
 .back-to-top.visible:active {
@@ -701,7 +724,7 @@ body {
 
 .back-link:hover,
 .back-link:focus-visible {
-  color: var(--accent);
+  color: var(--link-hover) !important;
 }
 
 .project-header h1 {
@@ -1036,6 +1059,16 @@ body {
 
 .carousel-next {
   right: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  /* Swipe (already touch-only — see script.js) is the only way to
+     navigate the carousel on mobile; the buttons are just clutter
+     over the image at that size. */
+  .carousel-prev,
+  .carousel-next {
+    display: none;
+  }
 }
 
 .carousel-caption {

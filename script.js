@@ -449,9 +449,14 @@ if (zoomableImages.length) {
   });
 
   // Clicking the image is a quick toggle between fit and 2x; the +/-
-  // buttons give finer control for images with a lot of detail.
+  // buttons give finer control for images with a lot of detail. Not on
+  // mobile — no zoom there at all (matches .lightbox-zoom being
+  // hidden below 640px in style.css).
+  const isMobileLightbox = () => window.matchMedia('(max-width: 640px)').matches;
+
   lightboxImg.addEventListener('click', (event) => {
     event.stopPropagation();
+    if (isMobileLightbox()) return;
     setZoomLevel(zoomLevel > ZOOM_MIN ? ZOOM_MIN : ZOOM_MIN + 1);
   });
 
