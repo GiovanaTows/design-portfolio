@@ -36,7 +36,8 @@ body {
   --link: #2455e6;
   --link-hover: #2232c1;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --carousel-bg:#363636;
+  --carousel-bg-plots:#363636;
+  --carousel-bg-civi:#E6E6E6;
   --image-radius: 4px;    /* project cards, hero/figure/carousel images, lightbox */
 }
 
@@ -533,10 +534,14 @@ body {
   }
 }
 
+/* The close and prev buttons sit before .lightbox-img-wrap in the DOM
+   (see script.js), so without a z-index a wide or tall image — which
+   paints after them — would cover the button underneath it. */
 .lightbox-close {
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
+  z-index: 1;
 }
 
 .lightbox-prev {
@@ -544,6 +549,7 @@ body {
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 1;
 }
 
 .lightbox-prev:active {
@@ -555,6 +561,7 @@ body {
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 1;
 }
 
 .lightbox-next:active {
@@ -768,11 +775,18 @@ body {
 
 .project-specs {
   display: grid;
-  grid-template-columns: fit-content(140px) fit-content(200px) auto;
   gap: 3rem;
   align-items: top;
   margin-bottom: 1.5rem;
   /*margin: 2rem 0;*/
+}
+
+.project-specs-plots {
+  grid-template-columns: fit-content(140px) fit-content(200px) auto;
+}
+
+.project-specs-civi {
+  grid-template-columns: fit-content(200px) fit-content(240px) fit-content(140px);
 }
 
 .project-specs-2 {
@@ -780,13 +794,40 @@ body {
   grid-template-columns: auto;
   gap: 3rem;
   align-items: center;
-  /*margin: 2rem 0;*/
+  margin: 1.5rem 0 0 0;
+}
+
+.project-specs-3 {
+  grid-template-columns: auto auto !important;
+}
+
+.project-specs-4 {
+  grid-template-columns: auto auto auto auto !important;
+}
+
+@media (max-width: 900px) {
+  .project-specs-4 {
+    grid-template-columns: auto auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-specs-4 {
+    grid-template-columns: auto !important;
+  }
 }
 
 @media (max-width: 890px) {
   .project-specs {
-    grid-template-columns: fit-content(140px) fit-content(200px) fit-content(150px);
     gap: 4rem;
+  }
+
+  .project-specs-plots {
+    grid-template-columns: fit-content(140px) fit-content(200px) fit-content(150px);
+  }
+
+  .project-specs-civi {
+    grid-template-columns: fit-content(200px) fit-content(200px) fit-content(150px);
   }
 }
 
@@ -841,6 +882,7 @@ body {
     background-color: var(--paper);
     padding: 0;
     margin-top: -1.5rem;
+    box-shadow: none;
   }
 }
 
@@ -945,6 +987,24 @@ body {
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   scroll-margin-top: 6rem;
+
+  /*font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+  margin-top: 2rem;*/
+}
+
+.project-body h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+  margin-top: 1rem;
 }
 
 .project-body p {
@@ -969,7 +1029,7 @@ body {
   height: auto;
   border-radius: var(--image-radius);
   display: block;
-  background-color: #ece9e2;
+  background-color: var(--paper); /* #ece9e2*/
 }
 
 .project-figure figcaption {
@@ -1044,6 +1104,14 @@ body {
      page scroll, so the two gestures don't fight each other. */
   touch-action: pan-y;
   cursor: grab;
+}
+
+.carousel-bg-plots {
+  background-color: var(--carousel-bg-plots);
+}
+
+.carousel-bg-civi {
+  background-color: var(--carousel-bg-civi);
 }
 
 .carousel-viewport:active {
@@ -1318,10 +1386,26 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 500px) {
+/*@media (max-width: 800px) {
   .figma-imbeded {
     aspect-ratio: 5 / 4;
   }
+}*/
+
+@media (max-width: 700px) {
+  .figma-imbeded {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* Same idea as .figma-imbeded but for YouTube demo videos, which are
+   natively widescreen rather than a wide design-file canvas. */
+.video-embed {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .project-nav {

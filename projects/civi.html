@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civi — Mobile App | Giovana Tows</title>
+  <meta name="description" content="Case study: product design and design system work for Civi, a personal-safety mobile app, by Giovana Tows.">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "../" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#about">About me</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="../index.html#projects" class="logo-link">
+        <img src="../images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <a class="back-link" href="../index.html#projects">← All projects</a>
+      <h1>Civi — Mobile App</h1>
+      <p class="project-meta divider subtitle">Creating a personal-safety app from scratch, used across São Paulo, Brazil</p>
+    </div>
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column project-header-content" >
+        <dl class="project-specs project-specs-civi">
+          <div>
+            <dt>Role</dt>
+            <dd>Product Designer (UX/UI) / Graphic Designer</dd>
+          </div>
+          <div>
+            <dt>Tool</dt>
+            <dd>Figma / Miro / Maze / Illustrator / Photoshop / After Effects</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>Apr 2020 – Jul 2023 (3.4 years)</dd>
+          </div>
+        </dl>
+        <dl class="project-specs-2">
+          <div>
+            <dt>Team</dt>
+            <dd style="max-width: 610px;"><a href="../about.html" target="_blank" rel="noopener noreferrer">Giovana Tows</a> worked as an in-house product designer at Civi, from the birth of the company until its end. She was the only designer for more than a year until the design team started growing.</dd>
+          </div>
+        </dl>
+        <dl class="project-specs-2 project-specs-3">
+          <div>
+            <dt>Head of Product</dt>
+            <dd>Alex Tandy: Sep 2020 - Sep 2021 (1 year)</dd>
+            <dd>Rodrigo Kleinert: Aug 2021 - Feb 2023 (1.6 years)</dd>
+          </div>
+          <div>
+            <dt>Product Designer</dt>
+            <dd>Viviane Ducarme: May 2021 - Jul 2022 (1.3 years)</dd>
+            <dd>Caroline Toscano: Oct 2022 - Feb 2023 (5 months)</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="split-column">
+        <nav class="project-index" aria-label="On this page" style="align-self: center;">
+          <p class="project-index-label">On this page</p>
+          <ul>
+            <li><a href="#overview">1. Overview</a></li>
+            <li><a href="#first-wireframe">2. First wireframe</a></li>
+            <li><a href="#interface-overtime">3. Interface overtime</a></li>
+            <li><a href="#screens-flow">4. Screens flow</a></li>
+            <li><a href="#design-system">5. Design system</a></li>
+            <li><a href="#onboarding">6. Onboarding</a></li>
+            <li><a href="#app-main-flows">7. App main flows</a></li>
+            <li><a href="#pending-permissions">8. Pending permissions &amp; settings</a></li>
+            <li><a href="#civiana">9. Virtual contact "Civiana"</a></li>
+            <li><a href="#event-icons-redesign">10. Event icons redesign</a></li>
+            <li><a href="#user-generated-content">11. User generated content</a></li>
+            <li><a href="#premium-plan">12. Premium plan &amp; free trial</a></li>
+            <li><a href="#save-places">13. Save places — discovery process</a></li>
+            <li><a href="#places-suggestions">14. Places suggestions from contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="../images/projects/civi/civi-cover-mobile.webp">
+      <source media="(max-width: 900px)" srcset="../images/projects/civi/civi-cover-medium.webp">
+      <img src="../images/projects/civi/civi-cover.webp" alt="About Civi">
+    </picture>
+  </div>
+
+  <main class="project-body">
+    <div class="topic-divider topic-divider-first" id="overview">
+      <h2>Overview</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p>
+            We believe safety is a right for everyone. That's why Civi aligns information and technology to help individuals and communities stay better informed and safer.
+          </p>
+        </div>
+        <div class="split-column">
+          <p>
+            Civi's goal is to become the number one security app in Latin America by empowering tens of millions of users to improve their personal security. At the time of this project, the company was focused on São Paulo, Brazil.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="first-wireframe">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>First wireframe</h2>
+          <p>
+            Around 03/2019 I started working at Civi. I began by creating the first wireframe of the app, based on a sketch the founder gave me. The goal was to build an MVP and launch the first version of the app as fast as possible.
+          </p>
+        </div>
+        <div class="split-column">
+          <!--<figure class="project-figure">
+            <img src="../images/projects/civi/first-wireframe.webp" alt="First wireframe of the Civi app, based on a sketch from the founder">
+            <figcaption>First wireframe of the Civi app, based on a sketch from the founder (03/2019)</figcaption>
+          </figure>-->
+
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-civi">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="First wireframe of the Civi app, based on a sketch from the founder">
+                  <img src="../images/projects/civi/wireframe/wireframe-1.webp" alt="First wireframe of the Civi app, based on a sketch from the founder">
+                </div>
+                <div class="carousel-slide" data-caption="First wireframe of the Civi app, based on a sketch from the founder">
+                  <img src="../images/projects/civi/wireframe/wireframe-2.webp" alt="First wireframe of the Civi app, based on a sketch from the founder">
+                </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="topic-divider" id="interface-overtime">
+      <h2>Interface overtime</h2>
+      <p style="max-width:700px;">
+        Between 03/2019 and 09/2022 the app evolved from MVP to a fully-fledged product. The interface changed gradually over time — here are a few key moments from that evolution.
+      </p>
+
+      <div class="project-carousel">
+        <div class="carousel-viewport carousel-bg-civi" style="aspect-ratio: 3 / 1;">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Civi interface, evolving from MVP to a mature product - Map">
+              <img src="../images/projects/civi/interface-overtime/interface-overtime-1.webp" alt="Civi interface, evolving from MVP to a mature product - Map">
+            </div>
+            <div class="carousel-slide" data-caption="Civi interface, evolving from MVP to a mature product - Event List">
+              <img src="../images/projects/civi/interface-overtime/interface-overtime-2.webp" alt="Civi interface, evolving from MVP to a mature product - Event List">
+            </div>
+            <div class="carousel-slide" data-caption="Civi interface, evolving from MVP to a mature product - Event Detail">
+              <img src="../images/projects/civi/interface-overtime/interface-overtime-3.webp" alt="Civi interface, evolving from MVP to a mature product - Event Detail">
+            </div>
+          </div>
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="carousel-caption"></p>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+
+    <!--
+    <div class="topic-divider" id="screens-flow">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Screens flow</h2>
+          <p>
+            Map of features from one of the first versions of the Civi app.
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="../images/projects/civi/screens-flow.webp" alt="Map of features from one of the first versions of the Civi app (2021)">
+            <figcaption>Map of features from one of the first versions of the Civi app (2021)</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>-->
+
+   <div class="topic-divider" id="screens-flow">
+      <h2>Screens flow</h2>
+      <p>Map of features in the Civi app (2023).</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/app-flow.webp" alt="Map of features from one of the first versions of the Civi app">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="design-system">
+      <h2>Design system</h2>
+      <p>
+        I created the design system with the help of a second UX/UI designer. The master components helped the app grow consistently, with a strong visual identity — and saved a lot of development time.
+      </p>
+
+      <div>
+        <iframe class="figma-imbeded" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FCivi-%252F-Design-System%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
+      </div>
+
+      <figure class="project-figure">
+        <img src="../images/projects/civi/design-system-overview.webp" alt="Civi design system — controller components">
+        <figcaption>Civi design system — controller components (checkboxes, toggles, chips, cards, tags, reactions)</figcaption>
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="onboarding">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Onboarding</h2>
+          <p>
+            The onboarding was one of the most elaborate flows in the app. We found that the drop-off rate during onboarding was very high, because we were requesting a lot of personal information — home address, work address, device location permission, and more.
+          </p>
+          <p>
+            Together with another UX designer, I worked on improving the onboarding flow to strike a better balance: collecting enough information about users while keeping the flow short and easy to digest.
+          </p>
+        </div>
+        <div class="split-column">
+          <div>
+            <iframe class="video-embed" src="https://www.youtube.com/embed/UKZROPB4vg4" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--
+    <div class="topic-divider" id="onboarding">
+      <h2>Onboarding</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p>
+            The onboarding was one of the most elaborate flows in the app. We found that the drop-off rate during onboarding was very high, because we were requesting a lot of personal information — home address, work address, device location permission, and more.
+          </p>
+        </div>
+        <div class="split-column">
+          <p>
+            Together with another UX designer, I worked on improving the onboarding flow to strike a better balance: collecting enough information about users while keeping the flow short and easy to digest.
+          </p>
+        </div>
+      </div>
+      <div>
+        <iframe class="video-embed" src="https://www.youtube.com/embed/UKZROPB4vg4" allowfullscreen></iframe>
+      </div>
+      -->
+
+      <div>
+        <iframe class="figma-imbeded" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FPortfolio-%252F-Civi%3Fnode-id%3D105%253A6214" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="app-main-flows">
+      <h2>App main flows</h2>
+      <p>Map, search bar, save places, add contacts and settings.</p>
+
+      <div>
+        <iframe class="figma-imbeded" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FBehance-%252F-Civi%3Fnode-id%3D117%253A97364" allowfullscreen></iframe>
+      </div>
+    </div>
+
+
+    <div class="topic-divider" id="pending-permissions">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Pending permissions and settings</h2>
+           <p>
+            The value of Civi depends heavily on the user's device permissions. The app needs users to allow access to their location, enable notifications, save their favorite places, and add contacts.
+            </p>
+            <p>
+              We noticed that many users ended the onboarding flow without completing these settings, and the app wasn't able to deliver its full value — resulting in low user retention.
+            </p>
+            <p>
+              To address this, we created a pending-settings carousel and a settings review flow. These helped draw attention to the importance of each setting and explained how it works to keep the user safer.
+            </p>
+        </div>
+        <div class="split-column">
+          <div>
+            <iframe class="video-embed" src="https://www.youtube.com/embed/pbJ5GcEu06Y" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+    <div class="topic-divider" id="pending-permissions">
+      <h2>Pending permissions and settings</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p>
+            The value of Civi depends heavily on the user's device permissions. The app needs users to allow access to their location, enable notifications, save their favorite places, and add contacts. We noticed that many users ended the onboarding flow without completing these settings, and the app wasn't able to deliver its full value — resulting in low user retention.
+          </p>
+        </div>
+        <div class="split-column">
+          <p>
+            To address this, we created a pending-settings carousel and a settings review flow. These helped draw attention to the importance of each setting and explained how it works to keep the user safer.
+          </p>
+        </div>
+      </div>
+      <div>
+        <iframe class="video-embed" src="https://www.youtube.com/embed/pbJ5GcEu06Y" allowfullscreen></iframe>
+      </div>
+    </div>
+    -->
+
+    <div class="topic-divider" id="civiana">
+      <h2>Pending permissions and settings</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p>
+            The value of Civi depends heavily on users adding contacts — inviting friends and family to see their location, receive alerts of occurrences nearby, and get automatic notifications when they arrive at or leave a saved place. However, a brief data analysis showed a low rate of sent contact invitations, and an even lower rate of accepted invites.
+          </p>
+
+        </div>
+        <div class="split-column">
+          <p>
+            In user interviews, we found that many people went through onboarding without reading the explanations or trying to understand how the app worked — they wanted to finish registering as fast as possible to explore the app in practice, and ended onboarding without any motivation to invite others.
+          </p>
+        </div>
+      </div>
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+            <p>
+              To solve this, we created Civiana — a virtual contact that works as an example of a contact already added in the app. Through her, you can see data such as her location, distance, battery level, and nearby occurrences. We also included her home and work addresses to show how the auto-check-in feature works.
+            </p>
+            <p>
+              This way, users could understand the value of adding contacts in practice. As a result, we saw a significant increase in the number of contact invitations sent.
+            </p>
+        </div>
+        <div class="split-column">
+          <div>
+            <iframe class="video-embed" src="https://www.youtube.com/embed/0LVOZrRJZw0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+    <div class="topic-divider" id="civiana">
+      <h2>Virtual contact "Civiana"</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p>
+            The value of Civi depends heavily on users adding contacts — inviting friends and family to see their location, receive alerts of occurrences nearby, and get automatic notifications when they arrive at or leave a saved place.
+          </p>
+
+        </div>
+        <div class="split-column">
+          <p>
+            However, a brief data analysis showed a low rate of sent contact invitations, and an even lower rate of accepted invites. In user interviews, we found that many people went through onboarding without reading the explanations or trying to understand how the app worked — they wanted to finish registering as fast as possible to explore the app in practice, and ended onboarding without any motivation to invite others.
+          </p>
+        </div>
+      </div>
+      <div>
+        <iframe class="video-embed" src="https://www.youtube.com/embed/0LVOZrRJZw0" allowfullscreen></iframe>
+      </div>
+    </div>
+    -->
+
+    <div class="topic-divider" id="event-icons-redesign">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Event icons redesign</h2>
+          <h3>Problem</h3>
+           <p>
+              Initially, we had assigned a unique icon to each of the over 80 event types, resulting in highly detailed illustrations. After a few tests, we noticed that many users found these icons hard to understand, since they appeared very small on the map.
+            </p>
+            <p>
+              We also had a problem with color: we used blue, gray, yellow, and red backgrounds to show how recent an event was. Since the icons were colorful too, it wasn't easy to associate a meaning with the background colors — rather than being helpful, the icons ended up visually distracting on the map.
+            </p>
+
+            <h3>Goals</h3>
+            <ul>
+              <li>Simplify the event icons, making them more intuitive and accessible.</li>
+              <li>Make the pins on the map clear and easy to understand.</li>
+              <li>Create simple filters for notifications by event type.</li>
+            </ul>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="../images/projects/civi/event-icons-2021.webp" alt="Icons (2021) — Images used in the map pins to indicate the event types">
+            <figcaption>Icons (2021) — Images used in the map pins to indicate the event types</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Example: two-column layout (see .split-columns in style.css).-->
+      <div class="split-columns">
+        <div class="split-column">
+          <h3>Process</h3>
+          <p>
+            I used the card sorting method to organize information into categories that are intuitive and meaningful to the target audience.
+          </p>
+          <p>
+            Participants are given a set of cards with items written on them and asked to sort them into groups based on their understanding of the relationships between the items. This informs the design and structure of a product, making it easier for users to find what they're looking for and understand the information presented to them.
+          </p>
+        </div>
+        <div class="split-column">
+          <h3>Dynamic instructions</h3>
+          <p>The participants were asked to do the following:</p>
+          <ol>
+            <li>Read the post-its one by one.</li>
+            <li>Organize them into groups that make sense to you, by dragging the cards to the columns on the side. There's no right or wrong — follow your intuition.</li>
+            <li>You can move cards between categories if you change your mind during the process.</li>
+            <li>Use as many categories as you like — you don't need to fill every column. Duplicate the last one if needed. Colors are for visual clarity only.</li>
+            <li>Name each category as it makes sense to you.</li>
+          </ol>
+        </div>
+      </div>
+
+      <figure class="project-figure">
+        <img src="../images/projects/civi/card-sorting-session.webp" alt="Card sorting board — Event types cards on the left, empty categories on the right">
+        <figcaption>Card sorting board — Event types cards on the left, empty categories on the right</figcaption>
+      </figure>
+
+      <h3>Gathering and analysing results</h3>
+      <p>I collected all the results and put them together in a big matrix, then looked for patterns between the categories.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/card-sorting-matrix.webp" alt="Matrix of card-sorting results across 13 participants">
+        <figcaption>Matrix of card-sorting results across 13 participants</figcaption>
+      </figure>
+
+      <h3>Card sorting result</h3>
+      <p>At the end of the analysis, I arrived at 19 event categories and suggested monochromatic icons for each one.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/card-sorting-result.webp" alt="Final result: 19 event categories with subcategories and icons">
+        <figcaption>Final result: 19 event categories with their subcategories and icons</figcaption>
+      </figure>
+
+      <h3>Testing new icons with users</h3>
+      <p>I applied all the new icons to a map simulation, then interviewed a few people about what they thought each icon meant, without giving much context.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/testing-icons-map.webp" alt="Map with new icons used to test with users">
+        <figcaption>Map with new icons used to test with users. Users' responses in green (right) or red (wrong)</figcaption>
+      </figure>
+
+      <p>I also created a poll on Slack with icon alternatives for the most difficult event categories, and my team helped define them.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/slack-icon-poll.webp" alt="Slack poll to define the most difficult category icons">
+        <figcaption>Slack poll to define the most difficult category icons</figcaption>
+      </figure>
+
+      <h3>Final result</h3>
+      <p>Below is the result of the new event categories and their icons.</p>
+      <div class="figure-grid">
+        <figure class="project-figure">
+          <img src="../images/projects/civi/icons/icons-events.webp" alt="Final event category icons">
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/civi/icons/icons-maps.webp" alt="Final event category icons applyed on the map">
+        </figure>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="user-generated-content">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>User generated content (UGC)</h2>
+          <p>Publication of events on the app.</p>
+
+          <h3>Problem</h3>
+          <p>
+            Previously, we directed users to our WhatsApp central to report events for our team to validate and publish in the app. This sent users out of the app, generating disbelief; few people reported events, and the information we received was incomplete and lacked supporting media for validation.
+          </p>
+          <h3>Goal</h3>
+          <p>
+            Create an in-app flow for users to provide relevant information about accidents, crimes, and other incidents.
+          </p>
+          <h3>Benchmark research</h3>
+          <p>
+            To better understand UGC flows for event reporting, we ran a competitive audit of direct competitors like So Safe and SP + Segura. Since their UX wasn't optimal, we also looked at indirect competitors — Instagram, WhatsApp, TikTok, Facebook, and Airbnb — for inspiration.
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="../images/projects/civi/benchmarks.webp" alt="Benchmark research — Competitor UGC reporting flows">
+            <figcaption>Benchmark research — Competitor UGC reporting flows: Waze, So Safe, and SP + Segura</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <h3>UGC first version</h3>
+      <p style="max-width:700px;">
+        We initially built a first version of the UGC flow for event reporting, but after launch we saw an even lower number of submissions. Analysis of the Firebase events showed many users dropping off during the flow, particularly at the upload-media step.
+      </p>
+
+
+      <div class="text-image-columns" style="align-items: center;">
+        <div class="split-column">
+
+          <h3>User interviews</h3>
+          <p>
+            To address these issues, we researched users who had successfully completed the UGC flow, to understand their experience and real-life scenarios worth considering in the redesign. We also researched users who dropped off during the flow, to understand why and gather feedback.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-civi" style="aspect-ratio: 2 / 1; background-color:#ffffff;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Notes of the interviews with the users (auto translated to English)">
+                  <img src="../images/projects/civi/user-research/user-research-1.webp" alt="Notes of the interviews with the users (auto translated to English)">
+                </div>
+                <div class="carousel-slide" data-caption="Notes of the interviews with the users (auto translated to English)">
+                  <img src="../images/projects/civi/user-research/user-research-2.webp" alt="Notes of the interviews with the users (auto translated to English)">
+                </div>
+                <div class="carousel-slide" data-caption="Notes of the interviews with the users (auto translated to English)">
+                  <img src="../images/projects/civi/user-research/user-research-3.webp" alt="Notes of the interviews with the users (auto translated to English)">
+                </div>
+                <div class="carousel-slide" data-caption="Notes of the interviews with the users (auto translated to English)">
+                  <img src="../images/projects/civi/user-research/user-research-4.webp" alt="Notes of the interviews with the users (auto translated to English)">
+                </div>
+                <div class="carousel-slide" data-caption="Notes of the interviews with the users (auto translated to English)">
+                  <img src="../images/projects/civi/user-research/user-research-5.webp" alt="Notes of the interviews with the users (auto translated to English)">
+                </div>
+                <div class="carousel-slide" data-caption="Notes of the interviews with the users (auto translated to English)">
+                  <img src="../images/projects/civi/user-research/user-research-6.webp" alt="Notes of the interviews with the users (auto translated to English)">
+                </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="project-figure">
+        <img src="../images/projects/civi/user-research/conclusions.webp" alt="Syntesis and conclusions of the user interviews">
+        <figcaption>Syntesis and conclusions of the user interviews</figcaption>
+      </figure>
+
+      
+      <h3>New flow advantages</h3>
+      <p>We applyed several changes to the UGC event submission flow based on the most important feedbacks received during the user interviews. Here are some advantages of the new flow compared to the previous one:</p>
+
+        <dl class="project-specs project-specs-4">
+          <div>
+            <h4>Simplicity and speed</h4>
+            <p>The old flow had 7 steps, the new one only 3 — sending anonymously, selecting date and time, and providing a description are all consolidated into a single screen.</p>
+          </div>
+          <div>
+            <h4>Location tracking</h4>
+            <p>The new flow automatically detects the user's current location and shows it on a map, removing the need to type an address — especially helpful when reporting something you witnessed on the street and aren't sure of the exact address.</p>
+          </div>
+          <div>
+            <h4>Audio recording</h4>
+            <p>Users can record audio to describe what happened, saving the time and effort of typing a description.</p>
+          </div>
+          <div>
+            <h4>More intuitive flow</h4>
+            <p>Some users didn't know they could report events through the app, so the first step now clearly shows all the available event types.</p>
+          </div>
+        </dl>
+
+      <div>
+        <iframe class="figma-imbeded" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FPortfolio-%252F-Civi%3Fnode-id%3D224%253A87215" allowfullscreen></iframe>
+        <p class="carousel-caption" style="text-align:center; margin-top: 0.75rem;">Comparison of the first and final version of the UGC flow</p>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <iframe class="figma-imbeded" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FBehance-%252F-Civi%3Fnode-id%3D105%253A6215" allowfullscreen></iframe>
+        <p class="carousel-caption" style="text-align:center; margin-top: 0.75rem;">Details of the UGC flow (first and final versions)</p>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="premium-plan">
+      <h2>Premium plan &amp; free trial</h2>
+      <p>Civi Protege is Civi's premium plan.</p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/civi/premium-plan-architecture.webp" alt="Premium plan architecture">
+        <figcaption>Premium plan architecture</figcaption>
+      </figure>
+
+      <div>
+        <iframe class="figma-imbeded" style="aspect-ratio: 3 / 2;" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FCivi-Portfolio%3Fnode-id%3D105%253A59702" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="save-places">
+      <h2>"Save Places" — discovery process</h2>
+      <p>How we created the "Save Places" feature in the Civi app.</p>
+
+      <h3>1. Interview script</h3>
+      <p>
+        For these interviews we focused on learning more about our most active users — when they used the app, how often, and for what purpose. At the time, we were also considering a map filter by event type, so we included a question about which event types and features they'd like to see in future versions.
+      </p>
+      <p>Interview questions:</p>
+      <ul>
+        <li>What do you do for a living?</li>
+        <li>How did you find out about Civi?</li>
+        <li>How has your experience with the product been so far?</li>
+        <li>Has the app ever crashed for you?</li>
+        <li>Do you feel safer with the app?</li>
+        <li>Have you been receiving notifications from Civi?</li>
+        <li>What event types do you think are relevant for you? Why?</li>
+        <li>What event types do you think are irrelevant? Why?</li>
+        <li>Is there any feature you'd like the app to have?</li>
+      </ul>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/save-places-interview-script.webp" alt="Slide deck used to guide the Save Places user interviews">
+        <figcaption>Slide deck used to guide the "Save Places" user interviews</figcaption>
+      </figure>
+
+      <h3>2. User interviews</h3>
+      <p>About 15 active users were interviewed for around 10 minutes each. A document with each interview's questions, replies, and main insights was generated per interview.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/save-places-user-interviews.webp" alt="Screenshots from the Save Places user interviews">
+        <figcaption>About 15 active users were interviewed for around 10 minutes each</figcaption>
+      </figure>
+
+      <h3>3. Data compilation</h3>
+      <p>From the interview documents, I built a spreadsheet with the key insights, feature suggestions, and the relevant/irrelevant event types mentioned — then generated three charts from it: the most relevant event types, the most irrelevant event types, and the most-mentioned feature suggestions.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/save-places-data-chart-1.webp" alt="Spreadsheet compiling insights from the Save Places user interviews">
+        <figcaption>Spreadsheet compiling insights from the user interviews</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/save-places-data-chart-2.webp" alt="Charts: most relevant event types, most irrelevant event types, and most-mentioned feature suggestions">
+        <figcaption>Most relevant event types, most irrelevant event types, and most-mentioned feature suggestions</figcaption>
+      </figure>
+
+      <h3>4. Data analysis and conclusion</h3>
+      <p>
+        These interviews showed people were interested in knowing what was happening around their loved ones — beyond alerts about their own location, they wanted to know what was happening around their homes, workplaces, and other frequented places, and wanted a way to add other people and know that family and friends were safe too.
+      </p>
+      <p>
+        Besides that, over 23% of interviewees mentioned wanting to set up notifications by maximum distance or by event type — they were unhappy about receiving notifications for things happening far away, or about events they didn't care about.
+      </p>
+
+      <h3>5. Interactive prototype &amp; user test</h3>
+      <p>We built an interactive prototype to validate the feature with users, which let us apply improvements and corrections before shipping to production.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/save-places-prototype.webp" alt="Interactive prototype created to validate the Save Places feature with users">
+        <figcaption>Interactive prototype created to validate the "Save Places" feature with users</figcaption>
+      </figure>
+      <div>
+        <iframe class="figma-imbeded" style="aspect-ratio: 9 / 16;" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2FI7xY3iadrG5GuNu1p89NKp%2FCivi-%252F-Save-Places%3Fpage-id%3D5%253A35833%26node-id%3D5%253A41651%26viewport%3D719%252C496%252C0.13%26scaling%3Dmin-zoom%26starting-point-node-id%3D5%253A41651%26show-proto-sidebar%3D1" allowfullscreen></iframe>
+      </div>
+
+      <h3>6. Breaking the feature into smaller versions</h3>
+      <p>We fragmented this feature into four smaller versions, allowing a faster launch and giving us extra validation with users throughout implementation.</p>
+      <div>
+        <iframe class="figma-imbeded" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2FI7xY3iadrG5GuNu1p89NKp%2FCivi-%252F-Save-Places%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
+      </div>
+
+      <h3>7. "Save places" final version</h3>
+      <p>After a few improvements, we ended up with the following version.</p>
+      <div>
+        <iframe class="figma-imbeded" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FPortfolio-%252F-Civi%3Fnode-id%3D117%253A117156" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="places-suggestions">
+      <h2>Places suggestions from contacts</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p>
+            We built an auto-check-in and auto-check-out function that sends notifications when a contact arrives at or leaves a saved place — for example, "Mary arrived at home" or "John left work."
+          </p>
+        </div>
+        <div class="split-column">
+          <p>
+            For this to work, users need to add contacts and save the places they visit often — home, work, school, gym, and so on. We noticed that in many cases, users were adding contacts but not saving places, so they weren't getting arrival/departure notifications. To solve this, we created a new screen listing the places already saved by the user's contacts.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <iframe class="video-embed" src="https://www.youtube.com/embed/T06TQwA0BG8" allowfullscreen></iframe>
+      </div>
+
+      <p style="margin-top: 2rem;">Alongside the product design work, I also contributed to Civi's marketing materials.</p>
+    </div>
+  </main>
+
+  <nav class="project-nav">
+    <a href="../index.html#projects">← All projects</a>
+  </nav>
+
+  <script src="../script.js"></script>
+</body>
+</html>
