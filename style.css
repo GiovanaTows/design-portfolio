@@ -1152,6 +1152,7 @@ body {
   align-items: center;
   gap: 3rem;
   margin-top: 2rem;
+  padding: 0;
   justify-content: center;
 }
 
@@ -1173,6 +1174,16 @@ body {
     position: relative;
     grid-template-columns: 1fr;
     padding-right: 300px;
+  }
+
+  /* Both columns share the single grid cell instead of stacking into
+     two rows — the second one (wrapping the now absolutely-positioned
+     .project-index) is otherwise empty, but a grid row still gets
+     created for it, and gap still adds space above that empty row
+     even though nothing visible is there to see. */
+  .project-header-columns > .split-column {
+    grid-row: 1;
+    grid-column: 1;
   }
 
   .project-index {
