@@ -1035,6 +1035,7 @@ body {
 }
 
 .carousel-viewport {
+  position: relative;
   overflow: hidden;
   border-radius: var(--image-radius);
   background-color: var(--carousel-bg);
@@ -1083,7 +1084,11 @@ body {
 .carousel-prev,
 .carousel-next {
   position: absolute;
-  top: 48%;
+  /* Positioned relative to .carousel-viewport (see above), not
+     .project-carousel — that wrapper also contains the caption and
+     dots below the image, so top:50% there landed below the image's
+     actual center. Now this 50% is against just the image area. */
+  top: 50%;
   transform: translateY(-50%);
 }
 
