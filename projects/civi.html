@@ -644,23 +644,65 @@
         <figcaption>Slide deck used to guide the "Save Places" user interviews</figcaption>
       </figure>
 
-      <h3>2. User interviews</h3>
-      <p>About 15 active users were interviewed for around 10 minutes each. A document with each interview's questions, replies, and main insights was generated per interview.</p>
-      <figure class="project-figure">
-        <img src="../images/projects/civi/save-places-user-interviews.webp" alt="Screenshots from the Save Places user interviews">
-        <figcaption>About 15 active users were interviewed for around 10 minutes each</figcaption>
-      </figure>
+      <div class="topic-divider" id="component-system">
+      <div class="text-image-columns">
+        <div class="split-column">
+          <h3>2. User interviews</h3>
+          <p>About 15 active users were interviewed for around 10 minutes each. A document with each interview's questions, replies, and main insights was generated per interview.</p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="../images/projects/civi/user-research/user-research-save-places.webp" alt="User interviews with video call and notes">
+            <figcaption>User interviews with video call and notes</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
 
-      <h3>3. Data compilation</h3>
-      <p>From the interview documents, I built a spreadsheet with the key insights, feature suggestions, and the relevant/irrelevant event types mentioned — then generated three charts from it: the most relevant event types, the most irrelevant event types, and the most-mentioned feature suggestions.</p>
-      <figure class="project-figure">
-        <img src="../images/projects/civi/save-places-data-chart-1.webp" alt="Spreadsheet compiling insights from the Save Places user interviews">
-        <figcaption>Spreadsheet compiling insights from the user interviews</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../images/projects/civi/save-places-data-chart-2.webp" alt="Charts: most relevant event types, most irrelevant event types, and most-mentioned feature suggestions">
-        <figcaption>Most relevant event types, most irrelevant event types, and most-mentioned feature suggestions</figcaption>
-      </figure>
+    <div class="topic-divider topic-divider-first" id="overview">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h3>3. Data compilation</h3>
+          <p>From the interview documents, I built a spreadsheet with the key insights, feature suggestions, and the relevant/irrelevant event types mentioned</p>
+          <p>From them I generated three charts: the most relevant event types, the most irrelevant event types, and the most-mentioned feature suggestions.</p>
+        </div>
+        <div class="split-column">
+
+          <!-- Carousel: script.js finds any .project-carousel, builds the
+               dots to match however many .carousel-slide children it has,
+               and wires up the prev/next buttons. Add or remove slides
+               freely — nothing else needs to change. -->
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-plots" style="background-color: #ffffff;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Spreadsheet compiling insights from the Save Places user interviews">
+                  <img src="../images/projects/civi/data-compilation/data-compilation-spreadsheet.webp" alt="Spreadsheet compiling insights from the Save Places user interviews">
+                </div>
+                <div class="carousel-slide" data-caption="Chart: most relevant event types">
+                  <img src="../images/projects/civi/data-compilation/data-compilation-chart-1.webp" alt="Chart: most relevant event types">
+                </div>
+                <div class="carousel-slide" data-caption="Chart: most irrelevant event types">
+                  <img src="../images/projects/civi/data-compilation/data-compilation-chart-2.webp" alt="Chart: most irrelevant event types">
+                </div>
+                <div class="carousel-slide" data-caption="Chart: most-mentioned feature suggestions">
+                  <img src="../images/projects/civi/data-compilation/data-compilation-chart-3.webp" alt="Chart: most-mentioned feature suggestions">
+                </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
 
       <h3>4. Data analysis and conclusion</h3>
       <p>
@@ -693,25 +735,25 @@
       </div>
     </div>
 
+
     <div class="topic-divider" id="places-suggestions">
-      <h2>Places suggestions from contacts</h2>
-      <div class="split-columns">
-        <div class="split-column">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Places suggestions from contacts</h2>
           <p>
             We built an auto-check-in and auto-check-out function that sends notifications when a contact arrives at or leaves a saved place — for example, "Mary arrived at home" or "John left work."
           </p>
         </div>
         <div class="split-column">
-          <p>
-            For this to work, users need to add contacts and save the places they visit often — home, work, school, gym, and so on. We noticed that in many cases, users were adding contacts but not saving places, so they weren't getting arrival/departure notifications. To solve this, we created a new screen listing the places already saved by the user's contacts.
-          </p>
+          <div>
+            <iframe class="video-embed" src="https://www.youtube.com/embed/T06TQwA0BG8" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div>
-        <iframe class="video-embed" src="https://www.youtube.com/embed/T06TQwA0BG8" allowfullscreen></iframe>
-      </div>
 
+    <div>
       <p style="margin-top: 2rem;">Alongside the product design work, I also contributed to Civi's marketing materials.</p>
     </div>
   </main>
