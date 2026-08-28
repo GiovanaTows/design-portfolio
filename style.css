@@ -699,7 +699,7 @@ body {
 .project-header {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
-  padding: 3rem 1.5rem 2rem;
+  padding: 3rem 1.5rem 3rem;
 }
 
 .project-header-content {
@@ -753,7 +753,8 @@ body {
 
 .project-header .project-meta {
   margin-top: 0.75rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  color: var(--muted);
 }
 
 @media (max-width: 700px) {
@@ -767,7 +768,7 @@ body {
 
 .project-specs {
   display: grid;
-  grid-template-columns: fit-content(170px) fit-content(200px) auto;
+  grid-template-columns: fit-content(140px) fit-content(200px) auto;
   gap: 3rem;
   align-items: top;
   margin-bottom: 1.5rem;
@@ -784,7 +785,7 @@ body {
 
 @media (max-width: 890px) {
   .project-specs {
-    grid-template-columns: fit-content(80px) fit-content(200px) fit-content(150px);
+    grid-template-columns: fit-content(140px) fit-content(200px) fit-content(150px);
     gap: 4rem;
   }
 }
@@ -828,9 +829,19 @@ body {
   background-color: var(--index);
   padding: 1.5rem;
   border-radius: 4px;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.1);
   
   /*border-left: 1px solid rgb(228, 226, 219);
   padding-left: 2rem;*/
+}
+
+@media (max-width: 600px) {
+  .project-index {
+   max-width: 250px;
+    background-color: var(--paper);
+    padding: 0;
+    margin-top: -1.5rem;
+  }
 }
 
 .project-index-label {
@@ -847,6 +858,16 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .project-index ul {
+    gap: 0.3rem;
+  }
+
+  .project-index-label {
+    margin-bottom: 0.35rem;
+  }
 }
 
 .project-header a {
@@ -881,11 +902,20 @@ body {
   display: block;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   /* Matches the <picture> source swap to plots-cover-mobile.webp in
      the HTML — that image is shot/cropped for this ratio. */
   .project-hero img {
     aspect-ratio: 2 / 1;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 700px) {
+  /* Matches the <picture> source swap to plots-cover-mobile.webp in
+     the HTML — that image is shot/cropped for this ratio. */
+  .project-hero img {
+    aspect-ratio: 4 / 5;
     object-fit: cover;
   }
 }
