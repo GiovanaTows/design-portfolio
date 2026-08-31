@@ -500,3 +500,25 @@ if (document.querySelector('.project-body')) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+// Lazy-load heavy iframes (Figma embeds, YouTube players): each one is
+// a full app running inside the page, and loading a dozen of them at
+// once on page load is enough to crash memory-constrained browsers
+// (notably mobile Safari). Instead of a src attribute, these iframes
+// carry a data-src in the HTML — this swaps it in only once the iframe
+// is about to scroll into view, so they load progressively instead of
+// all at once.
+const lazyIframes = document.querySelectorAll('iframe[data-src]');
+if (lazyIframes.length) {
+  const iframeObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const iframe = entry.target;
+      iframe.src = iframe.dataset.src;
+      iframe.removeAttribute('data-src');
+      observer.unobserve(iframe);
+    });
+  }, { rootMargin: '400px 0px' });
+
+  lazyIframes.forEach(iframe => iframeObserver.observe(iframe));
+}
