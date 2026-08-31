@@ -1439,7 +1439,7 @@ body {
   object-fit: cover;
   /*border-radius: var(--image-radius);*/
   background-color: var(--paper);
-  /*margin: 2rem auto 0;*/
+  margin-bottom: 1.5rem;
 }
 
 .project-nav {
