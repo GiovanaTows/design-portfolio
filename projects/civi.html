@@ -113,24 +113,25 @@
 
   <main class="project-body">
     <div class="topic-divider topic-divider-first" id="overview">
-      <h2>Overview</h2>
-      <div class="split-columns">
-        <div class="split-column">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Overview</h2>
           <p>
             Civi believes safety is a right for everyone, and aligns information and technology to help individuals and communities stay better informed and safer.
           </p>
-        </div>
-        <div class="split-column">
           <p>
             Civi's goal is to become the number one security app in Latin America by empowering tens of millions of users to improve their personal security. At the time of this project, the company was focused on São Paulo, Brazil.
           </p>
         </div>
+        <div class="split-column">
+          <video class="inline-video" autoplay muted loop playsinline aria-label="Animation showing how Civi's auto check-in feature works">
+            <source src="../images/projects/civi/animation-auto-checkin.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
-
-      <video class="inline-video" autoplay muted loop playsinline aria-label="Animation showing how Civi's auto check-in feature works">
-        <source src="../images/projects/civi/animation-auto-checkin.mp4" type="video/mp4">
-      </video>
     </div>
+
+    
 
     <div class="topic-divider" id="first-wireframe">
       <div class="text-image-columns">
@@ -138,7 +139,7 @@
           <h2>First wireframe</h2>
           <p>Giovana made the first wireframe of the Civi app based on a sketch the founder gave her.</p>
           <p>The goal was to build an MVP and launch the first version of the app as fast as possible.</p>
-          <p>This first version included a COVID-19 tracker. This function was descontinued after 2021.</p>
+          <p>This first version included a COVID-19 tracker, which was discontinued after 2021.</p>
         </div>
         <div class="split-column">
           <!--<figure class="project-figure">
@@ -216,7 +217,7 @@
       </figure>
 
       <p>
-        Below is sumarized schema of the main functionality of the app.
+        The diagram below maps the app's core flow.
       </p>
       <div>
         <iframe class="figma-imbeded" style="aspect-ratio: 7 / 4;" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FBehance-%252F-Civi%3Fnode-id%3D117%253A97364" allowfullscreen></iframe>
@@ -226,7 +227,7 @@
     <div class="topic-divider" id="design-system">
       <h2>Design system (2021)</h2>
       <p>
-        Giovana created the design system in the second half of 2021. The master components helped the app grow consistently, with a strong visual identity — and saved a lot of development time.
+        Giovana created the design system in the second half of 2021 with another designer. The master components gave the app a consistent visual identity, sped up development, and made it easier to scale.
       </p>
 
       <div>
@@ -308,14 +309,14 @@
       <div class="split-columns">
         <div class="split-column">
           <h2>"Save places" discovery process (2021)</h2>
-          <p>How the "Save Places" feature came to be in the Civi app.</p>
+          <p>The "Save Places" feature — one of the app's core functionalities — was built on user research and data analysis.</p>
           <h3>1. Planning research</h3>
           <h4>Goal</h4>
           <p>
-            The goal was to make sure efforts were concentrated on developing the right features in the app, to make it more useful and attractive for users.
+            The goal was to focus the team's efforts on the features that would make the app more useful and appealing to users.
           </p>
           <p>
-            There were also a lot of internal discussions about what kind of events would be relevant to display in the map and send alert notifications.
+            There were also internal discussions about which event types were relevant to show on the map and trigger alert notifications.
           </p>
           <h4>Target group</h4>
           <p>
@@ -356,9 +357,8 @@
       <div class="text-image-columns">
         <div class="split-column" style="max-width:700px;">
           <h3>3. Data compilation</h3>
-          <p>From the interview documents, Giovana built a spreadsheet with the key insights, feature suggestions, and the relevant/irrelevant event types mentioned.</p>
-          <p>From them, she generated three charts: the most relevant event types, the most irrelevant event types, and the most-mentioned feature suggestions.</p>
-          
+          <p>From the interview documents, Giovana built a spreadsheet summarizing the key insights, feature suggestions, and relevant or irrelevant event types — then turned it into three charts to visualize the patterns.</p>
+
         </div>
         <div class="split-column">
 
@@ -399,10 +399,10 @@
       <div style="max-width:700px;">
         <h3>4. Data analysis and conclusion</h3>
         <p>
-          These interviews showed people were interested in knowing what was happening around their loved ones — beyond alerts about their own location, they wanted to know what was happening around their homes, workplaces, and other frequented places, and wanted a way to add other people and know that family and friends were safe too.
+          These interviews showed people cared about their loved ones' safety as much as their own — they wanted visibility into their homes, workplaces, and other frequented places, and a way to confirm that family and friends were safe.
         </p>
         <p>
-          Besides that, over 23% of interviewees mentioned wanting to set up notifications by maximum distance or by event type — they were unhappy about receiving notifications for things happening far away, or about events they didn't care about.
+          Over 23% of interviewees also wanted to filter notifications by maximum distance or event type, frustrated by alerts that felt too far away or irrelevant.
         </p>
       </div>
 
@@ -449,7 +449,7 @@
           <h2>Onboarding redesign (2022)</h2>
           <h4>Problem</h4>
           <p>
-            The onboarding was one of the most elaborate flows in the app. The team found that the drop-off rate during onboarding was very high, because the app was requesting a lot of personal information — home address, work address, device location permission, and more.
+            Onboarding was one of the app's most elaborate flows, with a very high drop-off rate — largely because it required a lot of personal information: home address, work address, device location permission, and more.
           </p>
           <h4>Solution</h4>
           <p>
@@ -479,10 +479,10 @@
             <h3>Pending permissions and settings (2022)</h3>
               <h4>Problem</h4>
               <p>
-                The value of Civi depends heavily on the user's device permissions. The app needs users to allow access to their location, enable notifications, save their favorite places, and add contacts.
+                Civi's value depends heavily on device permissions — location access, notifications, saved places, and contacts.
               </p>
               <p>
-                The team noticed that many users ended the onboarding flow without completing these settings, and the app wasn't able to deliver its full value — resulting in low user retention.
+                Many users were ending onboarding without completing these settings, so the app couldn't deliver its full value — resulting in low retention.
               </p>
               <h4>Solution</h4>
               <p>
@@ -512,7 +512,7 @@
           <div class="split-column">
             <h4>Problem</h4>
             <p>
-              The value of Civi depends heavily on users adding contacts — inviting friends and family to see their location, receive alerts of occurrences nearby, and get automatic notifications when they arrive at or leave a saved place. However, a brief data analysis showed a low rate of sent contact invitations, and an even lower rate of accepted invites.
+              Civi also depends on users adding contacts — friends and family who can see each other's location, get nearby alerts, and receive automatic notifications when someone arrives at or leaves a saved place. However, data showed a low rate of sent invitations, and an even lower rate of accepted ones.
             </p>
           </div>
           <div class="split-column">
@@ -525,7 +525,7 @@
           <div class="split-column" style="max-width:700px;">
             <h4>Solution</h4>  
               <p>
-                To solve this, the team created Civiana — a virtual contact that works as an example of a contact already added in the app. Through her, you can see data such as her location, distance, battery level, and nearby occurrences. Her home and work addresses were also included to show how the auto-check-in feature works.
+                To solve this, the team created Civiana — a virtual contact showing what an added contact looks like in the app, complete with location, distance, battery level, and nearby occurrences. Her home and work addresses were included to demonstrate the auto-check-in feature.
               </p>
               <p>
                 This way, users could understand the value of adding contacts in practice. As a result, the team saw a significant increase in the number of contact invitations sent.
@@ -553,7 +553,7 @@
             <h3>Places suggestions (2023)</h3>
             <h4>Problem</h4>
             <p>
-              The team built an auto-check-in and auto-check-out function that sends notifications when a contact arrives at or leaves a saved place — for example, "Mary arrived at home" or "John left work." The problem was that even though users were adding contacts, they weren't adding places for those contacts. For example, a user might add their partner but never add their partner's office — meaning they couldn't use the auto check-in/out feature for that place.
+              The team built an auto-check-in and auto-check-out function that notifies users when a contact arrives at or leaves a saved place — for example, "Mary arrived at home" or "John left work." The problem: users were adding contacts but not places for them — someone might add a partner but never their office, leaving the feature unusable for that place.
             </p>
             <h4>Solution</h4>
             <p>
@@ -675,7 +675,7 @@
       <div class="text-image-columns">
         <div class="split-column" style="max-width:700px;">
           <h2>Event submission flow (2022)</h2>
-          <p>Improvement of the flow for publication of events in the app - User generated content (UGC).</p>
+          <p>Improving how users submit event reports — Civi's user-generated content (UGC) flow.</p>
 
           <h4>Problem</h4>
           <p>
@@ -683,7 +683,7 @@
           </p>
           <h4>Goal</h4>
           <p>
-            Create an in-app easy flow for users to submit relevant information about accidents, crimes, and other incidents. The information needed to be clear for Civi's team be able to quickly validate them before publishing it on the app.
+            Create an easy in-app flow for users to submit relevant information about accidents, crimes, and other incidents — clear enough for Civi's team to quickly validate before publishing.
           </p>
           <h4>Benchmark research</h4>
           <p>
@@ -764,7 +764,7 @@
           </div>
           <div>
             <h4>Location tracking</h4>
-            <p>The new flow automatically detects the user's current location and shows it on a map, removing the need to type an address — especially helpful when reporting something you witnessed on the street and aren't sure of the exact address.</p>
+            <p>The new flow automatically detects the user's current location and shows it on a map, removing the need to type an address — especially helpful when reporting something witnessed on the street without knowing the exact address.</p>
           </div>
           <div>
             <h4>Audio recording</h4>
@@ -793,7 +793,7 @@
         <div class="split-column">
           <h2>Premium plan &amp; free trial (2023)</h2>
           <p>One of the last major additions to Civi was a paid premium plan, "Civi Protege." The idea was to allow only premium users to add contacts.</p>
-          <p>Free users would get alerts close to themselves and their saved places. Premium users could also see their contacts' current location, history of locations, battery level and receive notifications every time a contact arrived at or left a specific place (for example their home, office, or school).</p>
+          <p>Free users would get alerts close to themselves and their saved places. Premium users could also see their contacts' current location and location history, battery level, and get notified whenever a contact arrived at or left a specific place — home, office, or school, for example.</p>
           <p>The team also built a free trial flow so free users could try the paid features for two weeks.</p>
         </div>
         <div class="split-column">
@@ -818,17 +818,21 @@
 
       <dl class="project-specs project-specs-4">
         <div>
+          <h4>Lack of user data from the start</h4>
+          <p>It took a long time for Civi to collect and present usage data clearly. For more than a year, there was no visibility into new users, retention, or heat maps — making it hard to know where the main problems were occurring.</p>
+        </div>
+        <div>
           <h4>Discovery took priority over shipping basics</h4>
           <p>A lot of time went into research and considering elaborate features before the basic experience was solid. The onboarding flow, for example, was buggy and visually inconsistent — and that alone caused many new users to drop off before even trying the app.</p>
         </div>
         <div>
           <h4>Acquisition outpaced retention</h4>
-          <p>The team invested heavily in acquiring new users while retention stayed low, so a large part of that investment went toward users who left the app quickly.</p>
+          <p>The team invested heavily in acquiring new users while retention was still very low, so a large part of that investment went toward users who left the app too early.</p>
         </div>
-        <div>
+        <!--<div>
           <h4>The team scaled faster than the roadmap</h4>
           <p>Many people were hired in a short period, and a lot of time went into onboarding instead of the product. The new hires brought great ideas, but the team wasn't ready to act on them yet — a smaller team with a sharper focus on the core experience might have served them better.</p>
-        </div>
+        </div>-->
         <div>
           <h4>Monetization came too late</h4>
           <p>The team wanted to build a large, popular app before introducing a paid plan. By the time Civi Protege launched, it was already too late to change the company's trajectory.</p>

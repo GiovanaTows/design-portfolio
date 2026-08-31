@@ -1435,11 +1435,11 @@ body {
   width: 100%;
   max-width: 700px;
   height: auto;
-  aspect-ratio: 5 / 3;
+  /*aspect-ratio: 5 / 3;*/
   object-fit: cover;
-  border-radius: var(--image-radius);
+  /*border-radius: var(--image-radius);*/
   background-color: var(--paper);
-  margin: 2rem auto 0;
+  /*margin: 2rem auto 0;*/
 }
 
 .project-nav {
