@@ -1426,6 +1426,22 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* A self-hosted, autoplaying, silent loop used like an animated GIF —
+   no player chrome, no controls, just a short demo of an interaction.
+   Unlike .video-embed (a real iframe player), this is a plain <video>,
+   so it gets the same rounded-corner treatment as project imagery. */
+.inline-video {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  border-radius: var(--image-radius);
+  background-color: var(--paper);
+  margin: 2rem auto 0;
+}
+
 .project-nav {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
