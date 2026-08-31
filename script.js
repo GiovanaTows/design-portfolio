@@ -522,3 +522,51 @@ if (lazyIframes.length) {
 
   lazyIframes.forEach(iframe => iframeObserver.observe(iframe));
 }
+
+// Pause/resume looping inline videos based on visibility — they decode
+// continuously while playing, so there's no reason to keep spending
+// CPU/battery on a video the user has scrolled past. Resumes on its
+// own once it's back in view.
+const inlineVideos = document.querySelectorAll('.inline-video');
+if (inlineVideos.length) {
+  // Swap in the lighter mobile file on narrow screens. Done in JS
+  // rather than a <source media="..."> child — browser support for
+  // re-evaluating that on a <video> (as opposed to <picture>, where
+  // it's standard) is inconsistent, so an explicit matchMedia check
+  // is more reliable. Also re-checked on resize (debounced), so a
+  // window resize or orientation change still picks the right file —
+  // a video mid-playback won't swap source on its own otherwise.
+  const applyVideoSource = () => {
+    const isMobile = window.matchMedia('(max-width: 700px)').matches;
+    inlineVideos.forEach(video => {
+      const wantedSrc = isMobile && video.dataset.srcMobile
+        ? video.dataset.srcMobile
+        : video.dataset.srcDesktop;
+      if (wantedSrc && video.getAttribute('src') !== wantedSrc) {
+        const wasPlaying = !video.paused;
+        video.src = wantedSrc;
+        if (wasPlaying) video.play().catch(() => {});
+      }
+    });
+  };
+  applyVideoSource();
+  window.addEventListener('load', applyVideoSource);
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applyVideoSource, 200);
+  });
+
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  });
+
+  inlineVideos.forEach(video => videoObserver.observe(video));
+}
