@@ -885,7 +885,7 @@ body {
 }
 
 .project-index-civi {
-  min-width: 290px;
+  min-width: 320px;
 }
 
 .project-index-label {
@@ -1287,7 +1287,7 @@ body {
    regardless of how tall the H1/subtitle above happen to be). It's
    positioned only — it scrolls away normally with the rest of the
    header, it doesn't stay pinned as you scroll the page. */
-@media (min-width: 900px) {
+@media (min-width: 1060px) {
   .project-header-columns {
     position: relative;
     grid-template-columns: 1fr;
