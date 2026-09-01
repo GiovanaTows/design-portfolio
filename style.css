@@ -1588,6 +1588,33 @@ body {
   display: inline;
 }
 
+.about-portrait-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-portrait {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .about-portrait-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .about-portrait {
+    width: 110px;
+    height: 110px;
+  }
+}
+
 @media (max-width: 640px) {
   .timeline-compact-entry {
     grid-template-columns: 1fr;
