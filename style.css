@@ -1537,6 +1537,31 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.timeline-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.timeline-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.timeline-logo-sm {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.timeline-compact-entry .timeline-title-row {
+  gap: 0.6rem;
+  margin-bottom: 0.15rem;
+}
+
 .timeline-entry p {
   max-width: 640px;
 }
