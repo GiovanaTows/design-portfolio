@@ -25,7 +25,7 @@
         </button>
         <ul id="nav-links" class="nav-links">
           <li><a href="../index.html#projects">Projects</a></li>
-          <li><a href="../index.html#about">About me</a></li>
+          <li><a href="../about.html">About me</a></li>
           <li><a href="../index.html#contact">Contact</a></li>
         </ul>
       </nav>
@@ -53,7 +53,7 @@
           </div>
           <div>
             <dt>Tool</dt>
-            <dd>Figma / Miro / Maze / Illustrator / Photoshop / After Effects</dd>
+            <dd>Figma / Miro / Jira / Illustrator / Photoshop / After Effects</dd>
           </div>
           <div>
             <dt>Timeline</dt>
@@ -238,7 +238,7 @@
 
     <div class="topic-divider" id="design-system">
       <h2>Design system (2021)</h2>
-      <p>
+      <p style="max-width: 700px;">
         I created Civi's design system in the second half of 2021, together with another designer. The master components gave the app a consistent visual identity, sped up development, and made it easier to scale.
       </p>
 
@@ -665,6 +665,11 @@
         <figcaption>Final result: 19 event categories with their subcategories and icons</figcaption>
       </figure>
 
+
+      
+
+
+
       <h3>Testing new icons with users</h3>
       <p>I applied the new icons to a map simulation, then asked a few people what they thought each one meant, without giving them any context.</p>
       <figure class="project-figure">
@@ -678,22 +683,48 @@
         <figcaption>Slack poll to define the most difficult category icons</figcaption>
       </figure>-->
 
-      <h3>Final result</h3>
-      <p>Below is the result of the new event categories and their icons.</p>
-      <div class="figure-grid">
-        <figure class="project-figure">
-          <img src="../images/projects/civi/icons/icons-events.webp" alt="Final event category icons" loading="lazy">
-        </figure>
-        <figure class="project-figure">
-          <img src="../images/projects/civi/icons/icons-maps.webp" alt="Final event category icons applied on the map" loading="lazy">
-        </figure>
+      
+
+
+      <h3>Icons Final Design</h3>
+      <p>This is the result of the new event categories and their icons.</p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/civi/icons/icons-events.webp" alt="New event categories and their icons" loading="lazy">
+      </figure>
+      <!--<figure class="project-figure">
+        <img src="../images/projects/civi/icons/icons-maps.webp" alt="Final event category icons applied on the map" loading="lazy">
+      </figure>-->
+
+    
+
+
+
+
+      <div class="split-columns" style="align-items: end;">
+        <div class="split-column">
+          <h3>Event density</h3>
+          <h4>Problem</h4>
+          <p>
+            As all the pins on the map had these new icons, the map was still looking very dense in information. It was difficult to decide which pin to click first.
+          </p>
+          <p>Besides that, back in the Save Places interviews, many users had asked for an event type filter to see only the event types relevant to them on the map.</p>
+          
+        </div>
+        <div class="split-column">
+          
+          <p>We didn't have a very big quantity of event submitions everywhere in the city. Filtering by event type would likely leave the map looking empty in areas without much activity.</p>
+          <p>Besides that many users would forget about this filter and they would never see lots of possibly relevant information.</p>
+        </div>
       </div>
 
       <div class="text-image-columns">
         <div class="split-column" style="max-width:700px;">
-          <h3>Event density solution</h3>
-          <p>Back in the Save Places interviews, many users had also asked for an event type filter, so they could see only the events relevant to them on the map. The problem: filtering by type alone would likely leave the map looking empty in areas without much recent activity of that type.</p>
-          <p>To get around this, I designed an event relevance score instead of a simple filter. I set a maximum number of pins that would show with a full icon on the map; the rest appeared as a smaller dot, just enough to suggest something had happened there. Each event got a score based on recency, gravity, and distance — gravity being a 1–10 rating I assigned to each event type by severity. The map showed the highest-scoring events larger and more prominently, and zooming in surfaced more local, lower-priority events as the view area shrank.</p>
+          <h4>Solution</h4>
+          <p>To get around this, we designed an event relevance score instead of a simple filter.</p>
+          <p>We set a maximum number of pins that would appear expanded with icon on the map, the rest appeared as a smaller dot — just enough to suggest something had happened there.</p>
+          <p>Each event got a score based on recency, gravity, and distance — gravity being a 1–10 rating we assigned to each event type by severity.</p>
+          <p>The map showed the highest-scoring events larger and more prominently. By zooming in the users could see more local, lower-priority events as the view area shrank.</p>
         </div>
         <div class="split-column">
 
@@ -701,10 +732,10 @@
             <div class="carousel-viewport carousel-bg-civi">
               <div class="carousel-track">
                 <div class="carousel-slide" data-caption="Event density solution based on the map view area">
-                  <img src="../images/projects/civi/map-zooms.webp" alt="Event density solution based on the map view area" loading="lazy">
+                  <img src="../images/projects/civi/icons/map-zooms.webp" alt="Event density solution based on the map view area" loading="lazy">
                 </div>
                 <div class="carousel-slide" data-caption="Variations of the map pins">
-                  <img src="../images/projects/civi/map-pins.webp" alt="Variations of the map pins" loading="lazy">
+                  <img src="../images/projects/civi/icons/map-pins.webp" alt="Variations of the map pins" loading="lazy">
                 </div>
               </div>
               <button type="button" class="carousel-prev" aria-label="Previous image">
@@ -720,7 +751,10 @@
 
         </div>
       </div>
-    </div>
+    </div>  
+
+
+
 
     <div class="topic-divider" id="user-generated-content">
       <div class="text-image-columns">

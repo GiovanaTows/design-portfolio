@@ -1501,3 +1501,96 @@ body {
 .project-nav a:focus-visible {
   color: var(--accent);
 }
+
+/* ============================================
+   9. ABOUT PAGE — experience timeline
+   ============================================ */
+
+/* Featured roles: date column + content column, generous spacing —
+   used for the handful of positions worth a real description. */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.timeline-entry {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0.5rem 2rem;
+}
+
+.timeline-date {
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding-top: 0.15rem;
+}
+
+.timeline-role {
+  font-weight: 700;
+}
+
+.timeline-company {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-entry p {
+  max-width: 640px;
+}
+
+.timeline-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .timeline-entry {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .timeline-date {
+    padding-top: 0;
+  }
+}
+
+/* Condensed roles: same two-column shape, but a single row each,
+   divided by hairlines — for the earlier/adjacent-field roles that
+   don't need a full write-up here (most already exist in more detail
+   on LinkedIn). */
+.timeline-compact {
+  border-top: 1px solid #e4e2db;
+}
+
+.timeline-compact-entry {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0.5rem 2rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #e4e2db;
+  font-size: 0.9rem;
+}
+
+.timeline-compact-entry .timeline-date {
+  padding-top: 0;
+}
+
+.timeline-compact-entry .timeline-role {
+  font-weight: 600;
+}
+
+.timeline-compact-entry .timeline-company {
+  margin-bottom: 0;
+  display: inline;
+}
+
+@media (max-width: 640px) {
+  .timeline-compact-entry {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
