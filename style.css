@@ -203,6 +203,10 @@ body {
 
   .nav-links {
     position: absolute;
+    /* This offset matches .site-header's own padding-bottom, so the
+       dropdown sits flush against the header's visible bottom edge —
+       kept in sync with .scrolled below, since that padding shrinks
+       once the header does. */
     top: calc(100% + 1.25rem);
     left: -1.5rem;
     right: -1.5rem;
@@ -212,7 +216,7 @@ body {
     background-color: var(--paper);
     border-bottom: 1px solid #e4e2db;
     padding: 0 1.5rem;
- 
+
     /* Collapsed state: zero height, invisible, and unreachable by
        keyboard/click — this is what makes the animation possible,
        since "display: none" can't be transitioned smoothly. */
@@ -222,7 +226,11 @@ body {
     transform: translateY(-8px);
     pointer-events: none;
     /* Closing Animation: fade the text out immediately (no delay), while height and position collapse over their own durations. */
-    transition: max-height 0.35s ease, opacity 0.2s ease, transform 0.3s ease, padding 0.35s ease;
+    transition: max-height 0.35s ease, opacity 0.2s ease, transform 0.3s ease, padding 0.35s ease, top 0.25s ease;
+  }
+
+  .site-header.scrolled .nav-links {
+    top: calc(100% + 0.4rem);
   }
 
   .nav-links.open {
