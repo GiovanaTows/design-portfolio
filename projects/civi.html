@@ -374,7 +374,7 @@
         </div>
         <div class="split-column">
           <div class="project-carousel">
-            <div class="carousel-viewport carousel-bg-plots" style="background-color: #ffffff;">
+            <div class="carousel-viewport carousel-bg-civi" style="background-color: #ffffff;">
               <div class="carousel-track">
                 <div class="carousel-slide" data-caption="Spreadsheet compiling insights from the Save Places user interviews">
                   <img src="../images/projects/civi/data-compilation/data-compilation-spreadsheet.webp" alt="Spreadsheet compiling insights from the Save Places user interviews" loading="lazy">
@@ -452,7 +452,10 @@
         <img src="../images/projects/civi/save-places-final.webp" alt="The final 'Save places' feature" loading="lazy">
         <figcaption>The final 'Save places' feature</figcaption>
       </figure>
+
+
       
+      <!--<iframe class="figma-imbeded" data-src="https://embed.figma.com/design/l9DevMvXAbZuC00267zT3g/Portfolio---Civi?node-id=7274-19759&embed-host=share" allowfullscreen></iframe>-->
     </div>
 
 
@@ -685,6 +688,38 @@
           <img src="../images/projects/civi/icons/icons-maps.webp" alt="Final event category icons applied on the map" loading="lazy">
         </figure>
       </div>
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h3>Event density solution</h3>
+          <p>Back in the Save Places interviews, many users had also asked for an event type filter, so they could see only the events relevant to them on the map. The problem: filtering by type alone would likely leave the map looking empty in areas without much recent activity of that type.</p>
+          <p>To get around this, I designed an event relevance score instead of a simple filter. I set a maximum number of pins that would show with a full icon on the map; the rest appeared as a smaller dot, just enough to suggest something had happened there. Each event got a score based on recency, gravity, and distance — gravity being a 1–10 rating I assigned to each event type by severity. The map showed the highest-scoring events larger and more prominently, and zooming in surfaced more local, lower-priority events as the view area shrank.</p>
+        </div>
+        <div class="split-column">
+
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-civi">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Event density solution based on the map view area">
+                  <img src="../images/projects/civi/map-zooms.webp" alt="Event density solution based on the map view area" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Variations of the map pins">
+                  <img src="../images/projects/civi/map-pins.webp" alt="Variations of the map pins" loading="lazy">
+                </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
     <div class="topic-divider" id="user-generated-content">
@@ -813,9 +848,9 @@
       <div class="text-image-columns" style="align-items: center;">
         <div class="split-column">
           <h2>Premium plan &amp; free trial (2023)</h2>
-          <p>One of the last major features I shipped at Civi was a paid premium plan, "Civi Protege," which let only premium users add contacts.</p>
+          <p>One of the last major features we shipped at Civi was a paid premium plan, "Civi Protege," which let only premium users add contacts.</p>
           <p>Free users got alerts close to themselves and their saved places. Premium users could also see their contacts' current location and location history, battery level, and get notified whenever a contact arrived at or left a specific place — home, office, or school, for example.</p>
-          <p>I also designed a free trial flow so free users could try the paid features for two weeks.</p>
+          <p>We also designed a free trial flow so free users could try the paid features for two weeks.</p>
         </div>
         <div class="split-column">
           <figure class="project-figure">

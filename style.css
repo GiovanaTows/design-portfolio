@@ -818,7 +818,7 @@ body {
   }
 }
 
-@media (max-width: 874px) {
+@media (max-width: 910px) {
   .project-specs-civi {
     grid-template-columns: 1fr !important;
   }
@@ -835,7 +835,7 @@ body {
   }
 }
 
-@media (max-width: 1074px) {
+@media (max-width: 1020px) {
   .project-specs-2 {
     grid-template-columns: auto !important;
   }
@@ -885,7 +885,7 @@ body {
 }
 
 .project-index-civi {
-  min-width: 320px;
+  min-width: 280px;
 }
 
 .project-index-label {
