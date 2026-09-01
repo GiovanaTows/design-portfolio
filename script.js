@@ -468,9 +468,87 @@ if (zoomableImages.length) {
   nextBtn.addEventListener('click', () => show(currentIndex + 1, 1));
 
   // Clicking the dark backdrop (not the image or a control) closes it.
+  // lightboxImgWrap counts as backdrop too — it's often larger than the
+  // image itself (e.g. a portrait image in a landscape viewport), so a
+  // tap in its empty padding should close the same as one further out.
+  // The image's own click handler stops propagation, so a real image
+  // tap never reaches here.
   lightbox.addEventListener('click', (event) => {
-    if (event.target === lightbox) close();
+    if (event.target === lightbox || event.target === lightboxImgWrap) close();
   });
+
+  // --- Touch: pinch-to-zoom the image, single-finger pan once zoomed,
+  // swipe left/right to navigate when not zoomed. touch-action: none on
+  // .lightbox (style.css) routes every touch gesture in here instead of
+  // to the browser's native page-zoom/scroll; preventDefault below is
+  // what actually stops that native behavior from also happening
+  // underneath (dragging the fixed backdrop/buttons, or scrolling the
+  // page behind the overlay).
+  let pinchStartDistance = null;
+  let pinchStartZoom = ZOOM_MIN;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isPanning = false;
+  let panStartScrollLeft = 0;
+  let panStartScrollTop = 0;
+
+  function touchDistance(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  lightbox.addEventListener('touchstart', (event) => {
+    if (event.touches.length === 2) {
+      pinchStartDistance = touchDistance(event.touches);
+      pinchStartZoom = zoomLevel;
+    } else if (event.touches.length === 1) {
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+      isPanning = zoomLevel > ZOOM_MIN;
+      if (isPanning) {
+        panStartScrollLeft = lightboxImgWrap.scrollLeft;
+        panStartScrollTop = lightboxImgWrap.scrollTop;
+      }
+    }
+  }, { passive: true });
+
+  lightbox.addEventListener('touchmove', (event) => {
+    if (event.touches.length === 2 && pinchStartDistance) {
+      event.preventDefault();
+      const scale = touchDistance(event.touches) / pinchStartDistance;
+      setZoomLevel(pinchStartZoom * scale);
+    } else if (event.touches.length === 1) {
+      event.preventDefault();
+      if (isPanning) {
+        const dx = event.touches[0].clientX - touchStartX;
+        const dy = event.touches[0].clientY - touchStartY;
+        lightboxImgWrap.scrollLeft = panStartScrollLeft - dx;
+        lightboxImgWrap.scrollTop = panStartScrollTop - dy;
+      }
+    }
+  }, { passive: false });
+
+  lightbox.addEventListener('touchend', (event) => {
+    pinchStartDistance = null;
+    if (isPanning) {
+      isPanning = false;
+      return;
+    }
+    // Swipe to navigate — only when not zoomed in (otherwise a single
+    // finger is panning around the zoomed image, handled above) and a
+    // clear horizontal gesture (mostly-sideways, past a small threshold
+    // so an ordinary tap never mis-fires as a swipe).
+    if (zoomLevel === ZOOM_MIN && event.changedTouches.length === 1) {
+      const dx = event.changedTouches[0].clientX - touchStartX;
+      const dy = event.changedTouches[0].clientY - touchStartY;
+      const SWIPE_THRESHOLD = 50;
+      if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        const direction = dx < 0 ? 1 : -1;
+        show(currentIndex + direction, direction);
+      }
+    }
+  }, { passive: true });
 
   document.addEventListener('keydown', (event) => {
     if (!lightbox.classList.contains('open')) return;

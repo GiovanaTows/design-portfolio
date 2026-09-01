@@ -383,6 +383,12 @@ body {
      anything useful. */
   user-select: none;
   -webkit-user-select: none;
+  /* Hands every touch gesture inside the lightbox (pinch, drag, swipe)
+     to our own touchstart/move/end handlers in script.js instead of
+     the browser's native page-zoom/scroll — without this, a pinch here
+     zoomed the whole page (dragging the fixed backdrop/buttons along
+     with it) and a drag could scroll the page behind the overlay. */
+  touch-action: none;
   /* visibility has its own 0s transition, delayed until the opacity
      fade finishes closing — without this, visibility (which can't be
      animated) snaps to hidden the instant .open is removed, cutting
@@ -569,18 +575,12 @@ body {
 }
 
 @media (max-width: 640px) {
+  /* Hidden in favor of swipe-to-navigate (see touchstart/move/end in
+     script.js) — the buttons aren't needed once swipe covers the same
+     job, and they'd otherwise sit awkwardly close to the thumb. */
   .lightbox-prev,
   .lightbox-next {
     display: none;
-  }
-
-  /* Stops native pinch/double-tap zoom from grabbing the lightbox —
-     without our own zoom feature here, a stray pinch would otherwise
-     zoom the browser viewport itself, dragging the fixed background
-     and buttons out of place instead of leaving them locked in the
-     overlay. */
-  .lightbox {
-    touch-action: none;
   }
 }
 
