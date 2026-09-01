@@ -1214,7 +1214,7 @@ body {
 
 .topic-divider-no-line{
   border-bottom: 0 !important;
-  padding-top: 0 !important;
+  padding-top: 1rem !important;
 }
 
 .topic-divider-first{
