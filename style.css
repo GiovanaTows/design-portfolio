@@ -1582,11 +1582,13 @@ body {
 
 .timeline-entry p {
   max-width: 640px;
+  margin-left: calc(49px + 0.75rem);
 }
 
 .timeline-link {
   display: inline-block;
   margin-top: 0.5rem;
+  margin-left: calc(49px + 0.75rem);
   font-size: 0.85rem;
 }
 
