@@ -1253,7 +1253,7 @@ body {
 
 .topic-divider-no-line{
   border-bottom: 0 !important;
-  padding-top: 1rem !important;
+  padding-top: 3rem !important;
 }
 
 .topic-divider-first{
@@ -1295,6 +1295,14 @@ body {
   margin-top: 2rem;
   padding: 0;
   justify-content: center;
+}
+
+.about-header-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 0;
 }
 
 @media (max-width: 730px) {
