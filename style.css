@@ -845,12 +845,6 @@ body {
   grid-template-columns: auto auto auto auto !important;
 }
 
-@media (max-width: 640px) {
-  .project-specs-4 {
-    grid-template-columns: auto !important;
-  }
-}
-
 @media (max-width: 700px) {
   .project-specs-plots {
     grid-template-columns: 1fr !important;
@@ -883,6 +877,12 @@ body {
 @media (max-width: 900px) {
   .project-specs-4 {
     grid-template-columns: auto auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-specs-4 {
+    grid-template-columns: auto !important;
   }
 }
 
