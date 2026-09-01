@@ -1544,17 +1544,17 @@ body {
 }
 
 .timeline-logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
+  width: 49px;
+  height: 49px;
+  border-radius: 9px;
   object-fit: cover;
   flex-shrink: 0;
 }
 
 .timeline-logo-sm {
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
 }
 
 .timeline-compact-entry .timeline-title-row {
