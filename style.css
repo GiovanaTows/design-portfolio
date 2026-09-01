@@ -1686,7 +1686,7 @@ body {
   width: 1.6rem;
   height: 1.6rem;
   padding: 0;
-  margin-left: 0.15rem;
+  margin-left: 0px;
   border: none;
   background: none;
   color: var(--muted);
