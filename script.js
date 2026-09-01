@@ -648,3 +648,52 @@ if (inlineVideos.length) {
 
   inlineVideos.forEach(video => videoObserver.observe(video));
 }
+
+// Copy-to-clipboard buttons next to email addresses.
+document.querySelectorAll('.copy-email-btn').forEach(btn => {
+  const icon = btn.querySelector('.material-symbols-outlined');
+  const originalIcon = icon.textContent;
+  let resetTimer;
+
+  // Fallback for browsers/contexts where the async Clipboard API is
+  // missing or denied (e.g. no clipboard-write permission) — a
+  // temporary offscreen textarea + execCommand still works broadly.
+  const legacyCopy = (text) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    let succeeded = false;
+    try {
+      succeeded = document.execCommand('copy');
+    } catch (e) {
+      succeeded = false;
+    }
+    document.body.removeChild(textarea);
+    return succeeded;
+  };
+
+  const showCopied = () => {
+    clearTimeout(resetTimer);
+    icon.textContent = 'check';
+    btn.classList.add('copied');
+    btn.setAttribute('title', 'Copied!');
+    resetTimer = setTimeout(() => {
+      icon.textContent = originalIcon;
+      btn.classList.remove('copied');
+      btn.setAttribute('title', 'Copy email address');
+    }, 1500);
+  };
+
+  btn.addEventListener('click', () => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(btn.dataset.email).then(showCopied, () => {
+        if (legacyCopy(btn.dataset.email)) showCopied();
+      });
+    } else if (legacyCopy(btn.dataset.email)) {
+      showCopied();
+    }
+  });
+});

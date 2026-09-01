@@ -1666,3 +1666,36 @@ body {
     gap: 0.15rem;
   }
 }
+
+/* ============================================
+   10. COPY-EMAIL BUTTON
+   ============================================ */
+.copy-email-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  margin-left: 0.15rem;
+  border: none;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.copy-email-btn:hover {
+  color: #1a1a1a;
+  background-color: rgba(26, 26, 26, 0.08);
+}
+
+.copy-email-btn .material-symbols-outlined {
+  font-size: 1.05rem;
+}
+
+.copy-email-btn.copied {
+  color: #2e7d32;
+}
