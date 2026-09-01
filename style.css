@@ -17,6 +17,13 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #1a1a1a;
   background-color: #faf9f6;
+  /* Delicate dot-grain texture: a single 1px dot per tile, repeated
+     every 22px, at low opacity — reads as a subtle paper texture
+     rather than a visible pattern. Pure CSS (no image file), so it
+     stays crisp at any zoom/density and tiles seamlessly down the
+     page. */
+  background-image: radial-gradient(circle at 1px 1px, rgba(26, 26, 26, 0.06) 1px, transparent 0);
+  background-size: 22px 22px;
   line-height: 1.6;
 }
 
