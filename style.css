@@ -1562,6 +1562,12 @@ body {
   margin-bottom: 0.15rem;
 }
 
+.timeline-compact-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
 .timeline-entry p {
   max-width: 640px;
 }
