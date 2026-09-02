@@ -62,7 +62,7 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
-/*AQUI*/
+
 .site-header {
   position: sticky;
   top: 0;
@@ -72,7 +72,6 @@ body {
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   padding: 1.25rem 1.5rem;
   box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
-  
   /* .scrolled is toggled by script.js once you're past the very top —
      shrinks the header (and the logo, below) so it takes up less room
      while you're reading, then relaxes back to full size at the top. */
@@ -137,9 +136,6 @@ body {
   border-bottom: 2px solid transparent;
   padding-bottom: 2px;
   transition: border-color 0.2s ease;
-  /*AQUI*/
-  position: absolute;
-  z-index: 11;
 }
 
 .index-nav a:hover,
@@ -211,42 +207,38 @@ body {
   .menu-toggle {
     display: block;
   }
-  /*AQUI*/
+
   .nav-links {
     position: absolute;
+    /* This offset matches .site-header's own padding-bottom, so the
+       dropdown sits flush against the header's visible bottom edge —
+       kept in sync with .scrolled below, since that padding shrinks
+       once the header does. */
     top: calc(100% + 1.25rem);
     left: -1.5rem;
     right: -1.5rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1.25rem;
+    /* Same frosted-glass treatment as .site-header, so the open dropdown
+       reads as part of the same surface instead of a flatter panel
+       tacked on underneath it. */
+    background-color: rgba(250, 249, 246, 0.75);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid #e4e2db;
+    padding: 0 1.5rem;
 
+    /* Collapsed state: zero height, invisible, and unreachable by
+       keyboard/click — this is what makes the animation possible,
+       since "display: none" can't be transitioned smoothly. */
     max-height: 0;
-    opacity: 0.8;
+    opacity: 0;
     overflow: hidden;
     transform: translateY(-8px);
     pointer-events: none;
-    padding: 1.25rem 1.5rem;
-    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
-
     /* Closing Animation: fade the text out immediately (no delay), while height and position collapse over their own durations. */
     transition: max-height 0.35s ease, opacity 0.2s ease, transform 0.3s ease, padding 0.35s ease, top 0.25s ease;
-  }
-
-  /* Solid fill, no blur: .nav-links is a DOM descendant of
-     .site-header, and .site-header's own backdrop-filter makes it a
-     "backdrop root" — any descendant's backdrop-filter can only
-     sample content between .site-header and itself (effectively
-     nothing), not the real page behind it, so a blur here would never
-     have anything to blur. Fixing that for real means moving
-     .nav-links out of .site-header in the DOM; until then, a solid
-     opaque background reads cleanly without needing one. */
-  .nav-links::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-color: var(--paper);
   }
 
   .site-header.scrolled .nav-links {
@@ -271,6 +263,25 @@ body {
 @media (max-width: 900px) and (prefers-reduced-motion: reduce) {
   .nav-links {
     transition: none;
+  }
+}
+
+/* Same frosted-glass fallbacks as .site-header, scoped to the mobile
+   dropdown only — .nav-links has no background at all in its desktop
+   (inline) form, so these can't live in the unscoped rules above. */
+@supports not (backdrop-filter: blur(1px)) {
+  @media (max-width: 900px) {
+    .nav-links {
+      background-color: var(--paper);
+    }
+  }
+}
+
+@media (max-width: 900px) and (prefers-reduced-transparency: reduce) {
+  .nav-links {
+    background-color: var(--paper);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 }
 
