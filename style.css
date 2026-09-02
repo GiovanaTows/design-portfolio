@@ -1770,6 +1770,16 @@ body {
   }
 }
 
+/* Background alone — not color — applies on hover regardless of the
+   copied state, so clicking the email icon doesn't make the visible
+   hover background suddenly fade back down to the barely-there rest
+   opacity right as the mouse is still sitting over it. */
+.social-links a:hover,
+.social-links a:focus-visible,
+.social-links .copy-email-btn:hover {
+  background-color: var(--index);
+}
+
 .social-links a:hover,
 .social-links a:focus-visible,
 .social-links .copy-email-btn:not(.copied):hover {
@@ -1777,9 +1787,11 @@ body {
      the same blue for free via currentColor. Same darker blue
      (--link-hover) as the animated underline on back-link/
      timeline-link/etc., not --accent, for one consistent hover blue
-     across the site rather than two slightly different ones. */
+     across the site rather than two slightly different ones.
+     Excludes .copied so the green confirmation color (set globally
+     on .copy-email-btn.copied) isn't overridden back to blue while
+     the mouse is still hovering right after a click. */
   color: var(--link-hover);
-  background-color: var(--index);
 }
 
 .social-links svg {
