@@ -1,24 +1,26 @@
-// Hover stroke: wires up the clockwise-sweeping border outline on
-// back-to-top, the carousel arrows, and every lightbox button (see
-// the "13. HOVER STROKE" comment in style.css for why this needs JS
-// rather than a plain :hover rule — CSS alone can't make entering and
-// leaving hover animate two different custom properties). Called once
-// per button as each one becomes available: the carousel/lightbox
-// buttons don't exist yet at the top of this file.
-//
-// The masked outline lives on a real injected element
-// (.hover-stroke-overlay), not a ::before — a pseudo-element with a
-// var()-driven mask-image didn't reliably repaint when the custom
-// properties changed, so this appends an actual child span instead.
-function setUpHoverStroke(btn) {
+// Sweep hover: shared engine behind both the button hover-stroke and
+// the text-link underline (see the "13. HOVER STROKE" / "14.
+// UNDERLINE HOVER" comments in style.css for why this needs JS rather
+// than a plain :hover rule — CSS alone can't make entering and
+// leaving hover animate two different custom properties in a way that
+// always sweeps the same direction). Injects a real child element
+// (not a ::before — a pseudo-element with a var()-driven mask/
+// gradient didn't reliably repaint when the custom properties
+// changed) carrying --<varPrefix>-start/-end, and wires up
+// mouseenter/mouseleave/focus/blur to grow one or the other depending
+// on direction: entering grows -end forward from a pinned -start: 0%;
+// leaving advances -start forward instead while -end stays pinned at
+// 100%, so the sweep always starts from the same corner/edge whether
+// it's drawing in or erasing out.
+function setUpSweepHover(el, overlayClass, varPrefix, resetDelay) {
   const overlay = document.createElement('span');
-  overlay.className = 'hover-stroke-overlay';
+  overlay.className = overlayClass;
   overlay.setAttribute('aria-hidden', 'true');
-  btn.appendChild(overlay);
+  el.appendChild(overlay);
 
   const setVars = (start, end) => {
-    overlay.style.setProperty('--stroke-start', start + '%');
-    overlay.style.setProperty('--stroke-end', end + '%');
+    overlay.style.setProperty(`--${varPrefix}-start`, start + '%');
+    overlay.style.setProperty(`--${varPrefix}-end`, end + '%');
   };
   let resetTimer;
   const enter = () => {
@@ -29,18 +31,29 @@ function setUpHoverStroke(btn) {
     setVars(100, 100);
     clearTimeout(resetTimer);
     // Back to the (0, 0) baseline once the erase settles, so the next
-    // hover-in grows --stroke-end forward again instead of un-growing
-    // --stroke-start backward. (100, 100) and (0, 0) both render as
-    // "nothing visible", and since both properties travel the same
-    // distance over the same duration here, they stay equal to each
-    // other throughout — so this reset never actually becomes visible.
-    resetTimer = setTimeout(() => setVars(0, 0), 450);
+    // hover-in grows -end forward again instead of un-growing -start
+    // backward. (100, 100) and (0, 0) both render as "nothing
+    // visible", and since both properties travel the same distance
+    // over the same duration here, they stay equal to each other
+    // throughout — so this reset never actually becomes visible.
+    resetTimer = setTimeout(() => setVars(0, 0), resetDelay);
   };
-  btn.addEventListener('mouseenter', enter);
-  btn.addEventListener('mouseleave', leave);
-  btn.addEventListener('focus', enter);
-  btn.addEventListener('blur', leave);
+  el.addEventListener('mouseenter', enter);
+  el.addEventListener('mouseleave', leave);
+  el.addEventListener('focus', enter);
+  el.addEventListener('blur', leave);
 }
+
+function setUpHoverStroke(btn) {
+  setUpSweepHover(btn, 'hover-stroke-overlay', 'stroke', 450);
+}
+
+function setUpUnderlineHover(el) {
+  setUpSweepHover(el, 'underline-hover-overlay', 'underline', 350);
+}
+
+document.querySelectorAll('.index-nav a, .back-link, .timeline-link, .link a')
+  .forEach(setUpUnderlineHover);
 
 // Mobile menu toggle: shows/hides the nav links and swaps the
 // hamburger icon for a close icon (both are Material Symbols,
@@ -292,7 +305,9 @@ if (zoomableImages.length) {
   `;
   document.body.appendChild(lightbox);
 
-  lightbox.querySelectorAll('.lightbox-btn').forEach(setUpHoverStroke);
+  // Not the zoom in/out buttons — they're too small for the stroke
+  // sweep to read as anything but noise.
+  lightbox.querySelectorAll('.lightbox-btn:not(.lightbox-zoom-in):not(.lightbox-zoom-out)').forEach(setUpHoverStroke);
 
   const lightboxImgWrap = lightbox.querySelector('.lightbox-img-wrap');
   const lightboxImg = lightbox.querySelector('img');

@@ -38,8 +38,8 @@ body {
   --index: #eeece6;
   --accent: #2455e6;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
-  --button: rgba(250, 249, 246, 0.45);
-  --button-hover: rgba(250, 249, 246, 0.6);
+  --button: rgba(250, 249, 246, 0.7);
+  --button-hover: rgba(250, 249, 246, 0.9);
   --link: #2455e6;
   --link-hover: #2232c1;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -130,20 +130,15 @@ body {
 }
 
 .index-nav a {
+  position: relative;
+  display: inline-block;
   color: var(--ink);
   text-decoration: none;
   font-weight: 400;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  border-bottom: 2px solid transparent;
   padding-bottom: 2px;
-  transition: border-color 0.2s ease;
-}
-
-.index-nav a:hover,
-.index-nav a:focus-visible {
-  border-color: var(--accent);
 }
 
 /* Logo stays perfectly centered regardless of how wide the nav is.
@@ -662,17 +657,27 @@ body {
   height: 44px;
   border-radius: var(--image-radius);
   border: none;
-  background-color: var(--ink);
-  color: var(--paper);
+  /* Same frosted-glass treatment as the carousel arrows/lightbox
+     controls, rather than the solid ink fill this used to have. */
+  background-color: var(--button);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  color: var(--ink);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   opacity: 0;
   transform: translateY(8px);
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .back-to-top {
+    background-color: rgba(250, 249, 246, 0.92);
+  }
 }
 
 .back-to-top.visible {
@@ -683,7 +688,8 @@ body {
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  background-color: var(--link-hover);
+  background-color: var(--button-hover);
+  color: var(--ink-hover);
 }
 
 .back-to-top.visible:active {
@@ -733,6 +739,7 @@ body {
 }*/
 
 .back-link {
+  position: relative;
   display: inline-block;
   color: var(--muted) !important;
   text-decoration: none;
@@ -1568,13 +1575,34 @@ body {
 }
 
 .timeline-link {
+  position: relative;
+  display: inline-block;
   margin-left: calc(49px + 0.75rem);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.timeline-link:hover,
+.timeline-link:focus-visible {
+  color: var(--link-hover);
 }
 
 .link {
   display: inline-block;
   /*margin-top: 1rem;*/
   font-size: 0.85rem;
+}
+
+.link a {
+  position: relative;
+  display: inline-block;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.link a:hover,
+.link a:focus-visible {
+  color: var(--link-hover);
 }
 
 @media (max-width: 640px) {
@@ -1835,6 +1863,50 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hover-stroke-overlay {
+    transition: none;
+  }
+}
+
+/* ============================================
+   14. UNDERLINE HOVER — the same sweep-in/sweep-out-the-same-
+   direction idea as the button hover stroke above, but a single
+   horizontal line instead of a full square: nav links, "back" links,
+   case-study links, and "read more" links, so hovering any text link
+   on the site feels consistent. Same two-property (--underline-start,
+   --underline-end) technique for the same reason — see
+   setUpSweepHover in script.js. currentColor keeps each link's
+   underline matched to its own text color; .index-nav a overrides it
+   to --accent to keep nav's existing hover color legible even though
+   the nav text itself doesn't change color on hover. */
+@property --underline-start {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --underline-end {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.underline-hover-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent var(--underline-start), currentColor var(--underline-start), currentColor var(--underline-end), transparent var(--underline-end));
+  transition: --underline-start 0.3s linear, --underline-end 0.3s linear;
+}
+
+.index-nav a .underline-hover-overlay {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .underline-hover-overlay {
     transition: none;
   }
 }
