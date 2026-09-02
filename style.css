@@ -688,10 +688,13 @@ body {
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  /* Back to its original blue/purple hover, distinct from the plain
-     glass-brightening hover the other frosted buttons use — the
-     icon flips to a light color to stay visible against it. */
-  background-color: var(--link-hover);
+  /* Blue/purple hover, distinct from the plain glass-brightening
+     hover the other frosted buttons use — the icon flips to a light
+     color to stay visible against it. Translucent (var(--link-hover)
+     as rgba) rather than the solid hex, so the backdrop-filter blur
+     already on this button actually reads as glass instead of a flat
+     opaque chip. */
+  background-color: rgba(34, 50, 193, 0.65);
   color: var(--paper);
 }
 
@@ -1746,14 +1749,14 @@ body {
   width: auto;
   height: auto;
   /* Same frosted-glass treatment as the carousel arrows/lightbox
-     controls/back-to-top — this padding brings the box to the same
-     44px size, and with it the same gap between the icon and the
-     hover-stroke (inset 5px from the box edge). Negative margin
-     cancels the padding's effect on the row's own gap, so the
-     icon-to-icon spacing stays what it was before this box existed. */
-  padding: 12px;
-  margin: -12px;
-  background-color: var(--button);
+     controls/back-to-top, but a bit bigger and more transparent at
+     rest — this row reads better with a lighter touch than the
+     buttons floating over photos do. Negative margin cancels the
+     padding's effect on the row's own gap, so the icon-to-icon
+     spacing stays what it was before this box existed. */
+  padding: 16px;
+  margin: -16px;
+  background-color: rgba(250, 249, 246, 0.15);
   backdrop-filter: blur(8px) saturate(180%);
   -webkit-backdrop-filter: blur(8px) saturate(180%);
   border: none;
