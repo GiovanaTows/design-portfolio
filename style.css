@@ -1685,17 +1685,47 @@ body {
 }
 
 .social-links a {
-  display: inline-flex;
   color: var(--muted);
+}
+
+.social-links a,
+.social-links .copy-email-btn {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .social-links a:hover,
-.social-links a:focus-visible {
+.social-links a:focus-visible,
+.social-links .copy-email-btn:not(.copied):hover {
   color: var(--accent);
+  background: none;
 }
 
 .social-links svg {
   width: 28px;
   height: 28px;
+}
+
+/* The copy-email button swaps between two SVGs (envelope / check)
+   instead of rewriting a Material Symbols glyph's text content, since
+   it needs to sit visually consistent with the other hand-drawn
+   social icons rather than the icon-font ones used elsewhere. */
+.copy-email-btn .icon-copied {
+  display: none;
+}
+
+.copy-email-btn.copied .icon-default {
+  display: none;
+}
+
+.copy-email-btn.copied .icon-copied {
+  display: inline-flex;
 }

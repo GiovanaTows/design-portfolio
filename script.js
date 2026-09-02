@@ -649,10 +649,14 @@ if (inlineVideos.length) {
   inlineVideos.forEach(video => videoObserver.observe(video));
 }
 
-// Copy-to-clipboard buttons next to email addresses.
+// Copy-to-clipboard buttons next to email addresses. Icon feedback
+// works two ways: older buttons swap a Material Symbols glyph's text
+// content, newer ones (e.g. the social-icons row) just toggle the
+// .copied class and let CSS show/hide a pair of SVGs instead — so
+// icon is only present/used for the former.
 document.querySelectorAll('.copy-email-btn').forEach(btn => {
   const icon = btn.querySelector('.material-symbols-outlined');
-  const originalIcon = icon.textContent;
+  const originalIcon = icon ? icon.textContent : null;
   let resetTimer;
 
   // Fallback for browsers/contexts where the async Clipboard API is
@@ -677,11 +681,11 @@ document.querySelectorAll('.copy-email-btn').forEach(btn => {
 
   const showCopied = () => {
     clearTimeout(resetTimer);
-    icon.textContent = 'check';
+    if (icon) icon.textContent = 'check';
     btn.classList.add('copied');
     btn.setAttribute('title', 'Copied!');
     resetTimer = setTimeout(() => {
-      icon.textContent = originalIcon;
+      if (icon) icon.textContent = originalIcon;
       btn.classList.remove('copied');
       btn.setAttribute('title', 'Copy email address');
     }, 1500);
