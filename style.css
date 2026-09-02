@@ -38,8 +38,8 @@ body {
   --index: #eeece6;
   --accent: #2455e6;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
-  --button: rgba(250, 249, 246, 0.7);
-  --button-hover: rgba(250, 249, 246, 0.9);
+  --button: rgba(250, 249, 246, 0.5);
+  --button-hover: rgba(250, 249, 246, 0.7);
   --link: #2455e6;
   --link-hover: #2232c1;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -1864,11 +1864,12 @@ body {
   content: '';
   position: absolute;
   inset: 5px;
-  /* A whole pixel, not 1.5px — fractional widths land on different
-     sub-pixel offsets depending on each element's exact position,
-     so they don't all anti-alias to the same visual weight. Matches
-     .underline-hover-overlay's height for the same reason. */
-  border: 2px solid currentColor;
+  /* A whole pixel, not fractional — fractional widths land on
+     different sub-pixel offsets depending on each element's exact
+     position, so they don't all anti-alias to the same visual
+     weight. Matches .underline-hover-overlay's height for the same
+     reason. */
+  border: 1px solid currentColor;
   pointer-events: none;
   -webkit-mask-image: conic-gradient(from 315deg, transparent var(--stroke-start), black var(--stroke-start), black var(--stroke-end), transparent var(--stroke-end));
   mask-image: conic-gradient(from 315deg, transparent var(--stroke-start), black var(--stroke-start), black var(--stroke-end), transparent var(--stroke-end));
@@ -1910,8 +1911,8 @@ body {
   right: 0;
   bottom: 0;
   /* Whole pixel to match .hover-stroke-overlay's border-width exactly
-     — see its comment for why 1.5px rendered inconsistently. */
-  height: 2px;
+     — see its comment for why fractional widths render inconsistently. */
+  height: 1px;
   pointer-events: none;
   background: linear-gradient(to right, transparent var(--underline-start), currentColor var(--underline-start), currentColor var(--underline-end), transparent var(--underline-end));
   transition: --underline-start 0.3s linear, --underline-end 0.3s linear;
