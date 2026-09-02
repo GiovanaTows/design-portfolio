@@ -5,10 +5,20 @@
 // leaving hover animate two different custom properties). Called once
 // per button as each one becomes available: the carousel/lightbox
 // buttons don't exist yet at the top of this file.
+//
+// The masked outline lives on a real injected element
+// (.hover-stroke-overlay), not a ::before — a pseudo-element with a
+// var()-driven mask-image didn't reliably repaint when the custom
+// properties changed, so this appends an actual child span instead.
 function setUpHoverStroke(btn) {
+  const overlay = document.createElement('span');
+  overlay.className = 'hover-stroke-overlay';
+  overlay.setAttribute('aria-hidden', 'true');
+  btn.appendChild(overlay);
+
   const setVars = (start, end) => {
-    btn.style.setProperty('--stroke-start', start + '%');
-    btn.style.setProperty('--stroke-end', end + '%');
+    overlay.style.setProperty('--stroke-start', start + '%');
+    overlay.style.setProperty('--stroke-end', end + '%');
   };
   let resetTimer;
   const enter = () => {

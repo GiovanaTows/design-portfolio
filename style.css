@@ -1804,7 +1804,12 @@ body {
    (back-to-top) or dark-on-light (everything else). A conic-gradient
    mask (rather than the border-on-a-shrinking-box trick this replaced)
    also means there's no stray corner pixel at rest — the border is
-   always full-size, just fully masked away until hovered. */
+   always full-size, just fully masked away until hovered.
+   This is a real element (.hover-stroke-overlay, injected by
+   setUpHoverStroke in script.js) rather than a ::before — a ::before
+   with a var()-driven mask-image didn't reliably repaint on some
+   engines when the custom properties changed, whereas a real element
+   with the identical styling does. */
 @property --stroke-start {
   syntax: '<percentage>';
   inherits: false;
@@ -1817,10 +1822,7 @@ body {
   initial-value: 0%;
 }
 
-.back-to-top::before,
-.carousel-prev::before,
-.carousel-next::before,
-.lightbox-btn::before {
+.hover-stroke-overlay {
   content: '';
   position: absolute;
   inset: 5px;
@@ -1832,10 +1834,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .back-to-top::before,
-  .carousel-prev::before,
-  .carousel-next::before,
-  .lightbox-btn::before {
+  .hover-stroke-overlay {
     transition: none;
   }
 }
