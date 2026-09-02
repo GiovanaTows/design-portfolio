@@ -487,6 +487,7 @@ body {
 .carousel-next {
   width: 44px;
   height: 44px;
+  position: relative;
   border: none;
   background-color: var(--button);
   backdrop-filter: blur(8px) saturate(180%);
@@ -506,13 +507,9 @@ body {
   outline: none;
 }
 
-/* Lightbox controls stay circular; the carousel arrows square off to
-   match the logo's sharp-cornered mark (see .back-to-top,
+/* Square corners to match the logo's mark (see .back-to-top,
    .carousel-dot and .lightbox-zoom for the same treatment). */
-.lightbox-btn {
-  border-radius: 50%;
-}
-
+.lightbox-btn,
 .carousel-prev,
 .carousel-next {
   border-radius: var(--image-radius);
@@ -1780,5 +1777,97 @@ body {
   .toast {
     transition: opacity 0.15s ease;
     transform: translateX(-50%);
+  }
+}
+
+/* ============================================
+   13. HOVER STROKE — echoes the logo's square-bracket outline.
+   Pure CSS, no extra markup: ::before draws the top then right edge,
+   ::after draws the bottom then left edge, with staggered transition
+   delays so the two arcs read as one continuous line starting at the
+   top-left corner and sweeping clockwise all the way around. Applied
+   only to standalone buttons (back-to-top, carousel arrows, every
+   lightbox control) — skipped on the carousel dots (too small to read
+   as a drawn line) and the zoom pill's own container (its two buttons
+   already get the effect individually; adding a third outline around
+   the whole pill on top of that reads as clutter, not polish).
+   currentColor keeps the stroke matched to each button's own icon
+   color, so it stays visible whether the button is light-on-dark
+   (back-to-top) or dark-on-light (everything else).
+   ============================================ */
+.back-to-top,
+.carousel-prev,
+.carousel-next,
+.lightbox-btn {
+  overflow: visible;
+}
+
+.back-to-top::before,
+.back-to-top::after,
+.carousel-prev::before,
+.carousel-prev::after,
+.carousel-next::before,
+.carousel-next::after,
+.lightbox-btn::before,
+.lightbox-btn::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.back-to-top::before,
+.carousel-prev::before,
+.carousel-next::before,
+.lightbox-btn::before {
+  top: 0;
+  left: 0;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid transparent;
+  transition: width 0.15s linear, height 0.15s linear 0.15s;
+}
+
+.back-to-top::after,
+.carousel-prev::after,
+.carousel-next::after,
+.lightbox-btn::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1.5px solid currentColor;
+  border-left: 1.5px solid transparent;
+  transition: width 0.15s linear 0.3s, height 0.15s linear 0.45s;
+}
+
+.back-to-top:hover::before,
+.back-to-top:focus-visible::before,
+.carousel-prev:hover::before,
+.carousel-prev:focus-visible::before,
+.carousel-next:hover::before,
+.carousel-next:focus-visible::before,
+.lightbox-btn:hover::before,
+.lightbox-btn:focus-visible::before,
+.back-to-top:hover::after,
+.back-to-top:focus-visible::after,
+.carousel-prev:hover::after,
+.carousel-prev:focus-visible::after,
+.carousel-next:hover::after,
+.carousel-next:focus-visible::after,
+.lightbox-btn:hover::after,
+.lightbox-btn:focus-visible::after {
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top::before,
+  .back-to-top::after,
+  .carousel-prev::before,
+  .carousel-prev::after,
+  .carousel-next::before,
+  .carousel-next::after,
+  .lightbox-btn::before,
+  .lightbox-btn::after {
+    transition: none;
   }
 }
