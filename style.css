@@ -1824,7 +1824,7 @@ body {
   top: 5px;
   left: 5px;
   border-top: 1.5px solid currentColor;
-  border-right: 1.5px solid transparent;
+  border-right: 1.5px solid currentColor;
   transition: width 0.15s linear, height 0.15s linear 0.15s;
 }
 
@@ -1835,7 +1835,7 @@ body {
   bottom: 5px;
   right: 5px;
   border-bottom: 1.5px solid currentColor;
-  border-left: 1.5px solid transparent;
+  border-left: 1.5px solid currentColor;
   transition: width 0.15s linear 0.3s, height 0.15s linear 0.45s;
 }
 
