@@ -1611,6 +1611,23 @@ body {
   color: var(--link-hover);
 }
 
+/* Generic reusable version of the same pattern for a link sitting
+   inline within a larger sentence (rather than its own standalone
+   "<p class="link">"), e.g. the "Get in touch" paragraph's LinkedIn
+   link — was previously unstyled, relying on the browser's default
+   blue + underline. */
+.inline-link {
+  position: relative;
+  display: inline-block;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.inline-link:hover,
+.inline-link:focus-visible {
+  color: var(--link-hover);
+}
+
 @media (max-width: 640px) {
   .timeline-entry {
     grid-template-columns: 1fr;
