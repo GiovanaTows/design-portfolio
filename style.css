@@ -1714,10 +1714,15 @@ body {
   height: 28px;
 }
 
-/* The copy-email button swaps between two SVGs (envelope / check)
-   instead of rewriting a Material Symbols glyph's text content, since
-   it needs to sit visually consistent with the other hand-drawn
-   social icons rather than the icon-font ones used elsewhere. */
+.social-links a .material-symbols-outlined,
+.social-links .copy-email-btn .material-symbols-outlined {
+  font-size: 28px;
+}
+
+/* The copy-email button swaps between two icons (mail / check)
+   by toggling which one is displayed, rather than rewriting a single
+   glyph's text content — works the same way whether the icon markup
+   is a Material Symbols span or a hand-drawn SVG. */
 .copy-email-btn .icon-copied {
   display: none;
 }
@@ -1727,5 +1732,38 @@ body {
 }
 
 .copy-email-btn.copied .icon-copied {
-  display: inline-flex;
+  display: inline-block;
+}
+
+/* ============================================
+   12. TOAST — brief confirmation message, used after
+   copy-to-clipboard actions. Created on demand by script.js.
+   ============================================ */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%) translateY(12px);
+  background-color: var(--ink);
+  color: var(--paper);
+  padding: 0.7rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: opacity 0.15s ease;
+    transform: translateX(-50%);
+  }
 }

@@ -649,13 +649,35 @@ if (inlineVideos.length) {
   inlineVideos.forEach(video => videoObserver.observe(video));
 }
 
+// Small toast used for copy-to-clipboard confirmations. Created once
+// on demand and reused — an aria-live region so screen reader users
+// get the same "copied" confirmation the icon swap gives everyone
+// else, since an icon change alone isn't announced.
+let toastEl;
+let toastTimer;
+const showToast = (message) => {
+  if (!toastEl) {
+    toastEl = document.createElement('div');
+    toastEl.className = 'toast';
+    toastEl.setAttribute('role', 'status');
+    toastEl.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toastEl);
+  }
+  toastEl.textContent = message;
+  toastEl.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('visible'), 2500);
+};
+
 // Copy-to-clipboard buttons next to email addresses. Icon feedback
-// works two ways: older buttons swap a Material Symbols glyph's text
-// content, newer ones (e.g. the social-icons row) just toggle the
-// .copied class and let CSS show/hide a pair of SVGs instead — so
-// icon is only present/used for the former.
+// works two ways: older buttons swap a single Material Symbols
+// glyph's text content; newer ones (e.g. the social-icons row) carry
+// a separate .icon-default/.icon-copied pair and just toggle the
+// .copied class, letting CSS show/hide between them instead — so
+// icon is only looked up/used for the former case.
 document.querySelectorAll('.copy-email-btn').forEach(btn => {
-  const icon = btn.querySelector('.material-symbols-outlined');
+  const hasIconPair = btn.querySelector('.icon-copied') !== null;
+  const icon = hasIconPair ? null : btn.querySelector('.material-symbols-outlined');
   const originalIcon = icon ? icon.textContent : null;
   let resetTimer;
 
@@ -684,6 +706,7 @@ document.querySelectorAll('.copy-email-btn').forEach(btn => {
     if (icon) icon.textContent = 'check';
     btn.classList.add('copied');
     btn.setAttribute('title', 'Copied!');
+    showToast('Email address copied to clipboard');
     resetTimer = setTimeout(() => {
       if (icon) icon.textContent = originalIcon;
       btn.classList.remove('copied');
