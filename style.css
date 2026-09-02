@@ -671,7 +671,7 @@ body {
   opacity: 0;
   transform: translateY(8px);
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 @supports not (backdrop-filter: blur(1px)) {
@@ -688,8 +688,11 @@ body {
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  background-color: var(--button-hover);
-  color: var(--ink-hover);
+  /* Back to its original blue/purple hover, distinct from the plain
+     glass-brightening hover the other frosted buttons use — the
+     icon flips to a light color to stay visible against it. */
+  background-color: var(--link-hover);
+  color: var(--paper);
 }
 
 .back-to-top.visible:active {
@@ -1481,6 +1484,8 @@ body {
 }
 
 .project-nav a {
+  position: relative;
+  display: inline-block;
   color: var(--ink);
   text-decoration: none;
   font-size: 0.9rem;
@@ -1730,13 +1735,18 @@ body {
 
 .social-links a,
 .social-links .copy-email-btn {
+  position: relative;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: auto;
   height: auto;
+  /* Room around the (now smaller) icon for the hover-stroke square
+     to read clearly, rather than being cramped right up against it. */
+  padding: 6px;
+  margin: -6px;
   background: none;
   border: none;
-  padding: 0;
-  margin: 0;
   border-radius: 0;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -1750,13 +1760,13 @@ body {
 }
 
 .social-links svg {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
 }
 
 .social-links a .material-symbols-outlined,
 .social-links .copy-email-btn .material-symbols-outlined {
-  font-size: 28px;
+  font-size: 20px;
 }
 
 /* The copy-email button swaps between two icons (mail / check)
@@ -1854,7 +1864,11 @@ body {
   content: '';
   position: absolute;
   inset: 5px;
-  border: 1.5px solid currentColor;
+  /* A whole pixel, not 1.5px — fractional widths land on different
+     sub-pixel offsets depending on each element's exact position,
+     so they don't all anti-alias to the same visual weight. Matches
+     .underline-hover-overlay's height for the same reason. */
+  border: 2px solid currentColor;
   pointer-events: none;
   -webkit-mask-image: conic-gradient(from 315deg, transparent var(--stroke-start), black var(--stroke-start), black var(--stroke-end), transparent var(--stroke-end));
   mask-image: conic-gradient(from 315deg, transparent var(--stroke-start), black var(--stroke-start), black var(--stroke-end), transparent var(--stroke-end));
@@ -1895,7 +1909,9 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 1.5px;
+  /* Whole pixel to match .hover-stroke-overlay's border-width exactly
+     — see its comment for why 1.5px rendered inconsistently. */
+  height: 2px;
   pointer-events: none;
   background: linear-gradient(to right, transparent var(--underline-start), currentColor var(--underline-start), currentColor var(--underline-end), transparent var(--underline-end));
   transition: --underline-start 0.3s linear, --underline-end 0.3s linear;

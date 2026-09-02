@@ -52,8 +52,11 @@ function setUpUnderlineHover(el) {
   setUpSweepHover(el, 'underline-hover-overlay', 'underline', 350);
 }
 
-document.querySelectorAll('.index-nav a, .back-link, .timeline-link, .link a')
+document.querySelectorAll('.index-nav a, .back-link, .timeline-link, .link a, .project-nav a')
   .forEach(setUpUnderlineHover);
+
+document.querySelectorAll('.social-links a, .social-links .copy-email-btn')
+  .forEach(setUpHoverStroke);
 
 // Mobile menu toggle: shows/hides the nav links and swaps the
 // hamburger icon for a close icon (both are Material Symbols,
