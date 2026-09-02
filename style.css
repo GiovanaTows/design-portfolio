@@ -145,12 +145,24 @@ body {
   border-color: var(--accent);
 }
 
-/* Logo stays perfectly centered regardless of how wide the nav is */
+/* Logo stays perfectly centered regardless of how wide the nav is.
+   Stays position: absolute at every width (rather than switching to
+   static on mobile) specifically so left/transform can transition
+   smoothly as the viewport crosses the 900px breakpoint — animating
+   between two different position values isn't possible, but animating
+   left/transform within the same positioning scheme is. */
 .logo-link {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  transition: left 0.3s ease, transform 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-link {
+    transition: none;
+  }
 }
 
 .site-logo {
@@ -212,14 +224,9 @@ body {
     display: none;
   }
 
-  .header-row {
-    justify-content: space-between;
-  }
-
   .logo-link {
-    position: static;
-    transform: none;
-    order: -1;
+    left: 0;
+    transform: translateY(-50%);
   }
 
   .nav-links {
