@@ -487,7 +487,6 @@ body {
 .carousel-next {
   width: 44px;
   height: 44px;
-  border-radius: 50%;
   border: none;
   background-color: var(--button);
   backdrop-filter: blur(8px) saturate(180%);
@@ -505,6 +504,18 @@ body {
      it — the background-color change on :focus-visible below is
      already a clear enough focus indicator on its own. */
   outline: none;
+}
+
+/* Lightbox controls stay circular; the carousel arrows square off to
+   match the logo's sharp-cornered mark (see .back-to-top,
+   .carousel-dot and .lightbox-zoom for the same treatment). */
+.lightbox-btn {
+  border-radius: 50%;
+}
+
+.carousel-prev,
+.carousel-next {
+  border-radius: var(--image-radius);
 }
 
 .lightbox-btn:hover,
@@ -601,7 +612,7 @@ body {
   backdrop-filter: blur(8px) saturate(180%);
   -webkit-backdrop-filter: blur(8px) saturate(180%);
   padding: 0.4rem 0.75rem;
-  border-radius: 999px;
+  border-radius: var(--image-radius);
 }
 
 @media (min-width: 900px) {
@@ -652,7 +663,7 @@ body {
   z-index: 20;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
+  border-radius: var(--image-radius);
   border: none;
   background-color: var(--ink);
   color: var(--paper);
@@ -1196,7 +1207,10 @@ body {
 .carousel-dot {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  /* var(--image-radius) (4px) would round this into a circle again at
+     this size — needs a proportionally smaller radius to actually
+     read as a tiny square instead. */
+  border-radius: 2px;
   border: none;
   padding: 0;
   background-color: #d8d5cc;
