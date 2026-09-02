@@ -1772,11 +1772,10 @@ body {
 .social-links a:hover,
 .social-links a:focus-visible,
 .social-links .copy-email-btn:not(.copied):hover {
-  /* Same blue/purple + light-icon hover as back-to-top, rather than
-     the plain glass-brightening hover the other frosted buttons use
-     — the stroke picks it up for free via currentColor. */
-  color: var(--paper);
-  background-color: var(--link-hover);
+  /* Light grey background with a blue icon — the stroke picks up
+     the same blue for free via currentColor. */
+  color: var(--accent);
+  background-color: var(--index);
 }
 
 .social-links svg {
