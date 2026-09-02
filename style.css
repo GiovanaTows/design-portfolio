@@ -124,8 +124,9 @@ body {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
   flex-wrap: wrap;
+  margin-right: 3rem;
 }
 
 .index-nav a {
@@ -219,18 +220,31 @@ body {
 /* Mobile: no hamburger/dropdown — Projects and About stay visible
    inline, same as desktop. Logo moves to the left (out of its
    desktop centered position) and the nav links sit on the right. */
-@media (max-width: 900px) {
+@media (max-width: 1300px) {
   .menu-toggle {
     display: none;
   }
 
   .logo-link {
-    left: 0;
+    left: 1rem;
     transform: translateY(-50%);
   }
 
   .nav-links {
-    gap: 1.25rem;
+    gap: 2rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+
+
+  .logo-link {
+    left: 0rem;
+  }
+
+  .nav-links {
+    margin-right: 0rem;
   }
 }
 
@@ -1543,9 +1557,12 @@ body {
 }
 
 .timeline-link {
-  display: inline-block;
-  margin-top: 0.5rem;
   margin-left: calc(49px + 0.75rem);
+}
+
+.link {
+  display: inline-block;
+  /*margin-top: 1rem;*/
   font-size: 0.85rem;
 }
 
@@ -1655,4 +1672,30 @@ body {
 
 .copy-email-btn.copied {
   color: #2e7d32;
+}
+
+/* ============================================
+   11. CONTACT SECTION — social icon row
+   ============================================ */
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.social-links a {
+  display: inline-flex;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: var(--accent);
+}
+
+.social-links svg {
+  width: 28px;
+  height: 28px;
 }
