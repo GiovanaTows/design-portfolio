@@ -1746,13 +1746,13 @@ body {
   width: auto;
   height: auto;
   /* Same frosted-glass treatment as the carousel arrows/lightbox
-     controls/back-to-top, just a smaller box — a visible button
-     chip at rest, not a bare icon that only gets a background on
-     hover. Negative margin cancels the padding's effect on the
-     row's own gap, so the icon-to-icon spacing stays what it was
-     before this box existed. */
-  padding: 8px;
-  margin: -8px;
+     controls/back-to-top — this padding brings the box to the same
+     44px size, and with it the same gap between the icon and the
+     hover-stroke (inset 5px from the box edge). Negative margin
+     cancels the padding's effect on the row's own gap, so the
+     icon-to-icon spacing stays what it was before this box existed. */
+  padding: 12px;
+  margin: -12px;
   background-color: var(--button);
   backdrop-filter: blur(8px) saturate(180%);
   -webkit-backdrop-filter: blur(8px) saturate(180%);
@@ -1772,8 +1772,11 @@ body {
 .social-links a:hover,
 .social-links a:focus-visible,
 .social-links .copy-email-btn:not(.copied):hover {
-  color: var(--ink-hover);
-  background-color: var(--button-hover);
+  /* Same blue/purple + light-icon hover as back-to-top, rather than
+     the plain glass-brightening hover the other frosted buttons use
+     — the stroke picks it up for free via currentColor. */
+  color: var(--paper);
+  background-color: var(--link-hover);
 }
 
 .social-links svg {
