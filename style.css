@@ -235,7 +235,26 @@ body {
     pointer-events: none;
     /* Closing Animation: fade the text out immediately (no delay), while height and position collapse over their own durations. */
     transition: max-height 0.35s ease, opacity 0.2s ease, transform 0.3s ease, padding 0.35s ease, top 0.25s ease;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+  }
 
+  /* The frosted-glass fill lives on a pseudo-element instead of
+     .nav-links itself. backdrop-filter silently fails to render (it
+     falls back to plain background-color, no blur) on an element that
+     also has overflow: hidden — which .nav-links needs for its
+     height-collapse animation — in Chrome and Safari alike. Splitting
+     the two onto separate boxes sidesteps that: .nav-links keeps
+     overflow: hidden for the clip animation, and this ::before (a
+     plain positioned box with no overflow of its own) carries the
+     actual blur. z-index: -1 keeps it behind the <li> links, within
+     .nav-links' own stacking context (it already creates one via its
+     transform/opacity transition). */
+  .nav-links::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     /* Higher opacity + a stronger blur than .site-header: this panel
        sits directly over the portrait photo and H1, not quiet
        whitespace like the sticky header usually does, so it needs
@@ -244,8 +263,6 @@ body {
     background-color: rgba(250, 249, 246, 0.94);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    padding: 1.25rem 1.5rem;
-    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
   }
 
   .site-header.scrolled .nav-links {
@@ -275,17 +292,18 @@ body {
 
 /* Same frosted-glass fallbacks as .site-header, scoped to the mobile
    dropdown only — .nav-links has no background at all in its desktop
-   (inline) form, so these can't live in the unscoped rules above. */
+   (inline) form, so these can't live in the unscoped rules above.
+   Target ::before since that's where the glass fill actually lives. */
 @supports not (backdrop-filter: blur(1px)) {
   @media (max-width: 900px) {
-    .nav-links {
+    .nav-links::before {
       background-color: var(--paper);
     }
   }
 }
 
 @media (max-width: 900px) and (prefers-reduced-transparency: reduce) {
-  .nav-links {
+  .nav-links::before {
     background-color: var(--paper);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
