@@ -62,7 +62,7 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
-
+/*AQUI*/
 .site-header {
   position: sticky;
   top: 0;
@@ -72,6 +72,7 @@ body {
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   padding: 1.25rem 1.5rem;
   box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+  
   /* .scrolled is toggled by script.js once you're past the very top —
      shrinks the header (and the logo, below) so it takes up less room
      while you're reading, then relaxes back to full size at the top. */
@@ -202,86 +203,26 @@ body {
   display: block;
 }
 
-/* max-width: 640px */
+/* Mobile: no hamburger/dropdown — Projects and About stay visible
+   inline, same as desktop. Logo moves to the left (out of its
+   desktop centered position) and the nav links sit on the right. */
 @media (max-width: 900px) {
   .menu-toggle {
-    display: block;
+    display: none;
+  }
+
+  .header-row {
+    justify-content: space-between;
+  }
+
+  .logo-link {
+    position: static;
+    transform: none;
+    order: -1;
   }
 
   .nav-links {
-    position: absolute;
-    /* This offset matches .site-header's own padding-bottom, so the
-       dropdown sits flush against the header's visible bottom edge —
-       kept in sync with .scrolled below, since that padding shrinks
-       once the header does. */
-    top: calc(100% + 1.25rem);
-    left: -1.5rem;
-    right: -1.5rem;
-    flex-direction: column;
-    align-items: flex-start;
     gap: 1.25rem;
-    /* Same frosted-glass treatment as .site-header, so the open dropdown
-       reads as part of the same surface instead of a flatter panel
-       tacked on underneath it. */
-    background-color: rgba(250, 249, 246, 0.75);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border-bottom: 1px solid #e4e2db;
-    padding: 0 1.5rem;
-
-    /* Collapsed state: zero height, invisible, and unreachable by
-       keyboard/click — this is what makes the animation possible,
-       since "display: none" can't be transitioned smoothly. */
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transform: translateY(-8px);
-    pointer-events: none;
-    /* Closing Animation: fade the text out immediately (no delay), while height and position collapse over their own durations. */
-    transition: max-height 0.35s ease, opacity 0.2s ease, transform 0.3s ease, padding 0.35s ease, top 0.25s ease;
-  }
-
-  .site-header.scrolled .nav-links {
-    top: calc(100% + 0.4rem);
-  }
-
-  .nav-links.open {
-    /* Tall enough to fit all the links comfortably; the transition
-       animates up to this value, so it just needs to be bigger than
-       the real content height. */
-    max-height: 320px;
-    opacity: 1;
-    transform: translateY(0);
-    padding: 1.5rem;
-    pointer-events: auto;
-    /* Opening: hold opacity/transform back by 0.1s so the box has already started growing before the text starts fading/sliding in — this is what removes the "text visible before there's room" flash. */
-    transition: max-height 0.35s ease, opacity 0.25s ease 0.1s, transform 0.3s ease 0.1s, padding 0.35s ease;
-  }
-}
-
-/* max-width: 640px*/
-@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
-  .nav-links {
-    transition: none;
-  }
-}
-
-/* Same frosted-glass fallbacks as .site-header, scoped to the mobile
-   dropdown only — .nav-links has no background at all in its desktop
-   (inline) form, so these can't live in the unscoped rules above. */
-@supports not (backdrop-filter: blur(1px)) {
-  @media (max-width: 900px) {
-    .nav-links {
-      background-color: var(--paper);
-    }
-  }
-}
-
-@media (max-width: 900px) and (prefers-reduced-transparency: reduce) {
-  .nav-links {
-    background-color: var(--paper);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
   }
 }
 
