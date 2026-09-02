@@ -38,8 +38,8 @@ body {
   --index: #eeece6;
   --accent: #2455e6;      /* deep pine green — swap for your brand color */
   --muted: #6b6b66;
-  --button: rgba(250, 249, 246, 0.5);
-  --button-hover: rgba(250, 249, 246, 0.7);
+  --button: rgba(250, 249, 246, 0.3);
+  --button-hover: rgba(250, 249, 246, 0.5);
   --link: #2455e6;
   --link-hover: #2232c1;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -1729,8 +1729,12 @@ body {
 }
 
 .social-links a {
-  color: var(--muted);
+  color: var(--ink);
   text-decoration: none;
+}
+
+.social-links .copy-email-btn {
+  color: var(--ink);
 }
 
 .social-links a,
@@ -1741,22 +1745,35 @@ body {
   justify-content: center;
   width: auto;
   height: auto;
-  /* Room around the (now smaller) icon for the hover-stroke square
-     to read clearly, rather than being cramped right up against it. */
-  padding: 6px;
-  margin: -6px;
-  background: none;
+  /* Same frosted-glass treatment as the carousel arrows/lightbox
+     controls/back-to-top, just a smaller box — a visible button
+     chip at rest, not a bare icon that only gets a background on
+     hover. Negative margin cancels the padding's effect on the
+     row's own gap, so the icon-to-icon spacing stays what it was
+     before this box existed. */
+  padding: 8px;
+  margin: -8px;
+  background-color: var(--button);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
   border: none;
-  border-radius: 0;
+  border-radius: var(--image-radius);
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .social-links a,
+  .social-links .copy-email-btn {
+    background-color: rgba(250, 249, 246, 0.92);
+  }
 }
 
 .social-links a:hover,
 .social-links a:focus-visible,
 .social-links .copy-email-btn:not(.copied):hover {
-  color: var(--accent);
-  background: none;
+  color: var(--ink-hover);
+  background-color: var(--button-hover);
 }
 
 .social-links svg {

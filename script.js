@@ -40,7 +40,14 @@ function setUpSweepHover(el, overlayClass, varPrefix, resetDelay) {
   };
   el.addEventListener('mouseenter', enter);
   el.addEventListener('mouseleave', leave);
-  el.addEventListener('focus', enter);
+  // Only a real keyboard-navigation focus should draw the stroke —
+  // not the programmatic .focus() the lightbox calls on its close
+  // button when it opens (for keyboard users tabbing through
+  // afterward), which isn't a hover-equivalent moment and shouldn't
+  // visually announce itself as one.
+  el.addEventListener('focus', () => {
+    if (el.matches(':focus-visible')) enter();
+  });
   el.addEventListener('blur', leave);
 }
 
