@@ -1,3 +1,37 @@
+// Hover stroke: wires up the clockwise-sweeping border outline on
+// back-to-top, the carousel arrows, and every lightbox button (see
+// the "13. HOVER STROKE" comment in style.css for why this needs JS
+// rather than a plain :hover rule — CSS alone can't make entering and
+// leaving hover animate two different custom properties). Called once
+// per button as each one becomes available: the carousel/lightbox
+// buttons don't exist yet at the top of this file.
+function setUpHoverStroke(btn) {
+  const setVars = (start, end) => {
+    btn.style.setProperty('--stroke-start', start + '%');
+    btn.style.setProperty('--stroke-end', end + '%');
+  };
+  let resetTimer;
+  const enter = () => {
+    clearTimeout(resetTimer);
+    setVars(0, 100);
+  };
+  const leave = () => {
+    setVars(100, 100);
+    clearTimeout(resetTimer);
+    // Back to the (0, 0) baseline once the erase settles, so the next
+    // hover-in grows --stroke-end forward again instead of un-growing
+    // --stroke-start backward. (100, 100) and (0, 0) both render as
+    // "nothing visible", and since both properties travel the same
+    // distance over the same duration here, they stay equal to each
+    // other throughout — so this reset never actually becomes visible.
+    resetTimer = setTimeout(() => setVars(0, 0), 450);
+  };
+  btn.addEventListener('mouseenter', enter);
+  btn.addEventListener('mouseleave', leave);
+  btn.addEventListener('focus', enter);
+  btn.addEventListener('blur', leave);
+}
+
 // Mobile menu toggle: shows/hides the nav links and swaps the
 // hamburger icon for a close icon (both are Material Symbols,
 // hidden/shown with CSS — see .menu-icon-open / .menu-icon-close in style.css)
@@ -118,6 +152,9 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
   const caption = carousel.querySelector('.carousel-caption');
   const dotsWrap = carousel.querySelector('.carousel-dots');
   if (!track || slides.length < 2) return;
+
+  if (prevBtn) setUpHoverStroke(prevBtn);
+  if (nextBtn) setUpHoverStroke(nextBtn);
 
   const dots = slides.map((slide, index) => {
     const dot = document.createElement('button');
@@ -244,6 +281,8 @@ if (zoomableImages.length) {
     <p class="lightbox-caption"></p>
   `;
   document.body.appendChild(lightbox);
+
+  lightbox.querySelectorAll('.lightbox-btn').forEach(setUpHoverStroke);
 
   const lightboxImgWrap = lightbox.querySelector('.lightbox-img-wrap');
   const lightboxImg = lightbox.querySelector('img');
@@ -567,6 +606,7 @@ if (document.querySelector('.project-body')) {
   backToTop.setAttribute('aria-label', 'Back to top');
   backToTop.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
   document.body.appendChild(backToTop);
+  setUpHoverStroke(backToTop);
 
   const toggleBackToTop = () => {
     backToTop.classList.toggle('visible', window.scrollY > window.innerHeight);

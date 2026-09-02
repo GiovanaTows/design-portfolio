@@ -1782,92 +1782,60 @@ body {
 
 /* ============================================
    13. HOVER STROKE — echoes the logo's square-bracket outline.
-   Pure CSS, no extra markup: ::before draws the top then right edge,
-   ::after draws the bottom then left edge, with staggered transition
-   delays so the two arcs read as one continuous line starting at the
-   top-left corner and sweeping clockwise all the way around. Applied
-   only to standalone buttons (back-to-top, carousel arrows, every
-   lightbox control) — skipped on the carousel dots (too small to read
-   as a drawn line) and the zoom pill's own container (its two buttons
-   already get the effect individually; adding a third outline around
+   A masked border sweeps clockwise starting near the top-left corner
+   — both drawing in on hover AND erasing back out the same clockwise
+   direction it drew in, rather than un-drawing in reverse. That needs
+   two independently-animatable custom properties (--stroke-start,
+   --stroke-end: registered below via @property so they can actually
+   transition, not just snap) instead of one: entering hover grows
+   --stroke-end forward while --stroke-start stays pinned at 0%;
+   leaving hover advances --stroke-start forward instead while
+   --stroke-end stays pinned at 100%. A single :hover toggle can't
+   drive two different properties depending on direction, so script.js
+   sets these directly on mouseenter/mouseleave/focus/blur — see the
+   "Hover stroke" section there.
+   Applied only to standalone buttons (back-to-top, carousel arrows,
+   every lightbox control) — skipped on the carousel dots (too small
+   to read as a drawn line) and the zoom pill's own container (its two
+   buttons already get the effect individually; a third outline around
    the whole pill on top of that reads as clutter, not polish).
    currentColor keeps the stroke matched to each button's own icon
    color, so it stays visible whether the button is light-on-dark
-   (back-to-top) or dark-on-light (everything else).
-   ============================================ */
-.back-to-top,
-.carousel-prev,
-.carousel-next,
-.lightbox-btn {
-  overflow: visible;
+   (back-to-top) or dark-on-light (everything else). A conic-gradient
+   mask (rather than the border-on-a-shrinking-box trick this replaced)
+   also means there's no stray corner pixel at rest — the border is
+   always full-size, just fully masked away until hovered. */
+@property --stroke-start {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
 }
 
-.back-to-top::before,
-.back-to-top::after,
-.carousel-prev::before,
-.carousel-prev::after,
-.carousel-next::before,
-.carousel-next::after,
-.lightbox-btn::before,
-.lightbox-btn::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  pointer-events: none;
+@property --stroke-end {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
 }
 
 .back-to-top::before,
 .carousel-prev::before,
 .carousel-next::before,
 .lightbox-btn::before {
-  top: 5px;
-  left: 5px;
-  border-top: 1.5px solid currentColor;
-  border-right: 1.5px solid currentColor;
-  transition: width 0.15s linear, height 0.15s linear 0.15s;
-}
-
-.back-to-top::after,
-.carousel-prev::after,
-.carousel-next::after,
-.lightbox-btn::after {
-  bottom: 5px;
-  right: 5px;
-  border-bottom: 1.5px solid currentColor;
-  border-left: 1.5px solid currentColor;
-  transition: width 0.15s linear 0.3s, height 0.15s linear 0.45s;
-}
-
-.back-to-top:hover::before,
-.back-to-top:focus-visible::before,
-.carousel-prev:hover::before,
-.carousel-prev:focus-visible::before,
-.carousel-next:hover::before,
-.carousel-next:focus-visible::before,
-.lightbox-btn:hover::before,
-.lightbox-btn:focus-visible::before,
-.back-to-top:hover::after,
-.back-to-top:focus-visible::after,
-.carousel-prev:hover::after,
-.carousel-prev:focus-visible::after,
-.carousel-next:hover::after,
-.carousel-next:focus-visible::after,
-.lightbox-btn:hover::after,
-.lightbox-btn:focus-visible::after {
-  width: calc(100% - 10px);
-  height: calc(100% - 10px);
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1.5px solid currentColor;
+  pointer-events: none;
+  -webkit-mask-image: conic-gradient(from 315deg, transparent var(--stroke-start), black var(--stroke-start), black var(--stroke-end), transparent var(--stroke-end));
+  mask-image: conic-gradient(from 315deg, transparent var(--stroke-start), black var(--stroke-start), black var(--stroke-end), transparent var(--stroke-end));
+  transition: --stroke-start 0.4s linear, --stroke-end 0.4s linear;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .back-to-top::before,
-  .back-to-top::after,
   .carousel-prev::before,
-  .carousel-prev::after,
   .carousel-next::before,
-  .carousel-next::after,
-  .lightbox-btn::before,
-  .lightbox-btn::after {
+  .lightbox-btn::before {
     transition: none;
   }
 }
