@@ -40,15 +40,27 @@ function setUpSweepHover(el, overlayClass, varPrefix, resetDelay) {
   };
   el.addEventListener('mouseenter', enter);
   el.addEventListener('mouseleave', leave);
-  // Only a real keyboard-navigation focus should draw the stroke —
-  // not the programmatic .focus() the lightbox calls on its close
+  // Only a real focus should draw the stroke — not a silent
+  // programmatic one, like the lightbox calling .focus() on its close
   // button when it opens (for keyboard users tabbing through
-  // afterward), which isn't a hover-equivalent moment and shouldn't
-  // visually announce itself as one.
+  // afterward). :focus-visible alone isn't a reliable enough signal
+  // for that across browsers, so silentFocus() below explicitly flags
+  // which calls to ignore instead of guessing from the event itself.
   el.addEventListener('focus', () => {
-    if (el.matches(':focus-visible')) enter();
+    if (el.dataset.suppressFocusStroke) return;
+    enter();
   });
   el.addEventListener('blur', leave);
+}
+
+// Focuses an element without triggering its sweep-hover stroke (see
+// setUpSweepHover above) — for focus calls that exist purely to
+// position the browser's next Tab stop, not to react to real user
+// input.
+function silentFocus(el, options) {
+  el.dataset.suppressFocusStroke = 'true';
+  el.focus(options);
+  delete el.dataset.suppressFocusStroke;
 }
 
 function setUpHoverStroke(btn) {
@@ -489,7 +501,7 @@ if (zoomableImages.length) {
     show(index);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
-    closeBtn.focus();
+    silentFocus(closeBtn);
 
     if (!prefersReducedMotion) {
       requestAnimationFrame(() => {
@@ -503,7 +515,7 @@ if (zoomableImages.length) {
   function close() {
     const sourceImg = zoomableImages[currentIndex];
     document.body.style.overflow = '';
-    if (lastFocused) lastFocused.focus();
+    if (lastFocused) silentFocus(lastFocused);
 
     // Reset zoom first so the source rect below is measured against the
     // fit-to-screen image, not a possibly-huge zoomed-in one.
