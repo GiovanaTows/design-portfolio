@@ -690,11 +690,9 @@ body {
 .back-to-top:focus-visible {
   /* Blue/purple hover, distinct from the plain glass-brightening
      hover the other frosted buttons use — the icon flips to a light
-     color to stay visible against it. Translucent (var(--link-hover)
-     as rgba) rather than the solid hex, so the backdrop-filter blur
-     already on this button actually reads as glass instead of a flat
-     opaque chip. */
-  background-color: rgba(34, 50, 193, 0.65);
+     color to stay visible against it. Solid, not translucent — tried
+     as glass and it didn't read well here. */
+  background-color: var(--link-hover);
   color: var(--paper);
 }
 
@@ -1776,8 +1774,11 @@ body {
 .social-links a:focus-visible,
 .social-links .copy-email-btn:not(.copied):hover {
   /* Light grey background with a blue icon — the stroke picks up
-     the same blue for free via currentColor. */
-  color: var(--accent);
+     the same blue for free via currentColor. Same darker blue
+     (--link-hover) as the animated underline on back-link/
+     timeline-link/etc., not --accent, for one consistent hover blue
+     across the site rather than two slightly different ones. */
+  color: var(--link-hover);
   background-color: var(--index);
 }
 
