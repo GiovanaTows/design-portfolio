@@ -817,7 +817,7 @@ body {
 }
 
 .project-specs-omnitrack {
-  grid-template-columns: fit-content(160px) fit-content(200px) auto;
+  grid-template-columns: fit-content(200px) fit-content(240px) fit-content(140px);
 }
 
 .project-specs-1 {
