@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SupplyCyber | Giovana Tows</title>
+  <meta name="description" content="Case study: logo, pitch deck, and high-fidelity Figma prototype for SupplyCyber, a cybersecurity compliance platform, by Giovana Tows.">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "../" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="../index.html">Projects</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="../index.html#projects" class="logo-link">
+        <img src="../images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <a class="back-link" href="../index.html#projects">← All projects</a>
+      <h1>SupplyCyber</h1>
+      <p class="project-meta divider subtitle">Logo, pitch deck, and a high-fidelity prototype for a cybersecurity compliance platform</p>
+    </div>
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column project-header-content" >
+        <dl class="project-specs project-specs-plots">
+          <div>
+            <dt>Role</dt>
+            <dd>Product Designer (UX/UI)</dd>
+          </div>
+          <div>
+            <dt>Tool</dt>
+            <dd>Figma</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>Jul – Aug 2022 (1 month)</dd>
+          </div>
+        </dl>
+        <dl class="project-specs-2">
+          <div>
+            <dt>Team</dt>
+            <dd style="max-width: 610px;">I worked directly with Felipe Capella, SupplyCyber's CEO, as the sole designer on the project.</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="split-column">
+        <nav class="project-index project-index-plots" aria-label="On this page" style="align-self: center;">
+          <p class="project-index-label">On this page</p>
+          <ul>
+            <li><a href="#overview">1. Overview</a></li>
+            <li><a href="#pitch-deck">2. Pitch deck</a></li>
+            <li><a href="#prototype">3. Prototype</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="../images/projects/supplycyber/supplycyber-cover-mobile.webp">
+      <source media="(max-width: 900px)" srcset="../images/projects/supplycyber/supplycyber-cover-medium.webp">
+      <img src="../images/projects/supplycyber/supplycyber-cover.webp" alt="SupplyCyber — cybersecurity compliance platform">
+    </picture>
+  </div>
+
+  <main class="project-body">
+
+    <div class="topic-divider topic-divider-first" id="overview">
+      <h2>Overview</h2>
+      <p style="max-width:700px;">
+        SupplyCyber is a cybersecurity compliance platform that audits and monitors the transportation providers a company relies on — carriers and brokers that are often left out of standard vendor security checks, even though a breach on their end can spread straight back to the client.
+      </p>
+      <p style="max-width:700px;">
+        Felipe Capella, SupplyCyber's CEO, brought me on to give the idea a visual identity and a way to pitch it. We agreed on three deliverables: a basic logo and visual identity, a 7-slide pitch deck, and a high-fidelity Figma prototype of the web app with a few interactions across 4 screens.
+      </p>
+      <p style="max-width:700px;">
+        The deadline was July 31, 2022; I delivered within the 2–3 week window we'd agreed on.
+      </p>
+    </div>
+
+    <div class="topic-divider" id="pitch-deck">
+      <h2>Pitch deck</h2>
+      <p style="max-width:700px;">
+        The deck builds the case for SupplyCyber before showing the product: cyberattacks on supply chains and transportation are rising, that risk extends to the client's own operations, and there's no efficient way to audit it today — which is where SupplyCyber comes in.
+      </p>
+
+      <div class="project-carousel">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Cover">
+              <img src="../images/projects/supplycyber/deck-01-cover.webp" alt="SupplyCyber pitch deck — Cover slide" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Cyberattacks focusing on supply chain and transportation are increasing">
+              <img src="../images/projects/supplycyber/deck-02-cyberattacks-increasing.webp" alt="Pitch deck slide — Cyberattacks focusing on supply chain and transportation are increasing" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Backbone of your supply chain are at risk">
+              <img src="../images/projects/supplycyber/deck-03-backbone-at-risk.webp" alt="Pitch deck slide — Backbone of your supply chain are at risk" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="...and they are also a threat to you">
+              <img src="../images/projects/supplycyber/deck-04-threat-to-you.webp" alt="Pitch deck slide — and they are also a threat to you" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Now you know that">
+              <img src="../images/projects/supplycyber/deck-05-now-you-know.webp" alt="Pitch deck slide — Now you know that" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Now you have 3 options">
+              <img src="../images/projects/supplycyber/deck-06-three-options.webp" alt="Pitch deck slide — Now you have 3 options" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Thank you">
+              <img src="../images/projects/supplycyber/deck-07-thank-you.webp" alt="Pitch deck slide — Thank you" loading="lazy">
+            </div>
+          </div>
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="carousel-caption"></p>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="prototype">
+      <h2>Prototype</h2>
+      <p style="max-width:700px;">
+        Past the pitch, the deck walks through how the product actually works — auditing every carrier, grading them, and letting the client set thresholds and track improvement over time. I designed 4 high-fidelity screens in Figma to support this: the company-wide overview, the carriers list, a carrier's detail view with its remediation plan, and a chart comparing carriers' security levels over time.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/supplycyber/screen-how-it-works.webp" alt="Diagram explaining how SupplyCyber's audit, grading, and remediation flow works" loading="lazy">
+        <figcaption>How it works: audit carriers, grade them, act on the results</figcaption>
+      </figure>
+
+      <div class="project-carousel">
+        <div class="carousel-viewport" style="background-color: #ffffff;">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Company overview — overall rate and assessment">
+              <img src="../images/projects/supplycyber/screen-overview.webp" alt="SupplyCyber screen — Company overview with overall rate and assessment" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Carriers list with grades">
+              <img src="../images/projects/supplycyber/screen-carriers-list.webp" alt="SupplyCyber screen — Carriers list with grades" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Carrier details and remediation plan">
+              <img src="../images/projects/supplycyber/screen-carrier-details.webp" alt="SupplyCyber screen — Carrier details and remediation plan" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Carriers comparison chart">
+              <img src="../images/projects/supplycyber/screen-carriers-comparison.webp" alt="SupplyCyber screen — Carriers comparison chart" loading="lazy">
+            </div>
+          </div>
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="carousel-caption"></p>
+        <div class="carousel-dots"></div>
+      </div>
+
+      <p style="max-width:700px; margin-top: 1.5rem;">
+        Try the interactive prototype below, or <a class="inline-link" href="https://www.figma.com/proto/NI2zARE10fLafy6o2SUnCh/Portfolio-%2F-SupplyCyber?page-id=0%3A1&node-id=1-2751&viewport=493%2C713%2C0.11&scaling=min-zoom&starting-point-node-id=1%3A3270" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.
+      </p>
+
+      <div>
+        <iframe class="figma-imbeded" style="aspect-ratio: 3 / 4;" data-src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNI2zARE10fLafy6o2SUnCh%2FPortfolio-%252F-SupplyCyber%3Fpage-id%3D0%253A1%26node-id%3D1%253A2751%26viewport%3D493%252C713%252C0.11%26scaling%3Dmin-zoom%26starting-point-node-id%3D1%253A3270" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </main>
+
+  <nav class="project-nav">
+    <a href="../index.html#projects">← All projects</a>
+  </nav>
+
+  <script src="../script.js"></script>
+</body>
+</html>

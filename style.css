@@ -45,6 +45,7 @@ body {
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --carousel-bg-plots:#363636;
   --carousel-bg-civi:#E6E6E6;
+  --carousel-bg-omnitrack:#E6E6E6;
   --image-radius: 4px;    /* project cards, hero/figure/carousel images, lightbox */
 }
 
@@ -232,8 +233,6 @@ body {
 }
 
 @media (max-width: 520px) {
-
-
   .logo-link {
     left: 0rem;
   }
@@ -252,8 +251,14 @@ body {
 .section {
   max-width: 1200px; /* 960px */
   margin: 0 auto;
-  padding: 5rem 1.5rem;
+  /*padding: 5rem 1.5rem;*/
   scroll-margin-top: 2rem;
+}
+
+@media (max-width: 1300px) {
+  .section {
+    padding: 0rem 1.5rem;
+  }
 }
 
 .section h2 {
@@ -274,7 +279,7 @@ body {
 }
 
 .section--projects {
-  padding-top: 3rem;
+  /*padding-top: 3rem;*/
 }
 
 .project-card a {
@@ -811,6 +816,10 @@ body {
   grid-template-columns: fit-content(200px) fit-content(240px) fit-content(140px);
 }
 
+.project-specs-omnitrack {
+  grid-template-columns: fit-content(160px) fit-content(200px) auto;
+}
+
 .project-specs-1 {
   grid-template-columns: auto;
 }
@@ -980,7 +989,15 @@ body {
 .project-body {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
-  padding: 0 1.5rem 2rem;
+  margin-top: 2rem;
+  /*padding: 0 1.5rem 2rem;*/
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 1300px) {
+  .project-body {
+    padding: 0rem 1.5rem 1rem 1.5rem;
+  }
 }
 
 .project-body h2 {
@@ -1023,7 +1040,10 @@ body {
 }
 
 .project-body p {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
 }
 
 .project-body ul {
@@ -1127,6 +1147,10 @@ body {
 
 .carousel-bg-civi {
   background-color: var(--carousel-bg-civi);
+}
+
+.carousel-bg-omnitrack {
+  background-color: var(--carousel-bg-omnitrack);
 }
 
 .carousel-viewport:active {
@@ -1417,6 +1441,14 @@ body {
   /*margin: 2rem 0;*/
 }
 
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  /*margin: 2rem 0;*/
+}
+
 @media (max-width: 1024px) {
   .text-image-columns {
     grid-template-columns: 1fr;
@@ -1619,7 +1651,7 @@ body {
 .inline-link {
   position: relative;
   display: inline-block;
-  color: var(--muted);
+  color: var(--link);
   text-decoration: none;
 }
 

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omnitrack Website | Giovana Tows</title>
+  <meta name="description" content="Case study: redesigning Omnitrack's industrial e-commerce website for a lighter, more intuitive interface, by Giovana Tows.">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "../" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="../index.html">Projects</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="../index.html#projects" class="logo-link">
+        <img src="../images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <a class="back-link" href="../index.html#projects">← All projects</a>
+      <h1>Omnitrack Website</h1>
+      <p class="project-meta divider subtitle">Redesigning a highly complex industrial e-commerce for a lighter, more intuitive experience</p>
+    </div>
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column project-header-content" >
+        <dl class="project-specs project-specs-omnitrack">
+          <div>
+            <dt>Role</dt>
+            <dd>Product Designer (UX/UI)</dd>
+          </div>
+          <div>
+            <dt>Tools</dt>
+            <dd>Figma / Illustrator / Photoshop / After Effects / Trello</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>Dec 2022 – Aug 2023 (9 months)</dd>
+          </div>
+        </dl>
+        <dl class="project-specs-2">
+          <div>
+            <dt>Team</dt>
+            <dd style="max-width: 610px;">The website was developed by Proxima Web using WordPress and WooCommerce, with Cadu Visentin on front-end and Leandro Miguel da Silva on front and back-end. I created and reviewed the interactive prototype in Figma, and also managed the technology team through the solution's implementation.</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="split-column">
+        <nav class="project-index project-index-plots" aria-label="On this page" style="align-self: center;">
+          <p class="project-index-label">On this page</p>
+          <ul>
+            <li><a href="#overview">1. Overview</a></li>
+            <li><a href="#web-version">2. Web version</a></li>
+            <li><a href="#mobile-version">3. Mobile version</a></li>
+            <li><a href="#design-system">4. Design system</a></li>
+            <li><a href="#comparison-examples">5. Comparison examples</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="../images/projects/omnitrack-website/omnitrack-site-cover-mobile.webp">
+      <source media="(max-width: 900px)" srcset="../images/projects/omnitrack-website/omnitrack-site-cover-medium.webp">
+      <img src="../images/projects/omnitrack-website/omnitrack-site-cover.webp" alt="About Omnitrack">
+    </picture>
+  </div>
+
+  <main class="project-body">
+
+    
+
+
+    <div class="topic-divider topic-divider-first" id="overview">
+      <div class="two-columns">
+        <div class="split-column">
+          <h2>Overview</h2>
+          <p style="max-width:700px;">
+            I designed the new version of Omnitrack's website, creating a lighter and more intuitive interface with a focus on user experience. The client asked me to follow the identity I had created for their <a class="inline-link" href="omnitrack-catalogue.html">PDF catalogue</a>.
+          </p>
+          <p style="max-width:700px;">
+            Omnitrack's website is a highly complex e-commerce that sells industrial products worldwide. Each product has multiple different technical characteristics, so most product pages needed their own particularities.
+          </p>
+          <p style="max-width:700px;">
+            In addition to the design work, I also managed the technology team responsible for implementing the solution.
+          </p>
+          <p style="max-width:700px;">
+            I spent two weeks working full-time at Omnitrack's office in England, then a month at their office in Italy (12/2022). I finished the project remotely from Brazil (02/2023 – 08/2023). We launched the website in April 2023.
+          </p>
+          <p style="max-width:700px;">
+            Check out the final result at <a class="inline-link" href="https://www.omnitrack.com" target="_blank" rel="noopener noreferrer">omnitrack.com</a>.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-omnitrack" style="aspect-ratio: 5 / 4;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Omnitrack office in Stroud, UK">
+                  <img src="../images/projects/omnitrack-website/office/omnitrack-office-1.webp" alt="Omnitrack office in Stroud, UK" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Omnitrack office in Stroud, UK">
+                  <img src="../images/projects/omnitrack-website/office/omnitrack-office-2.webp" alt="Omnitrack office in Stroud, UK" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Omnitrack office in Stroud, UK">
+                  <img src="../images/projects/omnitrack-website/office/omnitrack-office-3.webp" alt="Omnitrack office in Stroud, UK" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Omnitrack office in Stroud, UK">
+                  <img src="../images/projects/omnitrack-website/office/omnitrack-office-4.webp" alt="Omnitrack office in Stroud, UK" loading="lazy">
+                </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+
+
+    <div class="topic-divider" id="design-system">
+      <h2>Design system</h2>
+      <p style="max-width:700px;">
+        Following the identity I created for Omnitrack's <a class="inline-link" href="omnitrack-catalogue.html">PDF catalogue</a>, I built a design system in Figma covering colors, typography, and reusable components — giving the website a consistent visual language and speeding up handoff to the development team.
+      </p>
+
+      
+
+      <div class="project-carousel">
+        <div class="carousel-viewport" style="background-color: #ffffff;">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Omnitrack design system — Colors">
+              <img src="../images/projects/omnitrack-website/ds/color.webp" alt="Omnitrack design system — Colors" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Tex">
+              <img src="../images/projects/omnitrack-website/ds/text.webp" alt="Omnitrack design system — Text" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system —Buttons">
+              <img src="../images/projects/omnitrack-website/ds/buttons.webp" alt="Omnitrack design system — Buttons" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Icons">
+              <img src="../images/projects/omnitrack-website/ds/icons-1.webp" alt="Omnitrack design system — Icons" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Icons">
+              <img src="../images/projects/omnitrack-website/ds/icons-2.webp" alt="Omnitrack design system — Icons" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Controllers">
+              <img src="../images/projects/omnitrack-website/ds/controllers.webp" alt="Omnitrack design system — Controllers" loading="lazy">
+            </div>
+            <!--<div class="carousel-slide" data-caption="Omnitrack design system — Navigation">
+              <img src="../images/projects/omnitrack-website/ds/navigation.webp" alt="Omnitrack design system — Navigation" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Elevation">
+              <img src="../images/projects/omnitrack-website/ds/elevation.webp" alt="Omnitrack design system — Elevation" loading="lazy">
+            </div>-->
+            <div class="carousel-slide" data-caption="Omnitrack design system — Spreadsheets">
+              <img src="../images/projects/omnitrack-website/ds/spreadsheets.webp" alt="Omnitrack design system — Spreadsheets" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Imagery">
+              <img src="../images/projects/omnitrack-website/ds/images-1.webp" alt="Omnitrack design system — Imagery" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Imagery">
+              <img src="../images/projects/omnitrack-website/ds/images-2.webp" alt="Omnitrack design system — Imagery" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Imagery">
+              <img src="../images/projects/omnitrack-website/ds/images-3.webp" alt="Omnitrack design system — Imagery" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Imagery">
+              <img src="../images/projects/omnitrack-website/ds/images-4.webp" alt="Omnitrack design system — Imagery" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Imagery">
+              <img src="../images/projects/omnitrack-website/ds/images-5.webp" alt="Omnitrack design system — Imagery" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnitrack design system — Imagery">
+              <img src="../images/projects/omnitrack-website/ds/images-6.webp" alt="Omnitrack design system — Imagery" loading="lazy">
+            </div>
+          </div>
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="carousel-caption"></p>
+        <div class="carousel-dots"></div>
+      </div>
+
+      <div>
+        <iframe class="figma-imbeded" src="https://embed.figma.com/design/T2v7pDusaPIhsdxshsuTco/Omnitrack-Portfolio?node-id=599-7021&embed-host=share" allowfullscreen></iframe>
+      </div>
+    </div>
+
+
+
+      
+
+    <div class="topic-divider" id="web-version">
+      <div class="text-image-columns">
+        <div class="split-column">
+          <h2>Web version</h2>
+          <p style="max-width:700px;">
+            I used Figma to design and prototype the desktop experience — from the homepage down to each product's technical specification tables, ball transfer unit selectors, and material comparison charts.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-omnitrack">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Omnitrack website — Homepage">
+                  <img src="../images/projects/omnitrack-website/mockup-1.webp" alt="Omnitrack website — Homepage" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Omnitrack website — Product page">
+                  <img src="../images/projects/omnitrack-website/mockup-2.webp" alt="Omnitrack website — Product page" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Omnitrack website — Figma workspace">
+                  <img src="../images/projects/omnitrack-website/figma-workspace.webp" alt="Figma Workspace" loading="lazy">
+                </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+    <div class="topic-divider" id="comparison-examples">
+      <h2>Pages: before / after</h2>
+      <p style="max-width:700px;">
+        A look at how key pages changed from the previous website to the new design.
+      </p>
+
+      <div class="project-carousel">
+        <div class="carousel-viewport carousel-bg-omnitrack">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Homepage — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/homepage.webp" alt="Homepage — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Menu — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/menu.webp" alt="Menu — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Product details — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/product-details.webp" alt="Product details — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Ball Transfer Units page — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/ball-transfer-units.webp" alt="Ball Transfer Units page — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Pneumatic page — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/pneumatic.webp" alt="Pneumatic page — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omniwheels page — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/omniwheels.webp" alt="Omniwheels page — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Omnicaster page — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/omnicaster.webp" alt="Omnicaster page — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Skates page — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/skates.webp" alt="Skates page — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Flexible Conveyors page — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/flexible-conveyors.webp" alt="Flexible Conveyors page — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Cart — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/cart.webp" alt="Cart — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Checkout — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/checkout.webp" alt="Checkout — Before and after comparison" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Contact — Before and after">
+              <img src="../images/projects/omnitrack-website/comparison/contact.webp" alt="Contact — Before and after comparison" loading="lazy">
+            </div>
+          </div>
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="carousel-caption"></p>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+
+
+
+    <div class="topic-divider" id="mobile-version">
+      <h2>Mobile version</h2>
+      <p style="max-width:700px;">
+        The website also needed to work well on mobile, translating the same catalogue depth — filters, technical tables, and material options — into a smaller screen without losing clarity.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/omnitrack-website/mobile-screens.webp" alt="Mobile screens examples" loading="lazy">
+        <figcaption>Mobile screens examples</figcaption>
+      </figure>
+
+      <div>
+        <!--<iframe class="figma-imbeded" style="aspect-ratio: 3 / 4;" data-src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2FT2v7pDusaPIhsdxshsuTco%2FOmnitrack-Portfolio%3Ftype%3Ddesign%26node-id%3D1%253A163767%26mode%3Ddesign" allowfullscreen></iframe> -->
+        <iframe class="figma-imbeded" style="aspect-ratio: 2 / 1;" src="https://embed.figma.com/design/T2v7pDusaPIhsdxshsuTco/Omnitrack-Portfolio?node-id=1-163767&embed-host=share" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </main>
+
+  <nav class="project-nav">
+    <a href="../index.html#projects">← All projects</a>
+  </nav>
+
+  <script src="../script.js"></script>
+</body>
+</html>
