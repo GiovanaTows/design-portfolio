@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação Motor Diferencial | Giovana Tows</title>
+  <meta name="description" content="A presentation explaining how the Differential Motor's thermodynamic cycle works and where it could be applied, by Giovana Tows.">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "../" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="../index.html">Projects</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="../index.html#projects" class="logo-link">
+        <img src="../images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <a class="back-link" href="../index.html#projects">← All projects</a>
+      <h1>Apresentação Motor Diferencial</h1>
+      <p class="project-meta divider subtitle">A presentation explaining how the Differential Motor works and where it could be applied</p>
+    </div>
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column project-header-content" >
+        <dl class="project-specs project-specs-plots">
+          <div>
+            <dt>Role</dt>
+            <dd>Graphic Designer / Illustrator</dd>
+          </div>
+          <div>
+            <dt>Tool</dt>
+            <dd>Illustrator / After Effects</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>2017</dd>
+          </div>
+        </dl>
+        <dl class="project-specs-2">
+          <div>
+            <dt>Team</dt>
+            <dd style="max-width: 610px;">I designed and illustrated the presentation for the client, translating their engineering explanations into a clear visual narrative.</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="split-column">
+        <nav class="project-index project-index-plots" aria-label="On this page" style="align-self: center;">
+          <p class="project-index-label">On this page</p>
+          <ul>
+            <li><a href="#overview">1. Overview</a></li>
+            <li><a href="#presentation">2. Presentation</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="../images/projects/motor-diferencial/hero-mobile.webp">
+      <source media="(max-width: 900px)" srcset="../images/projects/motor-diferencial/hero-medium.webp">
+      <img src="../images/projects/motor-diferencial/hero.webp" alt="Efficiency comparison of current thermodynamic engine cycles">
+    </picture>
+  </div>
+
+  <main class="project-body">
+
+    <div class="topic-divider topic-divider-first" id="overview">
+      <h2>Overview</h2>
+      <p style="max-width:700px;">
+        The Differential Motor is an ongoing engineering project exploring a new way to convert fuel into energy, based on what the client calls the differential thermodynamic cycle. A smaller-scale prototype was already running at the time, but the project needed funding to build a larger motor that could prove its efficiency.
+      </p>
+      <p style="max-width:700px;">
+        I was asked to design a short presentation explaining how the motor's cycle works and the different situations it could be applied to, from power generation to space propulsion.
+      </p>
+    </div>
+
+    <div class="topic-divider" id="presentation">
+      <h2>Presentation</h2>
+      <p style="max-width:700px;">
+        Nine slides, illustrated from scratch: how the differential cycle compares to classic engine cycles, how its conversion system works, and where it could replace existing technology — from steam turbines and Stirling engines to rocket propulsion and submarine power.
+      </p>
+
+      <div class="project-carousel">
+        <div class="carousel-viewport" style="background-color: #ffffff;">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Current engines — an efficiency comparison of classic thermodynamic cycles">
+              <img src="../images/projects/motor-diferencial/slide-01-current-engines.webp" alt="Current engines — efficiency comparison of classic thermodynamic cycles" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Differential Cycle — the components of the conversion system">
+              <img src="../images/projects/motor-diferencial/slide-02-conversion-system.webp" alt="Differential Cycle — components of the conversion system" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Differential Cycle — how the conversion system works, step by step">
+              <img src="../images/projects/motor-diferencial/slide-03-how-it-works.webp" alt="Differential Cycle — how the conversion system works" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="The cycle plotted on a pressure–volume diagram">
+              <img src="../images/projects/motor-diferencial/slide-04-cycle-diagram.webp" alt="Differential Cycle animated pressure–volume diagram" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="A closer look at the piston mechanism">
+              <img src="../images/projects/motor-diferencial/slide-05-piston-mechanism.webp" alt="Close-up of the differential motor's piston mechanism" loading="lazy" data-lightbox-bg="white">
+            </div>
+            <div class="carousel-slide" data-caption="Differential Cycle in power generation, replacing steam systems">
+              <img src="../images/projects/motor-diferencial/slide-06-power-generation.webp" alt="Differential Cycle used in power generation, replacing steam systems" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Differential Cycle for stationary sources — replacing Stirling engines in thermosolar plants">
+              <img src="../images/projects/motor-diferencial/slide-07-thermosolar.webp" alt="Differential Cycle replacing Stirling engines in thermosolar power" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Differential Cycle vs. conventional space propulsion">
+              <img src="../images/projects/motor-diferencial/slide-08-space.webp" alt="Differential Cycle compared with conventional space propulsion" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Differential Cycle vs. air-independent propulsion in submarines">
+              <img src="../images/projects/motor-diferencial/slide-09-submarines.webp" alt="Differential Cycle compared with air-independent propulsion in submarines" loading="lazy">
+            </div>
+          </div>
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="carousel-caption"></p>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <nav class="project-nav">
+    <a href="../index.html#projects">← All projects</a>
+  </nav>
+
+  <script src="../script.js"></script>
+</body>
+</html>

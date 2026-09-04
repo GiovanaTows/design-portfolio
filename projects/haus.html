@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haus Website and App | Giovana Tows</title>
+  <meta name="description" content="Concept design for an interior design website and companion decoration app, by Giovana Tows.">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "../" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="../index.html">Projects</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="../index.html#projects" class="logo-link">
+        <img src="../images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <a class="back-link" href="../index.html#projects">← All projects</a>
+      <h1>Haus Website and App</h1>
+      <p class="project-meta divider subtitle">A concept for an interior design website and a companion decoration app</p>
+    </div>
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column project-header-content" >
+        <dl class="project-specs project-specs-plots">
+          <div>
+            <dt>Role</dt>
+            <dd>UI/UX Designer</dd>
+          </div>
+          <div>
+            <dt>Tools</dt>
+            <dd>Photoshop / Illustrator</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>2017</dd>
+          </div>
+        </dl>
+        <dl class="project-specs-2">
+          <div>
+            <dt>Team</dt>
+            <dd style="max-width: 610px;">A self-directed concept project — I designed it solo, end to end.</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="split-column">
+        <nav class="project-index project-index-plots" aria-label="On this page" style="align-self: center;">
+          <p class="project-index-label">On this page</p>
+          <ul>
+            <li><a href="#overview">1. Overview</a></li>
+            <li><a href="#landing-page">2. Landing page</a></li>
+            <li><a href="#products-page">3. Products page</a></li>
+            <li><a href="#projects-page">4. Projects page</a></li>
+            <li><a href="#decoration-app">5. Decoration app</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="../images/projects/haus/haus-cover-mobile.webp">
+      <source media="(max-width: 900px)" srcset="../images/projects/haus/haus-cover-medium.webp">
+      <img src="../images/projects/haus/haus-cover.webp" alt="Haus landing page shown on an iMac">
+    </picture>
+  </div>
+
+  <main class="project-body">
+
+    <div class="topic-divider topic-divider-first" id="overview">
+      <h2>Overview</h2>
+      <p style="max-width:700px;">
+        Haus is a concept for an interior design website and mobile app. The website connects three things: a shop of decor products, a directory of architects, and a gallery of real projects for inspiration — all cross-linked, so a piece you like in a project leads straight to buying it.
+      </p>
+      <p style="max-width:700px;">
+        The companion mobile app takes that a step further, letting people preview furniture and decor in their own home before buying it, using their phone's camera.
+      </p>
+    </div>
+
+    <div class="topic-divider" id="landing-page">
+      <h2>Landing page</h2>
+      <p style="max-width:700px;">
+        "Inspire-se, decore, inove" — get inspired, decorate, innovate. The landing page opens with a rotating gallery of decorated spaces, then surfaces the three pillars of the site side by side: Products, Architects, and Projects.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/haus/landing-page.webp" alt="Haus — Landing page" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="products-page">
+      <h2>Products page</h2>
+      <p style="max-width:700px;">
+        Each product page covers material, dimensions, and country of origin, with color variants and live stock count, plus "Related" and "You'll also like" shelves to keep people browsing.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/haus/products-page.webp" alt="Haus — Product detail page" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="projects-page">
+      <h2>Projects page</h2>
+      <p style="max-width:700px;">
+        Every month, Haus publishes a new decorated space. The projects page leads with that month's featured room, alongside the products used in it, and a grid of the month's other submissions below.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/haus/projects-page.webp" alt="Haus — Projects page" loading="lazy">
+      </figure>
+
+      <p style="max-width:700px;">
+        Opening a project introduces the architect behind it, alongside their write-up of the space and the products they used or that suit the same style.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/haus/projects-detail.webp" alt="Haus — Project detail, with the architect's profile and related products" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="decoration-app">
+      <h2>Decoration app</h2>
+      <p style="max-width:700px;">
+        The Haus app lets people place real products from the catalog into a photo of their own room before buying anything. Take a photo, pick a room type and object category, place and resize the piece, then share the result or buy the whole look.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/haus/app-overview.webp" alt="Haus decoration app shown across three phones" loading="lazy">
+      </figure>
+
+      <div class="figure-grid">
+        <figure class="project-figure">
+          <img src="../images/projects/haus/app-step-1.webp" alt="Haus app — Step 1, take a photo of the room" loading="lazy">
+          <figcaption>1. Take a photo of the room you want to decorate</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/haus/app-step-2.webp" alt="Haus app — Step 2, select room type and object category" loading="lazy">
+          <figcaption>2. Select the room type and the category of object you want</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/haus/app-step-3.webp" alt="Haus app — Step 3, place and resize the object" loading="lazy">
+          <figcaption>3. Choose an object, then resize and reposition it as you like</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/haus/app-step-4.webp" alt="Haus app — Step 4, share or buy the decorated room" loading="lazy">
+          <figcaption>4. Share your dream room with friends, or buy the products used to create it</figcaption>
+        </figure>
+      </div>
+    </div>
+
+  </main>
+
+  <nav class="project-nav">
+    <a href="../index.html#projects">← All projects</a>
+  </nav>
+
+  <script src="../script.js"></script>
+</body>
+</html>

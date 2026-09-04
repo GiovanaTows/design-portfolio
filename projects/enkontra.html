@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enkontra.com Website | Giovana Tows</title>
+  <meta name="description" content="Concept design for a Brazilian long-term housing rental website, by Giovana Tows.">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "../" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="../index.html">Projects</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="../index.html#projects" class="logo-link">
+        <img src="../images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <a class="back-link" href="../index.html#projects">← All projects</a>
+      <h1>Enkontra.com Website</h1>
+      <p class="project-meta divider subtitle">A concept for a long-term housing rental website, built for Brazil</p>
+    </div>
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column project-header-content" >
+        <dl class="project-specs project-specs-plots">
+          <div>
+            <dt>Role</dt>
+            <dd>UI/UX Designer</dd>
+          </div>
+          <div>
+            <dt>Tools</dt>
+            <dd>Photoshop / Illustrator</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>2016</dd>
+          </div>
+        </dl>
+        <dl class="project-specs-2">
+          <div>
+            <dt>Team</dt>
+            <dd style="max-width: 610px;">A self-directed concept project — I designed it solo, end to end.</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="split-column">
+        <nav class="project-index project-index-plots" aria-label="On this page" style="align-self: center;">
+          <p class="project-index-label">On this page</p>
+          <ul>
+            <li><a href="#overview">1. Overview</a></li>
+            <li><a href="#landing-page">2. Landing page</a></li>
+            <li><a href="#search-filters">3. Search &amp; filters</a></li>
+            <li><a href="#property-page">4. Property page</a></li>
+            <li><a href="#rental-process">5. Rental process</a></li>
+            <li><a href="#owner-panel">6. Owner panel</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="../images/projects/enkontra/enkontra-cover-mobile.webp">
+      <source media="(max-width: 900px)" srcset="../images/projects/enkontra/enkontra-cover-medium.webp">
+      <img src="../images/projects/enkontra/enkontra-cover.webp" alt="Enkontra.com landing page shown on an iMac">
+    </picture>
+  </div>
+
+  <main class="project-body">
+
+    <div class="topic-divider topic-divider-first" id="overview">
+      <h2>Overview</h2>
+      <p style="max-width:700px;">
+        Enkontra.com is a concept for a Brazilian housing rental website. Unlike Airbnb, it's built around long-term rental contracts — without the heavy bureaucracy that usually comes with renting a home in Brazil.
+      </p>
+      <p style="max-width:700px;">
+        I designed the full flow solo: a landing page built to convert, a search experience with map and filters, a property page detailed enough to rent sight-unseen, a guided multi-step rental process, and a panel for owners to manage their listings and talk to prospective tenants.
+      </p>
+    </div>
+
+    <div class="topic-divider" id="landing-page">
+      <h2>Landing page</h2>
+      <p style="max-width:700px;">
+        The landing page leads with "casa dos sonhos, como e onde precisar" ("your dream home, however and wherever you need it"), a search bar that lets people search by tags — family, pool, countryside, rustic furniture — instead of rigid filters, and a set of featured listings by neighborhood.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/enkontra/landing-page.webp" alt="Enkontra.com — Landing page" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="search-filters">
+      <h2>Search &amp; filters</h2>
+      <p style="max-width:700px;">
+        Results can be refined by area, price, and minimum stay, or browsed directly on a map — useful for renters who care more about location than any single spec.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/enkontra/search-filters.webp" alt="Enkontra.com — Search results with filters and map" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="property-page">
+      <h2>Property page</h2>
+      <p style="max-width:700px;">
+        Each listing breaks the property down room by room — bedrooms, kitchen, bathrooms, living room — with its own photos and details, plus a chat where renters can ask the owner questions directly.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/enkontra/property-page.webp" alt="Enkontra.com — Property presentation page" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="rental-process">
+      <h2>Rental process</h2>
+      <p style="max-width:700px;">
+        Renting a property is a guided, six-step flow. This step lets the renter pick their move-in and move-out dates against the owner's minimum stay, then choose between paying month to month or paying the full period upfront for a discount.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/enkontra/rental-process.webp" alt="Enkontra.com — Rental process, selecting the rental period" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="owner-panel">
+      <h2>Owner panel</h2>
+      <p style="max-width:700px;">
+        Owners get their own management panel to track views and favorites on each listing, and reply to renter questions right from their proposals.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/enkontra/owner-panel.webp" alt="Enkontra.com — Owner management panel" loading="lazy">
+      </figure>
+    </div>
+
+  </main>
+
+  <nav class="project-nav">
+    <a href="../index.html#projects">← All projects</a>
+  </nav>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Sprint 2.0 — Civi | Giovana Tows</title>
+  <meta name="description" content="Facilitating a four-day Design Sprint 2.0 to explore a participatory, network-building experience for Civi's mobile app, by Giovana Tows.">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "../" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="../index.html">Projects</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="../index.html#projects" class="logo-link">
+        <img src="../images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <a class="back-link" href="../index.html#projects">← All projects</a>
+      <h1>Design Sprint 2.0 — Civi</h1>
+      <p class="project-meta divider subtitle">Facilitating a four-day sprint to design, prototype, and test a more collaborative Civi</p>
+    </div>
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column project-header-content" >
+        <dl class="project-specs project-specs-plots">
+          <div>
+            <dt>Role</dt>
+            <dd>Product Designer (Facilitator)</dd>
+          </div>
+          <div>
+            <dt>Tools</dt>
+            <dd>Figma / Miro</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>2022 (4 days)</dd>
+          </div>
+        </dl>
+        <dl class="project-specs-2">
+          <div>
+            <dt>Team</dt>
+            <dd style="max-width: 610px;">Nine of us ran the sprint: Vivi (product designer, moderator) and I (product designer, facilitator) led it, with Civi's CEO as decider, the Product Head, two Product Managers, a front-end developer, and people from marketing and supply rounding out the room.</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="split-column">
+        <nav class="project-index project-index-plots" aria-label="On this page" style="align-self: center;">
+          <p class="project-index-label">On this page</p>
+          <ul>
+            <li><a href="#overview">1. Overview</a></li>
+            <li><a href="#day-1">2. Day 1: Map &amp; sketch</a></li>
+            <li><a href="#day-2">3. Day 2: Decide &amp; storyboard</a></li>
+            <li><a href="#day-3">4. Day 3: Prototype &amp; test script</a></li>
+            <li><a href="#day-4">5. Day 4: Let's test it</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="../images/projects/design-sprint-civi/hero-mobile.webp">
+      <source media="(max-width: 900px)" srcset="../images/projects/design-sprint-civi/hero-medium.webp">
+      <img src="../images/projects/design-sprint-civi/hero.webp" alt="Design Sprint 2.0 schedule: Map, Sketch, Decide, Storyboard, Prototype, Test">
+    </picture>
+  </div>
+
+  <main class="project-body">
+
+    <div class="topic-divider topic-divider-first" id="overview">
+      <h2>Overview</h2>
+      <p style="max-width:700px;">
+        Civi is a mobile app that makes cities safer, giving people security-related information and notifications in real time. It's currently live in São Paulo, Brazil.
+      </p>
+      <p style="max-width:700px;">
+        In 2022, our team ran a Design Sprint 2.0 — a four-day process for answering a critical business question through sketching, prototyping, and testing with real users — to explore one challenge: how might we give users a participatory, collaborative experience in the app that creates a network?
+      </p>
+      <p style="max-width:700px;">
+        Vivi moderated the sprint and I facilitated it, working alongside Civi's CEO as decider, the Product Head, two Product Managers, a front-end developer, and people from marketing and supply.
+      </p>
+    </div>
+
+    <div class="topic-divider" id="day-1">
+      <h2>Day 1: Map &amp; sketch</h2>
+      <p style="max-width:700px;">
+        We opened by introducing the process and the challenge, then went around the room letting each specialist answer a set of core questions about the product, its users, and its risks — so everyone started from the same understanding before we began generating ideas.
+      </p>
+      <p style="max-width:700px;">
+        From there, we turned what came up into "How might we" notes, clustered and voted on them, then wrote long-term goals and the sprint questions that could get in our way. With that foundation, we mapped a simplified user journey — discover, learn, use — and matched each "How might we" to the step it applied to, so we knew exactly where to focus the rest of the sprint.
+      </p>
+
+      <div class="project-carousel">
+        <div class="carousel-viewport carousel-bg-civi">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Ask the Experts — grounding the team in a shared understanding of the product">
+              <img src="../images/projects/design-sprint-civi/day1-ask-experts.webp" alt="Ask the Experts session with the whole team" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Clustering and voting on How Might We notes">
+              <img src="../images/projects/design-sprint-civi/day1-hmw.webp" alt="How Might We notes clustered on the wall" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Mapping the simplified user journey — discover, learn, use">
+              <img src="../images/projects/design-sprint-civi/day1-user-journey.webp" alt="Simplified user journey map" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="One of the final Day 1 solution sketches">
+              <img src="../images/projects/design-sprint-civi/day1-sketch-solution.webp" alt="A finished 4-Step Sketch solution" loading="lazy">
+            </div>
+          </div>
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="carousel-caption"></p>
+        <div class="carousel-dots"></div>
+      </div>
+
+      <p style="max-width:700px;">
+        After lunch, each of us researched a few outside references relevant to the challenge and presented one to the group. Then we moved into individual sketching — loose notes first, then Crazy Eights (eight quick variations on one idea), and finally a single, fully worked solution: three screens sketched on paper with a title and a plain-language explanation of how each one would work.
+      </p>
+    </div>
+
+    <div class="topic-divider" id="day-2">
+      <h2>Day 2: Decide &amp; storyboard</h2>
+      <p style="max-width:700px;">
+        Every solution from Day 1 went up on the wall for an Art Museum session — everyone walked through in silence, voting on the ideas that stood out and leaving questions on sticky notes wherever they had doubts.
+      </p>
+
+      <div class="project-carousel">
+        <div class="carousel-viewport carousel-bg-civi">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="&quot;Grupos Civi&quot; — one of the solutions on the wall during Art Museum voting">
+              <img src="../images/projects/design-sprint-civi/day2-solutions-1.webp" alt="Grupos Civi solution sketch with dot votes" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Another solution up for the team's vote">
+              <img src="../images/projects/design-sprint-civi/day2-solutions-2.webp" alt="Solution sketch with dot votes" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Another solution up for the team's vote">
+              <img src="../images/projects/design-sprint-civi/day2-solutions-3.webp" alt="Solution sketch with dot votes" loading="lazy">
+            </div>
+          </div>
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="carousel-caption"></p>
+        <div class="carousel-dots"></div>
+      </div>
+
+      <p style="max-width:700px;">
+        From there, the facilitator walked the group through where the votes landed, each of us pitched one idea in under a minute, and our decider spent two supervotes committing to a direction — combining the strongest parts of a couple of different solutions.
+      </p>
+      <p style="max-width:700px;">
+        We wrote out user steps for the chosen flow, then spent close to two hours turning it into an eight-panel storyboard: the actual screens the prototype would need, with the hypotheses we wanted to test noted alongside each one. We closed the day by planning the test itself — who to recruit (people who'd never used Civi, a mix of ages and backgrounds), how many (five, plus two on standby), and what we wanted to learn from them.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/design-sprint-civi/day2-storyboard.webp" alt="Eight-panel storyboard sketched on craft paper" loading="lazy">
+        <figcaption>The 8-panel storyboard — the screens the prototype would need, with our hypotheses noted alongside each one</figcaption>
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="day-3">
+      <h2>Day 3: Prototype &amp; test script</h2>
+      <p style="max-width:700px;">
+        Probably my favorite part of the whole process: prototyping. I built the interactive prototype in Figma from the storyboard, while Vivi wrote the test script, and we reviewed both together once they were done.
+      </p>
+      <p style="max-width:700px;">
+        The script paired a few background questions — age, occupation, family, safety concerns — with hands-on tasks built directly from the hypotheses we'd written the day before, so we could observe how people actually behaved rather than just ask their opinion.
+      </p>
+
+      <div class="figure-grid">
+        <figure class="project-figure">
+          <img src="../images/projects/design-sprint-civi/day3-prototyping.webp" alt="Building the interactive prototype in Figma" loading="lazy">
+          <figcaption>Building the interactive prototype</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/design-sprint-civi/day3-prototype-flow.webp" alt="Full Figma prototype flow, showing every connected screen" loading="lazy">
+          <figcaption>The full prototype flow in Figma</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="day-4">
+      <h2>Day 4: Let's test it!</h2>
+      <p style="max-width:700px;">
+        This day was reserved entirely for interviews. We tested with 5 people — 4 remotely over Zoom, 1 in person — each session split into a 30-minute intro, 30 minutes testing the prototype against real tasks, and a 30-minute debrief with the team.
+      </p>
+      <p style="max-width:700px;">
+        For the remote interviews, I moderated from a separate room while the facilitator shared the call on a screen in the main room, so the rest of the team could watch live without crowding the interviewee. I set up a shared Miro board so everyone could log observations in real time as they watched: orange for anything a participant got confused about, green for what worked as planned, yellow for neutral notes.
+      </p>
+
+      <div class="figure-grid">
+        <figure class="project-figure">
+          <img src="../images/projects/design-sprint-civi/day4-remote-testing.webp" alt="Remote testing setup — Miro board, Figma prototype, and Zoom call" loading="lazy">
+          <figcaption>Our remote testing setup — Miro, Figma, and Zoom running side by side</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="../images/projects/design-sprint-civi/day4-miro-board.webp" alt="Miro board with observations from all five interviews, color-coded by sentiment" loading="lazy">
+          <figcaption>The Miro board, logging observations from all 5 interviews</figcaption>
+        </figure>
+      </div>
+
+      <p style="max-width:700px;">
+        We decided to move forward with the solution — there's still real work to do on the interface to make it clearer, more intuitive, and more accessible. One insight stood out: the product seemed to resonate more with an older audience, who are more likely to already have a home and family to think about, which puts accessibility front and center, since older users are often less comfortable with technology and can struggle with small text or low-contrast screens.
+      </p>
+      <p style="max-width:700px;">
+        We're still building toward the final feature launch. And since this was my first Design Sprint with the team, it came with a bonus: a photo of everyone who made it happen.
+      </p>
+
+      <figure class="project-figure">
+        <img src="../images/projects/design-sprint-civi/team-photo.webp" alt="The whole team that participated in this Design Sprint" loading="lazy">
+        <figcaption>The whole team that made this Design Sprint happen</figcaption>
+      </figure>
+    </div>
+
+  </main>
+
+  <nav class="project-nav">
+    <a href="../index.html#projects">← All projects</a>
+  </nav>
+
+  <script src="../script.js"></script>
+</body>
+</html>

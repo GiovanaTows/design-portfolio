@@ -447,6 +447,7 @@ if (zoomableImages.length) {
       const img = zoomableImages[currentIndex];
       lightboxImg.src = img.currentSrc || img.src;
       lightboxImg.alt = img.alt;
+      lightboxImg.classList.toggle('lightbox-img-on-white', img.dataset.lightboxBg === 'white');
       lightboxCaption.textContent = captionFor(img);
       resetZoom();
     };
