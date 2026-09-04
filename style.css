@@ -830,6 +830,10 @@ body {
   grid-template-columns: fit-content(200px) fit-content(220px) fit-content(150px);
 }
 
+.project-specs-omnitrack-2 {
+  grid-template-columns: fit-content(200px) fit-content(280px) fit-content(300px);
+}
+
 .project-specs-1 {
   grid-template-columns: auto;
 }
@@ -848,6 +852,12 @@ body {
 
 @media (max-width: 700px) {
   .project-specs-plots {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 826px) {
+  .project-specs-omnitrack-2 {
     grid-template-columns: 1fr !important;
   }
 }
