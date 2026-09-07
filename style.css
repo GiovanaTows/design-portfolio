@@ -834,6 +834,10 @@ body {
   grid-template-columns: fit-content(200px) fit-content(280px) auto;
 }
 
+.project-specs-loadsmart{
+  grid-template-columns: fit-content(140px) fit-content(120px) auto;
+}
+
 .project-specs-1 {
   grid-template-columns: auto;
 }
@@ -1587,16 +1591,29 @@ body {
    no player chrome, no controls, just a short demo of an interaction.
    Unlike .video-embed (a real iframe player), this is a plain <video>,
    so it gets the same rounded-corner treatment as project imagery. */
-.inline-video {
+
+.video{
   display: block;
+  object-fit: cover;
+  /*border-radius: var(--image-radius);*/
+}
+
+   .inline-video {
+
   width: 100%;
   max-width: 700px;
   height: auto;
   /*aspect-ratio: 5 / 3;*/
-  object-fit: cover;
-  /*border-radius: var(--image-radius);*/
   background-color: var(--paper);
   margin-bottom: 1.5rem;
+}
+
+.video-carousel {
+  width: 100%;
+  /*max-width: 700px;*/
+  height: auto;
+  /*aspect-ratio: 5 / 3;*/
+  background-color: var(--paper);
 }
 
 .project-nav {

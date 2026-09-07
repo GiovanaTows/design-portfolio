@@ -213,11 +213,32 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
 
   let current = 0;
 
+  // Videos inside carousel slides need different handling than a
+  // standalone video: visibility alone (the observer below) can't
+  // express "which slide is active", so playback is driven directly by
+  // show() instead — only the current slide's video ever plays, the
+  // one being switched away from is always paused, and the one being
+  // switched to always restarts from frame one rather than resuming
+  // wherever an earlier view left it.
+  const slideVideos = slides.map((slide) => slide.querySelector('video'));
+  const hasSlideVideos = slideVideos.some(Boolean);
+  let carouselVisible = false;
+
   function show(index) {
+    const previous = current;
     current = (index + slides.length) % slides.length;
     track.style.transform = `translateX(-${current * 100}%)`;
     if (caption) caption.textContent = slides[current].dataset.caption || '';
     dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+
+    if (hasSlideVideos) {
+      if (previous !== current) slideVideos[previous]?.pause();
+      const incoming = slideVideos[current];
+      if (incoming) {
+        incoming.currentTime = 0;
+        if (carouselVisible) incoming.play().catch(() => {});
+      }
+    }
   }
 
   prevBtn?.addEventListener('click', () => show(current - 1));
@@ -286,6 +307,22 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
       didSwipe = false;
     }
   }, true);
+
+  // Pauses the active slide's video when the carousel itself scrolls
+  // out of view, and resumes it (from wherever it was, not restarted —
+  // only a slide change restarts from zero) once it scrolls back in.
+  if (hasSlideVideos) {
+    const carouselVideoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        carouselVisible = entry.isIntersecting;
+        const video = slideVideos[current];
+        if (!video) return;
+        if (carouselVisible) video.play().catch(() => {});
+        else video.pause();
+      });
+    });
+    carouselVideoObserver.observe(viewport);
+  }
 
   show(0);
 });
@@ -692,8 +729,13 @@ if (lazyIframes.length) {
 // Pause/resume looping inline videos based on visibility — they decode
 // continuously while playing, so there's no reason to keep spending
 // CPU/battery on a video the user has scrolled past. Resumes on its
-// own once it's back in view.
-const inlineVideos = document.querySelectorAll('.inline-video');
+// own once it's back in view. Carousel-slide videos are excluded: the
+// .project-carousel logic above already controls their play/pause
+// based on which slide is active, and having both observers act on
+// the same element would fight over its playback state.
+const inlineVideos = Array.from(document.querySelectorAll('.video')).filter(
+  (video) => !video.closest('.carousel-slide')
+);
 if (inlineVideos.length) {
   // Swap in the lighter mobile file on narrow screens. Done in JS
   // rather than a <source media="..."> child — browser support for
