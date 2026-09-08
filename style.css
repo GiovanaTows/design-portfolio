@@ -44,9 +44,8 @@ body {
   --link-hover: #2232c1;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --carousel-bg-plots:#363636;
-  --carousel-bg-civi:#E6E6E6;
-  --carousel-bg-omnitrack:#E6E6E6;
   --carousel-bg-white:#FFFFFF;
+  --carousel-bg-grey:#E6E6E6;
   --image-radius: 4px;    /* project cards, hero/figure/carousel images, lightbox */
 }
 
@@ -816,6 +815,11 @@ body {
   align-items: top;
   margin-bottom: 1.5rem;
   /*margin: 2rem 0;*/
+  
+}
+
+.project-specs-haus {
+  grid-template-columns: auto auto auto;
 }
 
 .project-specs-plots {
@@ -1087,6 +1091,9 @@ body {
 
 .project-body li {
   margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
 }
 
 /* Case-study screenshots: image + caption, full width of the text column */
@@ -1244,17 +1251,21 @@ body {
 .carousel-bg-plots {
   background-color: var(--carousel-bg-plots);
 }
-
+/*
 .carousel-bg-civi {
   background-color: var(--carousel-bg-civi);
 }
 
 .carousel-bg-omnitrack {
   background-color: var(--carousel-bg-omnitrack);
-}
+}*/
 
 .carousel-bg-white {
   background-color: var(--carousel-bg-white);
+}
+
+.carousel-bg-grey {
+  background-color: var(--carousel-bg-grey);
 }
 
 .carousel-viewport:active {
