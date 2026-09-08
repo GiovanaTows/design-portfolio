@@ -846,6 +846,10 @@ body {
   grid-template-columns: fit-content(160px) fit-content(200px) auto;
 }
 
+.project-specs-haus {
+  grid-template-columns: fit-content(160px) fit-content(220px) auto;
+}
+
 
 .project-specs-1 {
   grid-template-columns: auto;
