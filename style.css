@@ -1908,6 +1908,34 @@ body {
   color: #2e7d32;
 }
 
+/* Toolkit badges — icon + name pills, sitting under the Skills & tools
+   grid. Reuses the same muted paper tone as the "On this page" index
+   box, just in pill form. */
+.toolkit-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.toolkit-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  background-color: var(--index);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.toolkit-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  fill: var(--ink);
+}
+
 /* ============================================
    11. CONTACT SECTION — social icon row
    ============================================ */
