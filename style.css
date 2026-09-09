@@ -811,19 +811,22 @@ body {
 
 .project-specs {
   display: grid;
-  gap: 1.5rem 3rem; /* row-gap column-gap */
+  gap: 1rem  1rem; /* row-gap column-gap */
   align-items: top;
-  margin-bottom: 1.5rem;
+  /*margin-bottom: 0.5rem;*/
   /*margin: 2rem 0;*/
+
+  grid-template-columns: auto auto auto;
   
 }
 
+/*
 .project-specs-haus {
   grid-template-columns: auto auto auto;
 }
 
 .project-specs-plots {
-  grid-template-columns: fit-content(160px) fit-content(200px) auto;
+  grid-template-columns: auto auto auto;
 }
 
 .project-specs-civi {
@@ -848,7 +851,7 @@ body {
 
 .project-specs-haus {
   grid-template-columns: fit-content(160px) fit-content(220px) auto;
-}
+}*/
 
 
 .project-specs-1 {
@@ -867,7 +870,7 @@ body {
   grid-template-columns: auto auto auto auto !important;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1074px) {
   .project-specs-plots {
     grid-template-columns: 1fr !important;
   }
@@ -879,17 +882,19 @@ body {
   }
 }
 
-@media (max-width: 910px) {
+@media (max-width: 1020px) {
   .project-specs-civi {
     grid-template-columns: 1fr !important;
   }
 }
 
 @media (max-width: 890px) {
+  /*
   .project-specs-plots {
     grid-template-columns: fit-content(90px) fit-content(200px) fit-content(150px);
-    gap: 1.5rem 4rem; /* row-gap column-gap */
+    gap: 1.5rem 4rem;
   }
+  */
 
   .project-specs-civi {
     grid-template-columns: fit-content(200px) fit-content(200px) fit-content(150px);
@@ -1421,8 +1426,8 @@ body {
 .project-header-columns {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  align-items: center;
-  gap: 3rem;
+  align-items: start;
+  gap: 2rem;
   margin-top: 2rem;
   padding: 0;
   justify-content: center;
@@ -1436,17 +1441,23 @@ body {
   padding: 0;
 }
 
-@media (max-width: 730px) {
+@media (max-width: 940px) {
   .project-header-columns {
     grid-template-columns: 1fr;
   }
 
   .project-index {
     max-width: 250px;
-    background-color: var(--paper);
+    /*background-color: var(--paper);
     padding: 0;
     margin-top: -1rem;
-    box-shadow: none;
+    box-shadow: none;*/
+
+    min-width: 210px;
+    background-color: var(--index);
+    border-radius: 4px;
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
   }
 
   .project-index ul {
@@ -1465,7 +1476,7 @@ body {
    regardless of how tall the H1/subtitle above happen to be). It's
    positioned only — it scrolls away normally with the rest of the
    header, it doesn't stay pinned as you scroll the page. */
-@media (min-width: 1060px) {
+@media (min-width: 840px) {
   .project-header-columns {
     position: relative;
     grid-template-columns: 1fr;
@@ -1911,12 +1922,12 @@ body {
 /* Toolkit badges — icon + name pills, sitting under the Skills & tools
    grid. Reuses the same muted paper tone as the "On this page" index
    box, just in pill form. */
-.toolkit-grid {
+.badge-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
-  margin-top: 0.8rem;
-  margin-bottom: 2.5rem;
+  margin-top: 0.7rem;
+  margin-bottom: 2.2rem;
 }
 
 .badge {
@@ -1929,15 +1940,22 @@ body {
   font-size: 0.9rem;
   color: var(--ink);
   text-decoration: none;
+  cursor: default;
   transition: background-color 0.15s ease;
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
 
-.badge:hover,
-.badge:focus-visible {
+a.badge {
+  color: var(--ink);
+  cursor: pointer;
+}
+
+a.badge:hover,
+a.badge:focus-visible {
   background-color: #e4e2db;
 }
 
-.toolkit-icon {
+.badge-icon {
   width: 1.1rem;
   height: 1.1rem;
   flex-shrink: 0;
