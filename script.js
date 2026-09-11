@@ -71,7 +71,7 @@ function setUpUnderlineHover(el) {
   setUpSweepHover(el, 'underline-hover-overlay', 'underline', 350);
 }
 
-document.querySelectorAll('.index-nav a, .back-link, .timeline-link, .link a, .project-nav a, .inline-link')
+document.querySelectorAll('.index-nav a, .back-link, .timeline-link, .link a, .project-nav a, .inline-link, .project-index a')
   .forEach(setUpUnderlineHover);
 
 document.querySelectorAll('.social-links a, .social-links .copy-email-btn')

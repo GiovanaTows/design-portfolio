@@ -982,6 +982,11 @@ body {
   gap: 0.5rem;
 }
 
+.project-index a {
+  position: relative;
+  display: inline-block;
+}
+
 
 
 .project-header a {
@@ -1604,12 +1609,15 @@ body {
   aspect-ratio: 3 / 1;
   height: auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+  border-radius: var(--image-radius);
 }
 
 .figma-imbeded-div {
   position: relative;
   background-color: #ffffff;
+  border-radius: var(--image-radius);
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .figma-loading-spinner {
