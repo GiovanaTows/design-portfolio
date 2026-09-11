@@ -51,6 +51,7 @@
             <div class="badge-grid">
               <div class="badge">Product Designer</div>
               <div class="badge">UX/UI Designer</div>
+              <div class="badge">Freelancer</div>
             </div>
           </div>
           <div>
@@ -64,15 +65,16 @@
           <div>
             <dt>Timeline</dt>
             <div class="badge-grid">
-              <div class="badge">Jul – Aug 2022</div>
+              <div class="badge">Jul 2022</div>
               <div class="badge">1 month</div>
+              <div class="badge">Part-time</div>
             </div>
           </div>
         </dl>
         <dl class="project-specs-2">
           <div>
             <dt>Team</dt>
-            <dd style="max-width: 610px;">I worked directly with Felipe C., SupplyCyber's CEO, as the sole designer on the project.</dd>
+            <dd style="max-width: 610px;">Sole designer on the project, working directly with the founder.</dd>
           </div>
         </dl>
       </div>
@@ -81,8 +83,12 @@
           <p class="project-index-label">On this page</p>
           <ul>
             <li><a href="#overview">1. Overview</a></li>
-            <li><a href="#pitch-deck">2. Pitch deck</a></li>
-            <li><a href="#prototype">3. Prototype</a></li>
+            <li><a href="#pitch-deck">2. The problem</a></li>
+            <li><a href="#how-it-works">3. The solution</a></li>
+            <li><a href="#visual-identity">4. Visual Identity</a></li>
+            <li><a href="#design-system">5. Design System</a></li>
+            <li><a href="#prototype">6. Prototype</a></li>
+            <li><a href="#conclusion">7. Conclusion</a></li>
           </ul>
         </nav>
       </div>
@@ -101,48 +107,97 @@
 
     <div class="topic-divider topic-divider-first" id="overview">
       <h2>Overview</h2>
-      <p style="max-width:700px;">
-        SupplyCyber is a cybersecurity compliance platform that audits and monitors the transportation providers a company relies on — carriers and brokers that are often left out of standard vendor security checks, even though a breach on their end can spread straight back to the client.
-      </p>
-      <p style="max-width:700px;">
-        Felipe C., SupplyCyber's CEO, brought me on to give the idea a visual identity and a way to pitch it. We agreed on three deliverables: a basic logo and visual identity, a 7-slide pitch deck, and a high-fidelity Figma prototype of the web app with a few interactions across 4 screens.
-      </p>
-      <!--<p>Felipe Capella</p>-->
-      <p style="max-width:700px;">
-        The deadline was July 31, 2022; I delivered within the 2–3 week window we'd agreed on.
-      </p>
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            SupplyCyber audits and monitors the transportation providers a company relies on — carriers and brokers that standard vendor security checks often miss, even though a breach on their end can spread straight back to the client.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            Felipe C., CEO and co-founder of Loadsmart, invited me to bring this idea to life. We agreed on three deliverables: a logo and visual identity, a pitch deck for investors, and a high-fidelity Figma prototype of the web app.
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="topic-divider" id="pitch-deck">
-      <h2>Pitch deck</h2>
-      <p style="max-width:700px;">
-        The deck builds the case for SupplyCyber before showing the product: cyberattacks on supply chains and transportation are rising, that risk extends to the client's own operations, and there's no efficient way to audit it today — which is where SupplyCyber comes in.
-      </p>
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>The problem</h2>
+          <p style="max-width:700px;">
+            The deck builds the case before showing the product: cyberattacks on supply chains and transportation are rising, that risk extends to the client's own operations, and there's no efficient way to audit it today — which is where SupplyCyber comes in.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport" style="aspect-ratio: 16 / 9;">
+              <div class="carousel-track">
+            <!--<div class="carousel-slide" data-caption="Pitch deck — Cover">
+              <img src="../images/projects/supplycyber/pitch-deck/page-01.webp" alt="SupplyCyber pitch deck — Cover" loading="lazy">
+            </div>-->
+            <div class="carousel-slide" data-caption="Pitch deck — Page 1">
+              <img src="../images/projects/supplycyber/pitch-deck/page-02.webp" alt="SupplyCyber pitch deck — Cyberattacks focusing on supply chain and transportation are increasing" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Pitch deck — Page 2">
+              <img src="../images/projects/supplycyber/pitch-deck/page-03.webp" alt="SupplyCyber pitch deck — Backbone of your supply chain are at risk" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Pitch deck — Page 3">
+              <img src="../images/projects/supplycyber/pitch-deck/page-04.webp" alt="SupplyCyber pitch deck — ...and they are also a threat to you" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Pitch deck — Page 4">
+              <img src="../images/projects/supplycyber/pitch-deck/page-05.webp" alt="SupplyCyber pitch deck — Now, let's be honest" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Pitch deck — Page 5">
+              <img src="../images/projects/supplycyber/pitch-deck/page-06.webp" alt="SupplyCyber pitch deck — Now you know that" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Pitch deck — Page 6">
+              <img src="../images/projects/supplycyber/pitch-deck/page-07.webp" alt="SupplyCyber pitch deck — Now you have 3 options" loading="lazy">
+            </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="topic-divider" id="how-it-works">
+      <h2>The solution</h2>
+      <p style="max-width:700px;">
+        Past the pitch, the deck walks through how the product works: auditing every carrier, grading them, and letting the client set thresholds and track improvement over time.
+      </p>
       <div class="project-carousel">
-        <div class="carousel-viewport">
+        <div class="carousel-viewport" style="aspect-ratio: 16 / 9;">
           <div class="carousel-track">
-            <div class="carousel-slide" data-caption="Cover">
-              <img src="../images/projects/supplycyber/deck-01-cover.webp" alt="SupplyCyber pitch deck — Cover slide" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="Cyberattacks focusing on supply chain and transportation are increasing">
-              <img src="../images/projects/supplycyber/deck-02-cyberattacks-increasing.webp" alt="Pitch deck slide — Cyberattacks focusing on supply chain and transportation are increasing" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="Backbone of your supply chain are at risk">
-              <img src="../images/projects/supplycyber/deck-03-backbone-at-risk.webp" alt="Pitch deck slide — Backbone of your supply chain are at risk" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="...and they are also a threat to you">
-              <img src="../images/projects/supplycyber/deck-04-threat-to-you.webp" alt="Pitch deck slide — and they are also a threat to you" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="Now you know that">
-              <img src="../images/projects/supplycyber/deck-05-now-you-know.webp" alt="Pitch deck slide — Now you know that" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="Now you have 3 options">
-              <img src="../images/projects/supplycyber/deck-06-three-options.webp" alt="Pitch deck slide — Now you have 3 options" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="Thank you">
-              <img src="../images/projects/supplycyber/deck-07-thank-you.webp" alt="Pitch deck slide — Thank you" loading="lazy">
-            </div>
+        <div class="carousel-slide" data-caption="Pitch deck — Page 7">
+          <img src="../images/projects/supplycyber/pitch-deck/page-08.webp" alt="SupplyCyber pitch deck — How it works" loading="lazy">
+        </div>
+        <div class="carousel-slide" data-caption="Pitch deck — Page 8">
+          <img src="../images/projects/supplycyber/pitch-deck/page-09.webp" alt="SupplyCyber pitch deck — How it works — audit, thresholds, and monitoring" loading="lazy">
+        </div>
+        <div class="carousel-slide" data-caption="Pitch deck — Page 9">
+          <img src="../images/projects/supplycyber/pitch-deck/page-10.webp" alt="SupplyCyber pitch deck — Carriers list with grades" loading="lazy">
+        </div>
+        <div class="carousel-slide" data-caption="Pitch deck — Page 10">
+          <img src="../images/projects/supplycyber/pitch-deck/page-11.webp" alt="SupplyCyber pitch deck — Carrier details" loading="lazy">
+        </div>
+        <div class="carousel-slide" data-caption="Pitch deck — Page 11">
+          <img src="../images/projects/supplycyber/pitch-deck/page-12.webp" alt="SupplyCyber pitch deck — Improvement plan" loading="lazy">
+        </div>
+        <div class="carousel-slide" data-caption="Pitch deck — Page 12">
+          <img src="../images/projects/supplycyber/pitch-deck/page-13.webp" alt="SupplyCyber pitch deck — Overall rate and assessment" loading="lazy">
+        </div>
+        <div class="carousel-slide" data-caption="Pitch deck — Page 13">
+          <img src="../images/projects/supplycyber/pitch-deck/page-14.webp" alt="SupplyCyber pitch deck — Carriers comparison chart" loading="lazy">
+        </div>
           </div>
           <button type="button" class="carousel-prev" aria-label="Previous image">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
@@ -156,50 +211,195 @@
       </div>
     </div>
 
-    <div class="topic-divider" id="prototype">
-      <h2>Prototype</h2>
-      <p style="max-width:700px;">
-        Past the pitch, the deck walks through how the product actually works — auditing every carrier, grading them, and letting the client set thresholds and track improvement over time. I designed 4 high-fidelity screens in Figma to support this: the company-wide overview, the carriers list, a carrier's detail view with its remediation plan, and a chart comparing carriers' security levels over time.
-      </p>
 
-      <figure class="project-figure">
-        <img src="../images/projects/supplycyber/screen-how-it-works.webp" alt="Diagram explaining how SupplyCyber's audit, grading, and remediation flow works" loading="lazy">
-        <figcaption>How it works: audit carriers, grade them, act on the results</figcaption>
-      </figure>
-
-      <div class="project-carousel">
-        <div class="carousel-viewport" style="background-color: #ffffff;">
-          <div class="carousel-track">
-            <div class="carousel-slide" data-caption="Company overview — overall rate and assessment">
-              <img src="../images/projects/supplycyber/screen-overview.webp" alt="SupplyCyber screen — Company overview with overall rate and assessment" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="Carriers list with grades">
-              <img src="../images/projects/supplycyber/screen-carriers-list.webp" alt="SupplyCyber screen — Carriers list with grades" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="Carrier details and remediation plan">
-              <img src="../images/projects/supplycyber/screen-carrier-details.webp" alt="SupplyCyber screen — Carrier details and remediation plan" loading="lazy">
-            </div>
-            <div class="carousel-slide" data-caption="Carriers comparison chart">
-              <img src="../images/projects/supplycyber/screen-carriers-comparison.webp" alt="SupplyCyber screen — Carriers comparison chart" loading="lazy">
-            </div>
-          </div>
-          <button type="button" class="carousel-prev" aria-label="Previous image">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-          </button>
-          <button type="button" class="carousel-next" aria-label="Next image">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
+    <div class="topic-divider" id="visual-identity">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Visual Identity</h2>
+          <p style="max-width:700px;">
+            I created the mark by combining a shield and two arrows forming the letter "S" of SupplyCyber. The shield represents security, and the arrows — pointing back and forth — represent the flow of trucks the platform monitors.
+          </p>
+          <p style="max-width:700px;">
+            The bright bluish-purple is a color typicaly associated to technology while green is associated with something positive, good and safe.
+          </p>
+          <p style="max-width:700px;">
+            I explored several directions before narrowing down to this concept together with the founder.
+          </p>
         </div>
-        <p class="carousel-caption"></p>
-        <div class="carousel-dots"></div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="../images/projects/supplycyber/visual-identity/logo-process.webp" alt="SupplyCyber logo process — Adobe Illustrator" loading="lazy">
+            <figcaption>SupplyCyber branding process — Adobe Illustrator</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="topic-divider" id="design-system">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Design System</h2>
+          <p style="max-width:700px;">
+            To move fast without sacrificing consistency, I built an initial design system based on Material Design — Google's open-source design language with a well-tested library of components for buttons, cards, navigation, dialogs, and inputs.
+          </p>
+          <p style="max-width:700px;">
+            Adapting it let me focus on SupplyCyber's data-dense interface instead of reinventing every UI pattern, with components built for both light and dark themes.
+          </p>
+          <p style="max-width:700px;">
+            <a class="inline-link" href="https://www.figma.com/design/NI2zARE10fLafy6o2SUnCh/Portfolio---SupplyCyber?node-id=1-10492" target="_blank" rel="noopener noreferrer">Explore the full design system</a>.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport" style="background-color: #EFEFFF;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Full component library overview">
+                  <img src="../images/projects/supplycyber/ds/supplycyber-ds.webp" alt="SupplyCyber design system — Full component library overview" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Colors">
+                  <img src="../images/projects/supplycyber/ds/18-colors.webp" alt="SupplyCyber design system — Colors" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Icons">
+                  <img src="../images/projects/supplycyber/ds/19-icons.webp" alt="SupplyCyber design system — Icons" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Typography">
+                  <img src="../images/projects/supplycyber/ds/17-typography.webp" alt="SupplyCyber design system — Typography" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Buttons">
+                  <img src="../images/projects/supplycyber/ds/01-buttons.webp" alt="SupplyCyber design system — Buttons" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Icon buttons">
+                  <img src="../images/projects/supplycyber/ds/02-icon-buttons.webp" alt="SupplyCyber design system — Icon buttons" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Cards">
+                  <img src="../images/projects/supplycyber/ds/03-cards.webp" alt="SupplyCyber design system — Cards" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Chips">
+                  <img src="../images/projects/supplycyber/ds/04-chips.webp" alt="SupplyCyber design system — Chips" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Dialogs">
+                  <img src="../images/projects/supplycyber/ds/05-dialogs.webp" alt="SupplyCyber design system — Dialogs" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — FABs (Floating Action Buttons)">
+                  <img src="../images/projects/supplycyber/ds/06-fabs.webp" alt="SupplyCyber design system — FABs (Floating Action Buttons)" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Menu">
+                  <img src="../images/projects/supplycyber/ds/07-menu.webp" alt="SupplyCyber design system — Menu" loading="lazy">
+                </div>
+                <!--<div class="carousel-slide" data-caption="SupplyCyber design system — Charts">
+                  <img src="../images/projects/supplycyber/ds/08-charts.webp" alt="SupplyCyber design system — Charts" loading="lazy">
+                </div>-->
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Navigation bars">
+                  <img src="../images/projects/supplycyber/ds/09-navigation-bars.webp" alt="SupplyCyber design system — Navigation bars" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Navigation drawer">
+                  <img src="../images/projects/supplycyber/ds/10-navigation-drawer.webp" alt="SupplyCyber design system — Navigation drawer" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Navigation rails">
+                  <img src="../images/projects/supplycyber/ds/11-navigation-rails.webp" alt="SupplyCyber design system — Navigation rails" loading="lazy">
+                </div>
+                <!--<div class="carousel-slide" data-caption="SupplyCyber design system — Page navigation & side bar">
+                  <img src="../images/projects/supplycyber/ds/12-page-navigation-and-side-bar.webp" alt="SupplyCyber design system — Page navigation & side bar" loading="lazy">
+                </div>-->
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Text fields">
+                  <img src="../images/projects/supplycyber/ds/13-text-fields.webp" alt="SupplyCyber design system — Text fields" loading="lazy">
+                </div>
+                <!--<div class="carousel-slide" data-caption="SupplyCyber design system — Top app bars">
+                  <img src="../images/projects/supplycyber/ds/14-top-app-bars.webp" alt="SupplyCyber design system — Top app bars" loading="lazy">
+                </div>-->
+                <!--<div class="carousel-slide" data-caption="SupplyCyber design system — Bottom app bars">
+                  <img src="../images/projects/supplycyber/ds/15-bottom-app-bars.webp" alt="SupplyCyber design system — Bottom app bars" loading="lazy">
+                </div>-->
+                <div class="carousel-slide" data-caption="SupplyCyber design system — Switch">
+                  <img src="../images/projects/supplycyber/ds/16-switch.webp" alt="SupplyCyber design system — Switch" loading="lazy">
+                </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
       </div>
 
-      <p style="max-width:700px; margin-top: 1.5rem;">
-        Try the interactive prototype below, or <a class="inline-link" href="https://www.figma.com/proto/NI2zARE10fLafy6o2SUnCh/Portfolio-%2F-SupplyCyber?page-id=0%3A1&node-id=1-2751&viewport=493%2C713%2C0.11&scaling=min-zoom&starting-point-node-id=1%3A3270" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.
-      </p>
+      <!--<div>
+        <iframe class="figma-imbeded" style="aspect-ratio: 16 / 9;" src="https://embed.figma.com/design/NI2zARE10fLafy6o2SUnCh/Portfolio---SupplyCyber?node-id=1-10492&embed-host=share" allowfullscreen></iframe>
+      </div>-->
+    </div>
 
-      <div>
-        <iframe class="figma-imbeded" style="aspect-ratio: 3 / 4;" data-src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNI2zARE10fLafy6o2SUnCh%2FPortfolio-%252F-SupplyCyber%3Fpage-id%3D0%253A1%26node-id%3D1%253A2751%26viewport%3D493%252C713%252C0.11%26scaling%3Dmin-zoom%26starting-point-node-id%3D1%253A3270" allowfullscreen></iframe>
+    
+
+    <div class="topic-divider" id="prototype">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Prototype</h2>
+          <p style="max-width:700px;">
+            I designed 4 high-fidelity screens in Figma to support this: the company-wide overview, the carriers list, a carrier's detail view with its remediation plan, and a chart comparing carriers' security levels over time.
+          </p>
+           <p style="max-width:700px; margin-top: 1.5rem;">
+            Try the interactive prototype below, or <a class="inline-link" href="https://www.figma.com/proto/NI2zARE10fLafy6o2SUnCh/Portfolio-%2F-SupplyCyber?page-id=0%3A1&node-id=1-2751&viewport=493%2C713%2C0.11&scaling=min-zoom&starting-point-node-id=1%3A3270" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="../images/projects/supplycyber/supplycyber-figma.webp" alt="SupplyCyber screens created on Figma" loading="lazy">
+            <figcaption>SupplyCyber screens created on Figma</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="figma-imbeded-div">
+        <div class="figma-loading-spinner" aria-hidden="true"></div>
+        <iframe class="figma-imbeded" style="aspect-ratio: 3 / 2;" src="https://embed.figma.com/proto/NI2zARE10fLafy6o2SUnCh/Portfolio---SupplyCyber?node-id=1-3270&viewport=1238%2C1566%2C0.48&scaling=contain&content-scaling=fixed&starting-point-node-id=1%3A3270&page-id=0%3A1&embed-host=share" allowfullscreen onload="this.previousElementSibling.style.display='none'"></iframe>
+      </div>
+    </div>
+
+
+    
+
+    <div class="topic-divider" id="conclusion">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Conclusion</h2>
+          <p style="max-width:700px;">
+            In one month, working solo, I helped turn an early idea into something investors could see and understand — complete with a visual identity, a pitch deck, a design system, and a high-fidelity prototype.
+          </p>
+          <p style="max-width:700px;">
+            Together, they gave SupplyCyber a credible story for investor conversations and a solid design foundation to build on afterward.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport" style="aspect-ratio: 16 / 9;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Pitch deck — Page 14">
+                  <img src="../images/projects/supplycyber/pitch-deck/page-15.webp" alt="SupplyCyber pitch deck — November 2022 — Solution in Place" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Pitch deck — Page 15">
+                  <img src="../images/projects/supplycyber/pitch-deck/page-16.webp" alt="SupplyCyber pitch deck — What's next" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Pitch deck — Conclusion">
+                  <img src="../images/projects/supplycyber/pitch-deck/page-17.webp" alt="SupplyCyber pitch deck — Thank you" loading="lazy">
+                </div>
+              </div>
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
       </div>
     </div>
 
