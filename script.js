@@ -921,22 +921,22 @@ document.querySelectorAll('.typewriter').forEach(el => {
   })();
 });
 
-// Section H2s fade/slide in the first time they scroll into view (see
-// the ".h2-reveal" comment in style.css for why the hidden starting
-// state is applied here in JS rather than living directly on the base
-// h2 selector — it keeps headings visible by default if this script
-// never runs). Skipped entirely under prefers-reduced-motion, or if
-// IntersectionObserver isn't supported, so headings just render
+// Section H2s fade/slide in every time they scroll into view — and
+// back out (removing .in-view) once they leave, so scrolling back up
+// or down past one replays the animation instead of it firing only
+// once (see the ".h2-reveal" comment in style.css for why the hidden
+// starting state is applied here in JS rather than living directly on
+// the base h2 selector — it keeps headings visible by default if this
+// script never runs). Skipped entirely under prefers-reduced-motion,
+// or if IntersectionObserver isn't supported, so headings just render
 // normally with no animation in either case.
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const revealHeadings = document.querySelectorAll('main h2:not(.visually-hidden)');
   if (revealHeadings.length) {
     revealHeadings.forEach(h => h.classList.add('h2-reveal'));
-    const headingObserver = new IntersectionObserver((entries, observer) => {
+    const headingObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
       });
     }, { threshold: 0.15 });
     revealHeadings.forEach(h => headingObserver.observe(h));
