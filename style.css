@@ -970,6 +970,12 @@ body {
   #omnitrack-website-tools{ width: 358px; }
 }
 
+/* Tools is still fixed-width at this point — same overflow as
+   Enkontra/Haus above, so cap it to 100% for phones too. */
+@media (max-width: 640px) {
+  #omnitrack-website-tools{ width: 100%; }
+}
+
 
 
 /* Civi */
@@ -1054,6 +1060,17 @@ body {
   #enkontra-timeline { width: 255px; }
 }
 
+/* Below that, on phones, none of the widths above leave enough room —
+   .badge-block's own max-width: 100% safety net doesn't reliably
+   catch this because the grid column it sits in sizes itself to fit
+   the badge's declared width in the first place, so the fixed px
+   width just wins and overflows past the header's padding on both
+   sides (the column is centered, so it bleeds evenly left and right). */
+@media (max-width: 640px) {
+  #enkontra-tools { width: 100%; }
+  #enkontra-timeline { width: 100%; }
+}
+
 /* Haus */
 #haus-role { width: 134px; }
 #haus-tools { width: 364px; }
@@ -1076,6 +1093,13 @@ body {
 @media (max-width: 840px) {
   #haus-role { width: 134px; }
   #haus-tools { width: 364px; }
+}
+
+/* ...but that re-fixes them wider than a phone screen — same overflow
+   as Enkontra above, so cap them back to 100% below that. */
+@media (max-width: 640px) {
+  #haus-role { width: 100%; }
+  #haus-tools { width: 100%; }
 }
 
 /* Motion Graphics */
@@ -1205,6 +1229,14 @@ body {
 #plots-role { width: 215px; }
 #plots-tools { width: 100px; }
 #plots-timeline { width: 340px; }
+
+/* No breakpoints at all above, so timeline (340px) overflows a phone
+   screen outright — same fix as Enkontra/Haus/Omnitrack Website. */
+@media (max-width: 640px) {
+  #plots-role { width: 100%; }
+  #plots-tools { width: 100%; }
+  #plots-timeline { width: 100%; }
+}
 
 /* SupplyCyber */
 #supplycyber-role { width: 240px; }
@@ -2250,7 +2282,7 @@ a:focus-visible .badge-specs {
   }
 
   /* TRIANGLE BADGE */
-  .timeline-date .badge:first-child::before {
+  /*.timeline-date .badge:first-child::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -2261,7 +2293,7 @@ a:focus-visible .badge-specs {
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-right: 6px solid var(--index);
-  }
+  }*/
 
   .timeline-date .badge:first-child::after {
     display:none;
@@ -2526,7 +2558,7 @@ a:focus-visible .badge-specs {
 }
 
 @media (max-width: 1056px) {
-  .research-testing{ max-width: 300px; }
+  .research-testing{ max-width: 400px; }
 }
 
 .badge {
