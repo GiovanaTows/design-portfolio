@@ -2135,7 +2135,9 @@ a:focus-visible .badge-specs {
 
   /* TIMELINE BADGE */
   .timeline-date {
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     padding-left: 60px;
     padding-bottom: 0.5rem;
   }
