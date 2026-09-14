@@ -268,6 +268,28 @@ body {
   margin-bottom: 2rem;
 }
 
+/* Homepage tagline: types out "I love creating <word>!" on load, then
+   loops — backspacing only the word (never the fixed "I love creating"
+   part) and typing the next one in from script.js's TYPEWRITER_WORDS.
+   aria-hidden since a screen reader reading out every keystroke would
+   be unusable; the .visually-hidden sibling right after it in the
+   markup gives screen readers the same sentence as a single static
+   read instead. */
+.typewriter-cursor {
+  animation: typewriter-blink 1s step-end infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none;
+  }
+}
+
 /* ============================================
    5. PROJECT GRID
    ============================================ */
@@ -821,7 +843,7 @@ body {
 .project-specs > div {
   /*flex: 0 1 auto;*/
   max-width: 260px;
-  background-color:#2455e6;
+  /*ackground-color:#2455e6;*/
 }
 
 /* Float-based alternative to .project-specs' flexbox, same goal:

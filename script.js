@@ -854,3 +854,69 @@ document.querySelectorAll('.copy-email-btn').forEach(btn => {
     }
   });
 });
+
+// Homepage tagline typewriter: types "<prefix><word>" out on load, then
+// loops through the word list forever — backspacing down to the end of
+// the (never-deleted) prefix and typing the next word back in. The
+// prefix/word split lives in data attributes (see index.html's
+// .typewriter span) rather than hardcoded here, so the sentence and
+// word list can be edited without touching this file. Reusing the same
+// typeString() call for both the very first render and every later
+// word works because it always types forward from the element's
+// current text length — on the first call that's 0 (so it types the
+// whole prefix+word), and on every call after a delete it's exactly
+// prefix.length (so it only types the new word).
+document.querySelectorAll('.typewriter').forEach(el => {
+  const textEl = el.querySelector('.typewriter-text');
+  const prefix = el.dataset.prefix || '';
+  const words = (el.dataset.words || '').split(',').map(w => w.trim()).filter(Boolean);
+  if (!textEl || !words.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    textEl.textContent = prefix + words[0];
+    return;
+  }
+
+  const TYPE_MS = 70;
+  const DELETE_MS = 40;
+  const PAUSE_AFTER_TYPE_MS = 1800;
+  const PAUSE_AFTER_DELETE_MS = 300;
+
+  const typeString = (target, speed, done) => {
+    let i = textEl.textContent.length;
+    (function step() {
+      textEl.textContent = target.slice(0, i);
+      i++;
+      if (i <= target.length) {
+        setTimeout(step, speed);
+      } else {
+        done();
+      }
+    })();
+  };
+
+  const deleteToLength = (minLength, speed, done) => {
+    (function step() {
+      if (textEl.textContent.length > minLength) {
+        textEl.textContent = textEl.textContent.slice(0, -1);
+        setTimeout(step, speed);
+      } else {
+        done();
+      }
+    })();
+  };
+
+  let wordIndex = 0;
+  textEl.textContent = '';
+
+  (function loop() {
+    typeString(prefix + words[wordIndex], TYPE_MS, () => {
+      setTimeout(() => {
+        deleteToLength(prefix.length, DELETE_MS, () => {
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(loop, PAUSE_AFTER_DELETE_MS);
+        });
+      }, PAUSE_AFTER_TYPE_MS);
+    });
+  })();
+});
