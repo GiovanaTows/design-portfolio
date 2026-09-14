@@ -2018,6 +2018,22 @@ a:focus-visible .badge-specs {
   margin-bottom: 1rem;
 }
 
+/* Lines up "Product Design" / "Graphic design" / "Technical roots"
+   with the content column of the entries below them (175px date
+   column + the 2rem gap after it), instead of sitting flush left with
+   the date badges. Reset on mobile, where the grid collapses to a
+   single column and the content itself no longer starts at that
+   x-position. */
+.timeline-group h3 {
+  margin-left: calc(175px + 2rem);
+}
+
+@media (max-width: 640px) {
+  .timeline-group h3 {
+    margin-left: 0;
+  }
+}
+
 .timeline-entry {
   display: grid;
   grid-template-columns: 175px 1fr;
@@ -2147,6 +2163,10 @@ a:focus-visible .badge-specs {
     align-items: center;
     padding-left: 60px;
     padding-bottom: 0.5rem;
+  }
+
+  .timeline-date .badge {
+    font-size: 0.8rem;
   }
 
   /* TRIANGLE BADGE */
