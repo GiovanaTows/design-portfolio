@@ -821,6 +821,21 @@ body {
   transform: translateX(0);
 }
 
+/* Same left-to-right reveal as the H1/H2 headings above, applied to
+   each timeline logo on the About page instead — same 0.7s speed as
+   the H2s, toggled by the same repeat-on-scroll IntersectionObserver
+   in script.js. */
+.timeline-logo-reveal {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.timeline-logo-reveal.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .project-header .project-meta {
   margin-top: 0.75rem;
   font-size: 1rem;

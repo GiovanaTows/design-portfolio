@@ -946,30 +946,33 @@ document.querySelectorAll('.typewriter').forEach(el => {
   })();
 });
 
-// The page H1 and every section H2 fade/slide in every time they
-// scroll into view — and back out (removing .in-view) once they
-// leave, so scrolling back up or down past one replays the animation
-// instead of it firing only once (see the ".h1-reveal"/".h2-reveal"
-// comments in style.css for why the hidden starting state is applied
-// here in JS rather than living directly on the base h1/h2 rule — it
-// keeps headings visible by default if this script never runs).
-// Skipped entirely under prefers-reduced-motion, or if
-// IntersectionObserver isn't supported, so headings just render
-// normally with no animation in either case. The H1 lives in
-// .project-header, a sibling of <main>, not inside it — hence the
-// separate selector rather than folding it into the h2 one.
+// The page H1, every section H2, and each About-page timeline logo
+// fade/slide in every time they scroll into view — and back out
+// (removing .in-view) once they leave, so scrolling back up or down
+// past one replays the animation instead of it firing only once (see
+// the ".h1-reveal"/".h2-reveal"/".timeline-logo-reveal" comments in
+// style.css for why the hidden starting state is applied here in JS
+// rather than living directly on the base rule — it keeps content
+// visible by default if this script never runs). Skipped entirely
+// under prefers-reduced-motion, or if IntersectionObserver isn't
+// supported, so everything just renders normally with no animation in
+// either case. The H1 lives in .project-header, a sibling of <main>,
+// not inside it — hence the separate selector rather than folding it
+// into the others.
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const revealH1s = document.querySelectorAll('.project-header h1:not(.visually-hidden)');
   const revealH2s = document.querySelectorAll('main h2:not(.visually-hidden)');
+  const revealTimelineLogos = document.querySelectorAll('.timeline-logo-link');
   revealH1s.forEach(h => h.classList.add('h1-reveal'));
   revealH2s.forEach(h => h.classList.add('h2-reveal'));
-  const revealHeadings = [...revealH1s, ...revealH2s];
-  if (revealHeadings.length) {
+  revealTimelineLogos.forEach(l => l.classList.add('timeline-logo-reveal'));
+  const revealElements = [...revealH1s, ...revealH2s, ...revealTimelineLogos];
+  if (revealElements.length) {
     const headingObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         entry.target.classList.toggle('in-view', entry.isIntersecting);
       });
     }, { threshold: 0.15 });
-    revealHeadings.forEach(h => headingObserver.observe(h));
+    revealElements.forEach(el => headingObserver.observe(el));
   }
 }
