@@ -2554,11 +2554,15 @@ a:focus-visible .badge-specs {
 .collaboration-documentation{ max-width: 300px; }
 
 @media (max-width: 1159px) {
-  .development-data{ max-width: 400px; }
+  .development-data{ max-width: 480px; }
+}
+
+@media (max-width: 1008px) {
+  .development-data{ max-width: 340px; }
 }
 
 @media (max-width: 1056px) {
-  .research-testing{ max-width: 400px; }
+  .research-testing{ max-width: 300px; }
 }
 
 .badge {
