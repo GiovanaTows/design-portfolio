@@ -841,14 +841,14 @@ body {
    scroll IntersectionObserver in script.js. */
 .about-portrait-reveal {
   opacity: 0;
-  transform: translateX(-24px);
-  transition: opacity 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-  transition-delay: 0.2s;
+  /*transform: translateX(-24px);*/
+  transition: opacity 2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /*transition-delay: 0.2s;*/
 }
 
 .about-portrait-reveal.in-view {
   opacity: 1;
-  transform: translateX(0);
+  /*transform: translateX(0);*/
 }
 
 .project-header .project-meta {
