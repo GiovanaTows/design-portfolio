@@ -836,6 +836,20 @@ body {
   transform: translateX(0);
 }
 
+/* Same reveal as the H1 next to it, since they sit in the same
+   opening row on the About page — same 1.6s speed, same repeat-on-
+   scroll IntersectionObserver in script.js. */
+.about-portrait-reveal {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.about-portrait-reveal.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .project-header .project-meta {
   margin-top: 0.75rem;
   font-size: 1rem;
@@ -2269,7 +2283,7 @@ a:focus-visible .badge-specs {
   flex-shrink: 0;
   line-height: 0;
   border-radius: 9px;
-  transition: opacity 0.15s ease;
+  transition: opacity 1s ease;
 }
 
 .timeline-logo-link:hover {

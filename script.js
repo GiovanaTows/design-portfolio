@@ -946,11 +946,12 @@ document.querySelectorAll('.typewriter').forEach(el => {
   })();
 });
 
-// The page H1, every section H2, and each About-page timeline logo
-// fade/slide in every time they scroll into view — and back out
-// (removing .in-view) once they leave, so scrolling back up or down
-// past one replays the animation instead of it firing only once (see
-// the ".h1-reveal"/".h2-reveal"/".timeline-logo-reveal" comments in
+// The page H1, every section H2, each About-page timeline logo, and
+// the About-page portrait fade/slide in every time they scroll into
+// view — and back out (removing .in-view) once they leave, so
+// scrolling back up or down past one replays the animation instead of
+// it firing only once (see the ".h1-reveal"/".h2-reveal"/
+// ".timeline-logo-reveal"/".about-portrait-reveal" comments in
 // style.css for why the hidden starting state is applied here in JS
 // rather than living directly on the base rule — it keeps content
 // visible by default if this script never runs). Skipped entirely
@@ -963,10 +964,12 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   const revealH1s = document.querySelectorAll('.project-header h1:not(.visually-hidden)');
   const revealH2s = document.querySelectorAll('main h2:not(.visually-hidden)');
   const revealTimelineLogos = document.querySelectorAll('.timeline-logo-link');
+  const revealPortraits = document.querySelectorAll('.about-portrait');
   revealH1s.forEach(h => h.classList.add('h1-reveal'));
   revealH2s.forEach(h => h.classList.add('h2-reveal'));
   revealTimelineLogos.forEach(l => l.classList.add('timeline-logo-reveal'));
-  const revealElements = [...revealH1s, ...revealH2s, ...revealTimelineLogos];
+  revealPortraits.forEach(p => p.classList.add('about-portrait-reveal'));
+  const revealElements = [...revealH1s, ...revealH2s, ...revealTimelineLogos, ...revealPortraits];
   if (revealElements.length) {
     const headingObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
