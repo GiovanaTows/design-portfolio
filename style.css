@@ -2021,7 +2021,7 @@ a:focus-visible .badge-specs {
 
 .timeline-entry {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 0.5rem 2rem;
   position: relative;
 }
@@ -2035,29 +2035,32 @@ a:focus-visible .badge-specs {
    edge), so the two line up exactly. Hidden on narrow screens, where
    the date column drops above the content instead of sitting beside
    it, so there's no fixed x-position for either to align to anymore. */
+/* LINE TIMELINE */
 .timeline::before,
 .timeline-compact::before {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 176px;
+  top: 1.5rem;
+  bottom: 3rem;
+  left: 200px;
   width: 1px;
   background-color: #e4e2db;
+  /*background-color: var(--muted);*/
 }
 
+/* PIN TIMELINE */
 .timeline-entry::before,
 .timeline-compact-entry::before {
   content: '';
   position: absolute;
-  left: 176px;
-  top: 0.55rem;
-  width: 9px;
-  height: 9px;
+  left: 202px;
+  top: 1.5rem;
+  width: 5px;
+  height: 5px;
   margin-left: -4px;
   border-radius: 50%;
-  background-color: var(--accent);
-  border: 2px solid var(--paper);
+  background-color: var(--muted);
+  /*border: 2px solid var(--paper);*/
 }
 
 @media (max-width: 640px) {
@@ -2227,7 +2230,7 @@ a:focus-visible .badge-specs {
 
 .timeline-compact-entry {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 0.5rem 2rem;
   padding: 1rem 0;
   /*border-bottom: 1px solid #e4e2db;*/
