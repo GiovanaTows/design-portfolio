@@ -11,6 +11,15 @@ html {
   /* This one line is what makes clicking a nav link glide to the
      section instead of jumping instantly. */
   scroll-behavior: smooth;
+  /* Without this, phones in system dark mode render the page's
+     unstyled canvas (the overscroll/bounce area beyond the body, and
+     anything before the stylesheet paints) black instead of this
+     site's light design — color-scheme tells the browser this page is
+     light-only, so it stops following the OS setting there. The
+     <meta name="color-scheme"> tag in each page's <head> does the same
+     thing before the CSS has even loaded. */
+  color-scheme: light;
+  background-color: #faf9f6;
 }
 
 body {
