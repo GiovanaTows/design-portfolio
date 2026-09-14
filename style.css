@@ -2074,7 +2074,7 @@ a:focus-visible .badge-specs {
 
 .timeline-compact-entry .timeline-title-row {
   gap: 0.6rem;
-  margin-bottom: 0.15rem;
+  /*margin-bottom: 0.15rem;*/
 }
 
 .timeline-compact-body {
@@ -2099,6 +2099,16 @@ a:focus-visible .badge-specs {
 .timeline-link:hover,
 .timeline-link:focus-visible {
   color: var(--link-hover);
+}
+
+/* Compact entries don't have a large 49px logo to align under like the
+   featured .timeline-entry ones do — their text column already starts
+   right after the small logo via flex gap, so the base margin-left
+   would double-indent the link relative to the description above it. */
+.timeline-compact-body .timeline-link {
+  margin-left: 0;
+  margin-top: 0.35rem;
+  margin-right: 1.25rem;
 }
 
 .link {
@@ -2152,15 +2162,15 @@ a:focus-visible .badge-specs {
    don't need a full write-up here (most already exist in more detail
    on LinkedIn). */
 .timeline-compact {
-  border-top: 1px solid #e4e2db;
+  /*border-top: 1px solid #e4e2db;*/
 }
 
 .timeline-compact-entry {
   display: grid;
   grid-template-columns: 160px 1fr;
   gap: 0.5rem 2rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid #e4e2db;
+  padding: 1rem 0;
+  /*border-bottom: 1px solid #e4e2db;*/
   font-size: 0.9rem;
 }
 
