@@ -1229,6 +1229,7 @@ a:focus-visible .badge-specs {
   }
   .project-specs > div {
     max-width: 45%;
+    width: 100%;
   }
 }
 
