@@ -2299,16 +2299,14 @@ a:focus-visible .badge-specs {
   position: relative;
 }
 
-/*
 .timeline-compact-entry {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 175px 1fr;
   gap: 0.5rem 2rem;
   padding: 1rem 0;
   font-size: 0.9rem;
   position: relative;
 }
-*/
 
 .timeline-compact-entry .timeline-date {
   padding-top: 0;
