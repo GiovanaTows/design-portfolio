@@ -803,6 +803,26 @@ body {
   }
 }
 
+/* Section H2s fade/slide in the first time they scroll into view,
+   echoing the H1's title-in above but triggered by scroll instead of
+   page load. script.js adds .h2-reveal itself (rather than it living
+   in the base h2 rule) so a heading only ever starts hidden once JS
+   has actually confirmed it can reveal it again — if the script fails
+   to load, h2s simply render normally with no animation, instead of
+   staying invisible. .in-view is added once and never removed, so
+   scrolling back up to a section you've already seen doesn't replay
+   the animation. */
+.h2-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.h2-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .project-header .project-meta {
   margin-top: 0.75rem;
   font-size: 1rem;
