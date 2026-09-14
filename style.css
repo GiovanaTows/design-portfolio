@@ -2016,7 +2016,6 @@ a:focus-visible .badge-specs {
   flex-direction: column;
   gap: 2.5rem;
   margin-bottom: 1rem;
-  position: relative;
 }
 
 .timeline-entry {
@@ -2026,18 +2025,28 @@ a:focus-visible .badge-specs {
   position: relative;
 }
 
+/* Wraps one or more .timeline/.timeline-compact blocks that should
+   read as a single continuous timeline — Experience wraps its
+   "Product Design" / "Graphic design" / "Technical roots" blocks
+   together so the rail runs through all three (and their h3s) instead
+   of restarting at each one; Education wraps its lone block the same
+   way for consistency. Keeping the rail on this shared wrapper rather
+   than on each individual block is what makes that continuity
+   possible — the dots stay positioned per-entry either way. */
+.timeline-group {
+  position: relative;
+}
+
 /* The vertical "rail" running down the timeline, and a dot on it for
    each entry marking where that entry's date badge connects to it.
-   Positioned at 176px — the 160px date column plus half of the 2rem
-   gap after it — on both the line (relative to .timeline/
-   .timeline-compact, which spans the full column) and the dot
-   (relative to its own entry, which starts flush with that same left
-   edge), so the two line up exactly. Hidden on narrow screens, where
-   the date column drops above the content instead of sitting beside
-   it, so there's no fixed x-position for either to align to anymore. */
-/* LINE TIMELINE */
-.timeline::before,
-.timeline-compact::before {
+   Positioned at 200/202px — the date column's width — on both the
+   line (relative to .timeline-group, which spans every block inside
+   it) and the dot (relative to its own entry, which starts flush with
+   that same left edge), so the two line up exactly. Hidden on narrow
+   screens, where the date column drops above the content instead of
+   sitting beside it, so there's no fixed x-position for either to
+   align to anymore. */
+.timeline-group::before {
   content: '';
   position: absolute;
   top: 1.5rem;
@@ -2045,10 +2054,8 @@ a:focus-visible .badge-specs {
   left: 200px;
   width: 1px;
   background-color: #e4e2db;
-  /*background-color: var(--muted);*/
 }
 
-/* PIN TIMELINE */
 .timeline-entry::before,
 .timeline-compact-entry::before {
   content: '';
@@ -2060,12 +2067,10 @@ a:focus-visible .badge-specs {
   margin-left: -4px;
   border-radius: 50%;
   background-color: var(--muted);
-  /*border: 2px solid var(--paper);*/
 }
 
 @media (max-width: 640px) {
-  .timeline::before,
-  .timeline-compact::before,
+  .timeline-group::before,
   .timeline-entry::before,
   .timeline-compact-entry::before {
     display: none;
@@ -2075,21 +2080,45 @@ a:focus-visible .badge-specs {
 .timeline-date {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.4rem;
   padding-top: 0.15rem;
 }
 
 /* Reuses the same pill look as the project pages' Role/Tool/Timeline
-   badges, but the date column here is a fixed 160px — narrower than
+   badges, but the date column here is a fixed 200px — narrower than
    badges normally sit in — so text needs to wrap inside the pill
    instead of the badge's usual white-space: nowrap, which would just
    overflow past the column for longer entries like "3 years,
-   part-time". */
+   part-time". align-items: stretch above makes every badge fill the
+   column's full width, so its right edge lands right at the rail —
+   needed for the first badge's tooltip-style pointer just below to
+   actually touch the line instead of floating short of it. */
 .timeline-date .badge {
+  display: flex;
   white-space: normal;
   text-align: left;
   cursor: default;
+}
+
+/* Tooltip-style pointer on the first (date-range) badge only, aimed
+   at the rail — the other badges in the same column (duration, etc.)
+   are just plain stacked labels underneath it. */
+.timeline-date .badge:first-child {
+  position: relative;
+}
+
+.timeline-date .badge:first-child::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 6px solid var(--index);
 }
 
 .timeline-role {
