@@ -2080,9 +2080,10 @@ a:focus-visible .badge-specs {
 .timeline-date {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-end;
   gap: 0.4rem;
   padding-top: 0.15rem;
+  padding-right: 14px;
 }
 
 /* Reuses the same pill look as the project pages' Role/Tool/Timeline
@@ -2095,7 +2096,6 @@ a:focus-visible .badge-specs {
    needed for the first badge's tooltip-style pointer just below to
    actually touch the line instead of floating short of it. */
 .timeline-date .badge {
-  display: flex;
   white-space: normal;
   text-align: left;
   cursor: default;
