@@ -785,6 +785,8 @@ body {
   line-height: 1.15;
 }
 
+
+
 /* Same fade/slide-from-the-left reveal as the H2s below, just a
    touch slower (1.6s vs 0.7s) since the H1 is the page's one big
    opening move rather than a per-section beat. Toggled by the same
@@ -811,7 +813,7 @@ body {
 .h2-reveal {
   opacity: 0;
   transform: translateX(-24px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .h2-reveal.in-view {
@@ -1221,15 +1223,21 @@ a:focus-visible .badge-specs {
   grid-template-columns: auto auto auto auto !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1300px) {
   .project-specs-4 {
     grid-template-columns: auto auto !important;
   }
+  .project-specs > div {
+    max-width: 45%;
+  }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 740px) {
   .project-specs-4 {
     grid-template-columns: auto !important;
+  }
+  .project-specs > div {
+    max-width: 100%;
   }
 }
 
@@ -1416,6 +1424,12 @@ a:focus-visible .badge-specs {
   font-weight: 300;
   letter-spacing: 0.06em;
 }
+
+.introduction-text{
+  font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+  /*line-height: 2;*/
+}
+/*AQUI*/
 
 .project-body ul {
   margin: 0 0 1rem 1.25rem;
