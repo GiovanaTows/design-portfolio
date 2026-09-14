@@ -1807,7 +1807,7 @@ a:focus-visible .badge-specs {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
-  margin: 2rem 0;
+  margin: 1rem 0 1rem 0;
 }
 
 .split-column .project-figure:first-child {
