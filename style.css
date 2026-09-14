@@ -858,19 +858,12 @@ body {
   max-width: 100%;
 }
 
-/* Same .badge-block pattern rolled out to the other project pages,
-   each block's width picked to roughly fit its own badges (see the
-   Omnitrack Website numbers above for the reasoning). These don't
-   have Omnitrack's own hand-tuned per-breakpoint squeeze — the shared
-   900px fallback below just drops every block to full width once the
-   sidebar itself stacks, matching how the rest of the site collapses
-   at that width. Worth a visual pass on each page since these were
-   sized from content length, not from seeing them rendered. */
-@media (max-width: 900px) {
+/*AQUI*/
+/*@media (max-width: 900px) {
   .badge-block {
     width: 100% !important;
   }
-}
+}*/
 
 /* Omnitrack Website */
 #omnitrack-website-role{ width: 146px; }
@@ -888,11 +881,14 @@ body {
 }
 
 @media (max-width: 840px) {
-  #omnitrack-website-tools{ width: 100%; }
+  #omnitrack-website-role{ width: 146px; }
+  #omnitrack-website-tools{ width: 358px; }
+  #omnitrack-website-timeline{ width: 100%; }
 }
 
-@media (max-width: 645px) {
-  #omnitrack-website-tools{ width: 360px; }
+@media (max-width: 648px) {
+  #omnitrack-website-role{ width: 100%; }
+  #omnitrack-website-tools{ width: 358px; }
 }
 
 
@@ -910,46 +906,149 @@ body {
   #civi-tools { max-width: 450px; }
 }
 
+@media (max-width: 860px) {
+  #civi-role { width: 100%; }
+}
+
 /* Design Sprint 2.0 — Civi */
-#design-sprint-civi-role { width: 155px; }
-#design-sprint-civi-tools { width: 185px; }
-#design-sprint-civi-timeline { width: 140px; }
+#design-sprint-civi-role { width: 290px; }
+#design-sprint-civi-tools { width: 195px; }
+#design-sprint-civi-timeline { width: 150px; }
+
 
 /* Differential Motor */
-#differential-motor-role { width: 150px; }
-#differential-motor-tools { width: 300px; }
-#differential-motor-timeline { width: 235px; }
+#differential-motor-role { width: 240px; }
+#differential-motor-tools { width: 262px; }
+#differential-motor-timeline { width: 228px; }
+
+@media (max-width: 594px) {
+  #differential-motor-role { width: 100%; }
+}
+
+@media (max-width: 1162px) {
+  #differential-motor-tools { width: 140px; }
+}
+
+@media (max-width: 1040px) {
+  #differential-motor-timeline { width: 132px; }
+}
+
+@media (max-width: 944px) {
+  #differential-motor-role { width: 148px; }
+}
+
+@media (max-width: 852px) {
+  #differential-motor-tools { width: 262px; }
+  #differential-motor-timeline { width: 228px; }
+}
+
+@media (max-width: 839px) {
+  #differential-motor-role { width: 100%; }
+}
+
+@media (max-width: 704px) {
+  #differential-motor-tools { width: 262px; }
+  #differential-motor-timeline { width: 228px; }
+}
+
+@media (max-width: 634px) {
+  #differential-motor-tools { width: 140px; }
+  #differential-motor-timeline { width: 132px; }
+}
+
 
 /* Enkontra */
 #enkontra-role { width: 135px; }
-#enkontra-tools { width: 270px; }
-#enkontra-timeline { width: 185px; }
+#enkontra-tools { width: 364px; }
+#enkontra-timeline { width: 255px; }
+
+@media (max-width: 1086px) {
+  #enkontra-tools { width: 242px; }
+}
+
+@media (max-width: 1064px) {
+  #enkontra-timeline { width: 160px; }
+}
+
+@media (max-width: 969px) {
+  #enkontra-tools { width: 364px; }
+  #enkontra-timeline { width: 255px; }
+}
 
 /* Haus */
-#haus-role { width: 135px; }
-#haus-tools { width: 270px; }
-#haus-timeline { width: 185px; }
+#haus-role { width: 134px; }
+#haus-tools { width: 364px; }
+#haus-timeline { width: 256px; }
+
+@media (max-width: 1186px) {
+  #haus-tools { width: 242px; }
+}
+
+@media (max-width: 1067px) {
+  #haus-timeline { width: 160px; }
+}
+
+@media (max-width: 1067px) {
+  #haus-role { width: 100%; }
+  #haus-tools { width: 100%; }
+  #haus-timeline { width: 100%; }
+}
+
+@media (max-width: 840px) {
+  #haus-role { width: 134px; }
+  #haus-tools { width: 364px; }
+}
 
 /* Motion Graphics */
 #motion-graphics-role { width: 265px; }
 #motion-graphics-tools { width: 245px; }
 #motion-graphics-timeline { width: 115px; }
 
+@media (max-width: 895px) {
+  #motion-graphics-role { width: 100%; }
+  #motion-graphics-tools { width: 100%; }
+  #motion-graphics-timeline { width: 100%; }
+}
+
 /* Omnitrack Catalogue */
 #omnitrack-catalogue-role { width: 150px; }
 #omnitrack-catalogue-tools { width: 260px; }
 #omnitrack-catalogue-timeline { width: 250px; }
 
+@media (max-width: 1092px) {
+  #omnitrack-catalogue-tools { width: 504px; }
+  #omnitrack-catalogue-timeline { width: 100%; }
+}
+
+@media (max-width: 1038px) {
+  #omnitrack-catalogue-tools { width: 260px; }
+}
+
+@media (max-width: 914px) {
+  #omnitrack-catalogue-timeline { width: 380px; }
+}
+
+@media (max-width: 840px) {
+  #omnitrack-catalogue-timeline { width: 100%; }
+}
+
+@media (max-width: 554px) {
+  #omnitrack-catalogue-tools { width: 260px; }
+}
+
 /* Plots */
-#plots-role { width: 220px; }
-#plots-tools { width: 95px; }
-#plots-timeline { width: 200px; }
+#plots-role { width: 215px; }
+#plots-tools { width: 100px; }
+#plots-timeline { width: 340px; }
 
 /* SupplyCyber */
-#supplycyber-role { width: 245px; }
-#supplycyber-tools { width: 240px; }
+#supplycyber-role { width: 240px; }
+#supplycyber-tools { width: 224px; }
 #supplycyber-timeline { width: 180px; }
-/*AQUI*/
+
+@media (max-width: 1097px) {
+  #supplycyber-timeline { width: 100%; }
+}
 
 
 .badge-specs {
@@ -1521,7 +1620,7 @@ a:focus-visible .badge-specs {
 }
 
 .topic-divider-first{
-  padding-top: 0;
+  padding-top: 0.5rem;
 }
 
 @media (max-width: 900px) {
