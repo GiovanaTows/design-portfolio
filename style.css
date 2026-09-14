@@ -2014,7 +2014,7 @@ a:focus-visible .badge-specs {
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 3rem;
   margin-bottom: 1rem;
 }
 
@@ -2052,11 +2052,18 @@ a:focus-visible .badge-specs {
 .timeline-group::before {
   content: '';
   position: absolute;
-  top: 4.5rem;
-  bottom: 3rem;
+  top: 5.5rem;
+  bottom: 5rem;
   left: 230px;
   width: 1px;
   background-color: #e4e2db;
+}
+
+@media (max-width: 700px) {
+  .timeline-group-compact::before,
+  .timeline-group::before {
+    bottom: 6rem;
+  }
 }
 
 .timeline-group-compact::before{
@@ -2069,7 +2076,7 @@ a:focus-visible .badge-specs {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.4rem;
+  gap: 0.5rem;
   padding-top: 0.15rem;
   /*padding-right: 2rem;*/
 }
@@ -2130,7 +2137,7 @@ a:focus-visible .badge-specs {
   .timeline-entry::before,
   .timeline-compact-entry::before {
     /*display: none;*/
-    left: 20px;
+    left: 24px;
   }
 
   /* TIMELINE BADGE */
@@ -2305,7 +2312,7 @@ a:focus-visible .badge-specs {
   display: grid;
   grid-template-columns: 175px 1fr;
   gap: 0.5rem 2rem;
-  padding: 1rem 0;
+  padding: 2rem 0;
   font-size: 0.9rem;
   position: relative;
 }
