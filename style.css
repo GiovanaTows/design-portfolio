@@ -2153,7 +2153,7 @@ a:focus-visible .badge-specs {
     height: 0;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-left: 6px solid var(--index);
+    border-right: 6px solid var(--index);
   }
 
   .timeline-date .badge:first-child::after {
