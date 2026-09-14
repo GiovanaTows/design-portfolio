@@ -1802,7 +1802,7 @@ a:focus-visible .badge-specs {
    items: start keeps each column's own height (the taller one doesn't
    stretch the other), and it collapses to a single stacked column on
    narrow screens. */
-.split-columns {
+.split-columns, .split-columns-tool-kit {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
@@ -1815,12 +1815,22 @@ a:focus-visible .badge-specs {
   
 }
 
+
+@media (max-width: 856px) {
+  .split-columns-tool-kit {
+    grid-template-columns: 1fr;
+    gap: 0rem;
+  }
+}
+
 @media (max-width: 700px) {
   .split-columns {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 }
+
+
 
 .grid {
   display: grid;
@@ -2243,6 +2253,18 @@ a:focus-visible .badge-specs {
   gap: 1rem;
   margin-top: 0.7rem;
   margin-bottom: 2.2rem;
+  /*background-color: #00ff00;*/
+}
+
+.graphic-motion{ max-width: 400px; }
+.collaboration-documentation{ max-width: 300px; }
+
+@media (max-width: 1159px) {
+  .development-data{ max-width: 400px; }
+}
+
+@media (max-width: 1056px) {
+  .research-testing{ max-width: 300px; }
 }
 
 .badge {
