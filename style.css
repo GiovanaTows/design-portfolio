@@ -2254,6 +2254,15 @@ a:focus-visible .badge-specs {
   color: #2e7d32;
 }
 
+/* Small qualifier next to a toolkit category heading (e.g. "(basic)"
+   on Development & data) — flags a lower confidence level without
+   needing its own heading or paragraph. */
+.toolkit-category-note {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
 /* Toolkit badges — icon + name pills, sitting under the Skills & tools
    grid. Reuses the same muted paper tone as the "On this page" index
    box, just in pill form. */
