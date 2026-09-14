@@ -1179,26 +1179,8 @@ a:focus-visible .badge-specs {
   margin-bottom: 0.5rem;
 }
 
-.project-specs-1 {
-  grid-template-columns: auto;
-}
-
-.project-specs-2 {
-  grid-template-columns: auto auto !important;
-}
-
-.project-specs-3 {
-  grid-template-columns: auto auto auto !important;
-}
-
 .project-specs-4 {
   grid-template-columns: auto auto auto auto !important;
-}
-
-@media (max-width: 1020px) {
-  .project-specs-2 {
-    grid-template-columns: auto !important;
-  }
 }
 
 @media (max-width: 900px) {
@@ -1216,8 +1198,7 @@ a:focus-visible .badge-specs {
 
 
 .project-specs-new dt,
-.project-specs dt,
-.project-specs-2 dt {
+.project-specs dt {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1227,8 +1208,7 @@ a:focus-visible .badge-specs {
 }
 
 .project-specs-new dd,
-.project-specs dd,
-.project-specs-2 dd {
+.project-specs dd {
   font-size: 0.95rem;
 }
 
@@ -1306,14 +1286,6 @@ a:focus-visible .badge-specs {
 .project-header a:hover,
 .project-header a:focus-visible {
   color: var(--link-hover);
-}
-
-.project-index-sub {
-  margin-left: 1.25rem;
-}
-
-.project-index-sub a {
-  font-size: 0.85rem;
 }
 
 .project-hero {
@@ -1531,24 +1503,6 @@ a:focus-visible .badge-specs {
     grid-template-columns: 1fr 1fr;
   }
 }*/
-
-.figure-grid-6 {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-@media (max-width: 900px) {
-  .figure-grid-6 {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  .figure-grid-6 {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-
 
 /* Carousel: alternates between however many .carousel-slide elements
    are inside it. script.js builds the dots and wires up prev/next —
