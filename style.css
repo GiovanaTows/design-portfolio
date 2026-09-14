@@ -1687,8 +1687,8 @@ a:focus-visible .badge-specs {
 
 @media (max-width: 900px) {
   .topic-divider{
-    padding-top: 2rem;
-    padding-bottom: 0.5rem;
+    /*padding-top: 2rem;
+    padding-bottom: 0.5rem;*/
     scroll-margin-top: 3.25rem;
   }
 
@@ -1699,8 +1699,8 @@ a:focus-visible .badge-specs {
 
 @media (max-width: 600px) {
   .topic-divider{
-    padding-top: 1.5rem;
-    padding-bottom: 0rem;
+    /*padding-top: 1.5rem;
+    padding-bottom: 0rem;*/
     scroll-margin-top: 2.5rem;
   }
 
@@ -2025,12 +2025,13 @@ a:focus-visible .badge-specs {
    single column and the content itself no longer starts at that
    x-position. */
 .timeline-group h3 {
-  margin-left: calc(175px + 2rem);
+  /*margin-left: calc(175px + 2rem);*/
 }
 
 @media (max-width: 640px) {
   .timeline-group h3 {
-    margin-left: 0;
+    /*margin-left: 60px;*/
+    display: none;
   }
 }
 
@@ -2075,17 +2076,22 @@ a:focus-visible .badge-specs {
   background-color: #e4e2db;
 }
 
+.timeline-group-compact::before{
+  top: 2rem;
+  bottom: 3rem;
+}
+
 @media (max-width: 700px) {
-  .timeline-group-compact::before,
   .timeline-group::before {
     bottom: 6rem;
   }
+
+  .timeline-group-compact::before{
+    bottom: 3rem;
+  }
 }
 
-.timeline-group-compact::before{
-  top: 2rem !important;
-  bottom: 3rem !important;
-}
+
 
 /* TIMELINE BADGE */
 .timeline-date {
@@ -2150,10 +2156,14 @@ a:focus-visible .badge-specs {
 
 @media (max-width: 640px) {
   .timeline-group::before,
-  .timeline-entry::before,
-  .timeline-compact-entry::before {
+  .timeline-group-compact::before{
     /*display: none;*/
     left: 24px;
+  }
+
+  .timeline-group-compact::before{
+    margin-bottom: 3rem;
+    margin-top: 4rem;
   }
 
   /* TIMELINE BADGE */
