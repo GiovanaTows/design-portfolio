@@ -1010,6 +1010,55 @@ body {
   #motion-graphics-timeline { width: 100%; }
 }
 
+/* Motion Graphics — Loadsmart, PortPass, and Balaroti share the same
+   Role and (mostly) the same Tools; only Timeline changes per piece. */
+#motion-graphics-loadsmart-role,
+#motion-graphics-portpass-role,
+#motion-graphics-balaroti-role { width: 265px; }
+
+#motion-graphics-loadsmart-tools,
+#motion-graphics-portpass-tools,
+#motion-graphics-balaroti-tools { width: 245px; }
+
+#motion-graphics-loadsmart-timeline { width: 195px; }
+#motion-graphics-portpass-timeline { width: 280px; }
+#motion-graphics-balaroti-timeline { width: 150px; }
+
+/* Age Nutrilatina, Regenerate Pro, and Prodiet only used two Tools
+   (no Lottie), so they get their own narrower width. */
+#motion-graphics-age-role,
+#motion-graphics-regenerate-pro-role,
+#motion-graphics-prodiet-role { width: 265px; }
+
+#motion-graphics-age-tools,
+#motion-graphics-regenerate-pro-tools,
+#motion-graphics-prodiet-tools { width: 300px; }
+
+#motion-graphics-age-timeline { width: 135px; }
+#motion-graphics-regenerate-pro-timeline { width: 90px; }
+#motion-graphics-prodiet-timeline { width: 135px; }
+
+@media (max-width: 895px) {
+  #motion-graphics-loadsmart-role,
+  #motion-graphics-portpass-role,
+  #motion-graphics-balaroti-role,
+  #motion-graphics-age-role,
+  #motion-graphics-regenerate-pro-role,
+  #motion-graphics-prodiet-role,
+  #motion-graphics-loadsmart-tools,
+  #motion-graphics-portpass-tools,
+  #motion-graphics-balaroti-tools,
+  #motion-graphics-age-tools,
+  #motion-graphics-regenerate-pro-tools,
+  #motion-graphics-prodiet-tools,
+  #motion-graphics-loadsmart-timeline,
+  #motion-graphics-portpass-timeline,
+  #motion-graphics-balaroti-timeline,
+  #motion-graphics-age-timeline,
+  #motion-graphics-regenerate-pro-timeline,
+  #motion-graphics-prodiet-timeline { width: 100%; }
+}
+
 /* Omnitrack Catalogue */
 #omnitrack-catalogue-role { width: 150px; }
 #omnitrack-catalogue-tools { width: 260px; }
