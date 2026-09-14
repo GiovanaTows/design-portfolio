@@ -991,6 +991,7 @@ a:focus-visible .badge-specs {
 .block-text{
   max-width: 700px;
   font-size: 0.95rem;
+  margin-bottom: 0.5rem;
 }
 
 .project-specs-1 {
