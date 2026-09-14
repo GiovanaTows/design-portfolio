@@ -2025,9 +2025,23 @@ a:focus-visible .badge-specs {
 }
 
 .timeline-date {
-  color: var(--muted);
-  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
   padding-top: 0.15rem;
+}
+
+/* Reuses the same pill look as the project pages' Role/Tool/Timeline
+   badges, but the date column here is a fixed 160px — narrower than
+   badges normally sit in — so text needs to wrap inside the pill
+   instead of the badge's usual white-space: nowrap, which would just
+   overflow past the column for longer entries like "3 years,
+   part-time". */
+.timeline-date .badge {
+  white-space: normal;
+  text-align: left;
+  cursor: default;
 }
 
 .timeline-role {
