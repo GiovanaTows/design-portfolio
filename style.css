@@ -783,35 +783,31 @@ body {
   font-family: var(--display-font);
   font-size: clamp(2.5rem, 5vw, 3rem);
   line-height: 1.15;
-  animation: title-in 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-@keyframes title-in {
-  from {
-    opacity: 0;
-    transform: translateX(-24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* Same fade/slide-from-the-left reveal as the H2s below, just a
+   touch slower (1.6s vs 0.7s) since the H1 is the page's one big
+   opening move rather than a per-section beat. Toggled by the same
+   IntersectionObserver in script.js, so it replays every time the
+   title scrolls out of view and back in, not just on first load. */
+.h1-reveal {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .project-header h1 {
-    animation: none;
-  }
+.h1-reveal.in-view {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-/* Section H2s fade/slide in the first time they scroll into view,
-   echoing the H1's title-in above but triggered by scroll instead of
-   page load. script.js adds .h2-reveal itself (rather than it living
-   in the base h2 rule) so a heading only ever starts hidden once JS
-   has actually confirmed it can reveal it again — if the script fails
-   to load, h2s simply render normally with no animation, instead of
-   staying invisible. .in-view is added once and never removed, so
-   scrolling back up to a section you've already seen doesn't replay
-   the animation. */
+/* Section H2s get the same left-to-right reveal as the H1 above, just
+   faster (0.7s) since there are several of these per page instead of
+   one. script.js adds .h2-reveal itself (rather than it living in the
+   base h2 rule) so a heading only ever starts hidden once JS has
+   actually confirmed it can reveal it again — if the script fails to
+   load, h2s simply render normally with no animation, instead of
+   staying invisible. */
 .h2-reveal {
   opacity: 0;
   transform: translateX(-24px);
