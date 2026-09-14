@@ -711,7 +711,32 @@ if (document.querySelector('.project-body')) {
 // carry a data-src in the HTML — this swaps it in only once the iframe
 // is about to scroll into view, so they load progressively instead of
 // all at once.
-const lazyIframes = document.querySelectorAll('iframe[data-src]');
+//
+// Figma embeds are the heaviest of these — heavy enough to crash the
+// page on a phone with a slow connection or little memory — so on
+// mobile, if the browser reports either of those, the embed is skipped
+// entirely rather than risking a crash: its container is hidden and
+// only the "open it in a new tab" link placed above it (see the HTML)
+// is left. navigator.connection/deviceMemory aren't supported
+// everywhere (notably Safari), so this only ever skips when the signal
+// is actually present — it never assumes a device is low-power.
+const isLowPowerMobile = () => {
+  if (!window.matchMedia('(max-width: 700px)').matches) return false;
+  const connection = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
+  const slowConnection = !!connection && (connection.saveData || ['slow-2g', '2g', '3g'].includes(connection.effectiveType));
+  const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
+  return slowConnection || lowMemory;
+};
+const skipFigmaEmbeds = isLowPowerMobile();
+
+const lazyIframes = Array.from(document.querySelectorAll('iframe[data-src]')).filter(iframe => {
+  const figmaContainer = iframe.closest('.figma-imbeded-div');
+  if (figmaContainer && skipFigmaEmbeds) {
+    figmaContainer.style.display = 'none';
+    return false;
+  }
+  return true;
+});
 if (lazyIframes.length) {
   const iframeObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
