@@ -63,7 +63,7 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
-/*AQUI*/
+
 .site-header {
   position: sticky;
   top: 0;
@@ -740,21 +740,8 @@ body {
 .project-header {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
-  padding: 3rem 1.5rem 3rem;
+  padding: 3rem 1.5rem 2rem;
 }
-
-/*
-.project-header-content {
-  margin-left: 6rem;
-  margin-right: 6rem;
-}
-
-@media (max-width: 1200px) {
-  .project-header-content {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}*/
 
 .back-link {
   position: relative;
@@ -798,6 +785,7 @@ body {
   margin-top: 0.75rem;
   font-size: 1rem;
   color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.1rem);
 }
 
 @media (max-width: 700px) {
@@ -809,50 +797,120 @@ body {
 
 /* Quick-facts list (role, team, timeline, tool) under the H1 */
 
+/* Flexbox, not grid: a CSS Grid column track (even capped with
+   fit-content(N)) is sized up to its max limit whenever the grid has
+   room for it, regardless of how little the wrapped badge-grid inside
+   actually uses — so a short Timeline block and a long Role block
+   both got stretched to their track's ceiling, leaving wildly
+   different leftover whitespace before the next column despite an
+   identical declared column-gap. A flex item's auto width genuinely
+   hugs its content instead (shrink-to-fit), so switching to flex
+   makes the visual gap between Role/Tool/Timeline match the declared
+   gap exactly, every time — no per-project column-width tuning
+   needed, which is why the old per-page modifier classes below are
+   gone. Each block still wraps its own badges independently (rather
+   than the whole block dropping to a new line) via the max-width on
+   the child rule just below. */
 .project-specs {
-  display: grid;
-  gap: 1rem  1rem; /* row-gap column-gap */
-  align-items: top;
-  /*margin-bottom: 0.5rem;*/
-  /*margin: 2rem 0;*/
-
-  grid-template-columns: auto auto auto;
-  
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2rem 40px; /* row-gap column-gap — 100px between Role/Tool/Timeline */
 }
 
-/*
-.project-specs-haus {
-  grid-template-columns: auto auto auto;
+.project-specs > div {
+  /*flex: 0 1 auto;*/
+  max-width: 260px;
+  background-color:#2455e6;
 }
 
-.project-specs-plots {
-  grid-template-columns: auto auto auto;
+/* Float-based alternative to .project-specs' flexbox, same goal:
+   each block hugs its own content and wraps internally, with a fixed
+   100px gap to the next block. A floated element's width defaults to
+   shrink-to-fit — the same intrinsic sizing a flex item's auto width
+   gets — so .badge-block never needs a track/basis to be told to hug
+   its content. Its .badge-specs children are inline-flex, which
+   behaves like inline-block for line-wrapping: they flow and wrap
+   within .badge-block's max-width on their own, no flex-wrap needed. */
+.project-specs-new {
+  display: flow-root; /* contains the floated .badge-block children so this element doesn't collapse to zero height */
+  width: 100%;
+  /*background-color: #00ff00;*/
+   
 }
 
-.project-specs-civi {
-  grid-template-columns: fit-content(200px) fit-content(240px) fit-content(140px);
+.badge-block {
+  position: relative;
+  float: left;
+  margin-right: 3rem;
+  /*background-color: #ff0000;*/
+  margin-bottom: 1rem;
 }
 
-.project-specs-omnitrack {
-  grid-template-columns: fit-content(200px) fit-content(220px) fit-content(150px);
+#omnitrack-website-role{ width: 146px; }
+#omnitrack-website-tools{ width: 358px; }
+#omnitrack-website-timeline{ width: 192px; }
+
+@media (max-width: 1128px) {
+  #omnitrack-website-tools{ width: 360px; }
+  #omnitrack-website-timeline{ width: 370px; }
 }
 
-.project-specs-omnitrack-2 {
-  grid-template-columns: fit-content(200px) fit-content(280px) auto;
+@media (max-width: 892px) {
+  #omnitrack-website-role{ width: 100%; }
+  #omnitrack-website-timeline{ width: 100%; }
 }
 
-.project-specs-loadsmart{
-  grid-template-columns: fit-content(140px) fit-content(120px) auto;
+@media (max-width: 840px) {
+  #omnitrack-website-tools{ width: 100%; }
 }
 
-.project-specs-motion {
-  grid-template-columns: fit-content(160px) fit-content(200px) auto;
+@media (max-width: 645px) {
+  #omnitrack-website-tools{ width: 360px; }
+}
+/*AQUI*/
+
+
+.badge-specs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--index);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: default;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
 
-.project-specs-haus {
-  grid-template-columns: fit-content(160px) fit-content(220px) auto;
-}*/
+a .badge-specs {
+  cursor: pointer;
+}
 
+a:hover .badge-specs,
+a:focus-visible .badge-specs {
+  background-color: #e4e2db;
+}
+
+.block-title{
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.block-text{
+  max-width: 700px;
+  font-size: 0.95rem;
+}
 
 .project-specs-1 {
   grid-template-columns: auto;
@@ -868,37 +926,6 @@ body {
 
 .project-specs-4 {
   grid-template-columns: auto auto auto auto !important;
-}
-
-@media (max-width: 1074px) {
-  .project-specs-plots {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 826px) {
-  .project-specs-omnitrack-2 {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 1020px) {
-  .project-specs-civi {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 890px) {
-  /*
-  .project-specs-plots {
-    grid-template-columns: fit-content(90px) fit-content(200px) fit-content(150px);
-    gap: 1.5rem 4rem;
-  }
-  */
-
-  .project-specs-civi {
-    grid-template-columns: fit-content(200px) fit-content(200px) fit-content(150px);
-  }
 }
 
 @media (max-width: 1020px) {
@@ -919,16 +946,9 @@ body {
   }
 }
 
-@media (max-width: 560px) {
-  .project-specs-motion {
-    grid-template-columns: 1fr !important;
-  }
-}
 
 
-
-
-
+.project-specs-new dt,
 .project-specs dt,
 .project-specs-2 dt {
   font-size: 0.75rem;
@@ -939,10 +959,31 @@ body {
   margin-bottom: 0.35rem;
 }
 
+.project-specs-new dd,
 .project-specs dd,
 .project-specs-2 dd {
   font-size: 0.95rem;
 }
+
+
+.project-header-content{
+  padding-right: 280px;
+  width: 100%;
+}
+
+@media (max-width: 840px) {
+  .project-header-content{
+    padding-right: 0;
+  }
+}
+
+.subtitle{
+  /*font-size: 0.75rem;*/
+  /*font-weight: 700;*/
+  /*letter-spacing: 0.06em;*/
+}
+
+
 
 /* Table of contents, auto-built by script.js from the page's H2/H3s */
 .project-index {
@@ -1430,9 +1471,9 @@ body {
    stats and both go full width. */
 .project-header-columns {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  /*grid-template-columns: 6fr 1fr;*/
   align-items: start;
-  gap: 2rem;
+  gap: 0;
   margin-top: 2rem;
   padding: 0;
   justify-content: center;
@@ -1446,18 +1487,14 @@ body {
   padding: 0;
 }
 
-@media (max-width: 940px) {
+@media (max-width: 840px) {
   .project-header-columns {
     grid-template-columns: 1fr;
   }
+  
 
   .project-index {
     max-width: 250px;
-    /*background-color: var(--paper);
-    padding: 0;
-    margin-top: -1rem;
-    box-shadow: none;*/
-
     min-width: 210px;
     background-color: var(--index);
     border-radius: 4px;
@@ -1485,7 +1522,7 @@ body {
   .project-header-columns {
     position: relative;
     grid-template-columns: 1fr;
-    padding-right: 300px;
+    padding-right: 240px;
   }
 
   /* Both columns share the single grid cell instead of stacking into
@@ -1505,6 +1542,7 @@ body {
     /*right: 6rem;*/
     right: 0;
     width: 260px;
+    /*background-color: none;*/
   }
 }
 
@@ -1959,7 +1997,7 @@ body {
 .badge-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 1rem;
   margin-top: 0.7rem;
   margin-bottom: 2.2rem;
 }
@@ -1975,6 +2013,7 @@ body {
   color: var(--ink);
   text-decoration: none;
   cursor: default;
+  white-space: nowrap;
   transition: background-color 0.15s ease;
   box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
