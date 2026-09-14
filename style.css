@@ -759,7 +759,7 @@ body {
 
 .project-header h1 {
   font-family: var(--display-font);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 5vw, 3rem);
   line-height: 1.15;
   animation: title-in 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
@@ -835,7 +835,7 @@ body {
 .project-specs-new {
   display: flow-root; /* contains the floated .badge-block children so this element doesn't collapse to zero height */
   width: 100%;
-  /*background-color: #00ff00;*/
+  background-color: #00ff00;
    
 }
 
@@ -843,10 +843,36 @@ body {
   position: relative;
   float: left;
   margin-right: 3rem;
-  /*background-color: #ff0000;*/
+  background-color: #ff0000;
   margin-bottom: 1rem;
+  /* A float never shrinks below its own declared width — if the
+     specs column gets narrower than a block's fixed px width (the
+     header starts losing room to the "On this page" box well before
+     the 900px full-stack fallback below), the float just overflows
+     past the column's edge instead of wrapping, which is what was
+     reading as content "cut off". max-width caps it at whatever
+     room is actually left, letting the float shrink like a normal
+     block would; badges then wrap inside a narrower row instead of
+     spilling out. Omnitrack's own #id widths already have dedicated
+     breakpoints for this, so this is mostly a safety net there. */
+  max-width: 100%;
 }
 
+/* Same .badge-block pattern rolled out to the other project pages,
+   each block's width picked to roughly fit its own badges (see the
+   Omnitrack Website numbers above for the reasoning). These don't
+   have Omnitrack's own hand-tuned per-breakpoint squeeze — the shared
+   900px fallback below just drops every block to full width once the
+   sidebar itself stacks, matching how the rest of the site collapses
+   at that width. Worth a visual pass on each page since these were
+   sized from content length, not from seeing them rendered. */
+@media (max-width: 900px) {
+  .badge-block {
+    width: 100% !important;
+  }
+}
+
+/* Omnitrack Website */
 #omnitrack-website-role{ width: 146px; }
 #omnitrack-website-tools{ width: 358px; }
 #omnitrack-website-timeline{ width: 192px; }
@@ -868,6 +894,61 @@ body {
 @media (max-width: 645px) {
   #omnitrack-website-tools{ width: 360px; }
 }
+
+
+
+/* Civi */
+#civi-role { width: 155px; }
+#civi-tools { width: 320px; }
+#civi-timeline { width: 195px; }
+
+@media (max-width: 1106px) {
+  #civi-timeline { width: 100%; }
+}
+
+@media (max-width: 900px) {
+  #civi-tools { max-width: 450px; }
+}
+
+/* Design Sprint 2.0 — Civi */
+#design-sprint-civi-role { width: 155px; }
+#design-sprint-civi-tools { width: 185px; }
+#design-sprint-civi-timeline { width: 140px; }
+
+/* Differential Motor */
+#differential-motor-role { width: 150px; }
+#differential-motor-tools { width: 300px; }
+#differential-motor-timeline { width: 235px; }
+
+/* Enkontra */
+#enkontra-role { width: 135px; }
+#enkontra-tools { width: 270px; }
+#enkontra-timeline { width: 185px; }
+
+/* Haus */
+#haus-role { width: 135px; }
+#haus-tools { width: 270px; }
+#haus-timeline { width: 185px; }
+
+/* Motion Graphics */
+#motion-graphics-role { width: 265px; }
+#motion-graphics-tools { width: 245px; }
+#motion-graphics-timeline { width: 115px; }
+
+/* Omnitrack Catalogue */
+#omnitrack-catalogue-role { width: 150px; }
+#omnitrack-catalogue-tools { width: 260px; }
+#omnitrack-catalogue-timeline { width: 250px; }
+
+/* Plots */
+#plots-role { width: 220px; }
+#plots-tools { width: 95px; }
+#plots-timeline { width: 200px; }
+
+/* SupplyCyber */
+#supplycyber-role { width: 245px; }
+#supplycyber-tools { width: 240px; }
+#supplycyber-timeline { width: 180px; }
 /*AQUI*/
 
 
