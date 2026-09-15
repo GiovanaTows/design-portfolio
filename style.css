@@ -368,6 +368,35 @@ body {
   transition: opacity 0.3s ease;
 }
 
+/* Below 680px there's no hover to reveal the caption, so it moves
+   from an absolutely-positioned overlay ON the image (clipped to a
+   fixed aspect-ratio box) to plain content BELOW it instead — the
+   aspect-ratio moves from the wrapping div onto the image itself so
+   the image stays square while the div's height goes back to auto,
+   letting the caption sit underneath in normal flow rather than
+   being clipped by the div's own overflow:hidden. */
+@media (max-width: 680px) {
+  .project-image {
+    aspect-ratio: auto;
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  .project-image img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: var(--image-radius);
+  }
+
+  .project-overlay {
+    position: static;
+    display: block;
+    padding: 0.85rem 0 0;
+    background: none;
+    opacity: 1;
+  }
+}
+
 .project-overlay h3 {
   font-family: var(--display-font);
   font-size: 1.15rem;
@@ -378,6 +407,21 @@ body {
   font-size: 0.85rem;
   color: #f0efe9;
   margin-top: 0.25rem;
+}
+
+/* White text made sense on the dark image-gradient overlay above —
+   once the caption moves below the image as plain page content, it
+   needs to switch to the site's normal dark-on-light text colors
+   instead. Declared after the white base rules above (same
+   specificity either way) so this wins at ≤680px. */
+@media (max-width: 680px) {
+  .project-overlay h3 {
+    color: var(--ink);
+  }
+
+  .project-overlay .project-meta {
+    color: var(--muted);
+  }
 }
 .divider {
   padding-bottom: 2rem;
@@ -1711,7 +1755,7 @@ a:active .badge-specs {
   }
 }
 
-@media (max-width: 712px) {
+@media (max-width: 650px) {
   .tagline-break {
     display: none;
   }
