@@ -388,7 +388,17 @@ body {
   text-align: center;
   padding: 2rem;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: clamp(0.9rem, 3vw, 1rem) !important;
+  /*line-height: 2rem;*/
+  /*background-color: #2232c1;*/
+}
+
+@media (max-width: 760px) {
+  .site-footer {
+    align-items: left;
+    text-align: left;
+    padding-right: 5rem;
+  }
 }
 
 /* ============================================
