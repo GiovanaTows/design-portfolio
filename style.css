@@ -985,9 +985,31 @@ body {
 #about-languages, #about-languages-mobile{ width: 270px; }
 #about-contact, #about-contact-mobile{ width: 210px; }
 
-#about-contact a, #about-contact-mobile a {
-  color: var(--link);
-  text-decoration: none;
+/* Email badge: combines the .badge-specs pill look with the
+   click-to-copy behavior of .copy-email-btn (see script.js). It's a
+   <button>, not an <a>, since it performs an action rather than
+   navigating — .copy-email-btn's own icon-button sizing (fixed
+   width/height, no padding, transparent background) would otherwise
+   fight the pill's own padding/background, so these override it back
+   to match .badge-specs and the toolkit .badge hover it mirrors. */
+.badge-specs.copy-email-btn {
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  background-color: var(--index);
+  color: var(--ink);
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
+}
+
+.badge-specs.copy-email-btn:hover,
+.badge-specs.copy-email-btn:focus-visible {
+  background-color: #e4e2db;
+  color: var(--ink);
+}
+
+.badge-specs.copy-email-btn .material-symbols-outlined {
+  font-size: 1.05rem;
+  color: var(--muted);
 }
 
 .split-column-about{
@@ -1384,7 +1406,7 @@ a:focus-visible .badge-specs {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .block-text{
