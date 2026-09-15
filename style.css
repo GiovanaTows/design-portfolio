@@ -286,11 +286,11 @@ body {
   padding-top: 2rem;
 }
 
-@media (max-width: 900px) {
+/*@media (max-width: 900px) {
   .section {
     padding-top: 1.5rem;
   }
-}
+}*/
 
 .section h2 {
   font-family: var(--display-font);
