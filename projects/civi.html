@@ -132,15 +132,49 @@
             Civi believes safety is a right for everyone, and aligns information and technology to help individuals and communities stay better informed and safer.
           </p>
           <p>
-            Civi's goal is to become the number one security app in Latin America by empowering tens of millions of users to improve their personal security.
+            Co-founded by Carla Vass and Vanessa Muglia, Civi launched publicly in São Paulo, Brazil in June 2021, backed by a <a class="inline-link" href="https://exame.com/insight/startup-de-seguranca-civi-conquista-canary-e-fundadores-do-nubank-e-ifood/p" target="_blank" rel="noopener noreferrer">R$10.2 million pre-seed round</a> led by Canary, with angel investment from the founders of Nubank and iFood.
           </p>
           <p>
-            The company started focusing first on São Paulo, Brazil.
+            The platform delivered real-time notifications about nearby crimes, fires, floods, and traffic incidents — sourced from both an internal ops team and the app's own user community. Civi's goal was to become the number one security app in Latin America.
           </p>
         </div>
         <div class="split-column">
           <video class="video inline-video" muted loop playsinline aria-label="Animation showing how Civi's auto check-in feature works" src="../images/projects/civi/animation-auto-checkin.mp4" data-src-desktop="../images/projects/civi/animation-auto-checkin.mp4" data-src-mobile="../images/projects/civi/animation-auto-checkin-mobile.mp4"></video>
         </div>
+      </div>
+
+      <dl class="project-specs project-specs-4" style="padding-top:1.5rem;">
+        <div>
+          <h4>125,000+</h4>
+          <p>Registered users</p>
+        </div>
+        <div>
+          <h4>~600 / day</h4>
+          <p>Urban incidents submitted, totaling roughly 20,000 monthly real-time notifications</p>
+        </div>
+        <div>
+          <h4>R$10.2M</h4>
+          <p>Raised in pre-seed funding, led by Canary</p>
+        </div>
+        <div>
+          <h4>~25 people</h4>
+          <p>Team size at Civi's peak, across more than 3 years live</p>
+        </div>
+      </dl>
+
+      <div style="max-width:700px; margin-top: 2rem;">
+        <h3>Measuring success</h3>
+        <p>
+          Civi's value came down to how relevant and easy to consume its information was — the more relevant and consumable, the more users engaged. The three top-level metrics I used to track this were:
+        </p>
+        <ol>
+          <li>DAU/WAU and DAU/MAU, to measure how often people came back — and how present the app was in their daily lives.</li>
+          <li>Events viewed per active user per day, to see whether active users found the published events worth their attention.</li>
+          <li>Retention of the user base by weekly cohorts (the inverse of weekly churn), to know whether the app kept delivering on its promise in the short and long term.</li>
+        </ol>
+        <p>
+          I led the conception and execution of several features aimed at improving these metrics — two of them, "Save places" and the event submission flow, are covered in more detail below, with the results they drove.
+        </p>
       </div>
     </div>
 
@@ -362,6 +396,9 @@
         <div class="split-column">
           <h3>User interviews</h3>
           <p>I interviewed about 15 active users for around 10 minutes each, and documented each session's questions, replies, and key insights.</p>
+          <p>
+            One concern came up again and again, especially from users fitting an "Alexandre" persona — someone who works in deliveries and spends the day on the streets. Alexandre felt responsible for protecting his family, especially since he was away all day and couldn't be with them in person. He needed to monitor personally significant locations — home, work, his kids' school. Other users shared the same concern, if to a lesser degree, which is what pointed me toward building a feature to monitor specific places.
+          </p>
         </div>
         <div class="split-column">
           <figure class="project-figure">
@@ -423,7 +460,7 @@
       <div class="split-columns">
         <div class="split-column">
           <h3>Interactive prototype &amp; user test</h3>
-          <p>I built an interactive prototype to validate the feature with users, which let me apply improvements and fix issues before shipping to production.</p>
+          <p>Before committing to development, I validated the idea with a larger group of users through a survey. Once that confirmed it was worth building, I built an interactive prototype to test with users, which let me apply improvements and fix issues before shipping to production.</p>
           <p style="margin-top: 0; margin-bottom: 1rem;">
             Try the interactive prototype or <a class="inline-link" href="https://www.figma.com/proto/I7xY3iadrG5GuNu1p89NKp/Civi---Save-Places?node-id=5-41651&p=f&viewport=321%2C628%2C0.17&scaling=scale-down&content-scaling=responsive&starting-point-node-id=5%3A41651&page-id=5%3A35833" target="_blank" rel="noopener noreferrer">open it in a new tab →</a>
           </p>
@@ -463,6 +500,21 @@
         <figcaption>The final 'Save places' feature</figcaption>
       </figure>
 
+      <div style="max-width:700px;">
+        <h3>Results</h3>
+        <p>
+          I measured success by the number of places saved per user, the open rate of notifications for events near those places, and overall engagement. I rolled the feature out to a select group first to gather feedback and make adjustments before the full launch.
+        </p>
+        <p>
+          Adoption was fast, helped along by an in-app launch modal — most users marked at least one place of interest. Over 60% of saved places were named "Home" (or a variation of it), which said a lot about what people were really worried about.
+        </p>
+        <p>
+          More than 30% of active users added at least one place, averaging 1.6 locations per user, and the notification open rate for these places held up close to the rate for general nearby-danger alerts. Weekly-cohort retention rose by about 3 percentage points per week, and events viewed per active user per day grew by about 8%.
+        </p>
+        <p>
+          One wrinkle: after launch, we ran into duplicate notifications, which took a fairly complex technical fix to resolve. Given the engagement gains, it was worth the effort.
+        </p>
+      </div>
 
       <p style="max-width:700px;">
         You can also check out the <a class="inline-link" href="design-sprint-civi.html">Design Sprint</a> we ran in 2022, where we created a feature that let users invite friends as safety contacts.
@@ -889,7 +941,17 @@
       <figure class="project-figure">
         <img src="../images/projects/civi/ugc-before-after.webp" alt="Comparison of the first and final version of the UGC flow" loading="lazy">
         <figcaption>Comparison of the first and final version of the UGC flow</figcaption>
-      </figure>      
+      </figure>
+
+      <div style="max-width:700px; margin-top: 1.5rem;">
+        <h3>Results</h3>
+        <p>
+          After launching this version to a beta group, event submissions rose 87% compared to a control group. Interviews confirmed the task really did take less effort, though there was still room to improve — so we rolled it out to the full user base and kept refining the flow over the following months.
+        </p>
+        <p>
+          On the ops side, average event-processing time dropped to about 30% of what it had been, which meant less new hiring and let the team reallocate people to higher-priority work.
+        </p>
+      </div>
 
       <p style="max-width:700px; margin-top: 2rem;">
         Check the flows below, or <a class="inline-link" href="https://www.figma.com/file/l9DevMvXAbZuC00267zT3g/Behance-%2F-Civi?node-id=105%3A6215" target="_blank" rel="noopener noreferrer">open it in a new tab →</a>
