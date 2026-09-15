@@ -378,12 +378,14 @@ body {
 @media (max-width: 680px) {
   .project-image {
     aspect-ratio: auto;
+    /*aspect-ratio: 5 / 4;*/
     overflow: visible;
     border-radius: 0;
   }
 
   .project-image img {
-    aspect-ratio: 1 / 1;
+    /*aspect-ratio: 1 / 1;*/
+    aspect-ratio: 5 / 4;
     height: auto;
     border-radius: var(--image-radius);
   }
@@ -391,11 +393,13 @@ body {
   .project-overlay {
     position: static;
     display: block;
-    padding: 0.85rem 0 0;
-    background: none;
+    padding: 0.8rem 0 0.5rem;
+    background: var(--paper);
     opacity: 1;
   }
 }
+
+
 
 .project-overlay h3 {
   font-family: var(--display-font);
@@ -430,7 +434,8 @@ body {
 
 .project-card a:hover .project-image img,
 .project-card a:focus-visible .project-image img {
-  transform: scale(1.06);
+  transform: scale(1.02);
+  
 }
 
 .project-card a:hover .project-overlay,
