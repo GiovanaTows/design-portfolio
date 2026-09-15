@@ -262,11 +262,26 @@ body {
   margin: 0 auto;
   /*padding: 5rem 1.5rem;*/
   scroll-margin-top: 2rem;
+  padding-bottom: 1.5rem;
 }
 
-@media (max-width: 1300px) {
+.section-contact {
+  padding-top: 0 !important;
+}
+
+/*@media (max-width: 1300px) {
   .section {
-    padding: 0rem 1.5rem;
+    padding: 0rem 1.5rem 1.5rem ;
+  }
+}*/
+
+.section-about {
+  padding-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding-top: 1.5rem;
   }
 }
 
@@ -309,9 +324,7 @@ body {
   gap: 2rem;
 }
 
-.section--projects {
-  /*padding-top: 3rem;*/
-}
+
 
 .project-card a {
   display: block;
@@ -785,22 +798,10 @@ body {
 }
 
 .project-header-about{
-  padding: 3rem 1.5rem 0 !important;
+  padding: 1.5rem 1.5rem 0 !important;
 }
 
-.back-link {
-  position: relative;
-  display: inline-block;
-  color: var(--muted) !important;
-  text-decoration: none;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-}
 
-.back-link:hover,
-.back-link:focus-visible {
-  color: var(--link-hover) !important;
-}
 
 .project-header h1 {
   font-family: var(--display-font);
@@ -1908,6 +1909,12 @@ a:focus-visible .badge-specs {
   scroll-margin-top: 4rem; /* tucks the previous divider's border under the docked header (~3.3rem), then padding-top below gives the h2 breathing room */
 }
 
+.topic-divider-index{
+  border-bottom: 1px solid #e4e2db;
+  padding-bottom: 1.5rem;
+  scroll-margin-top: 4rem; /* tucks the previous divider's border under the docked header (~3.3rem), then padding-top below gives the h2 breathing room */
+}
+
 .topic-divider-no-line{
   border-bottom: 0 !important;
   padding-top: 3rem !important;
@@ -2218,17 +2225,15 @@ a:focus-visible .badge-specs {
 .project-nav {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
-  padding: 0 2rem 4rem;
+  padding: 0 2rem 1.5rem;
   display: flex;
   justify-content: space-between;
-  /*border-top: 1px solid #e4e2db;
-  padding-top: 2rem;*/
 }
 
 .project-nav a {
   position: relative;
   display: inline-block;
-  color: var(--ink);
+  color: var(--muted);
   text-decoration: none;
   font-size: 0.9rem;
 }
@@ -2610,7 +2615,7 @@ a:focus-visible .badge-specs {
   flex-shrink: 0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 500px) {
   .about-portrait-row {
     flex-direction: column;
     align-items: flex-start;
