@@ -2734,12 +2734,23 @@ a:active .badge-specs {
   color: var(--muted);
   cursor: pointer;
   border-radius: 5px;
-  transition: color 0.15s ease, background-color 0.15s ease;
+  transition: color 0.15s ease, background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Same floating lift as the toolkit/spec badges — no shadow at rest
+   (this is a plain icon button, not a pill), so it only "appears" to
+   float once you actually hover it. */
 .copy-email-btn:hover {
   color: #1a1a1a;
   background-color: rgba(26, 26, 26, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
+}
+
+.copy-email-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.05s;
 }
 
 .copy-email-btn .material-symbols-outlined {
@@ -2869,7 +2880,8 @@ a.badge:active {
   border: none;
   border-radius: var(--image-radius);
   cursor: pointer;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
 
 @supports not (backdrop-filter: blur(1px)) {
@@ -2887,6 +2899,16 @@ a.badge:active {
 .social-links a:focus-visible,
 .social-links .copy-email-btn:hover {
   background-color: var(--index);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
+}
+
+/* Same pressed state as the toolkit/spec badges. */
+.social-links a:active,
+.social-links .copy-email-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.05s;
 }
 
 .social-links a:hover,
