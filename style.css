@@ -774,6 +774,10 @@ body {
   padding: 3rem 1.5rem 2rem;
 }
 
+.project-header-about{
+  padding: 3rem 1.5rem 0 !important;
+}
+
 .back-link {
   position: relative;
   display: inline-block;
@@ -911,11 +915,14 @@ body {
    its content. Its .badge-specs children are inline-flex, which
    behaves like inline-block for line-wrapping: they flow and wrap
    within .badge-block's max-width on their own, no flex-wrap needed. */
-.project-specs-new {
-  display: flow-root; /* contains the floated .badge-block children so this element doesn't collapse to zero height */
+/*.project-specs-new {
+  display: flow-root;
   width: 100%;
-  /*background-color: #00ff00;*/
-   
+  background-color: #00ff00;
+}*/
+
+.about-specs{
+  top: 3rem;
 }
 
 .badge-block {
@@ -943,6 +950,86 @@ body {
     width: 100% !important;
   }
 }*/
+
+#specs-about-desktop{
+  display: flow-root; /* contains the floated .badge-block children so this element doesn't collapse to zero height */
+  width: 100%;
+  /*background-color: #00ff00;*/
+}
+
+#specs-about-mobile{
+  display: none;
+}
+
+/* ABOUT PAGE
+   #specs-about-desktop and #specs-about-mobile are two separate,
+   mutually-exclusive copies of the same four badge-blocks — only one
+   is ever displayed at a time (see the 884px breakpoint below) — so
+   the mobile copy's blocks carry a "-mobile" suffixed id instead of
+   reusing the desktop one (duplicate ids are invalid HTML and were
+   actually breaking `getElementById`/CSS lookups here). Every width
+   rule below targets both ids together so both copies stay in sync. */
+#about-based-in, #about-based-in-mobile{ width: 259px; }
+#about-availability, #about-availability-mobile{ width: 211px; }
+#about-languages, #about-languages-mobile{ width: 270px; }
+#about-contact, #about-contact-mobile{ width: 210px; }
+
+.split-column-about{
+  /*background-color: #0000ff;*/
+  width: 100%;
+  height: auto;
+  position: relative;
+  float: left;
+}
+
+@media (max-width: 1141px) {
+  #about-based-in, #about-based-in-mobile{ width: 190px; }
+}
+
+@media (max-width: 1072px) {
+  #about-availability, #about-availability-mobile{ width: 188px; }
+  #about-languages, #about-languages-mobile{ width: 243px; }
+}
+
+@media (max-width: 1023px) {
+  #about-based-in, #about-based-in-mobile{ width: 260px }
+  #about-availability, #about-availability-mobile{ width: 210px; }
+  #about-languages, #about-languages-mobile{ width: 270px; }
+  #about-contact, #about-contact-mobile{ width: 100%; }
+
+  #about-languages, #about-languages-mobile{margin-right: 0px;}
+}
+
+@media (max-width: 884px) {
+  #specs-about-desktop{
+    display: none;
+  }
+
+  #specs-about-mobile{
+    display: grid; /* contains the floated .badge-block children so this element doesn't collapse to zero height */
+    width: 100%;
+    /*background-color: #00ff00;*/
+    grid-template-columns: auto auto !important;
+    gap: 2rem;
+  }
+
+  #about-based-in-mobile{ width: 100% }
+  #about-availability-mobile{ width: 100%; }
+  #about-languages-mobile{ width: 100%; }
+  #about-contact-mobile{ width: 100%; }
+
+  .split-column-about{
+    width: 100%;
+    position: relative;
+  }
+}
+
+@media (max-width: 700px) {
+  #specs-about-mobile{
+    gap: 0;
+    grid-template-columns: auto !important;
+  }
+}
 
 /* Omnitrack Website */
 #omnitrack-website-role{ width: 146px; }
@@ -1830,6 +1917,7 @@ a:focus-visible .badge-specs {
   align-items: center;
   margin-top: 2rem;
   padding: 0;
+  /*border-bottom: 1px solid #e4e2db;*/
 }
 
 @media (max-width: 840px) {
@@ -2154,6 +2242,9 @@ a:focus-visible .badge-specs {
    possible — the dots stay positioned per-entry either way. */
 .timeline-group, .timeline-group-compact {
   position: relative;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* The vertical "rail" running down the timeline, and a dot on it for
