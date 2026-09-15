@@ -1600,6 +1600,21 @@ a:focus-visible .badge-specs {
 }
 /*AQUI*/
 
+/* Forces the homepage tagline onto two lines instead of leaving it to
+   wrap naturally — below 460px the typewriter's changing word length
+   pushed it to 3 lines, with just one or two words stranded alone on
+   the last line. Hidden by default (display: none) so it does nothing
+   above that width, where natural wrapping already looks fine. */
+.tagline-break {
+  display: none;
+}
+
+@media (max-width: 460px) {
+  .tagline-break {
+    display: block;
+  }
+}
+
 .project-body ul {
   margin: 0 0 1rem 1.25rem;
 }
