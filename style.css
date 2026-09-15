@@ -1017,7 +1017,14 @@ body {
      already centers the icon's box against the email text correctly,
      but the visible ink still reads a couple pixels too high without
      this nudge. */
-  transform: translateY(3px);
+  transform: translateY(1px);
+}
+
+/* The icon has its own explicit color above, so it doesn't inherit
+   .copy-email-btn.copied's green — this makes the checkmark match the
+   email text once it's copied. */
+.badge-specs.copy-email-btn.copied .material-symbols-outlined {
+  color: #1d5e29 !important;
 }
 
 #about-contact a .badge-specs,
@@ -2712,7 +2719,7 @@ a:focus-visible .badge-specs {
 }
 
 .copy-email-btn.copied {
-  color: #2e7d32;
+  color: #1d5e29 !important;
 }
 
 /* Small qualifier next to a toolkit category heading (e.g. "(basic)"
