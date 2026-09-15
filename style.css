@@ -1548,6 +1548,12 @@ a:focus-visible .badge-specs {
   }
 }
 
+@media (max-width: 560px) {
+  .project-body {
+    margin-top: 1.5rem;
+  }
+}
+
 .project-body h2 {
   font-family: var(--display-font);
   font-size: 1.5rem;
@@ -1595,8 +1601,8 @@ a:focus-visible .badge-specs {
 }
 
 .introduction-text{
-  font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
-  /*line-height: 2;*/
+  font-size: clamp(1rem, 3vw, 1.1rem) !important;
+  line-height: 1.8rem;
 }
 /*AQUI*/
 
@@ -1607,6 +1613,18 @@ a:focus-visible .badge-specs {
    above that width, where natural wrapping already looks fine. */
 .tagline-break {
   display: none;
+}
+
+@media (max-width: 994px) {
+  .tagline-break {
+    display: block;
+  }
+}
+
+@media (max-width: 712px) {
+  .tagline-break {
+    display: none;
+  }
 }
 
 @media (max-width: 460px) {
