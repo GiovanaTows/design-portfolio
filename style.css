@@ -2036,6 +2036,71 @@ a:active .badge-specs {
   cursor: pointer;
 }
 
+/* Discrete "browser window" frame — just a thin title bar with three
+   dots, no address bar or other chrome, so it reads as a computer
+   screen without competing with the screenshots inside it. Wraps a
+   .project-carousel as-is; the carousel keeps its own prev/next/dots
+   controls below the frame. */
+.browser-mockup {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--image-radius);
+  overflow: hidden;
+  margin: 2rem 0 0;
+}
+
+.browser-mockup .project-carousel {
+  margin: 0;
+}
+
+.browser-mockup .carousel-viewport {
+  border-radius: 0;
+}
+
+.browser-mockup-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.55rem 0.75rem;
+  background-color: var(--index);
+}
+
+.browser-mockup-bar span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Fixed-height, vertically-scrollable variant for full-page website
+   screenshots — instead of shrinking each one down to fit a fixed
+   aspect-ratio box, this lets the actual screenshot scroll inside a
+   window-sized frame. overflow-x stays hidden so the horizontal
+   slide-swipe still works; only vertical scrolling is exposed. */
+.carousel-viewport-scroll {
+  aspect-ratio: unset;
+  height: 480px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  cursor: default;
+}
+
+.carousel-viewport-scroll .carousel-track {
+  height: auto;
+  align-items: flex-start;
+}
+
+.carousel-viewport-scroll .carousel-slide {
+  height: auto;
+  align-items: flex-start;
+}
+
+.carousel-viewport-scroll .carousel-slide img {
+  height: auto;
+  object-fit: contain;
+  cursor: zoom-in;
+}
+
 .carousel-dot.active {
   background-color: var(--accent);
 }
