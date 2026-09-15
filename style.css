@@ -1002,12 +1002,17 @@ body {
   background-color: var(--index);
   color: var(--link);
   box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
+  /* .copy-email-btn's own transition (color/background-color only)
+     would otherwise win the cascade here and drop the lift below. */
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .badge-specs.copy-email-btn:hover,
 .badge-specs.copy-email-btn:focus-visible {
   background-color: #e4e2db;
   color: var(--link-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
 
 .badge-specs.copy-email-btn .material-symbols-outlined {
@@ -1414,7 +1419,7 @@ body {
   text-decoration: none;
   cursor: default;
   white-space: nowrap;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
 
@@ -1422,9 +1427,14 @@ a .badge-specs {
   cursor: pointer;
 }
 
+/* Lifts the badge slightly and deepens/softens its shadow on hover —
+   a bigger blur and offset than the resting shadow reads as the pill
+   floating higher off the page, not just moving up. */
 a:hover .badge-specs,
 a:focus-visible .badge-specs {
   background-color: #e4e2db;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
 
 .block-title{
@@ -2770,7 +2780,7 @@ a:focus-visible .badge-specs {
   text-decoration: none;
   cursor: default;
   white-space: nowrap;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
 
@@ -2779,9 +2789,12 @@ a.badge {
   cursor: pointer;
 }
 
+/* Same lift-and-deepen-shadow hover as .badge-specs above. */
 a.badge:hover,
 a.badge:focus-visible {
   background-color: #e4e2db;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
 
 .badge-icon {
