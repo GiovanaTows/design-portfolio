@@ -991,25 +991,40 @@ body {
    navigating — .copy-email-btn's own icon-button sizing (fixed
    width/height, no padding, transparent background) would otherwise
    fight the pill's own padding/background, so these override it back
-   to match .badge-specs and the toolkit .badge hover it mirrors. */
+   to match .badge-specs and the toolkit .badge hover it mirrors.
+   Unlike the toolkit badges, this one and the LinkedIn badge below it
+   are an exception: they stay link-blue instead of ink-colored, since
+   both are effectively links to reach Giovana directly. */
 .badge-specs.copy-email-btn {
   width: auto;
   height: auto;
   border-radius: 4px;
   background-color: var(--index);
-  color: var(--ink);
+  color: var(--link);
   box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
 
 .badge-specs.copy-email-btn:hover,
 .badge-specs.copy-email-btn:focus-visible {
   background-color: #e4e2db;
-  color: var(--ink);
+  color: var(--link-hover);
 }
 
 .badge-specs.copy-email-btn .material-symbols-outlined {
   font-size: 1.05rem;
-  color: var(--muted);
+  color: var(--link);
+}
+
+#about-contact a .badge-specs,
+#about-contact-mobile a .badge-specs {
+  color: var(--link);
+}
+
+#about-contact a:hover .badge-specs,
+#about-contact a:focus-visible .badge-specs,
+#about-contact-mobile a:hover .badge-specs,
+#about-contact-mobile a:focus-visible .badge-specs {
+  color: var(--link-hover);
 }
 
 .split-column-about{
