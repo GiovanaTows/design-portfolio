@@ -2038,22 +2038,38 @@ a:active .badge-specs {
 
 /* Discrete "browser window" frame — just a thin title bar with three
    dots, no address bar or other chrome, so it reads as a computer
-   screen without competing with the screenshots inside it. Wraps a
-   .project-carousel as-is; the carousel keeps its own prev/next/dots
-   controls below the frame. */
+   screen without competing with the screenshots inside it. Sits
+   inside .carousel-frame (see below), which is what the prev/next
+   buttons actually position against — .browser-mockup itself needs
+   overflow: hidden to clip its own rounded corners, which would also
+   clip the buttons if they lived in here too. */
 .browser-mockup {
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--image-radius);
   overflow: hidden;
-  margin: 2rem 0 0;
-}
-
-.browser-mockup .project-carousel {
-  margin: 0;
 }
 
 .browser-mockup .carousel-viewport {
   border-radius: 0;
+}
+
+/* Wraps just .browser-mockup (not the caption/dots below it), so its
+   rendered height matches the frame exactly — that's what lets
+   top: 50% below center the buttons on the frame itself rather than
+   on the taller .project-carousel (frame + caption + dots). No
+   overflow: hidden here, so the buttons (positioned outside the
+   frame's edges) aren't clipped the way they would be inside
+   .browser-mockup. */
+.carousel-frame {
+  position: relative;
+}
+
+.carousel-frame .carousel-prev {
+  left: -1.5rem;
+}
+
+.carousel-frame .carousel-next {
+  right: -1.5rem;
 }
 
 .browser-mockup-bar {
@@ -2075,24 +2091,29 @@ a:active .badge-specs {
 /* Fixed-height, vertically-scrollable variant for full-page website
    screenshots — instead of shrinking each one down to fit a fixed
    aspect-ratio box, this lets the actual screenshot scroll inside a
-   window-sized frame. overflow-x stays hidden so the horizontal
-   slide-swipe still works; only vertical scrolling is exposed. */
+   window-sized frame. The scrolling happens per-slide (see below),
+   not on the viewport itself — each screenshot is a different
+   length, so a single shared scroll area sized to the tallest one
+   would let shorter slides scroll past their own bottom edge into
+   blank space. overflow-x stays hidden so the horizontal slide-swipe
+   still works. */
 .carousel-viewport-scroll {
   aspect-ratio: unset;
   height: 480px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   cursor: default;
 }
 
 .carousel-viewport-scroll .carousel-track {
-  height: auto;
+  height: 100%;
   align-items: flex-start;
 }
 
 .carousel-viewport-scroll .carousel-slide {
-  height: auto;
+  height: 100%;
   align-items: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .carousel-viewport-scroll .carousel-slide img {
