@@ -1015,6 +1015,15 @@ body {
   box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
 
+/* Pressed state: drops below the resting position (not just back to
+   0) and flattens the shadow almost completely, so clicking reads as
+   physically pushing the pill into the page. */
+.badge-specs.copy-email-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.05s;
+}
+
 .badge-specs.copy-email-btn .material-symbols-outlined {
   font-size: 1.05rem;
   color: var(--link);
@@ -1435,6 +1444,15 @@ a:focus-visible .badge-specs {
   background-color: #e4e2db;
   transform: translateY(-2px);
   box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
+}
+
+/* Pressed state: same idea as the copy-email button's :active — drop
+   below rest and flatten the shadow, so clicking reads as physically
+   pushing the pill down. */
+a:active .badge-specs {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.05s;
 }
 
 .block-title{
@@ -2795,6 +2813,13 @@ a.badge:focus-visible {
   background-color: #e4e2db;
   transform: translateY(-2px);
   box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
+}
+
+/* Same pressed state as .badge-specs above. */
+a.badge:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.05s;
 }
 
 .badge-icon {
