@@ -997,7 +997,7 @@ body {
    both are effectively links to reach Giovana directly. */
 .badge-specs.copy-email-btn {
   width: auto;
-  height: auto;
+  min-height: 36px;
   border-radius: 4px;
   background-color: var(--index);
   color: var(--link);
@@ -1013,6 +1013,11 @@ body {
 .badge-specs.copy-email-btn .material-symbols-outlined {
   font-size: 1.05rem;
   color: var(--link);
+  /* The glyph itself sits high within its own em-box — flexbox
+     already centers the icon's box against the email text correctly,
+     but the visible ink still reads a couple pixels too high without
+     this nudge. */
+  transform: translateY(3px);
 }
 
 #about-contact a .badge-specs,
