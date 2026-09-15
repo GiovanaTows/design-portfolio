@@ -985,6 +985,11 @@ body {
 #about-languages, #about-languages-mobile{ width: 270px; }
 #about-contact, #about-contact-mobile{ width: 210px; }
 
+#about-contact a, #about-contact-mobile a {
+  color: var(--link);
+  text-decoration: none;
+}
+
 .split-column-about{
   /*background-color: #0000ff;*/
   width: 100%;
