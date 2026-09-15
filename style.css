@@ -263,6 +263,13 @@ body {
   /*padding: 5rem 1.5rem;*/
   scroll-margin-top: 2rem;
   padding-bottom: 1.5rem;
+  /* Horizontal gutter — was folded into the (now commented-out)
+     shorthand above, so it disappeared along with it. Doesn't show at
+     wide viewports since max-width already centers the section with
+     room to spare, but below ~1200px the section fills the full
+     width and content ran edge-to-edge without this. */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .section-contact {
@@ -2881,7 +2888,6 @@ a.badge:active {
   border-radius: var(--image-radius);
   cursor: pointer;
   transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
 
 @supports not (backdrop-filter: blur(1px)) {
