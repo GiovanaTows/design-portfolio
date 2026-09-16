@@ -776,17 +776,11 @@ if (document.querySelector('.project-body')) {
 
   backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Pauses any YouTube embeds already playing further down the page
-    // — postMessage is the only way to reach into a same-page iframe
-    // on a different origin, and YouTube's player only listens for it
-    // once its embed URL carries enablejsapi=1 (see the data-src
-    // values in civi.html/civi-marketing.html). Only iframes that have
-    // already lazy-loaded (a real src, not still just data-src — see
-    // the lazy-load block below) can be playing in the first place.
-    document.querySelectorAll('iframe.video-embed[src*="youtube.com/embed"]').forEach((iframe) => {
-      iframe.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
-    });
+    // youtubePlayers is populated further down the file (see the
+    // YouTube coordination block below) — defined later, but this
+    // callback only ever runs on a later click, by which point the
+    // rest of the script has already finished running once.
+    youtubePlayers.forEach(pauseIfPlaying);
   });
 }
 
@@ -823,6 +817,55 @@ const lazyIframes = Array.from(document.querySelectorAll('iframe[data-src]')).fi
   }
   return true;
 });
+// Coordinates every YouTube embed on the page through the official
+// IFrame Player API (loaded from a CDN <script> tag placed before this
+// file — see civi.html/civi-marketing.html, the only pages with
+// YouTube embeds) so that playing one pauses every other one, and
+// scrolling a playing one out of view pauses it too — also what the
+// back-to-top button (above) drains on click. Player objects can only
+// wrap an iframe that already has a real embed src, so wrapping
+// happens right after the lazy-load observer below swaps in
+// data-src — youtubeApiReady/pendingYouTubeIframes cover the (likely)
+// case where that happens before the API itself has finished loading.
+const youtubePlayers = [];
+let youtubeApiReady = false;
+const pendingYouTubeIframes = [];
+
+function pauseIfPlaying(player) {
+  if (typeof player.getPlayerState === 'function' && player.getPlayerState() === YT.PlayerState.PLAYING) {
+    player.pauseVideo();
+  }
+}
+
+function wrapYouTubeIframe(iframe) {
+  const player = new YT.Player(iframe, {
+    events: {
+      onStateChange: (e) => {
+        if (e.data !== YT.PlayerState.PLAYING) return;
+        youtubePlayers.forEach((other) => { if (other !== player) pauseIfPlaying(other); });
+      },
+    },
+  });
+  youtubePlayers.push(player);
+
+  // threshold: 0 fires only once the very last pixel leaves the
+  // viewport, not the first — so normal scrolling past a video mid-
+  // playback doesn't cut it off the instant its edge touches the
+  // viewport boundary.
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) pauseIfPlaying(player);
+    });
+  }, { threshold: 0 });
+  visibilityObserver.observe(iframe);
+}
+
+window.onYouTubeIframeAPIReady = () => {
+  youtubeApiReady = true;
+  pendingYouTubeIframes.forEach(wrapYouTubeIframe);
+  pendingYouTubeIframes.length = 0;
+};
+
 if (lazyIframes.length) {
   const iframeObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -831,6 +874,11 @@ if (lazyIframes.length) {
       iframe.src = iframe.dataset.src;
       iframe.removeAttribute('data-src');
       observer.unobserve(iframe);
+
+      if (iframe.classList.contains('video-embed') && iframe.src.includes('youtube.com')) {
+        if (youtubeApiReady) wrapYouTubeIframe(iframe);
+        else pendingYouTubeIframes.push(iframe);
+      }
     });
   }, { rootMargin: '400px 0px' });
 
