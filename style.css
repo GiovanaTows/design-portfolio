@@ -818,6 +818,11 @@ body {
      as glass and it didn't read well here. */
   background-color: var(--link-hover);
   color: var(--paper);
+  /* Same lift-and-deepen-shadow hover as .badge-specs/the carousel
+     controls — comes after .visible in source order so it wins their
+     tied specificity and overrides its translateY(0). */
+  transform: translateY(-2px);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
 
 .back-to-top.visible:active {
@@ -1944,7 +1949,11 @@ a:active .badge-specs {
 .carousel-track {
   display: flex;
   height: 100%;
-  transition: transform 0.4s ease;
+  /* A slower, smoother ease-in-out curve than the plain "ease" this
+     used to have — eases into the slide change and settles into the
+     next slide gently instead of the snappier, more linear-feeling
+     default timing function. */
+  transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2034,6 +2043,91 @@ a:active .badge-specs {
   padding: 0;
   background-color: #d8d5cc;
   cursor: pointer;
+}
+
+/* ---- TEST: alternate carousel controls layout, buttons below the
+   image instead of overlaid on top of it, flanking the caption/dots.
+   Scoped with :has() to carousels that actually have a
+   .carousel-controls-row, so every other .project-carousel on the
+   site (still using the default overlay buttons) is untouched — no
+   HTML changes needed anywhere except the carousels being tried out. */
+.project-carousel:has(.carousel-controls-row) .carousel-prev,
+.project-carousel:has(.carousel-controls-row) .carousel-next {
+  position: static;
+  flex-shrink: 0;
+  /* Without this, the default overlay rule's transform:
+     translateY(-50%) (meant to center the button against the image
+     when it was absolutely positioned) keeps applying here too — it
+     doesn't require position: absolute to take effect, so it was
+     quietly shifting the button up by half its own height at rest,
+     making the hover/active states below (which replace this value,
+     not add to it) look like they move the wrong way. */
+  transform: none;
+  /* Nudges the buttons down from the row's centered position so they
+     line up with the caption/dots text instead of sitting above it. */
+  margin-top: 8px;
+  /* Same rest/hover/active treatment as the homepage social-bar
+     buttons (e.g. the mail icon) — paper-tinted and flat at rest,
+     instead of the frosted --button fill + resting shadow the default
+     overlay carousel buttons use. */
+  background-color: rgba(250, 249, 246, 0.15);
+  box-shadow: none;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.project-carousel:has(.carousel-controls-row) .carousel-prev:hover,
+.project-carousel:has(.carousel-controls-row) .carousel-next:hover {
+  background-color: var(--index);
+  color: var(--link-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
+}
+
+.project-carousel:has(.carousel-controls-row) .carousel-prev:active,
+.project-carousel:has(.carousel-controls-row) .carousel-next:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.05s;
+}
+
+.carousel-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+/* Matches .carousel-frame-phone's own max-width so the buttons land
+   next to the narrower phone mockup instead of spanning the full,
+   much wider column. */
+.carousel-frame-phone + .carousel-controls-row {
+  max-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carousel-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.carousel-controls-row .carousel-caption {
+  margin-top: 0;
+}
+
+.carousel-controls-row .carousel-dots {
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  /* These buttons sit below the image now, not over it, so the
+     rationale for hiding them on mobile (touch swipe is enough,
+     buttons are just clutter over the picture) no longer applies. */
+  .project-carousel:has(.carousel-controls-row) .carousel-prev,
+  .project-carousel:has(.carousel-controls-row) .carousel-next {
+    display: flex;
+  }
 }
 
 /* Discrete "browser window" frame — just a thin title bar with three
