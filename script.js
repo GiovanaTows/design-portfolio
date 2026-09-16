@@ -266,6 +266,8 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
   });
 
   let current = 0;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let captionSwapTimer;
 
   // Videos inside carousel slides need different handling than a
   // standalone video: visibility alone (the observer below) can't
@@ -282,7 +284,26 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
     const previous = current;
     current = (index + slides.length) % slides.length;
     track.style.transform = `translateX(-${current * 100}%)`;
-    if (caption) caption.textContent = slides[current].dataset.caption || '';
+
+    // Crossfades the caption instead of swapping its text instantly —
+    // clearTimeout guards against a caption still fading back in from
+    // the previous click if the buttons are clicked again quickly,
+    // which would otherwise leave two overlapping swaps racing to set
+    // .textContent. See .carousel-caption's opacity transition in
+    // style.css.
+    if (caption) {
+      clearTimeout(captionSwapTimer);
+      if (prefersReducedMotion) {
+        caption.textContent = slides[current].dataset.caption || '';
+      } else {
+        caption.style.opacity = '0';
+        captionSwapTimer = setTimeout(() => {
+          caption.textContent = slides[current].dataset.caption || '';
+          caption.style.opacity = '1';
+        }, 150);
+      }
+    }
+
     dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
 
     if (hasSlideVideos) {
@@ -755,6 +776,17 @@ if (document.querySelector('.project-body')) {
 
   backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Pauses any YouTube embeds already playing further down the page
+    // — postMessage is the only way to reach into a same-page iframe
+    // on a different origin, and YouTube's player only listens for it
+    // once its embed URL carries enablejsapi=1 (see the data-src
+    // values in civi.html/civi-marketing.html). Only iframes that have
+    // already lazy-loaded (a real src, not still just data-src — see
+    // the lazy-load block below) can be playing in the first place.
+    document.querySelectorAll('iframe.video-embed[src*="youtube.com/embed"]').forEach((iframe) => {
+      iframe.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+    });
   });
 }
 

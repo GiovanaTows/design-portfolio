@@ -1949,11 +1949,11 @@ a:active .badge-specs {
 .carousel-track {
   display: flex;
   height: 100%;
-  /* A slower, smoother ease-in-out curve than the plain "ease" this
-     used to have — eases into the slide change and settles into the
-     next slide gently instead of the snappier, more linear-feeling
-     default timing function. */
-  transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+  /* A slower ease-out curve than the plain "ease" this used to have —
+     quick to start, then a long, gentle deceleration into the next
+     slide (the same expo-out shape as the Lenis smooth-scroll easing
+     in script.js) instead of settling abruptly. */
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2023,6 +2023,11 @@ a:active .badge-specs {
   letter-spacing: normal;
   color: var(--muted);
   text-align: center;
+  /* Crossfade target for the opacity toggle in script.js's show() —
+     the text itself swaps instantly (there's no way to animate that
+     part), but fading out/in around the swap reads as one smooth
+     change instead of a hard cut. */
+  transition: opacity 0.15s ease;
 }
 
 .carousel-dots {
@@ -2043,6 +2048,7 @@ a:active .badge-specs {
   padding: 0;
   background-color: #d8d5cc;
   cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
 /* ---- TEST: alternate carousel controls layout, buttons below the
@@ -2053,7 +2059,20 @@ a:active .badge-specs {
    HTML changes needed anywhere except the carousels being tried out. */
 .project-carousel:has(.carousel-controls-row) .carousel-prev,
 .project-carousel:has(.carousel-controls-row) .carousel-next {
-  position: static;
+  /* relative, not static — it still needs to be a positioned element
+     so its .hover-stroke-overlay child (position: absolute; inset:
+     5px, from setUpHoverStroke in script.js) stays contained inside
+     the button's own 44px box instead of escaping to size itself
+     against the next positioned ancestor up (.project-carousel). */
+  position: relative;
+  /* The default overlay rule's left: 0.75rem / right: 0.75rem (meant
+     to inset the button from the image's edge when it was absolutely
+     positioned) still apply to a relatively positioned element too —
+     left/right only go inert under position: static. Without this
+     reset they nudge the buttons 12px in from the row's edges instead
+     of leaving them flush with it. */
+  left: auto;
+  right: auto;
   flex-shrink: 0;
   /* Without this, the default overlay rule's transform:
      translateY(-50%) (meant to center the button against the image
@@ -2066,12 +2085,20 @@ a:active .badge-specs {
   /* Nudges the buttons down from the row's centered position so they
      line up with the caption/dots text instead of sitting above it. */
   margin-top: 8px;
-  /* Same rest/hover/active treatment as the homepage social-bar
-     buttons (e.g. the mail icon) — paper-tinted and flat at rest,
-     instead of the frosted --button fill + resting shadow the default
-     overlay carousel buttons use. */
-  background-color: rgba(250, 249, 246, 0.15);
+  /* Same hover/active treatment as the homepage social-bar buttons
+     (e.g. the mail icon), but fully transparent at rest rather than
+     their faint paper tint — these buttons sit lower, over the page's
+     dotted background and sometimes over a carousel's own drop
+     shadow, where any visible fill at rest reads as a stray box/edge
+     instead of a bare icon. */
+  background-color: transparent;
   box-shadow: none;
+  /* The default overlay button's frosted-glass blur still applies
+     here otherwise — transparent background-color alone doesn't
+     remove it, since backdrop-filter blurs/saturates whatever's
+     behind the button regardless of its own fill. */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -2284,6 +2311,14 @@ a:active .badge-specs {
 
 .carousel-dot.active {
   background-color: var(--accent);
+  transform: scale(1.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-dot,
+  .project-carousel .carousel-caption {
+    transition: none;
+  }
 }
 
 .topic-divider{
