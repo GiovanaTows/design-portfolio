@@ -2044,9 +2044,18 @@ a:active .badge-specs {
    overflow: hidden to clip its own rounded corners, which would also
    clip the buttons if they lived in here too. */
 .browser-mockup {
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
   border-radius: var(--image-radius);
   overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18), 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Chrome-bezel effect: a light/dark banded gradient standing in for
+     the border, clipped to border-box, with a flat inner fill (clipped
+     to padding-box) sitting on top so it reads as a thin metal edge
+     rather than a gradient fill behind the content. */
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(160deg, #d4d4d4 0%, #d4d4d4 15%, #b8b8b8 32%, #d4d4d4 48%, #b0b0b0 62%, #d4d4d4 80%, #d4d4d4 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
 .browser-mockup .carousel-viewport {
@@ -2110,11 +2119,16 @@ a:active .badge-specs {
    dots above. Goes inside the same .carousel-frame as the desktop
    version, so it gets the same outside-the-frame prev/next arrows. */
 .phone-mockup {
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
   border-radius: 28px;
   overflow: hidden;
   max-width: 260px;
   margin: 0 auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18), 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(160deg, #d4d4d4 0%, #d4d4d4 15%, #b8b8b8 32%, #d4d4d4 48%, #b0b0b0 62%, #d4d4d4 80%, #d4d4d4 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
 .phone-mockup .carousel-viewport {
@@ -2158,7 +2172,12 @@ a:active .badge-specs {
 
 .carousel-viewport-scroll .carousel-slide {
   height: 100%;
+  flex-direction: column;
   align-items: flex-start;
+  /* Without this, the inherited justify-content: center clips the
+     start of overflowing content (flexbox centers before allowing
+     scroll) — flex-start keeps the very top scrollable into view. */
+  justify-content: flex-start;
   overflow-y: auto;
   overflow-x: hidden;
 }
