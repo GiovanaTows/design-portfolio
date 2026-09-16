@@ -1,3 +1,57 @@
+// Softens scrolling site-wide — inertia with an eased deceleration
+// instead of the browser's stock 1:1 wheel scroll, so motion settles
+// gently rather than stopping abruptly (most noticeable coasting into
+// the end of a page). Lenis is loaded from a CDN <script> tag placed
+// right before this file in every page, hence the typeof guard: if
+// that request ever fails, the rest of the site still works with
+// normal scrolling — including the CSS scroll-behavior: smooth in
+// style.css, which is left in place as that fallback and only turned
+// off here once Lenis actually takes over, since running both at once
+// fights over scroll position (each render frame flip-flopping
+// between Lenis's eased target and the browser's own native-smooth
+// destination) and produces a single instant-looking jump instead of
+// either animation. Skipped under prefers-reduced-motion, matching the
+// same rule for anchor-link scrolling in style.css.
+if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.style.scrollBehavior = 'auto';
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1 - Math.pow(2, -10 * t)),
+    // Without this, Lenis hijacks every wheel event for the page scroll
+    // even while the cursor is over a nested scrollable area — like the
+    // vertically-scrolling .carousel-viewport-scroll slides (the
+    // Website/Instagram-feed phone and browser mockups) — so their own
+    // scroll stopped responding. This makes Lenis detect a genuinely
+    // scrollable ancestor under the cursor and hand wheel input to it
+    // until that element hits its own scroll limit.
+    allowNestedScroll: true,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Lenis's own built-in anchors option doesn't call preventDefault,
+  // so the browser's instant hash-jump fires right behind it and wins
+  // before a single eased frame renders — same double-driver problem
+  // as scroll-behavior: smooth above, just for clicks instead of
+  // wheel/touch. Handling "On this page" / nav hash links ourselves
+  // lets us prevent that default so only the eased scroll runs.
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const hash = link.getAttribute('href');
+    if (hash.length < 2) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target);
+  });
+}
+
 // Sweep hover: shared engine behind both the button hover-stroke and
 // the text-link underline (see the "13. HOVER STROKE" / "14.
 // UNDERLINE HOVER" comments in style.css for why this needs JS rather
