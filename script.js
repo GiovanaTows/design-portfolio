@@ -289,18 +289,23 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
     // clearTimeout guards against a caption still fading back in from
     // the previous click if the buttons are clicked again quickly,
     // which would otherwise leave two overlapping swaps racing to set
-    // .textContent. See .carousel-caption's opacity transition in
-    // style.css.
+    // .textContent. Skipped entirely when the incoming caption is the
+    // same string as the outgoing one (several slides in a row sharing
+    // one caption, e.g. the Instagram/pitch-deck carousels) — nothing
+    // is actually changing, so fading out and back in would just be
+    // a flicker with no content change behind it. See
+    // .carousel-caption's opacity transition in style.css.
     if (caption) {
       clearTimeout(captionSwapTimer);
-      if (prefersReducedMotion) {
-        caption.textContent = slides[current].dataset.caption || '';
+      const nextCaption = slides[current].dataset.caption || '';
+      if (prefersReducedMotion || nextCaption === caption.textContent) {
+        caption.textContent = nextCaption;
       } else {
         caption.style.opacity = '0';
         captionSwapTimer = setTimeout(() => {
-          caption.textContent = slides[current].dataset.caption || '';
+          caption.textContent = nextCaption;
           caption.style.opacity = '1';
-        }, 150);
+        }, 350);
       }
     }
 

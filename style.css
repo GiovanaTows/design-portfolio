@@ -2026,8 +2026,10 @@ a:active .badge-specs {
   /* Crossfade target for the opacity toggle in script.js's show() —
      the text itself swaps instantly (there's no way to animate that
      part), but fading out/in around the swap reads as one smooth
-     change instead of a hard cut. */
-  transition: opacity 0.15s ease;
+     change instead of a hard cut. Matches the 350ms swap delay in
+     show(), which waits for this fade-out to finish before swapping
+     the text and fading back in. */
+  transition: opacity 0.35s ease-in-out;
 }
 
 .carousel-dots {
@@ -2048,7 +2050,7 @@ a:active .badge-specs {
   padding: 0;
   background-color: #d8d5cc;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.25s ease;
+  transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
 /* ---- TEST: alternate carousel controls layout, buttons below the
