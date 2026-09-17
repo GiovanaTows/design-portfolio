@@ -1125,10 +1125,57 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     ...revealText, ...revealImages, ...revealCarousels,
   ];
   if (revealElements.length) {
+    // Elements that scroll into view together — a paragraph/image pair
+    // in a two-column layout, or several cards in the same grid row —
+    // land in the same IntersectionObserver callback, since whatever
+    // scroll step first pushes one of them past the 15% threshold
+    // pushes its row-mates past it too, in that same frame. Grouping
+    // by (near-enough) equal top position and staggering each group
+    // left-to-right is what turns "everything in a row fades in at
+    // once" into "one at a time" without needing to know anything
+    // about which CSS layout (grid, split-columns, etc.) put them
+    // there. Leaving elements skip the stagger — they drop out
+    // immediately, and have their delay cleared so a later re-entry
+    // (possibly grouped differently next time) starts clean.
+    const STAGGER_STEP_MS = 120;
+    // Loose on purpose: a text/image pair in a centered two-column
+    // layout (.text-image-columns, align-items: center) doesn't share
+    // an exact top edge — a tall figure sits centered against a short
+    // paragraph, so their tops can be 50-100px apart even though
+    // they're visually the same "row". A true unrelated section is
+    // typically 200px+ further down (section margins/padding), so this
+    // stays well clear of merging two actually-separate rows.
+    const ROW_TOLERANCE_PX = 100;
+
     const headingObserver = new IntersectionObserver((entries) => {
+      const entering = [];
       entries.forEach(entry => {
-        entry.target.classList.toggle('in-view', entry.isIntersecting);
+        if (entry.isIntersecting) {
+          entering.push(entry);
+        } else {
+          entry.target.classList.remove('in-view');
+          entry.target.style.transitionDelay = '';
+        }
       });
+
+      entering
+        .map(entry => ({ entry, rect: entry.target.getBoundingClientRect() }))
+        .sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left)
+        .reduce((rows, item) => {
+          const currentRow = rows[rows.length - 1];
+          if (currentRow && Math.abs(item.rect.top - currentRow[0].rect.top) <= ROW_TOLERANCE_PX) {
+            currentRow.push(item);
+          } else {
+            rows.push([item]);
+          }
+          return rows;
+        }, [])
+        .forEach(row => {
+          row.forEach(({ entry }, index) => {
+            entry.target.style.transitionDelay = `${index * STAGGER_STEP_MS}ms`;
+            entry.target.classList.add('in-view');
+          });
+        });
     }, { threshold: 0.15 });
     revealElements.forEach(el => headingObserver.observe(el));
   }
