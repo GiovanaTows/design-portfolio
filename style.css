@@ -451,14 +451,36 @@ body {
 }
 
 /* Case-study index cards (e.g. Civi's "Case Studies" section): reuses
-   .project-card/.project-image for the square thumbnail + hover zoom,
-   but the title/description sit as plain visible text below the image
-   instead of .project-overlay's hover-only caption — these are meant
-   to be scanned and read directly, not discovered on hover. A tighter
-   minmax than the homepage grid's 300px keeps more than one or two
-   cards per row inside a project page's narrower content column. */
+   .project-card/.project-image for the thumbnail + hover zoom, but the
+   title/description sit as plain visible text below the image instead
+   of .project-overlay's hover-only caption — these are meant to be
+   scanned and read directly, not discovered on hover. Fixed 3-column
+   layout (vs. the homepage grid's auto-fill) since this always shows
+   the same fixed set of cards, collapsing to fewer columns as the
+   project page's content column narrows. */
 .case-study-grid {
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .case-study-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .case-study-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3:2 instead of .project-image's default square — reads better for
+   screenshots/diagrams than a 1:1 crop. Overrides the mobile rule
+   below 680px too, which otherwise switches .project-image to
+   aspect-ratio: auto and puts a different ratio on the image itself. */
+.case-study-card .project-image,
+.case-study-card .project-image img {
+  aspect-ratio: 3 / 2;
 }
 
 .case-study-card h3 {
