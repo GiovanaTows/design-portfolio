@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Event Icons Redesign — Civi | Giovana Tows</title>
+  <meta name="description" content="Case study: simplifying 80+ event icons on Civi's map through card sorting and user testing, by Giovana Tows.">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "../" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="icon" type="image/svg+xml" href="../images/branding/favicon-giovana-tows.svg">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="../index.html">Projects</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="../index.html#projects" class="logo-link">
+        <img src="../images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <nav class="project-nav">
+        <a href="civi.html">← Civi</a>
+      </nav>
+      <h1>Event Icons Redesign</h1>
+      <p class="project-meta divider subtitle">Simplifying 80+ event icons through card sorting and user testing (2022)</p>
+    </div>
+
+    <div class="project-header-columns">
+      <div class="split-column">
+        <div class="project-specs-new">
+          <div class="badge-block">
+            <div class="block-title">Role</div>
+            <div class="badge-specs">Product Designer</div>
+            <div class="badge-specs">UX/UI Designer</div>
+            <div class="badge-specs">Graphic Designer</div>
+          </div>
+          <div class="badge-block">
+            <div class="block-title">Tool</div>
+            <a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 200 300" class="badge-icon" aria-hidden="true"><path fill="#0acf83" d="M50 300c27.6 0 50-22.4 50-50v-50H50c-27.6 0-50 22.4-50 50s22.4 50 50 50z"/><path fill="#a259ff" d="M0 150c0-27.6 22.4-50 50-50h50v100H50c-27.6 0-50-22.4-50-50z"/><path fill="#f24e1e" d="M0 50C0 22.4 22.4 0 50 0h50v100H50C22.4 100 0 77.6 0 50z"/><path fill="#ff7262" d="M100 0h50c27.6 0 50 22.4 50 50s-22.4 50-50 50h-50V0z"/><path fill="#1abcfe" d="M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z"/></svg>Figma</div></a>
+            <a href="https://www.adobe.com/products/illustrator.html" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 24 24" class="badge-icon" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#330000"/><text x="12" y="16.7" text-anchor="middle" font-size="11" font-weight="700" fill="#FF9A00" font-family="Helvetica, Arial, sans-serif">Ai</text></svg>Illustrator</div></a>
+          </div>
+          <div class="badge-block">
+            <div class="block-title">Timeline</div>
+            <div class="badge-specs">2022</div>
+          </div>
+        </div>
+        <div class="project-specs-new badge-block">
+          <div>
+            <div class="block-title">Team</div>
+            <div class="block-text">I ran the card sorting, icon design, and user testing myself as Civi's product designer.</div>
+          </div>
+        </div>
+      </div>
+      <div class="split-column">
+        <nav class="project-index project-index-civi" aria-label="On this page" style="align-self: center;">
+          <p class="project-index-label">On this page</p>
+          <ul>
+            <li><a href="#problem">1. Problem &amp; goals</a></li>
+            <li><a href="#process">2. Process</a></li>
+            <li><a href="#results">3. Results</a></li>
+            <li><a href="#event-density">4. Event density</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero">
+    <picture>
+      <img src="../images/projects/civi/icons/icons-events.webp" alt="New event categories and their icons">
+    </picture>
+  </div>
+
+  <main class="project-body">
+    <div class="topic-divider topic-divider-first" id="problem">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Problem &amp; goals</h2>
+           <p>
+              Initially, each of the app's 80+ event types had its own detailed icon. In testing, I found that most users couldn't tell them apart — they were too small on the map to read at a glance.
+            </p>
+            <p>
+              Color was a problem too: the app used blue, gray, yellow, and red backgrounds to show how recent an event was, but since the icons were colorful as well, it was hard to tell what the background color meant. Instead of helping, the icons made the map visually noisy and confusing.
+            </p>
+
+            <h4>Goals</h4>
+            <ul>
+              <li>Simplify the event icons, making them more intuitive and accessible.</li>
+              <li>Make the pins on the map clear and easy to understand.</li>
+              <li>Create event type categories to allow the implementation of simple map filters by event type.</li>
+            </ul>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="../images/projects/civi/event-icons-2021.webp" alt="Icons (2021) — Images used in the map pins to indicate the event types" loading="lazy" data-lightbox-bg="white">
+            <figcaption>Icons (2021) — Images used in the map pins to indicate the event types</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="process">
+      <h2>Process</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <h3>Card sorting</h3>
+          <p>
+            I used card sorting to organize the event types into categories that would feel intuitive to users.
+          </p>
+          <p>
+            Participants sort a set of cards into groups based on how they relate — it's a simple way to learn how people naturally categorize information, so the product's structure matches how they actually think.
+          </p>
+        </div>
+        <div class="split-column">
+          <h3>Dynamic instructions</h3>
+          <p>The participants were asked to do the following:</p>
+          <ol>
+            <li>Read the post-its one by one.</li>
+            <li>Organize them into groups that make sense to you, by dragging the cards to the columns on the side. There's no right or wrong — follow your intuition.</li>
+            <li>You can move cards between categories if you change your mind during the process.</li>
+            <li>Use as many categories as you like — you don't need to fill every column. Duplicate the last one if needed. Colors are for visual clarity only.</li>
+            <li>Name each category as it makes sense to you.</li>
+          </ol>
+        </div>
+      </div>
+
+      <figure class="project-figure">
+        <img src="../images/projects/civi/card-sorting-session.webp" alt="Card sorting board — Event types cards on the left, empty categories on the right" loading="lazy">
+        <figcaption>Card sorting board — Event types cards on the left, empty categories on the right</figcaption>
+      </figure>
+
+      <h3>Gathering and analysing results</h3>
+      <p>I collected all the results into one big matrix, then looked for patterns across categories.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/card-sorting-matrix.webp" alt="Matrix of card-sorting results across 13 participants" loading="lazy">
+        <figcaption>Matrix of card-sorting results across 13 participants</figcaption>
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="results">
+      <h2>Results</h2>
+      <p>The analysis led me to 19 event categories, and I designed a monochromatic icon for each one.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/card-sorting-result.webp" alt="Final result: 19 event categories with subcategories and icons" loading="lazy">
+        <figcaption>Final result: 19 event categories with their subcategories and icons</figcaption>
+      </figure>
+
+      <h3>Testing new icons with users</h3>
+      <p>I applied the new icons to a map simulation, then asked a few people what they thought each one meant, without giving them any context.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/testing-icons-map.webp" alt="Map with new icons used to test with users" loading="lazy">
+        <figcaption>Map with new icons used to test with users. Users' responses in green (right) or red (wrong)</figcaption>
+      </figure>
+
+      <h3>Icons final design</h3>
+      <p>This is the result of the new event categories and their icons.</p>
+      <figure class="project-figure">
+        <img src="../images/projects/civi/icons/icons-events.webp" alt="New event categories and their icons" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="event-density">
+      <h2>Event density</h2>
+      <div class="split-columns" style="align-items: end;">
+        <div class="split-column">
+          <h4>Problem</h4>
+          <p>
+            As all the pins on the map had these new icons, the map was still looking very dense in information. It was difficult to decide which pin to click first.
+          </p>
+          <p>Besides that, back in the Save Places interviews, many users had asked for an event type filter to see only the event types relevant to them on the map.</p>
+        </div>
+        <div class="split-column">
+          <p>We didn't have a very big quantity of event submitions everywhere in the city. Filtering by event type would likely leave the map looking empty in areas without much activity.</p>
+          <p>Besides that many users would forget about this filter and they would never see lots of possibly relevant information.</p>
+        </div>
+      </div>
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h4>Solution</h4>
+          <p>To get around this, we designed an event relevance score instead of a simple filter.</p>
+          <p>We set a maximum number of pins that would appear expanded with icon on the map, the rest appeared as a smaller dot — just enough to suggest something had happened there.</p>
+          <p>Each event got a score based on recency, gravity, and distance — gravity being a 1–10 rating we assigned to each event type by severity.</p>
+          <p>The map showed the highest-scoring events larger and more prominently. By zooming in the users could see more local, lower-priority events as the view area shrank.</p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-grey">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Event density solution based on the map view area">
+                  <img src="../images/projects/civi/icons/map-zooms.webp" alt="Event density solution based on the map view area" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Variations of the map pins">
+                  <img src="../images/projects/civi/icons/map-pins.webp" alt="Variations of the map pins" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="project-nav">
+    <a href="civi.html">← Civi</a>
+  </nav>
+
+  <footer class="site-footer">
+    <p style="margin-bottom: 0.8rem;">Website designed and developed by Giovana Tows — powered by Claude Code.</p>
+    <p>All images and site content copyright &copy; 2026 Giovana Tows — All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="../script.js"></script>
+</body>
+</html>

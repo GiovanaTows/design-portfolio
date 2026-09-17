@@ -450,6 +450,28 @@ body {
   }
 }
 
+/* Case-study index cards (e.g. Civi's "Case Studies" section): reuses
+   .project-card/.project-image for the square thumbnail + hover zoom,
+   but the title/description sit as plain visible text below the image
+   instead of .project-overlay's hover-only caption — these are meant
+   to be scanned and read directly, not discovered on hover. A tighter
+   minmax than the homepage grid's 300px keeps more than one or two
+   cards per row inside a project page's narrower content column. */
+.case-study-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.case-study-card h3 {
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+}
+
+.case-study-card p {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 /* ============================================
    6. FOOTER
    ============================================ */
