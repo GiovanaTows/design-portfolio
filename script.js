@@ -1104,11 +1104,26 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   const revealH2s = document.querySelectorAll('main h2:not(.visually-hidden)');
   const revealTimelineLogos = document.querySelectorAll('.timeline-logo-link');
   const revealPortraits = document.querySelectorAll('.about-portrait');
+  // Running text: paragraphs and Problem/Solution-style sub-headings
+  // inside a project's body copy, plus the homepage's intro tagline
+  // (the only piece of body text that lives outside .project-body).
+  const revealText = document.querySelectorAll('main.project-body p, main.project-body h3, main.project-body h4, .introduction-text');
+  // Images: hero shots, case-study figures, and every project/case-study
+  // grid card (.case-study-card is always paired with .project-card, so
+  // this catches both grids with one selector).
+  const revealImages = document.querySelectorAll('.project-hero, .project-figure, .project-card');
+  const revealCarousels = document.querySelectorAll('.project-carousel');
   revealH1s.forEach(h => h.classList.add('h1-reveal'));
   revealH2s.forEach(h => h.classList.add('h2-reveal'));
   revealTimelineLogos.forEach(l => l.classList.add('timeline-logo-reveal'));
   revealPortraits.forEach(p => p.classList.add('about-portrait-reveal'));
-  const revealElements = [...revealH1s, ...revealH2s, ...revealTimelineLogos, ...revealPortraits];
+  revealText.forEach(el => el.classList.add('p-reveal'));
+  revealImages.forEach(el => el.classList.add('image-reveal'));
+  revealCarousels.forEach(el => el.classList.add('carousel-reveal'));
+  const revealElements = [
+    ...revealH1s, ...revealH2s, ...revealTimelineLogos, ...revealPortraits,
+    ...revealText, ...revealImages, ...revealCarousels,
+  ];
   if (revealElements.length) {
     const headingObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

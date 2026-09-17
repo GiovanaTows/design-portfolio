@@ -151,6 +151,10 @@ body {
   padding-bottom: 2px;
 }
 
+.highlight-link{
+  color: var(--accent) !important;
+}
+
 /* Logo stays perfectly centered regardless of how wide the nav is.
    Stays position: absolute at every width (rather than switching to
    static on mobile) specifically so left/transform can transition
@@ -932,22 +936,23 @@ body {
   transform: translateX(0);
 }
 
-/* Section H2s get the same left-to-right reveal as the H1 above, just
-   faster (0.7s) since there are several of these per page instead of
-   one. script.js adds .h2-reveal itself (rather than it living in the
-   base h2 rule) so a heading only ever starts hidden once JS has
-   actually confirmed it can reveal it again — if the script fails to
-   load, h2s simply render normally with no animation, instead of
-   staying invisible. */
+/* Section H2s get the same fade-up as the body copy below them
+   (.p-reveal), rather than the H1's sideways slide — a section heading
+   reads as part of the same content flow as the text under it, not as
+   its own opening move the way the page H1 is. script.js adds
+   .h2-reveal itself (rather than it living in the base h2 rule) so a
+   heading only ever starts hidden once JS has actually confirmed it
+   can reveal it again — if the script fails to load, h2s simply
+   render normally with no animation, instead of staying invisible. */
 .h2-reveal {
   opacity: 0;
-  transform: translateX(-24px);
+  transform: translateY(24px);
   transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .h2-reveal.in-view {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 /* Same left-to-right reveal as the H1/H2 headings above, applied to
@@ -978,6 +983,56 @@ body {
 .about-portrait-reveal.in-view {
   opacity: 1;
   /*transform: translateX(0);*/
+}
+
+/* Body copy (paragraphs and Problem/Solution-style sub-headings) fades
+   up from below instead of sliding in sideways like the H1/H2s above —
+   reads as settling into place rather than arriving from off-screen,
+   which suits running text better than a directional slide. Same
+   repeat-on-scroll IntersectionObserver in script.js adds/removes
+   .in-view, and the same script-only setup keeps text visible by
+   default if it never runs. */
+.p-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.p-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Images — hero shots, case-study figures, and the project/case-study
+   grid cards — get the same fade-up as body copy, just a touch slower
+   since they're heavier visual elements. Grid cards in the same row
+   naturally land in view together, so they read as a row arriving at
+   once rather than one at a time. */
+.image-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.image-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Carousels get the slowest, heaviest fade-up of the three — they're
+   the largest single block on a page, so settling in a beat slower
+   than the images above keeps the whole page's reveal rhythm feeling
+   like it's building up in weight rather than everything moving at an
+   identical speed. */
+.carousel-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.carousel-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .project-header .project-meta {
