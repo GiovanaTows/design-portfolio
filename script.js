@@ -12,10 +12,16 @@
 // destination) and produces a single instant-looking jump instead of
 // either animation. Skipped under prefers-reduced-motion, matching the
 // same rule for anchor-link scrolling in style.css.
+// Declared out here so the back-to-top button further down can drive the
+// same Lenis instance (and cancel any in-flight anchor tracking) instead
+// of starting a native smooth scroll that fights it.
+let lenis = null;
+let stopAnchorTracking = () => {};
+
 if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.style.scrollBehavior = 'auto';
 
-  const lenis = new Lenis({
+  lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1 - Math.pow(2, -10 * t)),
     // Without this, Lenis hijacks every wheel event for the page scroll
@@ -40,6 +46,79 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
   // as scroll-behavior: smooth above, just for clicks instead of
   // wheel/touch. Handling "On this page" / nav hash links ourselves
   // lets us prevent that default so only the eased scroll runs.
+  // The target's position is only known at the moment scrollTo runs,
+  // but the images above it are loading="lazy" with no reserved height
+  // — each one that loads as the page scrolls past pushes the section
+  // further down, so a single scrollTo stops short (worse on a long
+  // page like Civi, and on first click before anything has loaded).
+  // Clicks are handled by chaseTo() below, which re-reads the target
+  // every frame; this tracking covers the instant jump when arriving on
+  // page.html#section, re-aiming whenever the page's height changes.
+  // It stops on the first real user input, or after a timeout, so it
+  // never fights someone scrolling away.
+  let anchorTarget = null;
+  let anchorTimer;
+  // Index/anchor clicks don't use a fixed-duration tween: a critically
+  // damped spring chases the target's *live* position every frame. That
+  // gives a soft start and a soft landing (a plain eased tween starts
+  // abruptly), a speed cap so a long jump doesn't become a whoosh, and —
+  // because the target is re-read each frame — lazy images loading
+  // mid-scroll just move the goal instead of restarting the animation.
+  let chaseFrame = null;
+  const cancelChase = () => {
+    if (chaseFrame) cancelAnimationFrame(chaseFrame);
+    chaseFrame = null;
+  };
+  const chaseTo = (getTargetY) => {
+    cancelChase();
+    const OMEGA = 5;
+    const MAX_SPEED = 4500;
+    let pos = window.scrollY;
+    let velocity = 0;
+    let last = performance.now();
+    const step = (now) => {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const target = Math.min(Math.max(getTargetY(), 0), max);
+      velocity += (OMEGA * OMEGA * (target - pos) - 2 * OMEGA * velocity) * dt;
+      velocity = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, velocity));
+      pos += velocity * dt;
+      if (Math.abs(target - pos) < 0.5 && Math.abs(velocity) < 8) {
+        lenis.scrollTo(target, { immediate: true, force: true });
+        chaseFrame = null;
+        return;
+      }
+      lenis.scrollTo(pos, { immediate: true, force: true });
+      chaseFrame = requestAnimationFrame(step);
+    };
+    chaseFrame = requestAnimationFrame(step);
+  };
+
+  stopAnchorTracking = () => {
+    anchorTarget = null;
+    clearTimeout(anchorTimer);
+    cancelChase();
+  };
+  const trackAnchor = (target) => {
+    anchorTarget = target;
+    clearTimeout(anchorTimer);
+    anchorTimer = setTimeout(stopAnchorTracking, 8000);
+  };
+  ['wheel', 'touchstart', 'keydown'].forEach((evt) => {
+    window.addEventListener(evt, stopAnchorTracking, { passive: true });
+  });
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(() => {
+      if (!anchorTarget) return;
+      // Lenis keeps its own copy of the page's scroll limit and clamps
+      // scrollTo against it, so make it re-measure first — otherwise
+      // it aims at the new position but stops at the old, shorter limit.
+      lenis.resize();
+      lenis.scrollTo(anchorTarget, { immediate: true });
+    }).observe(document.body);
+  }
+
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"]');
     if (!link) return;
@@ -48,8 +127,21 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     const target = document.querySelector(hash);
     if (!target) return;
     e.preventDefault();
-    lenis.scrollTo(target);
+    stopAnchorTracking();
+    const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    chaseTo(() => window.scrollY + target.getBoundingClientRect().top - margin);
   });
+
+  // Arriving on page.html#section (e.g. the "← Civi" link back to the
+  // Case Studies section) has the same problem: the browser's own hash
+  // jump runs before the lazy images load.
+  if (location.hash.length > 1) {
+    const hashTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (hashTarget) {
+      trackAnchor(hashTarget);
+      lenis.scrollTo(hashTarget, { immediate: true });
+    }
+  }
 }
 
 // Sweep hover: shared engine behind both the button hover-stroke and
@@ -780,7 +872,9 @@ if (document.querySelector('.project-body')) {
   window.addEventListener('scroll', toggleBackToTop, { passive: true });
 
   backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    stopAnchorTracking();
+    if (lenis) lenis.scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
     // youtubePlayers is populated further down the file (see the
     // YouTube coordination block below) — defined later, but this
     // callback only ever runs on a later click, by which point the

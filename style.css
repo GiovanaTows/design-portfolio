@@ -2442,7 +2442,7 @@ a:active .badge-specs {
   border-bottom: 1px solid #e4e2db;
   padding-top: 3rem;
   padding-bottom: 2.5rem;
-  scroll-margin-top: 4rem; /* tucks the previous divider's border under the docked header (~3.3rem), then padding-top below gives the h2 breathing room */
+  scroll-margin-top: calc(4rem - 20px); /* tucks the previous divider's border (the line just above this section) fully under the docked header (~3.3rem), then padding-top below gives the h2 breathing room */
 }
 
 .topic-divider-index{
@@ -2464,7 +2464,7 @@ a:active .badge-specs {
   .topic-divider{
     /*padding-top: 2rem;
     padding-bottom: 0.5rem;*/
-    scroll-margin-top: 3.25rem;
+    scroll-margin-top: calc(3.25rem - 20px);
   }
 
   .topic-divider-first{
@@ -2476,7 +2476,7 @@ a:active .badge-specs {
   .topic-divider{
     /*padding-top: 1.5rem;
     padding-bottom: 0rem;*/
-    scroll-margin-top: 2.5rem;
+    scroll-margin-top: calc(2.5rem - 20px);
   }
 
   .topic-divider-first{
