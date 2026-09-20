@@ -76,9 +76,10 @@
           <p class="project-index-label">On this page</p>
           <ul>
             <li><a href="#context">1. Context &amp; benchmarking</a></li>
-            <li><a href="#first-version">2. First version</a></li>
-            <li><a href="#user-interviews">3. User interviews</a></li>
-            <li><a href="#new-flow">4. New flow &amp; results</a></li>
+            <!--<li><a href="#first-version">2. UGC first version problem</a></li>-->
+            <li><a href="#user-interviews">2. User interviews</a></li>
+            <li><a href="#new-flow">3. New flow &amp; results</a></li>
+            <li><a href="#result">4. Result</a></li>
           </ul>
         </nav>
       </div>
@@ -93,19 +94,29 @@
 
   <main class="project-body">
     <div class="topic-divider topic-divider-first" id="context">
-      <div class="text-image-columns">
-        <div class="split-column" style="max-width:700px;">
-          <h2>Context &amp; benchmarking</h2>
-          <p>Improving how users submit event reports — Civi's user-generated content (UGC) flow.</p>
+      
+      <h2>Context &amp; benchmarking</h2>
+      <p>Improving how users submit event reports — Civi's user-generated content (UGC) flow.</p>
 
+      <div class="split-columns">
+        <div class="split-column">
           <h4>Problem</h4>
           <p>
             Before this, Civi directed users to a WhatsApp channel to report events, where the team would validate and publish them in the app. Sending people outside the app made the whole process feel unreliable — few users actually reported anything, and what we did get was often incomplete, with no photos or video to verify it.
           </p>
+          
+        </div>
+        <div class="split-column">
           <h4>Goal</h4>
           <p>
             My goal was to create an easy in-app flow for users to submit event details — clear enough for Civi's team to validate quickly before publishing.
           </p>
+        </div>
+      </div>
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          
           <h4>Benchmark research</h4>
           <p>
             To understand how other apps handled event reporting, I ran a competitive audit of direct competitors like So Safe and SP + Segura. Since their UX wasn't great either, I also looked at indirect competitors — Waze, Instagram, WhatsApp, TikTok, Facebook, and Airbnb — for inspiration.
@@ -120,17 +131,14 @@
       </div>
     </div>
 
-    <div class="topic-divider" id="first-version">
-      <h2>UGC first version</h2>
-      <p style="max-width:700px;">
-        I built a first version of the flow, but after launch, submissions actually dropped further. Firebase event data showed users were mostly dropping off at the upload-media step.
-      </p>
-    </div>
 
     <div class="topic-divider" id="user-interviews">
       <div class="text-image-columns" style="align-items: center;">
         <div class="split-column">
           <h2>User interviews</h2>
+          <p style="max-width:700px;">
+            I built a first version of the flow, but after launch, submissions actually dropped further. Firebase event data showed users were mostly dropping off at the upload-media step.
+          </p>
           <p>
             To dig into why, I interviewed users who'd completed the flow successfully, to understand their experience and the real-life scenarios worth designing for. I also interviewed users who'd dropped off, to find out why and get their feedback.
           </p>
@@ -208,26 +216,33 @@
         <img src="../images/projects/civi/ugc-before-after.webp" alt="Comparison of the first and final version of the UGC flow" loading="lazy">
         <figcaption>Comparison of the first and final version of the UGC flow</figcaption>
       </figure>
+    </div>
 
-      <div style="max-width:700px; margin-top: 1.5rem;">
-        <h3>Results</h3>
-        <p>
-          After launching this version to a beta group, event submissions rose 87% compared to a control group. Interviews confirmed the task really did take less effort, though there was still room to improve — so we rolled it out to the full user base and kept refining the flow over the following months.
-        </p>
-        <p>
-          On the ops side, average event-processing time dropped to about 30% of what it had been, which meant less new hiring and let the team reallocate people to higher-priority work.
-        </p>
+    <div class="topic-divider" id="result">
+      <h2>Result</h2>
+
+      <div class="split-columns">
+        <div class="split-column">
+          <p>
+            After launching this version to a beta group, event submissions rose 87% compared to a control group. Interviews confirmed the task really did take less effort, though there was still room to improve — so we rolled it out to the full user base and kept refining the flow over the following months.
+          </p>
+          
+        </div>
+        <div class="split-column">
+          <p>
+            On the ops side, average event-processing time dropped to about 30% of what it had been, which meant less new hiring and let the team reallocate people to higher-priority work.
+          </p>
+          <p style="max-width:700px; margin-top: 2rem;">
+            Check the details of the UGC flow (first and final versions) below, or <a class="inline-link" href="https://www.figma.com/file/l9DevMvXAbZuC00267zT3g/Behance-%2F-Civi?node-id=105%3A6215" target="_blank" rel="noopener noreferrer">open it in a new tab →</a>
+          </p>
+        </div>
       </div>
-
-      <p style="max-width:700px; margin-top: 2rem;">
-        Check the details of the UGC flow (first and final versions) below, or <a class="inline-link" href="https://www.figma.com/file/l9DevMvXAbZuC00267zT3g/Behance-%2F-Civi?node-id=105%3A6215" target="_blank" rel="noopener noreferrer">open it in a new tab →</a>
-      </p>
-
       <div class="figma-imbeded-div">
         <div class="figma-loading-spinner" aria-hidden="true"></div>
         <iframe class="figma-imbeded" data-src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FBehance-%252F-Civi%3Fnode-id%3D105%253A6215" allowfullscreen onload="this.previousElementSibling.style.display='none'"></iframe>
       </div>
     </div>
+        
   </main>
 
   <nav class="project-nav">
