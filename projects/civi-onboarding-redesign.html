@@ -85,25 +85,30 @@
     </div>
   </header>
 
-  <div class="project-hero">
+  <!--<div class="project-hero">
     <picture>
-      <img src="../images/projects/civi/civi-cover.webp" alt="Civi app">
+      <img src="../images/projects/civi/onboarding/civi-onboarding-flow.webp" alt="Civi app">
     </picture>
-  </div>
+  </div>-->
 
   <main class="project-body">
+
     <div class="topic-divider topic-divider-first" id="onboarding">
+      <h2>Onboarding flow</h2>
+      <h4>Problem</h4>
+      <p style="max-width: 700px;">
+        Onboarding was one of the app's most elaborate flows, with a high drop-off rate — largely because it asked for a lot of personal information upfront: home address, work address, device location, and more.
+      </p>
+
+
       <div class="text-image-columns">
         <div class="split-column" style="max-width:700px;">
-          <h2>Onboarding flow</h2>
-          <h4>Problem</h4>
-          <p>
-            Onboarding was one of the app's most elaborate flows, with a high drop-off rate — largely because it asked for a lot of personal information upfront: home address, work address, device location, and more.
-          </p>
+          
           <h4>Solution</h4>
           <p>
             Together with another designer, we redesigned the onboarding flow to strike a better balance — collecting what we needed while keeping it short and easy to get through.
           </p>
+          
         </div>
         <div class="split-column">
           <div>
@@ -117,10 +122,65 @@
         </div>
       </div>
 
+      
+
+      
+
+      <div class="project-carousel">
+        <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 2 / 1;">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Civi onboarding flow">
+              <img src="../images/projects/civi/onboarding/civi-onboarding-flow.webp" alt="Civi onboarding flow" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Sign up">
+              <img src="../images/projects/civi/onboarding/steps/01-signup.webp" alt="Onboarding step 1: sign up" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Foreground location permission">
+              <img src="../images/projects/civi/onboarding/steps/02-foreground-location.webp" alt="Onboarding step 2: foreground location permission" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Notifications permission">
+              <img src="../images/projects/civi/onboarding/steps/03-notification.webp" alt="Onboarding step 3: notifications permission" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Background location permission">
+              <img src="../images/projects/civi/onboarding/steps/04-background-location.webp" alt="Onboarding step 4: background location permission" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Profile">
+              <img src="../images/projects/civi/onboarding/steps/05-profile.webp" alt="Onboarding step 5: profile" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Save places">
+              <img src="../images/projects/civi/onboarding/steps/06-save-places.webp" alt="Onboarding step 6: save places" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Contacts">
+              <img src="../images/projects/civi/onboarding/steps/07-contacts.webp" alt="Onboarding step 7: contacts" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Premium plan">
+              <img src="../images/projects/civi/onboarding/steps/08-premium-plan.webp" alt="Onboarding step 8: premium plan" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Premium plan settings review">
+              <img src="../images/projects/civi/onboarding/steps/09-premium-plan-settings-review.webp" alt="Onboarding step 9: premium plan settings review" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Map">
+              <img src="../images/projects/civi/onboarding/steps/10-map.webp" alt="Onboarding step 10: map" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls-row">
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <div class="carousel-meta">
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
       <p style="max-width:700px;">
         Check the flow below, or <a class="inline-link" href="https://www.figma.com/file/l9DevMvXAbZuC00267zT3g/Portfolio-%2F-Civi?node-id=105%3A6214" target="_blank" rel="noopener noreferrer">open it in a new tab →</a>
       </p>
-
       <div class="figma-imbeded-div">
         <div class="figma-loading-spinner" aria-hidden="true"></div>
         <iframe class="figma-imbeded" data-src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FPortfolio-%252F-Civi%3Fnode-id%3D105%253A6214" allowfullscreen onload="this.previousElementSibling.style.display='none'"></iframe>
@@ -128,16 +188,17 @@
     </div>
 
     <div class="topic-divider" id="pending-permissions">
+      <h2>Pending permissions and settings (2022)</h2>
+      <h4>Problem</h4>
+      <p style="max-width: 700px;">
+        Civi's value depended heavily on device permissions — location access, notifications, saved places, and contacts.
+        Many users were finishing onboarding without turning these on, so the app couldn't deliver its full value, and retention suffered.
+      </p>
+
       <div class="text-image-columns">
         <div class="split-column" style="max-width:700px;">
-          <h2>Pending permissions and settings (2022)</h2>
-            <h4>Problem</h4>
-            <p>
-              Civi's value depended heavily on device permissions — location access, notifications, saved places, and contacts.
-            </p>
-            <p>
-              Many users were finishing onboarding without turning these on, so the app couldn't deliver its full value, and retention suffered.
-            </p>
+          
+            
             <h4>Solution</h4>
             <p>
               To fix this, I designed a pending-settings carousel and a settings review flow that explained why each permission mattered and how it kept users safer.
@@ -201,13 +262,14 @@
     </div>
 
     <div class="topic-divider" id="places-suggestions">
+      <h2>Places suggestions (2023)</h2>
+      <h4>Problem</h4>
+      <p style="max-width: 700px;">
+        I built an auto-check-in and auto-check-out function that notifies users when a contact arrives at or leaves a saved place — for example, "Mary arrived at home" or "John left work." The problem: users were adding contacts but not places for them — someone might add a partner but never that partner's office, leaving the feature unusable for that place.
+      </p>
+
       <div class="text-image-columns">
         <div class="split-column" style="max-width:700px;">
-          <h2>Places suggestions (2023)</h2>
-          <h4>Problem</h4>
-          <p>
-            I built an auto-check-in and auto-check-out function that notifies users when a contact arrives at or leaves a saved place — for example, "Mary arrived at home" or "John left work." The problem: users were adding contacts but not places for them — someone might add a partner but never that partner's office, leaving the feature unusable for that place.
-          </p>
           <h4>Solution</h4>
           <p>
             I added a list of suggested places, pulled from the places a user's contacts had already saved. It became much easier for users to add these places and use the auto check-in feature.
@@ -229,7 +291,7 @@
 
   <nav class="project-nav">
     <a href="civi.html#case-studies">← Civi</a>
-    <a href="civi-event-icons-redesign.html" class="highlight-link">Next case study: Event icons redesign →</a>
+    <!--<a href="civi-event-icons-redesign.html" class="highlight-link">Next case study: Event icons redesign →</a>-->
   </nav>
 
   <footer class="site-footer">

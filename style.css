@@ -464,6 +464,7 @@ body {
    project page's content column narrows. */
 .case-study-grid {
   grid-template-columns: repeat(3, 1fr);
+  margin-top: 3rem !important;
 }
 
 @media (max-width: 900px) {
@@ -484,7 +485,7 @@ body {
    aspect-ratio: auto and puts a different ratio on the image itself. */
 .case-study-card .project-image,
 .case-study-card .project-image img {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 5 / 4;
 }
 
 .case-study-card h3 {
@@ -1752,11 +1753,22 @@ a:active .badge-specs {
   padding: 0 1.5rem;
 }
 
-.project-hero img {
+.project-hero-static {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 0 1.5rem;
+}
+
+.project-hero img, .project-hero-static img {
   width: 100%;
   height: auto;
   border-radius: var(--image-radius);
   display: block;
+  margin: auto;
+}
+
+.project-hero-static img {
+  max-width: 700px;
 }
 
 @media (max-width: 900px) {
@@ -2007,6 +2019,7 @@ a:active .badge-specs {
 .project-carousel {
   position: relative;
   margin: 2rem 0;
+  /*background-color: #1d5e29;*/
 }
 
 .carousel-viewport {
@@ -2019,6 +2032,9 @@ a:active .badge-specs {
      page scroll, so the two gestures don't fight each other. */
   touch-action: pan-y;
   cursor: grab;
+  max-height: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .carousel-bg-plots {
@@ -2425,7 +2441,7 @@ a:active .badge-specs {
 .topic-divider{
   border-bottom: 1px solid #e4e2db;
   padding-top: 3rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 2.5rem;
   scroll-margin-top: 4rem; /* tucks the previous divider's border under the docked header (~3.3rem), then padding-top below gives the h2 breathing room */
 }
 
@@ -2711,6 +2727,8 @@ a:active .badge-specs {
   aspect-ratio: 16 / 9;
   height: auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   /*margin-bottom: 1.5rem;*/
 }
 
