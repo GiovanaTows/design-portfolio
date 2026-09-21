@@ -1670,16 +1670,19 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
 
   function setState(target) {
     let text = '';
+    let icon = '';
     let isLink = false;
     if (target && target.closest) {
-      if (target.closest('.lightbox-img-wrap.zoomed img')) text = 'Zoom out';
-      else if (target.closest('.lightbox-img-wrap img')) text = 'Zoom';
+      if (target.closest('.lightbox-img-wrap.zoomed img')) icon = 'minus';
+      else if (target.closest('.lightbox-img-wrap img')) icon = 'plus';
       else if (target.closest('.project-card a')) text = 'View';
-      else if (target.closest('.project-hero img, .project-figure img, .carousel-slide img')) text = 'Zoom';
+      else if (target.closest('.project-hero img, .project-figure img, .carousel-slide img')) icon = 'plus';
       else if (target.closest('a, button, summary, [role="button"], label, .has-tooltip')) isLink = true;
     }
     if (text) label.textContent = text;
     root.classList.toggle('cursor-label-on', !!text);
+    root.classList.toggle('cursor-plus', icon === 'plus');
+    root.classList.toggle('cursor-minus', icon === 'minus');
     root.classList.toggle('cursor-link', isLink);
   }
 
