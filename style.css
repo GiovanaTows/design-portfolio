@@ -4336,3 +4336,12 @@ html.cursor-down .cursor-ring {
     max-width: 100%;
   }
 }
+
+/* On phones the "Next project" / "Next case study" links drop the name of
+   what comes next ("Next project: Omnitrack Website →" becomes "Next
+   project →") so they fit on one line. */
+@media (max-width: 680px) {
+  .nav-detail {
+    display: none;
+  }
+}
