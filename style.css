@@ -3692,10 +3692,10 @@ a:active .badge-specs {
    (this is a plain icon button, not a pill), so it only "appears" to
    float once you actually hover it. */
 .copy-email-btn:hover {
-  color: #1a1a1a;
+  /*color: #1a1a1a;
   background-color: rgba(26, 26, 26, 0.08);
   transform: translateY(-2px);
-  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);*/
 }
 
 .copy-email-btn:active {
@@ -4042,5 +4042,129 @@ a.badge:active {
 @media (prefers-reduced-motion: reduce) {
   .underline-hover-overlay {
     transition: none;
+  }
+}
+/* ============================================
+   CUSTOM CURSOR
+   A small blue dot that tracks the pointer exactly, plus a ring that
+   trails behind it. Over links and buttons the ring swells; over project
+   cards and zoomable images it becomes a paper-colored label ("View",
+   "Zoom"). Only switched on by script.js for a mouse/trackpad on a wide
+   screen (html.has-cursor), so touch devices and small windows keep the
+   native cursor. Position is driven by --cx/--cy (dot) and --rx/--ry
+   (ring) set from script.js.
+   ============================================ */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--link);
+  transform: translate3d(var(--cx, -100px), var(--cy, -100px), 0);
+  /* Fades back in a beat after the ring starts shrinking, so leaving a
+     link reads as the halo collapsing into the dot. */
+  transition: opacity 0.4s ease 0.12s;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(26, 26, 26, 0.3);
+  transform: translate3d(var(--rx, -100px), var(--ry, -100px), 0);
+  transition:
+    opacity 0.25s ease,
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+html.cursor-visible .cursor-dot,
+html.cursor-visible .cursor-ring {
+  opacity: 1;
+}
+
+/* Over a link or button: the ring swells into a soft blue halo */
+html.cursor-link .cursor-ring {
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  border-color: rgba(36, 85, 230, 0.35);
+  background-color: rgba(36, 85, 230, 0.08);
+}
+html.cursor-link .cursor-dot {
+  opacity: 0.2;
+  width: 2px;
+  height: 2px;
+  margin: -1px 0 0 -1px;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+}
+
+/* Over a project card or zoomable image: a labelled translucent blue disc */
+html.cursor-label-on .cursor-ring {
+  /*border-color: rgba(36, 85, 230, 0.6);*/
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  /*border-color: rgba(36, 85, 230, 1);*/
+  background-color: rgba(36, 85, 230, 0.2);
+  /*border-color: rgba(230, 230, 230, 0.8);*/
+  border-color: rgb(110, 145, 252);
+}
+html.cursor-label-on .cursor-label {
+  /*opacity: 1;
+  color: #fff;*/
+}
+html.cursor-label-on .cursor-dot {
+  /*opacity: 0;
+  transition-delay: 0s;
+  transition-duration: 0.2s;*/
+  /*background-color: #fff;*/
+  background-color: rgb(202, 216, 255);
+  opacity: 0.2;
+  width: 2px;
+  height: 2px;
+}
+
+/* Pressed */
+html.cursor-down .cursor-ring {
+  transform: translate3d(var(--rx, -100px), var(--ry, -100px), 0) scale(0.88);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring {
+    transition: opacity 0.25s ease;
   }
 }

@@ -1629,3 +1629,88 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     });
   }
 }
+
+// Custom cursor: a dot that follows the pointer exactly and a ring that
+// trails it (see "CUSTOM CURSOR" in style.css). Only for a real mouse on
+// a wide screen — touch devices and narrow windows keep the native
+// cursor, and so does anyone who's asked for reduced motion.
+(function initCustomCursor() {
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1025px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!finePointer.matches) return;
+
+  const root = document.documentElement;
+  const dot = document.createElement('div');
+  dot.className = 'cursor-dot';
+  const ring = document.createElement('div');
+  ring.className = 'cursor-ring';
+  const label = document.createElement('span');
+  label.className = 'cursor-label';
+  ring.appendChild(label);
+  dot.setAttribute('aria-hidden', 'true');
+  ring.setAttribute('aria-hidden', 'true');
+  document.body.append(dot, ring);
+  root.classList.add('has-cursor');
+
+  let x = -100, y = -100, rx = -100, ry = -100, running = false;
+
+  function frame() {
+    // Ease the ring toward the dot; reduced motion snaps it instead.
+    const k = reducedMotion.matches ? 1 : 0.09;
+    rx += (x - rx) * k;
+    ry += (y - ry) * k;
+    ring.style.setProperty('--rx', rx.toFixed(1) + 'px');
+    ring.style.setProperty('--ry', ry.toFixed(1) + 'px');
+    if (Math.abs(x - rx) > 0.1 || Math.abs(y - ry) > 0.1) {
+      requestAnimationFrame(frame);
+    } else {
+      running = false;
+    }
+  }
+
+  function setState(target) {
+    let text = '';
+    let isLink = false;
+    if (target && target.closest) {
+      if (target.closest('.lightbox-img-wrap.zoomed img')) text = 'Zoom out';
+      else if (target.closest('.lightbox-img-wrap img')) text = 'Zoom';
+      else if (target.closest('.project-card a')) text = 'View';
+      else if (target.closest('.project-hero img, .project-figure img, .carousel-slide img')) text = 'Zoom';
+      else if (target.closest('a, button, summary, [role="button"], label, .has-tooltip')) isLink = true;
+    }
+    if (text) label.textContent = text;
+    root.classList.toggle('cursor-label-on', !!text);
+    root.classList.toggle('cursor-link', isLink);
+  }
+
+  document.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'mouse') return;
+    x = event.clientX;
+    y = event.clientY;
+    dot.style.setProperty('--cx', x + 'px');
+    dot.style.setProperty('--cy', y + 'px');
+    if (!root.classList.contains('cursor-visible')) {
+      // First move: appear right at the pointer instead of flying in.
+      rx = x;
+      ry = y;
+      root.classList.add('cursor-visible');
+    }
+    if (!running) {
+      running = true;
+      requestAnimationFrame(frame);
+    }
+  }, { passive: true });
+
+  document.addEventListener('pointerover', (event) => setState(event.target), { passive: true });
+  document.addEventListener('pointerdown', () => root.classList.add('cursor-down'), { passive: true });
+  document.addEventListener('pointerup', () => root.classList.remove('cursor-down'), { passive: true });
+  document.documentElement.addEventListener('mouseleave', () => root.classList.remove('cursor-visible'));
+  document.documentElement.addEventListener('mouseenter', () => root.classList.add('cursor-visible'));
+
+  // Following a link (or a zoom that swaps the image under the pointer)
+  // changes what's beneath a still cursor, so refresh on scroll too.
+  window.addEventListener('scroll', () => {
+    const el = document.elementFromPoint(x, y);
+    if (el) setState(el);
+  }, { passive: true });
+})();
