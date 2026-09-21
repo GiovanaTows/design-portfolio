@@ -2668,6 +2668,16 @@ a:active .badge-specs {
   margin-right: auto;
 }
 
+/* For carousels whose image is narrower than the column: the default
+   3:2 viewport is capped at 600px tall (see .carousel-viewport), so it is
+   at most 900px wide and centered. This keeps the buttons flush with the
+   image's left and right edges instead of the wider column. */
+.carousel-controls-row-image-width {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .carousel-meta {
   flex: 1;
   min-width: 0;
