@@ -1778,20 +1778,26 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
 })();
 
 
-// Card cover videos (e.g. the Motion Graphics card on the homepage): play,
-// looping and muted, while the card is hovered or focused, and rewind
-// once the fade back to the still picture has finished.
+// Card cover videos (e.g. the Motion Graphics card on the homepage).
+// With a mouse they play, looping and muted, while the card is hovered or
+// focused, and rewind once the fade back to the still picture has
+// finished. On phones and touch screens (no hover) they loop for as long
+// as the card is on screen instead, and pause once it scrolls away.
 document.querySelectorAll('.project-card .cover-video').forEach((video) => {
   const card = video.closest('a');
   if (!card) return;
+  const noHover = window.matchMedia('(hover: none), (max-width: 680px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let rewindTimer;
-  const start = () => {
+  const play = () => {
     clearTimeout(rewindTimer);
     video.preload = 'auto';
     const playing = video.play();
     if (playing) playing.catch(() => {});
   };
+  const start = () => { if (!noHover.matches) play(); };
   const stop = () => {
+    if (noHover.matches) return;
     clearTimeout(rewindTimer);
     rewindTimer = setTimeout(() => {
       video.pause();
@@ -1802,4 +1808,22 @@ document.querySelectorAll('.project-card .cover-video').forEach((video) => {
   card.addEventListener('mouseleave', stop);
   card.addEventListener('focus', start);
   card.addEventListener('blur', stop);
+
+  let onScreen = false;
+  const syncToScreen = () => {
+    if (reducedMotion.matches) return;
+    if (noHover.matches && onScreen) play();
+    else if (noHover.matches) video.pause();
+  };
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      onScreen = entries[entries.length - 1].isIntersecting;
+      syncToScreen();
+    }, { threshold: 0.25 }).observe(card);
+  }
+  // Rotating a tablet or resizing the window can switch modes.
+  noHover.addEventListener('change', () => {
+    if (noHover.matches) syncToScreen();
+    else { video.pause(); video.currentTime = 0; }
+  });
 });

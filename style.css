@@ -565,10 +565,13 @@ body {
   transform: none;
 }
 
-/* Phones and touch screens have no hover: the picture stays. */
+/* Phones and touch screens have no hover, so the video is always showing
+   and script.js plays it while the card is on screen. It sits exactly over
+   the picture, which shows until the first frame is ready. */
 @media (hover: none), (max-width: 680px) {
   .cover-video {
-    display: none;
+    opacity: 1;
+    border-radius: var(--image-radius);
   }
 }
 
