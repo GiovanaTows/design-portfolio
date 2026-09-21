@@ -1224,7 +1224,13 @@ document.querySelectorAll('.has-tooltip').forEach(badge => {
     const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
     if (rect.top < headerHeight + MARGIN) tip.classList.add('below');
   };
-  badge.addEventListener('mouseenter', place);
+  badge.addEventListener('mouseenter', () => {
+    // A click leaves the badge focused, which keeps its tooltip open. Moving
+    // on to another badge closes that one, so two are never open at once.
+    const open = document.activeElement;
+    if (open && open !== badge && open.classList.contains('has-tooltip')) open.blur();
+    place();
+  });
   badge.addEventListener('focus', place);
 });
 
