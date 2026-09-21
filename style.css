@@ -2732,14 +2732,17 @@ a:active .badge-specs {
   padding-top: 3rem !important;
 }
 
-/* The divider line fades in as it scrolls into view. A border can't be
+/* The divider lines — under each section (.topic-divider) and under the
+   title block at the top of a page (.divider) — fade in as they scroll
+   into view and when the page opens. A border can't be
    faded on its own, so script.js marks each divider .has-divider-line,
    makes its 1px border transparent (it still takes up its 1px, so no
    layout shifts) and draws the line as a separate .divider-line element
    in exactly that spot, whose opacity it toggles. Without JavaScript none
    of this applies and the plain border stays. */
 .topic-divider.has-divider-line,
-.topic-divider-index.has-divider-line {
+.topic-divider-index.has-divider-line,
+.divider.has-divider-line {
   position: relative;
   border-bottom-color: transparent;
 }
@@ -2760,13 +2763,14 @@ a:active .badge-specs {
   opacity: 1;
 }
 
-/* First paint of pages that opt in to the opening animation (index.html
-   and about.html set .js-reveal in their <head>): hide the borders right
-   away so a line doesn't flash before script.js takes over and fades it
-   in. */
+/* First paint of pages that opt in to the opening animation (the
+   homepage, About and project pages set .js-reveal in their <head>): hide
+   the borders right away so a line doesn't flash before script.js takes
+   over and fades it in. */
 @media (prefers-reduced-motion: no-preference) {
   html.js-reveal .topic-divider,
-  html.js-reveal .topic-divider-index {
+  html.js-reveal .topic-divider-index,
+  html.js-reveal .divider {
     border-bottom-color: transparent;
   }
 }

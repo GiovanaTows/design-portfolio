@@ -1576,7 +1576,8 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     }, { threshold: 0.15 });
     timelineGroups.forEach((_, entry) => timelineObserver.observe(entry));
 
-    // Divider lines: each section's bottom border is replaced (see
+    // Divider lines: each section's bottom border — and the one under a
+    // page's title block (.divider) — is replaced (see
     // .has-divider-line in style.css) by a 1px .divider-line element that
     // fades in once it's on screen and back out when it leaves. The line
     // itself is what's watched — the section can be far taller than the
@@ -1592,7 +1593,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
         entry.target.classList.toggle('in-view', entry.isIntersecting);
       });
     }, { rootMargin: '0px 0px -6% 0px' });
-    document.querySelectorAll('.topic-divider:not(.topic-divider-no-line), .topic-divider-index').forEach(divider => {
+    document.querySelectorAll('.topic-divider:not(.topic-divider-no-line), .topic-divider-index, .divider').forEach(divider => {
       const line = document.createElement('div');
       line.className = 'divider-line';
       line.setAttribute('aria-hidden', 'true');
