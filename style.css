@@ -50,7 +50,7 @@ body {
   --button: rgba(250, 249, 246, 0.3);
   --button-hover: rgba(250, 249, 246, 0.5);
   --link: #2455e6;
-  --link-hover: #2232c1;
+  --link-hover: #143bae;
   --display-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --carousel-bg-plots:#363636;
   --carousel-bg-white:#FFFFFF;
@@ -169,6 +169,24 @@ body {
 
 .highlight-link{
   color: var(--accent) !important;
+}
+
+/* The accent color above is !important, so the hover color has to be too
+   (and more specific) or it never shows. Every highlight link — "About
+   me →", "← Projects", "Next project: …", "Next case study: …" — turns
+   the same dark link blue as the top-menu links on hover/focus, with the
+   underline sweep in that blue as well. */
+.highlight-link {
+  transition: color 0.2s ease;
+}
+
+.highlight-link:hover,
+.highlight-link:focus-visible {
+  color: var(--link-hover) !important;
+}
+
+.highlight-link .underline-hover-overlay {
+  color: var(--link-hover);
 }
 
 /* Logo stays perfectly centered regardless of how wide the nav is.
@@ -2697,6 +2715,45 @@ a:active .badge-specs {
 .topic-divider-no-line{
   border-bottom: 0 !important;
   padding-top: 3rem !important;
+}
+
+/* The divider line fades in as it scrolls into view. A border can't be
+   faded on its own, so script.js marks each divider .has-divider-line,
+   makes its 1px border transparent (it still takes up its 1px, so no
+   layout shifts) and draws the line as a separate .divider-line element
+   in exactly that spot, whose opacity it toggles. Without JavaScript none
+   of this applies and the plain border stays. */
+.topic-divider.has-divider-line,
+.topic-divider-index.has-divider-line {
+  position: relative;
+  border-bottom-color: transparent;
+}
+
+.divider-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background-color: #e4e2db;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.9s ease;
+}
+
+.divider-line.in-view {
+  opacity: 1;
+}
+
+/* First paint of pages that opt in to the opening animation (index.html
+   and about.html set .js-reveal in their <head>): hide the borders right
+   away so a line doesn't flash before script.js takes over and fades it
+   in. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-reveal .topic-divider,
+  html.js-reveal .topic-divider-index {
+    border-bottom-color: transparent;
+  }
 }
 
 .topic-divider-first{
