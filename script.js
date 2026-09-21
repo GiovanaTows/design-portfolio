@@ -1827,3 +1827,36 @@ document.querySelectorAll('.project-card .cover-video').forEach((video) => {
     else { video.pause(); video.currentTime = 0; }
   });
 });
+
+
+// Homepage project cards: as the pointer moves over a card, its cover
+// shifts a little the opposite way — hover near the bottom right and the
+// picture slides toward the top left — for a sense of depth. The shift is
+// handed to the CSS as --mx / --my (see .section-projects in style.css),
+// which also eases it, so this only reports where the pointer is.
+(function initCardParallax() {
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 681px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll('.section-projects .project-card a').forEach((card) => {
+    const image = card.querySelector('.project-image');
+    // A card whose cover is a video already has movement of its own.
+    if (!image || card.querySelector('.cover-video')) return;
+    const reset = () => {
+      image.style.removeProperty('--mx');
+      image.style.removeProperty('--my');
+    };
+    card.addEventListener('pointermove', (event) => {
+      if (event.pointerType !== 'mouse' || !canHover.matches || reducedMotion.matches) return;
+      const rect = image.getBoundingClientRect();
+      // -1 at the left/top edge, 1 at the right/bottom edge
+      const nx = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+      // 2% of the card's width — inside the 3% margin the extra scale leaves
+      const max = rect.width * 0.02;
+      image.style.setProperty('--mx', (-Math.max(-1, Math.min(1, nx)) * max).toFixed(1) + 'px');
+      image.style.setProperty('--my', (-Math.max(-1, Math.min(1, ny)) * max).toFixed(1) + 'px');
+    }, { passive: true });
+    card.addEventListener('pointerleave', reset);
+    card.addEventListener('blur', reset);
+  });
+})();
