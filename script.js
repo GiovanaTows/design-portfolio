@@ -1346,7 +1346,9 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   // Running text: paragraphs and Problem/Solution-style sub-headings
   // inside a project's body copy, plus the homepage's intro tagline
   // (the only piece of body text that lives outside .project-body).
-  const revealText = document.querySelectorAll('main.project-body p, main.project-body h3, main.project-body h4, .introduction-text');
+  // The About page's subtitle and its Based in / Availability / Languages /
+  // Contact badge blocks are part of its opening sequence too.
+  const revealText = document.querySelectorAll('main.project-body p, main.project-body h3, main.project-body h4, .introduction-text, .project-header-about .project-meta, #specs-about-desktop .badge-block, #specs-about-mobile .badge-block');
   // Images: hero shots, case-study figures, and every project/case-study
   // grid card (.case-study-card is always paired with .project-card, so
   // this catches both grids with one selector).
@@ -1395,6 +1397,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     // already halfway in by the time the page has painted.
     const OPEN_START_MS = 150;
     let firstBatch = true;
+    const sequenceEverything = document.documentElement.classList.contains('js-reveal-all');
 
     const headingObserver = new IntersectionObserver((entries) => {
       const entering = [];
@@ -1413,15 +1416,20 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
 
       if (firstBatch) {
         firstBatch = false;
-        const openingCards = entering.filter(entry => entry.target.classList.contains('project-card'));
-        entering.splice(0, entering.length, ...entering.filter(entry => !openingCards.includes(entry)));
+        // Which elements run as the opening sequence: the project cards
+        // on the homepage, or — on pages whose <head> sets
+        // .js-reveal-all (the About page) — everything on screen.
+        const openingEntries = sequenceEverything
+          ? entering.slice()
+          : entering.filter(entry => entry.target.classList.contains('project-card'));
+        entering.splice(0, entering.length, ...entering.filter(entry => !openingEntries.includes(entry)));
 
-        // Hold the sequence until the cards' pictures are in (or 2.5s
-        // pass), so the cards fade in with their images instead of as
-        // empty tiles that the pictures then pop into. They're already
-        // hidden by CSS in the meantime.
-        const pictureReady = (card) => {
-          const img = card.querySelector('img');
+        // Hold the sequence until the pictures involved are in (or 2.5s
+        // pass), so things fade in with their images instead of as
+        // empty tiles that the pictures then pop into. Everything is
+        // already hidden by CSS in the meantime.
+        const pictureReady = (el) => {
+          const img = el.tagName === 'IMG' ? el : el.querySelector('img');
           if (!img || (img.complete && img.naturalWidth)) return Promise.resolve();
           return new Promise(resolve => {
             img.addEventListener('load', resolve, { once: true });
@@ -1429,14 +1437,17 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
           });
         };
         Promise.race([
-          Promise.all(openingCards.map(entry => pictureReady(entry.target))),
+          Promise.all(openingEntries.map(entry => pictureReady(entry.target))),
           new Promise(resolve => setTimeout(resolve, 2500)),
         ]).then(() => {
-          sortedByPosition(openingCards).forEach(({ entry, rect }, index) => {
+          // A long list gets a tighter step so the whole sequence stays
+          // within about a second.
+          const step = Math.min(STAGGER_STEP_MS, 1000 / Math.max(openingEntries.length, 1));
+          sortedByPosition(openingEntries).forEach(({ entry, rect }, index) => {
             // Scrolled away while waiting: leave it for the observer to
             // reveal when it comes back into view.
             if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-            entry.target.style.transitionDelay = `${OPEN_START_MS + index * STAGGER_STEP_MS}ms`;
+            entry.target.style.transitionDelay = `${OPEN_START_MS + index * step}ms`;
             entry.target.classList.add('in-view');
           });
         });

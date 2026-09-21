@@ -1090,34 +1090,32 @@ body {
 
 
 
-/* Same fade/slide-from-the-left reveal as the H2s below, just a
-   touch slower (1.6s vs 0.7s) since the H1 is the page's one big
-   opening move rather than a per-section beat. Toggled by the same
-   IntersectionObserver in script.js, so it replays every time the
-   title scrolls out of view and back in, not just on first load. */
+/* The page H1 uses the same fade-up as the body text (.p-reveal) and the
+   section H2s, so every piece of text on a page arrives the same way.
+   Toggled by the same IntersectionObserver in script.js, so it replays
+   every time the title scrolls out of view and back in, not just on
+   first load. */
 .h1-reveal {
   opacity: 0;
-  transform: translateX(-24px);
-  transition: opacity 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .h1-reveal.in-view {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
-/* Section H2s get the same fade-up as the body copy below them
-   (.p-reveal), rather than the H1's sideways slide — a section heading
-   reads as part of the same content flow as the text under it, not as
-   its own opening move the way the page H1 is. script.js adds
-   .h2-reveal itself (rather than it living in the base h2 rule) so a
+/* Section H2s get the same fade-up as the page H1 above and the body
+   copy below (.p-reveal) — same motion, same 0.8s — so all text on a
+   page arrives one way. script.js adds .h2-reveal itself (rather than it living in the base h2 rule) so a
    heading only ever starts hidden once JS has actually confirmed it
    can reveal it again — if the script fails to load, h2s simply
    render normally with no animation, instead of staying invisible. */
 .h2-reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .h2-reveal.in-view {
@@ -1156,10 +1154,9 @@ body {
 }
 
 /* Body copy (paragraphs and Problem/Solution-style sub-headings) fades
-   up from below instead of sliding in sideways like the H1/H2s above —
-   reads as settling into place rather than arriving from off-screen,
-   which suits running text better than a directional slide. Same
-   repeat-on-scroll IntersectionObserver in script.js adds/removes
+   up from below — the same motion as the H1 and H2s above, so all text
+   reads as settling into place rather than arriving from off-screen.
+   Same repeat-on-scroll IntersectionObserver in script.js adds/removes
    .in-view, and the same script-only setup keeps text visible by
    default if it never runs. */
 .p-reveal {
@@ -1199,6 +1196,34 @@ body {
   html.js-reveal .project-card:not(.in-view) {
     opacity: 0;
     transform: translateY(28px);
+  }
+}
+
+/* About page (about.html adds .js-reveal-all to <html> in its <head>):
+   the same first-paint hiding as the project cards above, for everything
+   its opening animation covers. Each rule matches the hidden state of the
+   element's own reveal class (.about-portrait-reveal, .h1-reveal,
+   .h2-reveal, .p-reveal) exactly, so nothing jumps when script.js adds
+   those classes. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-reveal-all .about-portrait:not(.in-view) {
+    opacity: 0;
+  }
+
+  html.js-reveal-all .project-header h1:not(.visually-hidden):not(.in-view) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  html.js-reveal-all .project-header-about .project-meta:not(.in-view),
+  html.js-reveal-all main h2:not(.visually-hidden):not(.in-view),
+  html.js-reveal-all main.project-body p:not(.in-view),
+  html.js-reveal-all main.project-body h3:not(.in-view),
+  html.js-reveal-all main.project-body h4:not(.in-view),
+  html.js-reveal-all #specs-about-desktop .badge-block:not(.in-view),
+  html.js-reveal-all #specs-about-mobile .badge-block:not(.in-view) {
+    opacity: 0;
+    transform: translateY(24px);
   }
 }
 
