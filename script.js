@@ -1374,6 +1374,16 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     // stays well clear of merging two actually-separate rows.
     const ROW_TOLERANCE_PX = 100;
 
+    // Cards already on screen when the page opens arrive in the very
+    // first callback. Grouping those by row (below) would start every row
+    // at 0ms, so a screenful of cards pops in a few at a time — while
+    // scrolling, rows arrive at different moments and it reads as one by
+    // one. So on open they're run as one sequence, left to right and top
+    // to bottom, starting a beat after load so the first card isn't
+    // already halfway in by the time the page has painted.
+    const OPEN_START_MS = 150;
+    let firstBatch = true;
+
     const headingObserver = new IntersectionObserver((entries) => {
       const entering = [];
       entries.forEach(entry => {
@@ -1385,9 +1395,42 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
         }
       });
 
-      entering
+      const sortedByPosition = (list) => list
         .map(entry => ({ entry, rect: entry.target.getBoundingClientRect() }))
-        .sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left)
+        .sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left);
+
+      if (firstBatch) {
+        firstBatch = false;
+        const openingCards = entering.filter(entry => entry.target.classList.contains('project-card'));
+        entering.splice(0, entering.length, ...entering.filter(entry => !openingCards.includes(entry)));
+
+        // Hold the sequence until the cards' pictures are in (or 2.5s
+        // pass), so the cards fade in with their images instead of as
+        // empty tiles that the pictures then pop into. They're already
+        // hidden by CSS in the meantime.
+        const pictureReady = (card) => {
+          const img = card.querySelector('img');
+          if (!img || (img.complete && img.naturalWidth)) return Promise.resolve();
+          return new Promise(resolve => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          });
+        };
+        Promise.race([
+          Promise.all(openingCards.map(entry => pictureReady(entry.target))),
+          new Promise(resolve => setTimeout(resolve, 2500)),
+        ]).then(() => {
+          sortedByPosition(openingCards).forEach(({ entry, rect }, index) => {
+            // Scrolled away while waiting: leave it for the observer to
+            // reveal when it comes back into view.
+            if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+            entry.target.style.transitionDelay = `${OPEN_START_MS + index * STAGGER_STEP_MS}ms`;
+            entry.target.classList.add('in-view');
+          });
+        });
+      }
+
+      sortedByPosition(entering)
         .reduce((rows, item) => {
           const currentRow = rows[rows.length - 1];
           if (currentRow && Math.abs(item.rect.top - currentRow[0].rect.top) <= ROW_TOLERANCE_PX) {

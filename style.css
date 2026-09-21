@@ -1172,6 +1172,19 @@ body {
   transform: translateY(0);
 }
 
+/* Homepage only (index.html sets .js-reveal in its <head>): hide the
+   project cards from the very first paint. Their .image-reveal class is
+   added by script.js at the end of the page, which can run after the
+   browser has already painted — the cards would flash visible and skip
+   the entrance animation. Same look as .image-reveal, and released the
+   moment a card gets .in-view. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-reveal .project-card:not(.in-view) {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
 /* Carousels get the slowest, heaviest fade-up of the three — they're
    the largest single block on a page, so settling in a beat slower
    than the images above keeps the whole page's reveal rhythm feeling
@@ -2952,7 +2965,7 @@ a:active .badge-specs {
 .project-nav {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
-  padding: 0 2rem 1.5rem;
+  padding: 0 0 1.5rem;
   display: flex;
   justify-content: space-between;
 }

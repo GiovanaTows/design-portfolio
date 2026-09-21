@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
+
+  <!-- Tells the CSS "script.js will play the entrance animation", so the
+       project cards can be hidden from the very first paint. script.js
+       sits at the end of the page (behind the Lenis download), so without
+       this the browser can paint the cards fully visible first and the
+       animation never shows. If script.js never takes over, the class is
+       dropped after 4 seconds so nothing stays hidden. -->
+  <script>
+    document.documentElement.classList.add('js-reveal');
+    setTimeout(function () { document.documentElement.classList.remove('js-reveal'); }, 4000);
+  </script>
   <title>Giovana Tows — Product Designer (UX/UI) in Antwerp</title>
   <meta name="description" content="Portfolio of Giovana Tows, a Product Designer (UX/UI) based in Antwerp, Belgium, with a background in systems development and fine art.">
   <link rel="canonical" href="https://giovanatows.github.io/design-portfolio/">
