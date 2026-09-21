@@ -237,14 +237,29 @@ if (menuToggle && navLinks) {
     menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
   });
 
+  const closeMenu = () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open menu');
+  };
+
   // Close the menu automatically after tapping a link,
   // so it doesn't stay open when the page jumps to a section
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open menu');
-    });
+    link.addEventListener('click', closeMenu);
+  });
+
+  // It's a dropdown now, so a tap outside it or Escape closes it too.
+  document.addEventListener('click', (event) => {
+    if (!navLinks.classList.contains('open')) return;
+    if (navLinks.contains(event.target) || menuToggle.contains(event.target)) return;
+    closeMenu();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMenu();
+      menuToggle.focus();
+    }
   });
 }
 

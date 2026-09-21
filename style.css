@@ -255,6 +255,139 @@ body {
   }
 }
 
+/* Very narrow screens (under 320px): there's no room for Projects and
+   About inline next to the logo, so they collapse into the hamburger.
+   script.js toggles .open on .nav-links. The dropdown is a full-width
+   glass panel hanging off the header's bottom edge (1.25rem is the
+   header's bottom padding, 0.4rem once it has shrunk on scroll; the
+   -1.5rem left/right cancel the header's side padding so it spans the
+   whole screen). It's hidden with visibility as well as opacity so its
+   links aren't tabbable while closed.
+
+   A backdrop-filter element only blurs what's behind it *up to* the
+   nearest ancestor that itself has a backdrop-filter — so with the
+   glass on .site-header, the dropdown inside it would blur nothing but
+   the header. To let it blur the page, the header's own glass moves
+   onto a ::before layer here (which isn't an ancestor of the
+   dropdown). */
+@media (max-width: 319.98px) {
+  .site-header {
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: rgba(250, 249, 246, 0.75);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 1.25rem);
+    left: -1.5rem;
+    right: -1.5rem;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 0;
+    margin: 0;
+    padding: 0.5rem 0;
+    background-color: rgba(250, 249, 246, 0.75);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+    /* Closed state, and the closing transition: the links fade first
+       (see .nav-links a), then the panel retracts up into the header
+       with a short delay. Revealed/retracted with clip-path rather
+       than just fading, so it reads as unrolling from the header. */
+    opacity: 0;
+    visibility: hidden;
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(-8px);
+    transition:
+      clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.06s,
+      opacity 0.4s ease 0.12s,
+      transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.06s,
+      visibility 0s linear 0.56s;
+  }
+
+  .site-header.scrolled .nav-links {
+    top: calc(100% + 0.4rem);
+  }
+
+  /* Opening: a longer, softer ease-out. Same curve family as the
+     site's scroll reveals (0.2, 0.8, 0.2, 1). */
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
+    transition:
+      clip-path 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.4s ease,
+      transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s linear 0s;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.9rem 1.5rem;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* The links settle in one after the other, just behind the panel. */
+  .nav-links.open a {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.45s ease 0.12s, transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s;
+  }
+
+  .nav-links.open li:nth-child(2) a {
+    transition-delay: 0.2s;
+  }
+}
+
+@media (max-width: 319.98px) and (prefers-reduced-motion: reduce) {
+  .nav-links,
+  .nav-links.open,
+  .nav-links a,
+  .nav-links.open a {
+    transition: none;
+  }
+}
+
+/* Same solid fallbacks as the header's, for the layers that carry the
+   glass at this width. */
+@supports not (backdrop-filter: blur(1px)) {
+  @media (max-width: 319.98px) {
+    .site-header::before,
+    .nav-links {
+      background-color: var(--paper);
+    }
+  }
+}
+
+@media (max-width: 319.98px) and (prefers-reduced-transparency: reduce) {
+  .site-header::before,
+  .nav-links {
+    background-color: var(--paper);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 /* ============================================
    4. SECTIONS
    scroll-margin-top keeps a section from being hidden
