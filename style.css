@@ -527,6 +527,57 @@ body {
   transition: transform 0.4s ease;
 }
 
+/* A card's cover can also be a short video: it sits over the picture,
+   invisible, and fades in (and plays, see script.js) while the card is
+   hovered. Mirrors the picture's hover zoom so the two move together. */
+.cover-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.project-card a:hover .cover-video,
+.project-card a:focus-visible .cover-video {
+  opacity: 1;
+}
+
+/* Holds the picture and the video. Unlike the other cards this one has no
+   hover zoom: the video fades in over the still at the same size, so
+   nothing appears to move except the video itself. */
+.cover-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* No zoom on this card's picture (this needs to out-rank the plain-card
+   rule that zooms .project-image img on hover). */
+.project-card a .project-image .cover-media img,
+.project-card a:hover .project-image .cover-media img,
+.project-card a:focus-visible .project-image .cover-media img {
+  transform: none;
+}
+
+/* Phones and touch screens have no hover: the picture stays. */
+@media (hover: none), (max-width: 680px) {
+  .cover-video {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-video {
+    display: none;
+  }
+}
+
 /* The caption sits on top of the image, invisible until hovered */
 .project-overlay {
   position: absolute;
@@ -3269,7 +3320,7 @@ a:active .badge-specs {
   display: flex;
   justify-content: space-between;
   /*adding: 1.5rem 1.5rem;*/
-  padding: 1.5rem 1.5rem;
+  padding-top: 1.5rem;
 }
 
 /* A lone link that should sit on the right (the homepage's "About me →");

@@ -1776,3 +1776,30 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     if (el) setState(el);
   }, { passive: true });
 })();
+
+
+// Card cover videos (e.g. the Motion Graphics card on the homepage): play,
+// looping and muted, while the card is hovered or focused, and rewind
+// once the fade back to the still picture has finished.
+document.querySelectorAll('.project-card .cover-video').forEach((video) => {
+  const card = video.closest('a');
+  if (!card) return;
+  let rewindTimer;
+  const start = () => {
+    clearTimeout(rewindTimer);
+    video.preload = 'auto';
+    const playing = video.play();
+    if (playing) playing.catch(() => {});
+  };
+  const stop = () => {
+    clearTimeout(rewindTimer);
+    rewindTimer = setTimeout(() => {
+      video.pause();
+      video.currentTime = 0;
+    }, 350);
+  };
+  card.addEventListener('mouseenter', start);
+  card.addEventListener('mouseleave', stop);
+  card.addEventListener('focus', start);
+  card.addEventListener('blur', stop);
+});
