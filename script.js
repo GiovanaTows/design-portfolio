@@ -1658,7 +1658,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   let lensImg = null;         // the image under the pointer, when the lens is showing
   let lensSrc = '';
   const LENS_ZOOM = 2.4;      // how much the lens magnifies
-  const LENS_SIZE = 174;      // inside diameter of the .cursor-plus ring in style.css (180px minus its 3px borders)
+  const LENS_SIZE = 177;      // inside diameter of the .cursor-plus ring in style.css (180px minus its 1.5px borders)
 
   // The picture's own rect — same as the box unless object-fit crops or
   // letterboxes it.

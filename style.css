@@ -4158,14 +4158,13 @@ html.cursor-label-on .cursor-dot {
   height: 2px;
 }
 
-/* Over a zoomable image: a magnifying lens — the ring with a short handle
-   at its lower right. The ring's inside (.cursor-lens) shows the image
+/* Over a zoomable image: a magnifying lens — a ring whose inside (.cursor-lens) shows the image
    under it magnified; script.js paints its background. */
 html.cursor-plus .cursor-ring {
   width: 180px;
   height: 180px;
   margin: -90px 0 0 -90px;
-  border: 3px solid var(--link);
+  border: 1.5px solid var(--link);
   background-color: rgba(36, 85, 230, 0.06);
 }
 html.cursor-plus .cursor-dot {
@@ -4184,25 +4183,6 @@ html.cursor-plus .cursor-dot {
 html.cursor-plus .cursor-lens {
   opacity: 1;
 }
-/* the handle: centered 108px (radius + half its length) out along the diagonal */
-.cursor-ring::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 36px;
-  height: 6px;
-  margin: -3px 0 0 -18px;
-  background: var(--link);
-  border-radius: 3px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  transform: translate(76px, 76px) rotate(45deg);
-}
-html.cursor-plus .cursor-ring::before {
-  opacity: 1;
-}
-
 /* Pressed */
 html.cursor-down .cursor-ring {
   transform: translate3d(var(--rx, -100px), var(--ry, -100px), 0) scale(0.88);
