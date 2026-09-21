@@ -1646,22 +1646,61 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   ring.className = 'cursor-ring';
   const label = document.createElement('span');
   label.className = 'cursor-label';
-  ring.appendChild(label);
+  const lens = document.createElement('div');
+  lens.className = 'cursor-lens';
+  ring.append(lens, label);
   dot.setAttribute('aria-hidden', 'true');
   ring.setAttribute('aria-hidden', 'true');
   document.body.append(dot, ring);
   root.classList.add('has-cursor');
 
   let x = -100, y = -100, rx = -100, ry = -100, running = false;
+  let lensImg = null;         // the image under the pointer, when the lens is showing
+  let lensSrc = '';
+  const LENS_ZOOM = 2.4;      // how much the lens magnifies
+  const LENS_SIZE = 174;      // inside diameter of the .cursor-plus ring in style.css (180px minus its 3px borders)
+
+  // The picture's own rect — same as the box unless object-fit crops or
+  // letterboxes it.
+  function paintedRect(img) {
+    const box = img.getBoundingClientRect();
+    const fit = getComputedStyle(img).objectFit;
+    const nw = img.naturalWidth, nh = img.naturalHeight;
+    if (!nw || !nh || !box.width || !box.height || !['contain', 'cover'].includes(fit)) return box;
+    const scale = fit === 'cover' ? Math.max(box.width / nw, box.height / nh) : Math.min(box.width / nw, box.height / nh);
+    const w = nw * scale, h = nh * scale;
+    return { left: box.left + (box.width - w) / 2, top: box.top + (box.height - h) / 2, width: w, height: h };
+  }
+
+  // Paints the magnified patch of the image that sits under the ring's
+  // centre, so the lens shows that spot in more detail.
+  function paintLens() {
+    if (!lensImg) return;
+    const src = lensImg.currentSrc || lensImg.src;
+    if (src !== lensSrc) {
+      lensSrc = src;
+      lens.style.backgroundImage = 'url("' + src.replace(/"/g, '%22') + '")';
+    }
+    const r = paintedRect(lensImg);
+    const bw = r.width * LENS_ZOOM;
+    const bh = r.height * LENS_ZOOM;
+    const px = ((rx - r.left) / r.width) * bw;
+    const py = ((ry - r.top) / r.height) * bh;
+    lens.style.backgroundSize = bw + 'px ' + bh + 'px';
+    lens.style.backgroundPosition = (LENS_SIZE / 2 - px) + 'px ' + (LENS_SIZE / 2 - py) + 'px';
+  }
 
   function frame() {
-    // Ease the ring toward the dot; reduced motion snaps it instead.
-    const k = reducedMotion.matches ? 1 : 0.09;
+    // Ease the ring toward the dot; reduced motion snaps it instead. The
+    // lens tracks more tightly so the magnified patch stays close to
+    // where the pointer is.
+    const k = reducedMotion.matches ? 1 : (lensImg ? 0.28 : 0.09);
     rx += (x - rx) * k;
     ry += (y - ry) * k;
     ring.style.setProperty('--rx', rx.toFixed(1) + 'px');
     ring.style.setProperty('--ry', ry.toFixed(1) + 'px');
-    if (Math.abs(x - rx) > 0.1 || Math.abs(y - ry) > 0.1) {
+    paintLens();
+    if (lensImg || Math.abs(x - rx) > 0.1 || Math.abs(y - ry) > 0.1) {
       requestAnimationFrame(frame);
     } else {
       running = false;
@@ -1672,18 +1711,22 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     let text = '';
     let icon = '';
     let isLink = false;
+    let zoomImg = null;
     if (target && target.closest) {
-      if (target.closest('.lightbox-img-wrap.zoomed img')) icon = 'minus';
-      else if (target.closest('.lightbox-img-wrap img')) icon = 'plus';
+      if (target.closest('.lightbox-img-wrap img')) { icon = 'plus'; zoomImg = target.closest('img'); }
       else if (target.closest('.project-card a')) text = 'View';
-      else if (target.closest('.project-hero img, .project-figure img, .carousel-slide img')) icon = 'plus';
+      else if (target.closest('.project-hero img, .project-figure img, .carousel-slide img')) { icon = 'plus'; zoomImg = target.closest('img'); }
       else if (target.closest('a, button, summary, [role="button"], label, .has-tooltip')) isLink = true;
     }
     if (text) label.textContent = text;
     root.classList.toggle('cursor-label-on', !!text);
     root.classList.toggle('cursor-plus', icon === 'plus');
-    root.classList.toggle('cursor-minus', icon === 'minus');
     root.classList.toggle('cursor-link', isLink);
+    lensImg = zoomImg;
+    if (lensImg && !running) {
+      running = true;
+      requestAnimationFrame(frame);
+    }
   }
 
   document.addEventListener('pointermove', (event) => {
