@@ -4212,3 +4212,12 @@ html.cursor-down .cursor-ring {
     transition: opacity 0.25s ease;
   }
 }
+
+/* On phones the back link above a project's title is left out — the
+   header's own navigation and the link at the bottom of the page do the
+   job, and it just pushes the title down. */
+@media (max-width: 680px) {
+  .project-header .project-nav {
+    display: none;
+  }
+}
