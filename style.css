@@ -1220,6 +1220,7 @@ body {
   html.js-reveal-all main.project-body p:not(.in-view),
   html.js-reveal-all main.project-body h3:not(.in-view),
   html.js-reveal-all main.project-body h4:not(.in-view),
+  html.js-reveal-all .toolkit-category:not(.in-view),
   html.js-reveal-all #specs-about-desktop .badge-block:not(.in-view),
   html.js-reveal-all #specs-about-mobile .badge-block:not(.in-view) {
     opacity: 0;
@@ -3265,7 +3266,7 @@ a:active .badge-specs {
 .timeline-logo {
   width: 49px;
   height: 49px;
-  border-radius: 9px;
+  border-radius: 4px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -3273,7 +3274,7 @@ a:active .badge-specs {
 .timeline-logo-sm {
   width: 46px;
   height: 46px;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .timeline-compact-entry .timeline-title-row {
@@ -3401,7 +3402,7 @@ a:active .badge-specs {
 .about-portrait {
   width: 140px;
   height: 140px;
-  border-radius: 50%;
+  border-radius: var(--image-radius);
   object-fit: cover;
   flex-shrink: 0;
 }

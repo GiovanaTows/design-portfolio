@@ -1348,7 +1348,18 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   // (the only piece of body text that lives outside .project-body).
   // The About page's subtitle and its Based in / Availability / Languages /
   // Contact badge blocks are part of its opening sequence too.
-  const revealText = document.querySelectorAll('main.project-body p, main.project-body h3, main.project-body h4, .introduction-text, .project-header-about .project-meta, #specs-about-desktop .badge-block, #specs-about-mobile .badge-block');
+  const revealTextAll = document.querySelectorAll('main.project-body p, main.project-body h3, main.project-body h4, .introduction-text, .project-header-about .project-meta, #specs-about-desktop .badge-block, #specs-about-mobile .badge-block');
+  // The About page's Toolkit: each .toolkit-category (title + badge grid)
+  // reveals as one block, so its own heading isn't revealed separately on
+  // top of that. Those headings are marked .in-view up front so the
+  // first-paint hiding in style.css (which excludes anything .in-view)
+  // never hides them.
+  const revealToolkit = document.querySelectorAll('.toolkit-category');
+  const revealText = [];
+  revealTextAll.forEach(el => {
+    if (el.closest('.toolkit-category')) el.classList.add('in-view');
+    else revealText.push(el);
+  });
   // Images: hero shots, case-study figures, and every project/case-study
   // grid card (.case-study-card is always paired with .project-card, so
   // this catches both grids with one selector).
@@ -1359,11 +1370,12 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   revealTimelineLogos.forEach(l => l.classList.add('timeline-logo-reveal'));
   revealPortraits.forEach(p => p.classList.add('about-portrait-reveal'));
   revealText.forEach(el => el.classList.add('p-reveal'));
+  revealToolkit.forEach(el => el.classList.add('p-reveal'));
   revealImages.forEach(el => el.classList.add('image-reveal'));
   revealCarousels.forEach(el => el.classList.add('carousel-reveal'));
   const revealElements = [
     ...revealH1s, ...revealH2s, ...revealTimelineLogos, ...revealPortraits,
-    ...revealText, ...revealImages, ...revealCarousels,
+    ...revealText, ...revealToolkit, ...revealImages, ...revealCarousels,
   ];
   if (revealElements.length) {
     // Elements that scroll into view together — a paragraph/image pair
@@ -1397,6 +1409,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     // already halfway in by the time the page has painted.
     const OPEN_START_MS = 150;
     let firstBatch = true;
+    let toolkitNextStart = 0;
     const sequenceEverything = document.documentElement.classList.contains('js-reveal-all');
 
     const headingObserver = new IntersectionObserver((entries) => {
@@ -1450,6 +1463,26 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
             entry.target.style.transitionDelay = `${OPEN_START_MS + index * step}ms`;
             entry.target.classList.add('in-view');
           });
+        });
+      }
+
+      // Toolkit blocks reveal strictly one at a time. Blocks that come into
+      // view in the same moment are ordered top to bottom, left to right
+      // (grouping them by row, below, would start every row at 0ms). And
+      // because smooth scrolling can carry two blocks in different
+      // frames — so they'd each look like the "first" of their own
+      // batch — every start time is also scheduled at least one step after
+      // the previous block's, across batches.
+      const toolkitEntries = entering.filter(entry => entry.target.classList.contains('toolkit-category'));
+      if (toolkitEntries.length) {
+        entering.splice(0, entering.length, ...entering.filter(entry => !toolkitEntries.includes(entry)));
+        const toolkitStep = Math.min(STAGGER_STEP_MS, 1000 / toolkitEntries.length);
+        const now = performance.now();
+        sortedByPosition(toolkitEntries).forEach(({ entry }) => {
+          const startAt = Math.max(now, toolkitNextStart);
+          entry.target.style.transitionDelay = `${Math.round(startAt - now)}ms`;
+          toolkitNextStart = startAt + toolkitStep;
+          entry.target.classList.add('in-view');
         });
       }
 
