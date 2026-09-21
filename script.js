@@ -1014,31 +1014,41 @@ if (document.querySelector('.project-body')) {
 // is about to scroll into view, so they load progressively instead of
 // all at once.
 //
-// Figma embeds are the heaviest of these — heavy enough to crash the
-// page on a phone with a slow connection or little memory — so on
-// mobile, if the browser reports either of those, the embed is skipped
-// entirely rather than risking a crash: its container is hidden and
-// only the "open it in a new tab" link placed above it (see the HTML)
-// is left. navigator.connection/deviceMemory aren't supported
-// everywhere (notably Safari), so this only ever skips when the signal
-// is actually present — it never assumes a device is low-power.
-const isLowPowerMobile = () => {
-  if (!window.matchMedia('(max-width: 700px)').matches) return false;
-  const connection = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
-  const slowConnection = !!connection && (connection.saveData || ['slow-2g', '2g', '3g'].includes(connection.effectiveType));
-  const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
-  return slowConnection || lowMemory;
-};
-const skipFigmaEmbeds = isLowPowerMobile();
+// Figma embeds are the heaviest of these — on phones they crash the page
+// often enough that they're not shown there at all: style.css hides
+// .figma-imbeded-div at phone widths, and an element with no box never
+// intersects, so its iframe never gets a src and never loads. The
+// sentence above each embed is swapped for a plain link to the Figma file
+// (see the .figma-note code just below).
+const lazyIframes = Array.from(document.querySelectorAll('iframe[data-src]'));
 
-const lazyIframes = Array.from(document.querySelectorAll('iframe[data-src]')).filter(iframe => {
-  const figmaContainer = iframe.closest('.figma-imbeded-div');
-  if (figmaContainer && skipFigmaEmbeds) {
-    figmaContainer.style.display = 'none';
-    return false;
-  }
-  return true;
+// Each sentence introducing a Figma embed ("Check the flow below, or open
+// it in a new tab →") is a <p class="figma-note" data-mobile-text="Check
+// the flow on Figma →">. On desktop it reads as written; at phone widths
+// (see the media query in style.css) the whole sentence is replaced by
+// one link, built here from the existing link's URL, saying what
+// data-mobile-text says. Both versions are always in the page and CSS
+// picks one, so it also follows a rotation or a window resize.
+document.querySelectorAll('.figma-note[data-mobile-text]').forEach((note) => {
+  const source = note.querySelector('a[href]');
+  if (!source) return;
+
+  const desktop = document.createElement('span');
+  desktop.className = 'figma-note-desktop';
+  while (note.firstChild) desktop.appendChild(note.firstChild);
+
+  const mobile = document.createElement('a');
+  mobile.className = 'inline-link figma-note-mobile';
+  mobile.href = source.href;
+  mobile.target = '_blank';
+  mobile.rel = 'noopener noreferrer';
+  // Non-breaking space before the arrow, so it can't wrap onto a line of its own.
+  mobile.textContent = note.dataset.mobileText.replace(/ →$/, '\u00a0→');
+  setUpUnderlineHover(mobile);
+
+  note.append(desktop, mobile);
 });
+
 // Coordinates every YouTube embed on the page through the official
 // IFrame Player API (loaded from a CDN <script> tag placed before this
 // file — see civi.html/civi-marketing.html, the only pages with

@@ -2859,6 +2859,32 @@ a:active .badge-specs {
   }
 }
 
+/* Phones: no Figma embeds (they crash mobile browsers), just a link.
+   "Phone" = a narrow screen, or a touch-only device up to a little over
+   the size of a phone held sideways. The sentence above each embed
+   (.figma-note, built in script.js) swaps to its one-link version, and
+   the embed itself is hidden — script.js's lazy loader never gives a
+   hidden iframe its src, so it isn't downloaded either. */
+/* Two-class selectors: .inline-link (declared further down) also sets
+   display, and would otherwise win the tie and keep this link visible. */
+.figma-note .figma-note-mobile {
+  display: none;
+}
+
+@media (max-width: 900px), (hover: none) and (pointer: coarse) and (max-width: 1100px) {
+  .figma-note .figma-note-desktop {
+    display: none;
+  }
+
+  .figma-note .figma-note-mobile {
+    display: inline-block;
+  }
+
+  .figma-imbeded-div {
+    display: none !important;
+  }
+}
+
 /*@media (max-width: 800px) {
   .figma-imbeded {
     aspect-ratio: 5 / 4;
