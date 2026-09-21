@@ -263,6 +263,18 @@ if (menuToggle && navLinks) {
   });
 }
 
+// The top-menu link for the page you're already on (marked
+// aria-current="page" in the HTML) scrolls back to the top instead of
+// reloading the page — same eased scroll as the back-to-top button.
+document.querySelectorAll('.index-nav a[aria-current="page"]').forEach(link => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    stopAnchorTracking();
+    if (lenis) lenis.scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
 // Sticky header: shrinks a little once you've scrolled past the very
 // top, and returns to full size back at the top — see .site-header.scrolled
 // in style.css for the actual size change.

@@ -149,6 +149,22 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+/* Hovering (or keyboard-focusing) any top-menu link turns it the dark
+   link blue, on top of the underline sweep. */
+.index-nav a:hover,
+.index-nav a:focus-visible {
+  color: var(--link-hover);
+}
+
+/* The top-menu link for the page you're already on: a little bolder
+   (600 renders as bold in fonts without a semi-bold, so it reads on any
+   device). Clicking it scrolls back to the top — see script.js. Hover
+   color is shared by every top-menu link, see .index-nav a:hover. */
+.index-nav a[aria-current="page"] {
+  font-weight: 500;
 }
 
 .highlight-link{
@@ -466,6 +482,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 
@@ -1060,7 +1077,7 @@ body {
 }
 
 .project-header-about{
-  padding: 1.5rem 1.5rem 0 !important;
+  padding: 2rem 1.5rem 0 !important;
 }
 
 
@@ -3723,8 +3740,9 @@ a.badge:active {
    --underline-end) technique for the same reason — see
    setUpSweepHover in script.js. currentColor keeps each link's
    underline matched to its own text color; .index-nav a overrides it
-   to --accent to keep nav's existing hover color legible even though
-   the nav text itself doesn't change color on hover. */
+   to --link-hover so the nav underline stays the same dark blue the
+   nav text turns on hover (currentColor would flip back to the text's
+   resting color while the line is still sweeping out). */
 @property --underline-start {
   syntax: '<percentage>';
   inherits: false;
@@ -3751,7 +3769,7 @@ a.badge:active {
 }
 
 .index-nav a .underline-hover-overlay {
-  color: var(--accent);
+  color: var(--link-hover);
 }
 
 @media (prefers-reduced-motion: reduce) {
