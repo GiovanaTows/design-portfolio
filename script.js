@@ -1202,6 +1202,32 @@ const showToast = (message) => {
   toastTimer = setTimeout(() => toastEl.classList.remove('visible'), 2500);
 };
 
+// Tooltips on badges (the About page's language badges): the CSS shows a
+// .badge-tooltip above its badge on hover/focus; this just keeps it on
+// screen — shifted sideways by exactly as much as it takes to clear the
+// edges of the screen (CSS moves the arrow the opposite way so it still
+// points at the badge), and below the badge if it would slide under the
+// sticky header at the top.
+document.querySelectorAll('.has-tooltip').forEach(badge => {
+  const tip = badge.querySelector('.badge-tooltip');
+  if (!tip) return;
+  const MARGIN = 8;
+  const place = () => {
+    tip.classList.remove('below');
+    tip.style.setProperty('--tip-shift', '0px');
+    const rect = tip.getBoundingClientRect();
+    const screenWidth = document.documentElement.clientWidth;
+    let shift = 0;
+    if (rect.right > screenWidth - MARGIN) shift = screenWidth - MARGIN - rect.right;
+    if (rect.left + shift < MARGIN) shift = MARGIN - rect.left;
+    tip.style.setProperty('--tip-shift', `${Math.round(shift)}px`);
+    const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+    if (rect.top < headerHeight + MARGIN) tip.classList.add('below');
+  };
+  badge.addEventListener('mouseenter', place);
+  badge.addEventListener('focus', place);
+});
+
 // Copy-to-clipboard buttons next to email addresses. Icon feedback
 // works two ways: older buttons swap a single Material Symbols
 // glyph's text content; newer ones (e.g. the social-icons row) carry

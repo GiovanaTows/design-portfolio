@@ -1409,17 +1409,10 @@ body {
   display: none;
 }
 
-/* ABOUT PAGE
-   #specs-about-desktop and #specs-about-mobile are two separate,
-   mutually-exclusive copies of the same four badge-blocks — only one
-   is ever displayed at a time (see the 884px breakpoint below) — so
-   the mobile copy's blocks carry a "-mobile" suffixed id instead of
-   reusing the desktop one (duplicate ids are invalid HTML and were
-   actually breaking `getElementById`/CSS lookups here). Every width
-   rule below targets both ids together so both copies stay in sync. */
+/* ABOUT PAGE*/
 #about-based-in, #about-based-in-mobile{ width: 259px; }
-#about-availability, #about-availability-mobile{ width: 211px; }
-#about-languages, #about-languages-mobile{ width: 270px; }
+#about-availability, #about-availability-mobile{ width: 194px; }
+#about-languages, #about-languages-mobile{ width: 300px; }
 #about-contact, #about-contact-mobile{ width: 210px; }
 
 /* Email badge: combines the .badge-specs pill look with the
@@ -1498,40 +1491,51 @@ body {
   float: left;
 }
 
-@media (max-width: 1141px) {
-  #about-based-in, #about-based-in-mobile{ width: 190px; }
-}
-
-@media (max-width: 1072px) {
-  #about-availability, #about-availability-mobile{ width: 188px; }
-  #about-languages, #about-languages-mobile{ width: 243px; }
+@media (max-width: 1161px) {
+  #about-languages, #about-languages-mobile{ width: 420px; margin-right: 0;}
+  #about-contact, #about-contact-mobile{ width: 100%; }
 }
 
 @media (max-width: 1023px) {
-  #about-based-in, #about-based-in-mobile{ width: 260px }
+  #about-based-in, #about-based-in-mobile{ width: 190px; }
+}
+
+@media (max-width: 955px) {
+  #about-languages, #about-languages-mobile{ width: 300px;}
+}
+
+
+/*
+@media (max-width: 1153px) {
+  #about-based-in, #about-based-in-mobile{ width: 190px; }
+}
+@media (max-width: 1084px) {
+  #about-availability, #about-availability-mobile{ width: 188px; }
+}
+@media (max-width: 1023px) {
   #about-availability, #about-availability-mobile{ width: 210px; }
-  #about-languages, #about-languages-mobile{ width: 270px; }
   #about-contact, #about-contact-mobile{ width: 100%; }
 
   #about-languages, #about-languages-mobile{margin-right: 0px;}
 }
-
+@media (max-width: 1002px) {
+  #about-languages, #about-languages-mobile{ width: 420px; }
+}
+*/
 @media (max-width: 884px) {
-  #specs-about-desktop{
-    display: none;
-  }
+  #specs-about-desktop{ display: none; }
 
   #specs-about-mobile{
     display: grid; /* contains the floated .badge-block children so this element doesn't collapse to zero height */
     width: 100%;
     /*background-color: #00ff00;*/
-    grid-template-columns: auto auto !important;
+    grid-template-columns: 204px auto !important;
     gap: 2rem;
   }
 
   #about-based-in-mobile{ width: 100% }
-  #about-availability-mobile{ width: 100%; }
-  #about-languages-mobile{ width: 100%; }
+  /*#about-availability-mobile{ width: 100%; }
+  #about-languages-mobile{ width: 100%; }*/
   #about-contact-mobile{ width: 100%; }
 
   .split-column-about{
@@ -1545,6 +1549,8 @@ body {
     gap: 0;
     grid-template-columns: auto !important;
   }
+  #about-languages, #about-languages-mobile{ width: 420px;}
+  #about-availability-mobile{ width: 100%; }
 }
 
 /* Omnitrack Website */
@@ -1890,6 +1896,107 @@ a:active .badge-specs {
   transform: translateY(1px);
   box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   transition-duration: 0.05s;
+}
+
+/* A badge with a hover/focus tooltip (the About page's language badges):
+   same lift as a linked badge, plus a small dark card above it with the
+   details. Focusable (tabindex="0" in the HTML), so keyboard users get it
+   on focus and a tap on a phone shows it too. script.js nudges it to stay
+   on screen near the edges. */
+.badge-specs.has-tooltip {
+  position: relative;
+  cursor: help;
+  outline: none;
+}
+
+.badge-specs.has-tooltip:hover,
+.badge-specs.has-tooltip:focus-visible {
+  background-color: #e4e2db;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
+}
+
+.badge-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  /* --tip-shift is set by script.js to nudge the card back on screen. */
+  left: var(--tip-shift, 0px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: max-content;
+  max-width: min(260px, 80vw);
+  padding: 0.6rem 0.8rem;
+  background-color: var(--ink);
+  color: var(--paper);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+}
+
+.badge-tooltip strong {
+  font-weight: 600;
+}
+
+.badge-tooltip span {
+  color: rgba(250, 249, 246, 0.78);
+}
+
+/* The little arrow pointing at the badge. */
+.badge-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  /* Undo the shift so the arrow still points at the badge. */
+  left: calc(1.1rem - var(--tip-shift, 0px));
+  border: 6px solid transparent;
+  border-top-color: var(--ink);
+}
+
+.has-tooltip:hover .badge-tooltip,
+.has-tooltip:focus .badge-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+/* Moved below the badge by script.js when there's no room above it. */
+.badge-tooltip.below {
+  bottom: auto;
+  top: calc(100% + 10px);
+}
+
+.badge-tooltip.below::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: var(--ink);
+}
+
+/* Raise the whole info block above its neighbours while one of its
+   tooltips is open — the blocks around it are their own stacking
+   contexts (they fade in with a transform) and would otherwise paint
+   over a tooltip that reaches into them. */
+.badge-block:hover,
+.badge-block:focus-within {
+  z-index: 30;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-tooltip {
+    transition: none;
+  }
 }
 
 .block-title{
