@@ -644,11 +644,25 @@ body {
   /*background-color: #2232c1;*/
 }
 
+/* Social icons sit above the credit lines (markup lives in footer.js).
+   The 16px padding on each icon's box (see .social-links a) reaches
+   past the row, so the bottom margin is a little larger than it looks. */
+.site-footer .social-links {
+  margin-bottom: 3rem;
+}
+
 @media (max-width: 760px) {
   .site-footer {
     align-items: left;
     text-align: left;
     padding-right: 5rem;
+  }
+
+  /* Follows the left-aligned text, and tightens the gap so four icons
+     still fit in the room left beside the back-to-top button. */
+  .site-footer .social-links {
+    justify-content: flex-start;
+    gap: 2rem;
   }
 }
 
