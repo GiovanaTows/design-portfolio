@@ -30,7 +30,7 @@
         <span class="material-symbols-outlined">palette</span>
       </a>
     </div>
-    <p style="margin-bottom: 0.8rem;">Website designed and developed by Giovana Tows — powered by Claude Code.</p>
-    <p>All images and site content copyright &copy; 2026 Giovana Tows — All rights reserved.</p>
+    <p style="margin-bottom: 0.6rem;">Website designed and developed by Giovana Tows<br class="footer-line-break"> — powered by Claude Code</p>
+    <p class="site-footer-small">All images and site content copyright &copy; 2026 Giovana Tows<br class="footer-line-break"> — All rights reserved</p>
   `;
 })();

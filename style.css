@@ -679,6 +679,16 @@ body {
   /*background-color: #2232c1;*/
 }
 
+.site-footer-small {
+  font-size: clamp(0.7rem, 3vw, 0.8rem) !important;
+}
+
+.footer-line-break{ display: none; }
+
+@media (max-width: 700px) {
+  .footer-line-break{ display: block; }
+}
+
 /* Social icons sit above the credit lines (markup lives in footer.js).
    The 16px padding on each icon's box (see .social-links a) reaches
    past the row, so the bottom margin is a little larger than it looks. */
