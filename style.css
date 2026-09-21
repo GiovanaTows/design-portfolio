@@ -2946,6 +2946,15 @@ a:active .badge-specs {
   justify-content: space-between;
 }
 
+/* A lone link that should sit on the right (the homepage's "About me →");
+   with a single child, space-between would otherwise leave it on the left. */
+.project-nav-end {
+  justify-content: flex-end;
+  /* Same gutter as .section, so the link lines up with the project
+     grid's right edge above it. */
+  padding-right: 1.5rem;
+}
+
 .project-nav a {
   position: relative;
   display: inline-block;
