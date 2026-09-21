@@ -1508,7 +1508,7 @@ body {
 }
 
 @media (max-width: 1161px) {
-  #about-languages, #about-languages-mobile{ width: 420px; margin-right: 0;}
+  #about-languages, #about-languages-mobile{ width: 420px; max-width: 100%; margin-right: 0;}
   #about-contact, #about-contact-mobile{ width: 100%; }
 }
 
@@ -1563,9 +1563,11 @@ body {
 @media (max-width: 700px) {
   #specs-about-mobile{
     gap: 0;
-    grid-template-columns: auto !important;
+    /* Same as "auto" (as wide as its content) but never wider than the
+       container — auto let the 420px language block push it past a phone. */
+    grid-template-columns: minmax(0, max-content) !important;
   }
-  #about-languages, #about-languages-mobile{ width: 420px;}
+  #about-languages, #about-languages-mobile{ width: 420px; max-width: 100%;}
   #about-availability-mobile{ width: 100%; }
 }
 
@@ -1613,7 +1615,7 @@ body {
 }
 
 @media (max-width: 900px) {
-  #civi-tools { max-width: 450px; }
+  #civi-tools { max-width: min(450px, 100%); }
 }
 
 @media (max-width: 860px) {
@@ -2421,7 +2423,9 @@ a:active .badge-specs {
 }
 
 .figure-grid-4 {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* minmax(0, 1fr), not 1fr, so the four columns can shrink to fit a phone
+     instead of running past its edge. */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 /*@media (max-width: 700px) {
@@ -3125,7 +3129,9 @@ a:active .badge-specs {
 
 @media (max-width: 1024px) {
   .text-image-columns {
-    grid-template-columns: 1fr;
+    /* minmax(0, 1fr), not 1fr: a plain 1fr can't shrink below its
+       content's minimum width, which pushed the column past the screen. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
 }
@@ -4219,5 +4225,26 @@ html.cursor-down .cursor-ring {
 @media (max-width: 680px) {
   .project-header .project-nav {
     display: none;
+  }
+}
+
+/* No sideways scrolling on phones and tablets. Some things sit wider than
+   the screen on purpose or by accident — carousel slides waiting off to
+   the side, the language tooltips before they're hovered — and would
+   otherwise make the whole page pannable. clip (unlike hidden) doesn't
+   turn the page into a scroll container, so the sticky header and
+   scroll-based effects keep working. */
+@media (max-width: 1024px) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* The spec blocks (Role, Tools, ...) have widths sized for their badges;
+   on the narrowest phones cap them at the column instead of overflowing. */
+@media (max-width: 480px) {
+  .badge-block {
+    max-width: 100%;
   }
 }
