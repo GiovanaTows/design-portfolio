@@ -586,7 +586,48 @@ if (zoomableImages.length) {
   let zoomLevel = ZOOM_MIN;
   let baseSize = null; // the fit-to-screen {width, height}, measured lazily per image
 
-  function applyZoom() {
+  // Zoom animation (buttons and click-to-toggle only — a pinch calls
+  // applyZoom on every touchmove and tracks the fingers directly). The
+  // new size is still applied instantly, since it has to be real
+  // width/height for the wrap's scrolling to work, and then FLIPped: the
+  // image is put back to where it visually was with a transform (about
+  // its center, which is also the zoom's center) and the transform is
+  // released, so it glides to the new size. The wrap's overflow is
+  // hidden for the duration, otherwise the scaled-up image would
+  // briefly add scrollbars while zooming out.
+  let zoomAnimTimer;
+  function playZoomTransition(before) {
+    const after = lightboxImg.getBoundingClientRect();
+    if (!after.width || !after.height) return;
+    const scale = before.width / after.width;
+    const dx = (before.left + before.width / 2) - (after.left + after.width / 2);
+    const dy = (before.top + before.height / 2) - (after.top + after.height / 2);
+    if (Math.abs(scale - 1) < 0.001 && Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+
+    lightboxImgWrap.classList.add('zoom-animating');
+    lightboxImg.style.transition = 'none';
+    lightboxImg.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+    lightboxImg.offsetHeight; // force reflow so the start position registers
+    lightboxImg.style.transition = '';
+    lightboxImg.style.transform = '';
+    clearTimeout(zoomAnimTimer);
+    zoomAnimTimer = window.setTimeout(() => {
+      lightboxImgWrap.classList.remove('zoom-animating');
+    }, 400);
+  }
+
+  function applyZoom(animate = false) {
+    // Where the image is drawn right now, including any zoom animation
+    // still in flight (so a second click mid-animation continues from
+    // where it visually is), before that transform is dropped to
+    // measure the real layout below.
+    let before = null;
+    if (animate && !prefersReducedMotion) {
+      before = lightboxImg.getBoundingClientRect();
+      lightboxImg.style.transition = 'none';
+      lightboxImg.style.transform = '';
+    }
+
     const zoomed = zoomLevel > ZOOM_MIN;
     lightboxImgWrap.classList.toggle('zoomed', zoomed);
 
@@ -646,11 +687,13 @@ if (zoomableImages.length) {
     zoomInBtn.disabled = zoomLevel >= ZOOM_MAX;
     zoomOutBtn.disabled = zoomLevel <= ZOOM_MIN;
     zoomLevelLabel.textContent = `${Math.round(zoomLevel * 100)}%`;
+
+    if (before && before.width && before.height) playZoomTransition(before);
   }
 
-  function setZoomLevel(level) {
+  function setZoomLevel(level, animate = false) {
     zoomLevel = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, level));
-    applyZoom();
+    applyZoom(animate);
   }
 
   function resetZoom() {
@@ -833,11 +876,11 @@ if (zoomableImages.length) {
   lightboxImg.addEventListener('click', (event) => {
     event.stopPropagation();
     if (isMobileLightbox()) return;
-    setZoomLevel(zoomLevel > ZOOM_MIN ? ZOOM_MIN : ZOOM_MIN + 1);
+    setZoomLevel(zoomLevel > ZOOM_MIN ? ZOOM_MIN : ZOOM_MIN + 1, true);
   });
 
-  zoomInBtn.addEventListener('click', () => setZoomLevel(zoomLevel + ZOOM_STEP));
-  zoomOutBtn.addEventListener('click', () => setZoomLevel(zoomLevel - ZOOM_STEP));
+  zoomInBtn.addEventListener('click', () => setZoomLevel(zoomLevel + ZOOM_STEP, true));
+  zoomOutBtn.addEventListener('click', () => setZoomLevel(zoomLevel - ZOOM_STEP, true));
 
   closeBtn.addEventListener('click', close);
   prevBtn.addEventListener('click', () => show(currentIndex - 1, -1));

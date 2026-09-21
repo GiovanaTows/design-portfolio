@@ -769,6 +769,11 @@ body {
    a corner" zoom animation: display isn't animatable, so centering
    vanished the instant you zoomed, before the width/height had
    actually finished growing. */
+/* Set by script.js while a zoom animation runs, so the image scaled
+   past its final size doesn't briefly add scrollbars. */
+.lightbox-img-wrap.zoom-animating {
+  overflow: hidden;
+}
 .lightbox-img-wrap.zoomed img {
   max-width: none;
   max-height: none;
