@@ -1249,6 +1249,17 @@ body {
   top: 3rem;
 }
 
+/* Role/Tools/Timeline badges inside a page section (Motion Graphics has
+   six of these). Their .badge-block children float, so without this the
+   row collapses to zero height and the content after it — e.g. the
+   .two-columns text + animation — gets wrapped into the thin space
+   beside the floats instead of sitting below them. Scoped to
+   .project-body so the header's spec blocks are unaffected. */
+.project-body .project-specs-new {
+  display: flow-root;
+  width: 100%;
+}
+
 .badge-block {
   position: relative;
   float: left;
