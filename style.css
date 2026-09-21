@@ -3360,6 +3360,11 @@ a:active .badge-specs {
   padding-top: 1.5rem;
 }
 
+.project-nav-top{
+  padding-top: 0 !important;
+  padding-bottom: 1rem !important;
+}
+
 /* A lone link that should sit on the right (the homepage's "About me →");
    with a single child, space-between would otherwise leave it on the left. */
 .project-nav-end {
