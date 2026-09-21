@@ -433,7 +433,7 @@ body {
   margin: 0 auto;
   /*padding: 5rem 1.5rem;*/
   scroll-margin-top: 2rem;
-  padding-bottom: 1.5rem;
+  /*padding-bottom: 1.5rem;*/
   /* Horizontal gutter — was folded into the (now commented-out)
      shorthand above, so it disappeared along with it. Doesn't show at
      wide viewports since max-width already centers the section with
@@ -1311,6 +1311,13 @@ body {
   transform: translateY(0);
 }
 
+/* An element that left through the top of the screen hides shifted up, not
+   down — see the exit branch of headingObserver in script.js. Sliding
+   down into place is also the natural direction when scrolling back up. */
+.reveal-from-top:not(.in-view) {
+  transform: translateY(-24px);
+}
+
 .project-header .project-meta {
   margin-top: 0.75rem;
   font-size: 1rem;
@@ -1402,7 +1409,6 @@ body {
   max-width: 100%;
 }
 
-/*AQUI*/
 /*@media (max-width: 900px) {
   .badge-block {
     width: 100% !important;
@@ -2268,6 +2274,7 @@ a:active .badge-specs {
 .introduction-text{
   font-size: clamp(1rem, 3vw, 1.1rem) !important;
   line-height: 1.8rem;
+  padding-bottom: 1.5rem;
 }
 /*AQUI*/
 
@@ -3239,12 +3246,14 @@ a:active .badge-specs {
   background-color: var(--paper);
 }
 
+/*AQUI*/
 .project-nav {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
-  padding: 0 0 1.5rem;
   display: flex;
   justify-content: space-between;
+  /*adding: 1.5rem 1.5rem;*/
+  padding: 1.5rem 1.5rem;
 }
 
 /* A lone link that should sit on the right (the homepage's "About me →");
@@ -3253,7 +3262,7 @@ a:active .badge-specs {
   justify-content: flex-end;
   /* Same gutter as .section, so the link lines up with the project
      grid's right edge above it. */
-  padding-right: 1.5rem;
+  /*padding-right: 1.5rem;*/
 }
 
 .project-nav a {

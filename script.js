@@ -1458,6 +1458,14 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
         } else {
           entry.target.classList.remove('in-view');
           entry.target.style.transitionDelay = '';
+          // Hidden elements sit 24-32px lower than their real spot. One
+          // that just left through the TOP would be pushed back into view
+          // by that offset, cross the threshold again, reveal, move up,
+          // leave again... a tremble that only stops when you scroll. So
+          // an element above the screen hides shifted UP instead (see
+          // .reveal-from-top in style.css), which can't pull it back in.
+          const r = entry.boundingClientRect;
+          entry.target.classList.toggle('reveal-from-top', r.top + r.height / 2 < window.innerHeight / 2);
         }
       });
 
@@ -1547,7 +1555,15 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
             entry.target.classList.add('in-view');
           });
         });
-    }, { threshold: 0.15 });
+    }, {
+      threshold: 0.15,
+      // Treat the strip under the sticky header as off-screen (plus a
+      // little extra), so an element fades out as it approaches the
+      // header instead of after it's already hidden behind it. The
+      // extra stays smaller than the gap between the header and the
+      // first content on a page, so what's showing at load isn't hidden.
+      rootMargin: `-${(document.querySelector('.site-header')?.getBoundingClientRect().height || 0) + 16}px 0px 0px 0px`,
+    });
     revealElements.forEach(el => headingObserver.observe(el));
 
     // Experience and Education timelines: each entry reveals as three blocks, in order —
