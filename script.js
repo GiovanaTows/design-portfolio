@@ -1350,7 +1350,10 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   // (the only piece of body text that lives outside .project-body).
   // The About page's subtitle and its Based in / Availability / Languages /
   // Contact badge blocks are part of its opening sequence too.
-  const revealTextAll = document.querySelectorAll('main.project-body p, main.project-body h3, main.project-body h4, .introduction-text, .project-header-about .project-meta, #specs-about-desktop .badge-block, #specs-about-mobile .badge-block');
+  // Also the parts of a project page's header (back link, subtitle,
+  // Role/Tool/Timeline/Team blocks, "On this page" list) and the About
+  // page's subtitle, so they're part of the opening sequence.
+  const revealTextAll = document.querySelectorAll('main.project-body p, main.project-body h3, main.project-body h4, .introduction-text, .project-header .project-meta, .project-header .badge-block, .project-header .project-index, .project-header-content > .project-nav, #specs-about-desktop .badge-block, #specs-about-mobile .badge-block');
   // The About page's Toolkit: each .toolkit-category (title + badge grid)
   // reveals as one block, so its own heading isn't revealed separately on
   // top of that. Those headings are marked .in-view up front so the
@@ -1366,7 +1369,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   // Images: hero shots, case-study figures, and every project/case-study
   // grid card (.case-study-card is always paired with .project-card, so
   // this catches both grids with one selector).
-  const revealImages = document.querySelectorAll('.project-hero, .project-figure, .project-card');
+  const revealImages = document.querySelectorAll('.project-hero, .project-hero-static, .project-figure, .project-card');
   const revealCarousels = document.querySelectorAll('.project-carousel');
   revealH1s.forEach(h => h.classList.add('h1-reveal'));
   revealH2s.forEach(h => h.classList.add('h2-reveal'));
@@ -1436,16 +1439,19 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
         firstBatch = false;
         // Which elements run as the opening sequence: the project cards
         // on the homepage, or — on pages whose <head> sets
-        // .js-reveal-all (the About page) — everything on screen.
+        // .js-reveal-all (the About and project pages) — everything on
+        // screen.
         const openingEntries = sequenceEverything
           ? entering.slice()
           : entering.filter(entry => entry.target.classList.contains('project-card'));
         entering.splice(0, entering.length, ...entering.filter(entry => !openingEntries.includes(entry)));
 
-        // Hold the sequence until the pictures involved are in (or 2.5s
-        // pass), so things fade in with their images instead of as
-        // empty tiles that the pictures then pop into. Everything is
-        // already hidden by CSS in the meantime.
+        // Each item waits only for its own picture (max 2.5s), so the cards
+        // and images fade in with their pictures instead of as empty boxes
+        // that the pictures then pop into, while text never waits for an
+        // image. Everything is already hidden by CSS in the meantime. The
+        // items are still revealed in order, at least one step apart: an
+        // item can't start before the one ahead of it has.
         const pictureReady = (el) => {
           const img = el.tagName === 'IMG' ? el : el.querySelector('img');
           if (!img || (img.complete && img.naturalWidth)) return Promise.resolve();
@@ -1454,18 +1460,26 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
             img.addEventListener('error', resolve, { once: true });
           });
         };
-        Promise.race([
-          Promise.all(openingEntries.map(entry => pictureReady(entry.target))),
-          new Promise(resolve => setTimeout(resolve, 2500)),
-        ]).then(() => {
-          // A long list gets a tighter step so the whole sequence stays
-          // within about a second.
-          const step = Math.min(STAGGER_STEP_MS, 1000 / Math.max(openingEntries.length, 1));
-          sortedByPosition(openingEntries).forEach(({ entry, rect }, index) => {
-            // Scrolled away while waiting: leave it for the observer to
+        // A long list gets a tighter step so the whole sequence stays
+        // within about a second.
+        const step = Math.min(STAGGER_STEP_MS, 1000 / Math.max(openingEntries.length, 1));
+        const openedAt = performance.now();
+        let previousStart = openedAt + OPEN_START_MS - step;
+        let chain = Promise.resolve();
+        sortedByPosition(openingEntries).forEach(({ entry }, index) => {
+          const ready = Promise.race([
+            pictureReady(entry.target),
+            new Promise(resolve => setTimeout(resolve, 2500)),
+          ]);
+          chain = chain.then(() => ready).then(() => {
+            // Scrolled away in the meantime: leave it for the observer to
             // reveal when it comes back into view.
+            const rect = entry.target.getBoundingClientRect();
             if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-            entry.target.style.transitionDelay = `${OPEN_START_MS + index * step}ms`;
+            const now = performance.now();
+            const startAt = Math.max(now, openedAt + OPEN_START_MS + index * step, previousStart + step);
+            previousStart = startAt;
+            entry.target.style.transitionDelay = `${Math.round(startAt - now)}ms`;
             entry.target.classList.add('in-view');
           });
         });

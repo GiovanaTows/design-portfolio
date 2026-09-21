@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
+
+  <!-- Tells the CSS "script.js will play the opening animation", so the
+       first screen's content can be hidden from the very first paint
+       (script.js sits at the end of the page and may run after the
+       browser has already painted — everything would flash visible and
+       skip the animation). If script.js never takes over, the classes are
+       dropped after 4 seconds so nothing stays hidden. -->
+  <script>
+    document.documentElement.classList.add('js-reveal', 'js-reveal-all');
+    setTimeout(function () { document.documentElement.classList.remove('js-reveal', 'js-reveal-all'); }, 4000);
+  </script>
   <title>Premium Plan &amp; Free Trial — Civi | Giovana Tows</title>
   <meta name="description" content="Case study: designing Civi Protege, Civi's paid plan and free trial flow, by Giovana Tows.">
   <link rel="canonical" href="https://giovanatows.github.io/design-portfolio/projects/civi-premium-plan.html">

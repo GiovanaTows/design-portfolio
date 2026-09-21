@@ -1217,9 +1217,9 @@ body {
   }
 }
 
-/* About page (about.html adds .js-reveal-all to <html> in its <head>):
-   the same first-paint hiding as the project cards above, for everything
-   its opening animation covers. Each rule matches the hidden state of the
+/* About and project pages (each adds .js-reveal-all to <html> in its
+   <head>): the same first-paint hiding as the project cards above, for
+   everything the opening animation covers. Each rule matches the hidden state of the
    element's own reveal class (.about-portrait-reveal, .h1-reveal,
    .h2-reveal, .p-reveal) exactly, so nothing jumps when script.js adds
    those classes. */
@@ -1233,7 +1233,10 @@ body {
     transform: translateY(24px);
   }
 
-  html.js-reveal-all .project-header-about .project-meta:not(.in-view),
+  html.js-reveal-all .project-header .project-meta:not(.in-view),
+  html.js-reveal-all .project-header .badge-block:not(.in-view),
+  html.js-reveal-all .project-header .project-index:not(.in-view),
+  html.js-reveal-all .project-header-content > .project-nav:not(.in-view),
   html.js-reveal-all main h2:not(.visually-hidden):not(.in-view),
   html.js-reveal-all main.project-body p:not(.in-view),
   html.js-reveal-all main.project-body h3:not(.in-view),
@@ -1243,6 +1246,18 @@ body {
   html.js-reveal-all #specs-about-mobile .badge-block:not(.in-view) {
     opacity: 0;
     transform: translateY(24px);
+  }
+
+  html.js-reveal-all .project-hero:not(.in-view),
+  html.js-reveal-all .project-hero-static:not(.in-view),
+  html.js-reveal-all .project-figure:not(.in-view) {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  html.js-reveal-all .project-carousel:not(.in-view) {
+    opacity: 0;
+    transform: translateY(32px);
   }
 }
 
@@ -3109,11 +3124,18 @@ a:active .badge-specs {
   color: var(--muted);
   text-decoration: none;
   font-size: 0.9rem;
+  transition: color 0.2s ease;
 }
 
+/* The dark link blue, same as the top-menu and other link hovers, with
+   the underline sweep in that blue too. */
 .project-nav a:hover,
 .project-nav a:focus-visible {
-  color: var(--accent);
+  color: var(--link-hover);
+}
+
+.project-nav a .underline-hover-overlay {
+  color: var(--link-hover);
 }
 
 /* ============================================
