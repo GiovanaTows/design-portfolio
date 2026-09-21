@@ -697,28 +697,77 @@ if (zoomableImages.length) {
     }, 150);
   }
 
-  // Sets lightboxImg's transform so it visually overlaps `sourceEl`'s
-  // current on-screen position/size, even though it's laid out at its
-  // normal centered lightbox size. Clearing the transform afterwards
+  // Where the picture itself is drawn inside `img`'s box. An <img> with
+  // object-fit: contain/cover (carousel slides, the cropped mobile
+  // heroes) has a box whose shape differs from the picture's — a wide
+  // carousel frame around a squarer photo, say — so animating from the
+  // *box* stretches the picture. This returns the picture's own rect
+  // (same aspect ratio as the file), which can be smaller (contain, with
+  // empty bars) or larger (cover, with the overflow cropped) than the box.
+  function paintedRect(img) {
+    const box = img.getBoundingClientRect();
+    const fit = getComputedStyle(img).objectFit;
+    const nw = img.naturalWidth;
+    const nh = img.naturalHeight;
+    if (!nw || !nh || !box.width || !box.height || !['contain', 'cover', 'scale-down'].includes(fit)) {
+      return { box, painted: box };
+    }
+    const containScale = Math.min(box.width / nw, box.height / nh);
+    const scale = fit === 'cover' ? Math.max(box.width / nw, box.height / nh)
+      : fit === 'scale-down' ? Math.min(1, containScale)
+      : containScale;
+    const width = nw * scale;
+    const height = nh * scale;
+    return {
+      box,
+      painted: {
+        left: box.left + (box.width - width) / 2,
+        top: box.top + (box.height - height) / 2,
+        width,
+        height,
+      },
+    };
+  }
+
+  // Sets lightboxImg's transform so it visually overlaps where
+  // `sourceEl`'s picture is currently drawn, even though it's laid out at
+  // its normal centered lightbox size. Clearing the transform afterwards
   // (see open/close) is what makes it animate from there to centered,
   // or centered back to there — growing from/shrinking to the thumbnail
-  // instead of just cross-fading in place.
+  // instead of just cross-fading in place. The scale is one number for
+  // both axes so the picture always keeps its proportions; for a cropped
+  // (object-fit: cover) thumbnail the parts outside the crop are hidden
+  // with a clip-path that opens up as it grows.
   function setOriginTransform(sourceEl) {
-    const sourceRect = sourceEl.getBoundingClientRect();
+    const { box, painted } = paintedRect(sourceEl);
     const targetRect = lightboxImg.getBoundingClientRect();
     if (!targetRect.width || !targetRect.height) return false;
 
-    const scaleX = sourceRect.width / targetRect.width;
-    const scaleY = sourceRect.height / targetRect.height;
-    const originX = (sourceRect.left + sourceRect.width / 2) - (targetRect.left + targetRect.width / 2);
-    const originY = (sourceRect.top + sourceRect.height / 2) - (targetRect.top + targetRect.height / 2);
+    const scale = painted.width / targetRect.width;
+    const originX = (painted.left + painted.width / 2) - (targetRect.left + targetRect.width / 2);
+    const originY = (painted.top + painted.height / 2) - (targetRect.top + targetRect.height / 2);
+
+    let clip = '';
+    if (painted.width > box.width + 1 || painted.height > box.height + 1) {
+      const top = Math.max(0, (box.top - painted.top) / painted.height * 100);
+      const left = Math.max(0, (box.left - painted.left) / painted.width * 100);
+      const bottom = Math.max(0, (painted.top + painted.height - box.top - box.height) / painted.height * 100);
+      const right = Math.max(0, (painted.left + painted.width - box.left - box.width) / painted.width * 100);
+      clip = `inset(${top}% ${right}% ${bottom}% ${left}%)`;
+    }
 
     lightboxImg.style.transition = 'none';
-    lightboxImg.style.transform = `translate(${originX}px, ${originY}px) scale(${scaleX}, ${scaleY})`;
+    lightboxImg.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+    lightboxImg.style.clipPath = clip;
     lightboxImg.offsetHeight; // force reflow so the browser registers the start position
     lightboxImg.style.transition = '';
     return true;
   }
+
+  const clearOriginTransform = () => {
+    lightboxImg.style.transform = '';
+    lightboxImg.style.clipPath = '';
+  };
 
   function open(index) {
     lastFocused = document.activeElement;
@@ -731,7 +780,7 @@ if (zoomableImages.length) {
     if (!prefersReducedMotion) {
       requestAnimationFrame(() => {
         if (setOriginTransform(sourceImg)) {
-          requestAnimationFrame(() => { lightboxImg.style.transform = ''; });
+          requestAnimationFrame(clearOriginTransform);
         }
       });
     }
@@ -749,9 +798,9 @@ if (zoomableImages.length) {
     const animated = !prefersReducedMotion && setOriginTransform(sourceImg);
     lightbox.classList.remove('open');
     if (animated) {
-      window.setTimeout(() => { lightboxImg.style.transform = ''; }, 350);
+      window.setTimeout(clearOriginTransform, 350);
     } else {
-      lightboxImg.style.transform = '';
+      clearOriginTransform();
     }
   }
 

@@ -742,7 +742,7 @@ body {
      setting a starting transform/opacity and clearing it. Zoom level
      changes (width/height) are intentionally NOT in this list — they
      apply instantly rather than animating. */
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), clip-path 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
 }
 
 /* Some source images (icon sheets, diagram GIFs) have a genuinely
