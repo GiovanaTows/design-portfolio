@@ -1916,6 +1916,23 @@ a:active .badge-specs {
   box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
 
+/* Languages no longer in use (German, Spanish): the badge's background and
+   text are made semi-transparent, not the whole badge — opacity on the
+   badge would fade its tooltip too, since the tooltip is inside it. Still
+   lifts a little on hover, but stays softer than the active languages. */
+.badge-specs.lang-inactive {
+  background-color: rgba(238, 236, 230, 0.5);
+  color: rgba(26, 26, 26, 0.55);
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.05);
+}
+
+.badge-specs.lang-inactive:hover,
+.badge-specs.lang-inactive:focus-visible {
+  background-color: rgba(228, 226, 219, 0.75);
+  color: rgba(26, 26, 26, 0.75);
+  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.1);
+}
+
 .badge-tooltip {
   position: absolute;
   bottom: calc(100% + 10px);
