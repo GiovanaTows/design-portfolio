@@ -1228,6 +1228,30 @@ body {
   }
 }
 
+/* Experience and Education timelines: each entry's blocks (date badges,
+   logo, text) fade up one after another when the entry scrolls into view
+   — script.js adds .timeline-part to them and toggles .in-view. The id
+   selectors make these win over the elements' own transition rules,
+   which come later in this file (e.g. .timeline-logo-link's hover fade). */
+#experience .timeline-part,
+#education .timeline-part {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#experience .timeline-part.in-view,
+#education .timeline-part.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The logo's dim-on-hover, which the rules above would otherwise override. */
+#experience .timeline-logo-link.timeline-part.in-view:hover,
+#education .timeline-logo-link.timeline-part.in-view:hover {
+  opacity: 0.8;
+}
+
 /* Carousels get the slowest, heaviest fade-up of the three — they're
    the largest single block on a page, so settling in a beat slower
    than the images above keeps the whole page's reveal rhythm feeling

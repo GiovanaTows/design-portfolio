@@ -1341,7 +1341,9 @@ document.querySelectorAll('.typewriter').forEach(el => {
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const revealH1s = document.querySelectorAll('.project-header h1:not(.visually-hidden)');
   const revealH2s = document.querySelectorAll('main h2:not(.visually-hidden)');
-  const revealTimelineLogos = document.querySelectorAll('.timeline-logo-link');
+  // (The Experience and Education sections' logos are revealed with their
+  // entry's other blocks instead — see the timeline groups below.)
+  const revealTimelineLogos = Array.from(document.querySelectorAll('.timeline-logo-link')).filter(l => !l.closest('#experience, #education'));
   const revealPortraits = document.querySelectorAll('.about-portrait');
   // Running text: paragraphs and Problem/Solution-style sub-headings
   // inside a project's body copy, plus the homepage's intro tagline
@@ -1358,6 +1360,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   const revealText = [];
   revealTextAll.forEach(el => {
     if (el.closest('.toolkit-category')) el.classList.add('in-view');
+    else if (el.closest('#experience .timeline-entry')) return; // revealed with its entry, below
     else revealText.push(el);
   });
   // Images: hero shots, case-study figures, and every project/case-study
@@ -1407,6 +1410,12 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     // one. So on open they're run as one sequence, left to right and top
     // to bottom, starting a beat after load so the first card isn't
     // already halfway in by the time the page has painted.
+    // Observer entries as { entry, rect }, ordered top to bottom, then left
+    // to right — the order things are revealed in when several arrive at once.
+    const sortedByPosition = (list) => list
+      .map(entry => ({ entry, rect: entry.target.getBoundingClientRect() }))
+      .sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left);
+
     const OPEN_START_MS = 150;
     let firstBatch = true;
     let toolkitNextStart = 0;
@@ -1422,10 +1431,6 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
           entry.target.style.transitionDelay = '';
         }
       });
-
-      const sortedByPosition = (list) => list
-        .map(entry => ({ entry, rect: entry.target.getBoundingClientRect() }))
-        .sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left);
 
       if (firstBatch) {
         firstBatch = false;
@@ -1504,5 +1509,57 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
         });
     }, { threshold: 0.15 });
     revealElements.forEach(el => headingObserver.observe(el));
+
+    // Experience and Education timelines: each entry reveals as three blocks, in order —
+    // (1) the date badges, (2) the logo, (3) the text (role and company,
+    // description, link) — instead of every piece animating on its own.
+    // The entry itself is what's watched; when it comes into view its
+    // blocks fade up one after another. Featured entries keep their text
+    // as separate elements (the role/company beside the logo, then the
+    // description and link below it), so block 3 is a list of them that
+    // all share one delay; compact entries already have a single text element
+    // (a div beside the logo, or on the one-line Education entries a span).
+    const timelineGroups = new Map();
+    document.querySelectorAll('#experience .timeline-entry, #experience .timeline-compact-entry, #education .timeline-compact-entry').forEach(entry => {
+      const date = Array.from(entry.querySelectorAll(':scope > .timeline-date'));
+      const logo = Array.from(entry.querySelectorAll('.timeline-logo-link'));
+      const text = entry.classList.contains('timeline-compact-entry')
+        ? Array.from(entry.querySelectorAll('.timeline-compact-body > div, .timeline-title-row > span'))
+        : Array.from(entry.querySelectorAll('.timeline-title-row > div, :scope > div > p, :scope > div > .timeline-link'));
+      const blocks = [date, logo, text].filter(block => block.length);
+      blocks.flat().forEach(el => el.classList.add('timeline-part'));
+      timelineGroups.set(entry, blocks);
+    });
+
+    // Same idea as the Toolkit blocks: entries that arrive together are
+    // ordered top to bottom, and every entry's start is scheduled at least
+    // one step after the previous entry's, so neighbours never begin at
+    // the same instant.
+    let timelineNextStart = 0;
+    const timelineObserver = new IntersectionObserver((entries) => {
+      const now = performance.now();
+      const entering = [];
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entering.push(entry);
+        } else {
+          timelineGroups.get(entry.target).flat().forEach(el => {
+            el.classList.remove('in-view');
+            el.style.transitionDelay = '';
+          });
+        }
+      });
+      sortedByPosition(entering).forEach(({ entry }) => {
+        const startAt = Math.max(now, timelineNextStart);
+        timelineNextStart = startAt + STAGGER_STEP_MS;
+        timelineGroups.get(entry.target).forEach((block, index) => {
+          block.forEach(el => {
+            el.style.transitionDelay = `${Math.round(startAt - now) + index * STAGGER_STEP_MS}ms`;
+            el.classList.add('in-view');
+          });
+        });
+      });
+    }, { threshold: 0.15 });
+    timelineGroups.forEach((_, entry) => timelineObserver.observe(entry));
   }
 }
