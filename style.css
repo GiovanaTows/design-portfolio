@@ -700,9 +700,9 @@ body {
   /* visibility has its own 0s transition, delayed until the opacity
      fade finishes closing — without this, visibility (which can't be
      animated) snaps to hidden the instant .open is removed, cutting
-     off the fade-out and the image's shrink-to-thumbnail animation
-     before either gets a chance to actually play. */
-  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+     off the fade-out (backdrop, controls and image) before it gets a
+     chance to actually play. */
+  transition: opacity 0.45s ease, visibility 0s linear 0.45s;
 }
 
 .lightbox.open {
@@ -742,7 +742,7 @@ body {
      setting a starting transform/opacity and clearing it. Zoom level
      changes (width/height) are intentionally NOT in this list — they
      apply instantly rather than animating. */
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), clip-path 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), clip-path 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
 }
 
 /* Some source images (icon sheets, diagram GIFs) have a genuinely

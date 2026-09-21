@@ -772,6 +772,10 @@ if (zoomableImages.length) {
   function open(index) {
     lastFocused = document.activeElement;
     const sourceImg = zoomableImages[index];
+    // Cancel a close that's still fading out, so it can't wipe the
+    // starting state below halfway through this open.
+    clearTimeout(closeTimer);
+    lightboxImg.style.opacity = '';
     show(index);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -786,22 +790,34 @@ if (zoomableImages.length) {
     }
   }
 
+  // Closing is a plain fade: the backdrop, controls, caption and the image
+  // all fade away together (the backdrop's own fade is the .lightbox
+  // opacity transition in style.css). The image gets its own opacity
+  // and a slight settle-down on top, and finishes a beat before the
+  // backdrop, so it visibly fades rather than just riding the overlay's
+  // opacity. The inline values are cleared once the overlay is fully
+  // hidden, ready for the next open.
+  let closeTimer;
   function close() {
-    const sourceImg = zoomableImages[currentIndex];
     document.body.style.overflow = '';
     if (lastFocused) silentFocus(lastFocused);
 
-    // Reset zoom first so the source rect below is measured against the
-    // fit-to-screen image, not a possibly-huge zoomed-in one.
+    // Reset zoom first so the image fades from its fit-to-screen size,
+    // not a possibly-huge zoomed-in one.
     resetZoom();
 
-    const animated = !prefersReducedMotion && setOriginTransform(sourceImg);
     lightbox.classList.remove('open');
-    if (animated) {
-      window.setTimeout(clearOriginTransform, 350);
-    } else {
+    clearTimeout(closeTimer);
+    if (prefersReducedMotion) {
       clearOriginTransform();
+      return;
     }
+    lightboxImg.style.opacity = '0';
+    lightboxImg.style.transform = 'scale(0.97)';
+    closeTimer = window.setTimeout(() => {
+      lightboxImg.style.opacity = '';
+      clearOriginTransform();
+    }, 450);
   }
 
   zoomableImages.forEach((img, index) => {
