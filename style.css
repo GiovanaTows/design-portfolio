@@ -2458,6 +2458,23 @@ a:active .badge-specs {
   display: inline-block;
 }
 
+/* Case studies' own sub-links, nested under that entry — go straight to
+   the case-study page instead of scrolling to the section on this one.
+   Smaller and indented (with a rail borrowed from the timeline's own
+   connecting lines) to read as children of "Case studies", not as their
+   own numbered top-level entries. */
+.project-index-sublist {
+  margin-top: 0.4rem;
+  margin-left: 0.6rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid #e4e2db;
+  gap: 0.4rem !important;
+}
+
+.project-index-sublist a {
+  font-size: 0.8rem;
+}
+
 
 
 .project-header a {
