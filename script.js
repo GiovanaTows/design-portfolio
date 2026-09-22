@@ -833,7 +833,16 @@ if (zoomableImages.length) {
     lightboxImg.style.opacity = '';
     show(index);
     lightbox.classList.add('open');
+    // Lets the custom cursor's resting square go light instead of its
+    // usual dark ink, since it now sits over the lightbox's near-black
+    // backdrop rather than the page (see .cursor-ring in style.css).
+    document.documentElement.classList.add('lightbox-open');
     document.body.style.overflow = 'hidden';
+    // body's overflow:hidden alone doesn't stop Lenis — over the dark
+    // backdrop (not the image, which has its own overflow: auto to pan
+    // around a zoomed-in image) there's nothing for it to scroll, so it
+    // was reaching past the lightbox and scrolling the page underneath.
+    if (lenis) lenis.stop();
     silentFocus(closeBtn);
 
     if (!prefersReducedMotion) {
@@ -855,6 +864,8 @@ if (zoomableImages.length) {
   let closeTimer;
   function close() {
     document.body.style.overflow = '';
+    document.documentElement.classList.remove('lightbox-open');
+    if (lenis) lenis.start();
     if (lastFocused) silentFocus(lastFocused);
 
     // Reset zoom first so the image fades from its fit-to-screen size,
@@ -1744,15 +1755,21 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     let icon = '';
     let isLink = false;
     let isButton = false;
+    let isLightboxLens = false;
     let zoomImg = null;
     if (target && target.closest) {
-      if (target.closest('.lightbox-img-wrap img')) { icon = 'plus'; zoomImg = target.closest('img'); }
+      // No magnifying-with-a-preview lens inside the open lightbox — it's
+      // already the zoomed-in view, so magnifying a patch of it doesn't
+      // make sense the way it does over a small thumbnail. A plain empty
+      // circular lens shape instead (see cursor-lightbox-lens in
+      // style.css), no icon or text inside it.
+      if (target.closest('.lightbox-img-wrap img')) isLightboxLens = true;
       else if (target.closest('.project-card a')) text = 'View';
       else if (target.closest('.project-hero img, .project-figure img, .carousel-slide img')) { icon = 'plus'; zoomImg = target.closest('img'); }
       // Round, icon-only controls (checked first, so they win over the
       // plainer "any link/button" rule below): social icons, carousel
-      // prev/next and dots, back to top.
-      else if (target.closest('.social-links a, .social-links .copy-email-btn, .carousel-prev, .carousel-next, .carousel-dot, .back-to-top')) isButton = true;
+      // prev/next and dots, back to top, the lightbox's own buttons.
+      else if (target.closest('.social-links a, .social-links .copy-email-btn, .carousel-prev, .carousel-next, .carousel-dot, .back-to-top, .lightbox-btn')) isButton = true;
       else if (target.closest('a, button, summary, [role="button"], label, .has-tooltip')) isLink = true;
     }
     if (text) label.textContent = text;
@@ -1760,6 +1777,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     root.classList.toggle('cursor-plus', icon === 'plus');
     root.classList.toggle('cursor-link', isLink);
     root.classList.toggle('cursor-button', isButton);
+    root.classList.toggle('cursor-lightbox-lens', isLightboxLens);
     lensImg = zoomImg;
     if (lensImg && !running) {
       running = true;

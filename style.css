@@ -4335,6 +4335,15 @@ html.has-cursor * {
   justify-content: center;
 }
 
+/* Resting state inside the lightbox (not hovering the image or a
+   control): the ring's usual dark ink border barely shows against the
+   near-black backdrop, so it goes light instead. Placed right after the
+   base rule so it's still overridden by the more specific hover states
+   below (cursor-link/-button/-label-on), which set their own color. */
+html.lightbox-open .cursor-ring {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
 .cursor-label {
   font-size: 0.8rem;
   letter-spacing: 0.02em;
@@ -4370,6 +4379,15 @@ html.cursor-button .cursor-ring {
   background-color: rgba(36, 85, 230, 0.08);
 }
 
+/* The lightbox's own buttons (close, prev/next, zoom in/out) are the
+   only thing that can trigger cursor-button while the lightbox is open
+   — lighter, matching the magnifying-lens lens's own lighter blue,
+   since it's sitting over the same near-black backdrop. */
+html.lightbox-open.cursor-button .cursor-ring {
+  border-color: rgb(110, 145, 252);
+  background-color: rgba(110, 145, 252, 0.12);
+}
+
 html.cursor-link .cursor-dot,
 html.cursor-button .cursor-dot {
   opacity: 0.2;
@@ -4380,13 +4398,20 @@ html.cursor-button .cursor-dot {
   transition-duration: 0.2s;
 }
 
-/* Over a project card or zoomable image: a labelled translucent blue disc */
+/* Over a project card, case-study card or the lightbox image: a labelled
+   translucent blue disc. White text — the disc's tint is too light to
+   read dark text on over a photo or (in the lightbox) the near-black
+   backdrop. */
 html.cursor-label-on .cursor-ring {
   width: 60px;
   height: 60px;
   margin: -30px 0 0 -30px;
   background-color: rgba(36, 85, 230, 0.2);
   border-color: rgb(110, 145, 252);
+}
+html.cursor-label-on .cursor-label {
+  opacity: 1;
+  color: #fff;
 }
 html.cursor-label-on .cursor-dot {
   background-color: rgb(202, 216, 255);
@@ -4422,6 +4447,49 @@ html.cursor-plus .cursor-dot {
 html.cursor-plus .cursor-lens {
   opacity: 1;
 }
+
+/* Inside the open lightbox, hovering the image: an empty magnifying-lens
+   shape — round, with a short handle at its lower right — and nothing
+   inside it (no icon, no text, no magnified preview like .cursor-plus
+   above has, since the lightbox image is already the full-size view).
+   A lighter blue than the rest of the cursor's blue states. */
+html.cursor-lightbox-lens .cursor-ring {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-radius: 50%;
+  border: 1.5px solid rgb(110, 145, 252);
+  background-color: rgba(110, 145, 252, 0.12);
+}
+html.cursor-lightbox-lens .cursor-dot {
+  opacity: 0;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+}
+html.cursor-lightbox-lens .cursor-label,
+html.cursor-lightbox-lens .cursor-lens {
+  opacity: 0 !important;
+}
+/* The handle, touching the ring's edge and pointing away at 45°. A
+   translate(tx, ty) with tx = ty moves the handle's center a diagonal
+   distance of tx*sqrt(2), not tx itself — so to land that center exactly
+   (ring radius + half the handle's own length) out from the ring's
+   center, tx has to be that distance divided by sqrt(2), not the
+   distance itself (an earlier version of this used the distance
+   directly, which left a gap between the handle and the ring). */
+html.cursor-lightbox-lens .cursor-ring::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 4px;
+  margin: -2px 0 0 -10px;
+  background: rgb(110, 145, 252);
+  border-radius: 2px;
+  transform: translate(29.7px, 29.7px) rotate(45deg);
+}
+
 /* Pressed */
 html.cursor-down .cursor-ring {
   transform: translate3d(var(--rx, -100px), var(--ry, -100px), 0) scale(0.88);
