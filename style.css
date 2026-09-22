@@ -307,7 +307,7 @@ body {
    the header. To let it blur the page, the header's own glass moves
    onto a ::before layer here (which isn't an ancestor of the
    dropdown). */
-@media (max-width: 319.98px) {
+@media (max-width: 360px) {
   .site-header {
     background-color: transparent;
     backdrop-filter: none;
@@ -2433,6 +2433,10 @@ a:active .badge-specs {
   min-width: 260px !important;
 }
 
+.project-index-civi-onboarding {
+  min-width: 290px !important;
+}
+
 .project-index-label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -3230,21 +3234,23 @@ a:active .badge-specs {
   padding-top: 0.5rem;
 }
 
+/* The site header is the same height at every viewport width (its own
+   rules don't vary by breakpoint), so .topic-divider keeps the same
+   scroll-margin-top on phones as on desktop — shrinking it here used to
+   land the section's heading right under the sticky header instead of
+   below it, close enough that the scroll-reveal IntersectionObserver
+   (which also keeps clear of the header) never counted the heading as
+   "in view" and left it stuck invisible. .topic-divider-first has no
+   padding-top of its own on phones to create that clearance, so it gets
+   a bigger scroll-margin-top to make up for it. */
 @media (max-width: 900px) {
-  .topic-divider{
-    scroll-margin-top: calc(3.25rem - 20px);
-  }
-
   .topic-divider-first{
     padding-top: 0rem;
+    scroll-margin-top: 6rem;
   }
 }
 
 @media (max-width: 600px) {
-  .topic-divider{
-    scroll-margin-top: calc(2.5rem - 20px);
-  }
-
   .topic-divider-first{
     padding-top: 0rem;
   }
