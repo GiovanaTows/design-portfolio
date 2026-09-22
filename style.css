@@ -4112,6 +4112,25 @@ a.badge:active {
   transform: translateX(-50%) translateY(0);
 }
 
+/* On phones the toast drops down from just under the header instead of
+   rising from the bottom (out of the way of thumbs, and closer to the
+   badge that was tapped). white-space: nowrap gives the message a little
+   more room to breathe so it stays on one line instead of wrapping —
+   the shrink-to-fit width a fixed, left:50%-only box gets is narrower
+   than the viewport, which is what caused the wrap. */
+@media (max-width: 680px) {
+  .toast {
+    top: 5rem;
+    bottom: auto;
+    white-space: nowrap;
+    transform: translateX(-50%) translateY(-12px);
+  }
+
+  .toast.visible {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .toast {
     transition: opacity 0.15s ease;
