@@ -2072,9 +2072,13 @@ a:active .badge-specs {
   box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.35);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(4px);
+  transform: translateY(10px);
   pointer-events: none;
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+  /* A slower, silkier ease-out than the page's other fade/settle motion
+     (which uses cubic-bezier(0.2, 0.8, 0.2, 1)) — decelerates more
+     gently into its final position instead of gliding at a near-steady
+     speed, which reads as smoother for a small element like this. */
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.4s;
 }
 
 .badge-tooltip strong {
