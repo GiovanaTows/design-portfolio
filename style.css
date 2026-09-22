@@ -4371,10 +4371,10 @@ html.cursor-label-on .cursor-ring {
   background-color: rgba(36, 85, 230, 0.2);
   border-color: rgb(110, 145, 252);
 }
-html.cursor-label-on .cursor-label {
+/*html.cursor-label-on .cursor-label {
   opacity: 1;
   color: #fff;
-}
+}*/
 html.cursor-label-on .cursor-dot {
   background-color: rgb(202, 216, 255);
   opacity: 0.2;
