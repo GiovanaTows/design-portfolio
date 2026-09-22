@@ -3551,15 +3551,15 @@ a:active .badge-specs {
   position: relative;
 }
 
-/* Wraps one or more .timeline/.timeline-compact blocks that should
-   read as a single continuous timeline — Experience wraps its
-   "Product Design" / "Graphic design" / "Technical roots" blocks
-   together so the rail runs through all three (and their h3s) instead
-   of restarting at each one; Education wraps its lone block the same
-   way for consistency. Keeping the rail on this shared wrapper rather
-   than on each individual block is what makes that continuity
-   possible — the dots stay positioned per-entry either way. */
-.timeline-group, .timeline-group-compact {
+/* Wraps one or more .timeline blocks that should read as a single
+   continuous timeline — Experience wraps its "Product Design" /
+   "Graphic design" / "Technical roots" blocks together so the rail runs
+   through all three (and their h3s) instead of restarting at each one;
+   Education wraps its lone block the same way for consistency. Keeping
+   the rail on this shared wrapper rather than on each individual block
+   is what makes that continuity possible — the dots stay positioned
+   per-entry either way. */
+.timeline-group {
   position: relative;
   max-width: 900px;
   margin-left: auto;
@@ -3577,7 +3577,6 @@ a:active .badge-specs {
    align to anymore. */
 
 /* TIMELINE LINE */
-.timeline-group-compact::before,
 .timeline-group::before {
   content: '';
   position: absolute;
@@ -3588,18 +3587,9 @@ a:active .badge-specs {
   background-color: #e4e2db;
 }
 
-.timeline-group-compact::before{
-  top: 2rem;
-  bottom: 3rem;
-}
-
 @media (max-width: 700px) {
   .timeline-group::before {
     bottom: 6rem;
-  }
-
-  .timeline-group-compact::before{
-    bottom: 3rem;
   }
 }
 
@@ -3615,8 +3605,7 @@ a:active .badge-specs {
 }
 
 /* TIME LINE PIN*/
-.timeline-entry::before,
-.timeline-compact-entry::before {
+.timeline-entry::before {
   content: '';
   position: absolute;
   left: 202px;
@@ -3664,14 +3653,8 @@ a:active .badge-specs {
 }
 
 @media (max-width: 640px) {
-  .timeline-group::before,
-  .timeline-group-compact::before{
+  .timeline-group::before {
     left: 24px;
-  }
-
-  .timeline-group-compact::before{
-    margin-bottom: 3rem;
-    margin-top: 4rem;
   }
 
   /* TIMELINE BADGE */
@@ -3732,22 +3715,6 @@ a:active .badge-specs {
   flex-shrink: 0;
 }
 
-.timeline-logo-sm {
-  width: 46px;
-  height: 46px;
-  border-radius: 4px;
-}
-
-.timeline-compact-entry .timeline-title-row {
-  gap: 0.6rem;
-}
-
-.timeline-compact-body {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-}
-
 .timeline-entry p {
   max-width: 640px;
   margin-left: calc(49px + 0.75rem);
@@ -3764,16 +3731,6 @@ a:active .badge-specs {
 .timeline-link:hover,
 .timeline-link:focus-visible {
   color: var(--link-hover);
-}
-
-/* Compact entries don't have a large 49px logo to align under like the
-   featured .timeline-entry ones do — their text column already starts
-   right after the small logo via flex gap, so the base margin-left
-   would double-indent the link relative to the description above it. */
-.timeline-compact-body .timeline-link {
-  margin-left: 0;
-  margin-top: 0.35rem;
-  margin-right: 1.25rem;
 }
 
 .link {
@@ -3821,37 +3778,6 @@ a:active .badge-specs {
   }
 }
 
-/* Condensed roles: same two-column shape, but a single row each,
-   divided by hairlines — for the earlier/adjacent-field roles that
-   don't need a full write-up here (most already exist in more detail
-   on LinkedIn). */
-.timeline-compact {
-  /*border-top: 1px solid #e4e2db;*/
-  position: relative;
-}
-
-.timeline-compact-entry {
-  display: grid;
-  grid-template-columns: 175px 1fr;
-  gap: 0.5rem 2rem;
-  padding: 2rem 0;
-  font-size: 0.9rem;
-  position: relative;
-}
-
-.timeline-compact-entry .timeline-date {
-  padding-top: 0;
-}
-
-.timeline-compact-entry .timeline-role {
-  font-weight: 600;
-}
-
-.timeline-compact-entry .timeline-company {
-  margin-bottom: 0;
-  display: inline;
-}
-
 .about-portrait-row {
   display: flex;
   align-items: center;
@@ -3876,13 +3802,6 @@ a:active .badge-specs {
   .about-portrait {
     width: 110px;
     height: 110px;
-  }
-}
-
-@media (max-width: 640px) {
-  .timeline-compact-entry {
-    grid-template-columns: 1fr;
-    gap: 0.15rem;
   }
 }
 

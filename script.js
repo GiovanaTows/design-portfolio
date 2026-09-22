@@ -1597,18 +1597,14 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     // (1) the date badges, (2) the logo, (3) the text (role and company,
     // description, link) — instead of every piece animating on its own.
     // The entry itself is what's watched; when it comes into view its
-    // blocks fade up one after another. Featured entries keep their text
-    // as separate elements (the role/company beside the logo, then the
-    // description and link below it), so block 3 is a list of them that
-    // all share one delay; compact entries already have a single text element
-    // (a div beside the logo, or on the one-line Education entries a span).
+    // blocks fade up one after another. Text is a list of separate
+    // elements (the role/company beside the logo, then the description
+    // and link below it, when an entry has them) that all share one delay.
     const timelineGroups = new Map();
-    document.querySelectorAll('#experience .timeline-entry, #experience .timeline-compact-entry, #education .timeline-compact-entry').forEach(entry => {
+    document.querySelectorAll('#experience .timeline-entry, #education .timeline-entry').forEach(entry => {
       const date = Array.from(entry.querySelectorAll(':scope > .timeline-date'));
       const logo = Array.from(entry.querySelectorAll('.timeline-logo-link'));
-      const text = entry.classList.contains('timeline-compact-entry')
-        ? Array.from(entry.querySelectorAll('.timeline-compact-body > div, .timeline-title-row > span'))
-        : Array.from(entry.querySelectorAll('.timeline-title-row > div, :scope > div > p, :scope > div > .timeline-link'));
+      const text = Array.from(entry.querySelectorAll('.timeline-title-row > div, :scope > div > p, :scope > div > .timeline-link'));
       const blocks = [date, logo, text].filter(block => block.length);
       blocks.flat().forEach(el => el.classList.add('timeline-part'));
       timelineGroups.set(entry, blocks);
