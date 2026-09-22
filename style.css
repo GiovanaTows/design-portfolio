@@ -3538,6 +3538,10 @@ a:active .badge-specs {
   /*margin-left: calc(175px + 2rem);*/
 }
 
+.timeline-group p {
+  font-size: clamp(0.9rem, 2vw, 1rem) !important;
+}
+
 @media (max-width: 640px) {
   .timeline-group h3 {
     display: none;
@@ -3580,11 +3584,19 @@ a:active .badge-specs {
 .timeline-group::before {
   content: '';
   position: absolute;
-  top: 5.5rem;
-  bottom: 5rem;
   left: 230px;
   width: 1px;
   background-color: #e4e2db;
+}
+
+.timeline-experience::before {
+  top: 5.5rem;
+  bottom: 5rem;
+}
+
+.timeline-education::before {
+  top: 3rem;
+  bottom: 8rem;
 }
 
 @media (max-width: 700px) {
@@ -3592,6 +3604,37 @@ a:active .badge-specs {
     bottom: 6rem;
   }
 }
+
+.timeline-start::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height:20px;
+  left: 22px;
+  top: -20px;
+  background-color: var(--paper);
+  /*background-color: #ff0000;*/
+}
+
+.timeline-end::after {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top:50px;
+  width: 3px;
+  background-color: var(--paper);
+  /*background-color: #ff0000;*/
+  height:110px;
+  /*display: none;*/
+}
+
+/*@media (max-width: 640px) {
+  .timeline-end::after {
+    height:200px;
+  }
+}*/
+
+
 
 
 
