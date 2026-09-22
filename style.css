@@ -761,6 +761,10 @@ body {
 
 .site-footer-small {
   font-size: clamp(0.7rem, 3vw, 0.8rem) !important;
+  /* Lighter than the credit line above it (which keeps --muted) — same
+     grey, just faded, so the copyright/rights line reads as the least
+     important text on the page. */
+  color: rgba(107, 107, 102, 0.6);
 }
 
 .footer-line-break{ display: none; }
@@ -773,7 +777,7 @@ body {
    The 16px padding on each icon's box (see .social-links a) reaches
    past the row, so the bottom margin is a little larger than it looks. */
 .site-footer .social-links {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 @media (max-width: 760px) {
@@ -783,11 +787,15 @@ body {
     padding-right: 5rem;
   }
 
-  /* Follows the left-aligned text, and tightens the gap so four icons
-     still fit in the room left beside the back-to-top button. */
+  /* Follows the left-aligned text, still starting flush with it. More
+     breathing room between icons than before (2rem) — the row reclaims
+     the padding-right above (which is only there to clear the
+     back-to-top button) as extra width, so the wider gap has room to
+     spread into on the right without wrapping to a second line. */
   .site-footer .social-links {
     justify-content: flex-start;
-    gap: 2rem;
+    gap: 3rem;
+    width: calc(100% + 5rem);
   }
 }
 
@@ -3934,7 +3942,7 @@ a.badge:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 4rem;
 }
 
 .social-links a {
