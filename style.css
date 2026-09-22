@@ -1480,6 +1480,7 @@ body {
      spilling out. Omnitrack's own #id widths already have dedicated
      breakpoints for this, so this is mostly a safety net there. */
   max-width: 100%;
+  /*background-color: #ff0000;*/
 }
 
 #specs-about-desktop{
@@ -1650,6 +1651,21 @@ body {
   #omnitrack-website-tools{ width: 100%; }
 }
 
+.team-block{ 
+  max-width: 700px;
+  margin-right: 0px !important;
+}
+
+.timeline-block{ 
+  margin-right: 0px !important;
+}
+
+@media (max-width: 840px) {
+  .team-block{
+    max-width: auto;
+    width: 100%;    
+  }
+}
 
 
 /* Civi */
@@ -1661,18 +1677,168 @@ body {
   #civi-timeline { width: 100%; }
 }
 
-@media (max-width: 900px) {
+/*@media (max-width: 900px) {
   #civi-tools { max-width: min(450px, 100%); }
-}
+}*/
 
-@media (max-width: 860px) {
+@media (max-width: 870px) {
   #civi-role { width: 100%; }
+  #civi-tools { width: 520px; }
 }
 
-/* Design Sprint 2.0 — Civi */
-#design-sprint-civi-role { width: 290px; }
-#design-sprint-civi-tools { width: 195px; }
-#design-sprint-civi-timeline { width: 150px; }
+@media (max-width: 620px) {
+  #civi-tools { width: 100%; }
+}
+
+/* Civi - Save Places */
+#civi-save-places-role { width: 283px; }
+#civi-save-places-tools { width: 99px; }
+#civi-save-places-timeline { width: 66px; }
+
+@media (max-width: 888px) {
+  #civi-save-places-role { width: 148px; }
+}
+@media (max-width: 840px) {
+  #civi-save-places-role { width: 283px; }
+}
+
+@media (max-width: 640px) {
+  #civi-save-places-role { width: 148px; }
+}
+
+/* Civi - Design Sprint 2.0 */
+#civi-design-sprint-role { width: 290px; }
+#civi-design-sprint-tools { width: 195px; }
+#civi-design-sprint-timeline { width: 150px; }
+
+@media (max-width: 1067px) {
+  #civi-design-sprint-role { width: 148px; }
+}
+
+@media (max-width: 1024px) {
+  #civi-design-sprint-tools { width: 100px; }
+  #civi-design-sprint-timeline { width: 80px; }
+}
+
+@media (max-width: 840px) {
+  #civi-design-sprint-role { width: 290px; }
+  #civi-design-sprint-tools { width: 195px; }
+  #civi-design-sprint-timeline { width: 150px; }
+}
+
+@media (max-width: 1027px) {
+  #civi-design-sprint-role { width: 148px; }
+}
+
+@media (max-width: 684px) {
+  #civi-design-sprint-tools { width: 100px; }
+  #civi-design-sprint-timeline { width: 80px; }
+}
+
+@media (max-width: 520px) {
+  #civi-design-sprint-role { width: 100%; }
+  #civi-design-sprint-tools { width: 100%; }
+  #civi-design-sprint-timeline { width: 100%; }
+}
+
+/* Civi - Icons Redesign */
+#civi-icons-role { width: 433px; }
+#civi-icons-tools { width: 223px; }
+#civi-icons-timeline { width: 66px; }
+
+@media (max-width: 1166px) {
+  #civi-icons-role { width: 284px; }
+}
+
+@media (max-width: 1018px) {
+  #civi-icons-tools { width: 123px; }
+}
+
+@media (max-width: 916px) {
+  #civi-icons-role { width: 150px; }
+}
+
+@media (max-width: 840px) {
+  #civi-icons-role { width: 284px; }
+  #civi-icons-tools { width: 223px; }
+  #civi-icons-timeline { width: 66px; }
+}
+
+@media (max-width: 765px) {
+  #civi-icons-tools { width: 123px; }
+}
+
+@media (max-width: 617px) {
+  #civi-icons-role { width: 100%; }
+  #civi-icons-tools { width: 223px; }
+  #civi-icons-timeline { width: 66px; }
+}
+
+/* Civi - Submission Flow */
+#civi-submission-flow-role { width: 283px; }
+#civi-submission-flow-tools { width: 99px; }
+#civi-submission-flow-timeline { width: 66px; }
+
+@media (max-width: 894px) {
+  #civi-submission-flow-role { width: 148px; }
+}
+
+@media (max-width: 840px) {
+  #civi-submission-flow-role { width: 283px; }
+}
+
+@media (max-width: 590px) {
+  #civi-submission-flow-role { width: 148px; }
+}
+
+/* Civi - Premium Plan */
+#civi-premium-plan-role { width: 283px; }
+#civi-premium-plan-tool { width: 192px; }
+#civi-premium-plan-timeline { width: 66px; }
+
+@media (max-width: 685px) {
+  #civi-premium-plan-role { width: 148px; }
+}
+
+@media (max-width: 550px) {
+  #civi-premium-plan-tool { width: 100px; }
+}
+
+/* Civi - Onboarding Redesign */
+#civi-onboarding-role { width: 283px; }
+#civi-onboarding-tool { width: 99px; }
+#civi-onboarding-timeline { width: 113px; }
+
+@media (max-width: 946px) {
+  #civi-onboarding-role { width: 148px; }
+}
+
+@media (max-width: 840px) {
+  #civi-onboarding-role { width: 283px; }
+}
+
+@media (max-width: 639px) {
+  #civi-onboarding-role { width: 148px; }
+}
+
+@media (max-width: 505px) {
+  #civi-onboarding-role { width: 100%; }
+}
+
+/* Civi */
+#civi-marketing-role { width: 146px; }
+#civi-marketing-tools { width: 280px; }
+#civi-marketing-timeline { width: 174px; }
+
+@media (max-width: 1034px) {
+  #civi-marketing-timeline { width: 100%; }
+  #civi-marketing-tools { width: 400px; }
+}
+
+@media (max-width: 932px) {
+ #civi-marketing-role { width: 100%; }
+  #civi-marketing-timeline { width: 100%; }
+}
 
 
 /* Differential Motor */
@@ -2164,6 +2330,10 @@ a:active .badge-specs {
 .project-header-content{
   padding-right: 280px;
   width: 100%;
+}
+
+.project-header-content-full{
+  padding-right: 0 !important;
 }
 
 @media (max-width: 840px) {
@@ -3024,12 +3194,15 @@ a:active .badge-specs {
    stats and both go full width. */
 .project-header-columns {
   display: grid;
-  /*grid-template-columns: 6fr 1fr;*/
   align-items: start;
   gap: 0;
   margin-top: 2rem;
   padding: 0;
   justify-content: center;
+}
+
+.project-header-columns-full {
+  padding-right: 0 !important;
 }
 
 @media (max-width: 840px) {
