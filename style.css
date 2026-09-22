@@ -656,18 +656,22 @@ body {
   opacity: 1;
 }
 
-/* Homepage cards: while a card is hovered its cover drifts a little away
-   from the pointer (script.js sets --mx / --my, in px), like a picture
-   sitting slightly behind the frame. The extra scale keeps the edges from
-   showing as it slides. The Motion card is left out: its video already
-   moves, and its picture (inside .cover-media) is kept still below. */
+/* Homepage cards and Civi's case-study cards: while a card is hovered its
+   cover drifts a little away from the pointer (script.js sets --mx / --my,
+   in px), like a picture sitting slightly behind the frame. The extra
+   scale keeps the edges from showing as it slides. The Motion card is
+   left out: its video already moves, and its picture (inside
+   .cover-media) is kept still below. */
 @media (hover: hover) and (min-width: 681px) {
-  .section-projects .project-card .project-image img {
+  .section-projects .project-card .project-image img,
+  .case-study-card .project-image img {
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .section-projects .project-card a:hover .project-image img,
-  .section-projects .project-card a:focus-visible .project-image img {
+  .section-projects .project-card a:focus-visible .project-image img,
+  .case-study-card a:hover .project-image img,
+  .case-study-card a:focus-visible .project-image img {
     transform: translate(var(--mx, 0px), var(--my, 0px)) scale(1.06);
   }
 
