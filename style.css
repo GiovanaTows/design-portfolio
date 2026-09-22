@@ -3828,14 +3828,11 @@ a:active .badge-specs {
   transition: color 0.15s ease, background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Same floating lift as the toolkit/spec badges — no shadow at rest
-   (this is a plain icon button, not a pill), so it only "appears" to
-   float once you actually hover it. */
+/* Dark blue icon, a touch bigger — scale rather than a font-size change,
+   so growing it doesn't reflow the text it sits inline with. */
 .copy-email-btn:hover {
-  /*color: #1a1a1a;
-  background-color: rgba(26, 26, 26, 0.08);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);*/
+  color: var(--link-hover);
+  transform: scale(1.15);
 }
 
 .copy-email-btn:active {
@@ -4047,6 +4044,9 @@ a.badge:active {
   left: 50%;
   bottom: 2rem;
   transform: translateX(-50%) translateY(12px);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   background-color: var(--ink);
   color: var(--paper);
   padding: 0.7rem 1.25rem;
@@ -4057,6 +4057,15 @@ a.badge:active {
   pointer-events: none;
   z-index: 100;
   transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* A brighter green than .copy-email-btn.copied's (#1d5e29) — that one's
+   tuned for the light badge background, too dark to read on the toast's
+   near-black one. */
+.toast-icon {
+  font-size: 1.1rem;
+  color: #4ade80;
+  flex-shrink: 0;
 }
 
 .toast.visible {

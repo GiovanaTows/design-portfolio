@@ -1188,7 +1188,9 @@ if (inlineVideos.length) {
 // else, since an icon change alone isn't announced.
 let toastEl;
 let toastTimer;
-const showToast = (message) => {
+// `icon`, when given, is a Material Symbols glyph name shown before the
+// message (e.g. a green checkmark for a confirmation).
+const showToast = (message, icon) => {
   if (!toastEl) {
     toastEl = document.createElement('div');
     toastEl.className = 'toast';
@@ -1196,7 +1198,15 @@ const showToast = (message) => {
     toastEl.setAttribute('aria-live', 'polite');
     document.body.appendChild(toastEl);
   }
-  toastEl.textContent = message;
+  toastEl.textContent = '';
+  if (icon) {
+    const iconEl = document.createElement('span');
+    iconEl.className = 'material-symbols-outlined toast-icon';
+    iconEl.setAttribute('aria-hidden', 'true');
+    iconEl.textContent = icon;
+    toastEl.appendChild(iconEl);
+  }
+  toastEl.appendChild(document.createTextNode(message));
   toastEl.classList.add('visible');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toastEl.classList.remove('visible'), 2500);
@@ -1271,7 +1281,7 @@ document.querySelectorAll('.copy-email-btn').forEach(btn => {
     if (icon) icon.textContent = 'check';
     btn.classList.add('copied');
     btn.setAttribute('title', 'Copied!');
-    showToast('Email address copied to clipboard');
+    showToast('Email address copied to clipboard', 'check');
     resetTimer = setTimeout(() => {
       if (icon) icon.textContent = originalIcon;
       btn.classList.remove('copied');
