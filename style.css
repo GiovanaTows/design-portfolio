@@ -967,6 +967,16 @@ body {
   color: var(--ink-hover);
 }
 
+/* Carousel prev/next specifically (not the lightbox's own buttons, which
+   keep the plain frosted look above): dark-blue fill with a white icon
+   — the animated hover-stroke-overlay's border picks up the same white
+   for free via currentColor. */
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: var(--link-hover);
+  color: #fff;
+}
+
 .lightbox-btn:active,
 .carousel-prev:active,
 .carousel-next:active {
@@ -2730,8 +2740,8 @@ a:active .badge-specs {
 
 .project-carousel:has(.carousel-controls-row) .carousel-prev:hover,
 .project-carousel:has(.carousel-controls-row) .carousel-next:hover {
-  background-color: var(--index);
-  color: var(--link-hover);
+  background-color: var(--link-hover);
+  color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
@@ -3978,7 +3988,7 @@ a.badge:active {
 .social-links a:hover,
 .social-links a:focus-visible,
 .social-links .copy-email-btn:hover {
-  background-color: var(--index);
+  background-color: var(--link-hover);
   transform: translateY(-2px);
   box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
@@ -3994,15 +4004,12 @@ a.badge:active {
 .social-links a:hover,
 .social-links a:focus-visible,
 .social-links .copy-email-btn:not(.copied):hover {
-  /* Light grey background with a blue icon — the stroke picks up
-     the same blue for free via currentColor. Same darker blue
-     (--link-hover) as the animated underline on back-link/
-     timeline-link/etc., not --accent, for one consistent hover blue
-     across the site rather than two slightly different ones.
-     Excludes .copied so the green confirmation color (set globally
-     on .copy-email-btn.copied) isn't overridden back to blue while
-     the mouse is still hovering right after a click. */
-  color: var(--link-hover);
+  /* Dark-blue background (above) with a white icon — the stroke
+     picks up the same white for free via currentColor. Excludes .copied
+     so the green confirmation color (set globally on
+     .copy-email-btn.copied) isn't overridden back to white while the
+     mouse is still hovering right after a click. */
+  color: #fff;
 }
 
 .social-links svg {
