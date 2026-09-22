@@ -4305,9 +4305,9 @@ html.cursor-button .cursor-dot {
 
 /* Over a project card or zoomable image: a labelled translucent blue disc */
 html.cursor-label-on .cursor-ring {
-  width: 120px;
-  height: 120px;
-  margin: -60px 0 0 -60px;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
   background-color: rgba(36, 85, 230, 0.2);
   border-color: rgb(110, 145, 252);
 }
