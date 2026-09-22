@@ -4189,11 +4189,16 @@ html.has-cursor * {
 }
 
 .cursor-dot {
-  width: 8px;
-  height: 8px;
-  margin: -4px 0 0 -4px;
-  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  /* No centering offset, unlike a circular dot — the tip of the arrow
+     (its top-left corner, before the clip-path below cuts it down) is
+     what should land exactly on the pointer position. */
+  margin: 0;
   background: var(--link);
+  /* A plain triangular arrowhead, tip at the box's own top-left corner
+     (0% 0%) — simpler than a full pointer-cursor outline. */
+  clip-path: polygon(0% 0%, 100% 38%, 38% 100%);
   transform: translate3d(var(--cx, -100px), var(--cy, -100px), 0);
   /* Fades back in a beat after the ring starts shrinking, so leaving a
      link reads as the halo collapsing into the dot. */
@@ -4203,9 +4208,14 @@ html.has-cursor * {
 .cursor-ring {
   width: 36px;
   height: 36px;
-  margin: -18px 0 0 -18px;
-  border-radius: 50%;
-  border: 1px solid rgba(26, 26, 26, 0.3);
+  /* Not centered on the cursor point itself — that's the dot's own tip
+     (top-left corner of its box), not its visual middle. Offset by half
+     the dot's 16px box (8px) so the square centers on the dot's box
+     instead, and the arrow sits in the middle of the square rather than
+     hugging its bottom-right corner. */
+  margin: -10px 0 0 -10px;
+  border-radius: 4px;
+  border: 1px solid rgba(26, 26, 26, 0.2);
   transform: translate3d(var(--rx, -100px), var(--ry, -100px), 0);
   transition:
     opacity 0.25s ease,
@@ -4213,7 +4223,8 @@ html.has-cursor * {
     height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     margin 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     background-color 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4233,7 +4244,7 @@ html.cursor-visible .cursor-ring {
   opacity: 1;
 }
 
-/* Over a link or button: the ring swells into a soft blue halo */
+/* Over a text link: the ring swells into a soft blue halo. */
 html.cursor-link .cursor-ring {
   width: 120px;
   height: 120px;
@@ -4241,7 +4252,21 @@ html.cursor-link .cursor-ring {
   border-color: rgba(36, 85, 230, 0.35);
   background-color: rgba(36, 85, 230, 0.08);
 }
-html.cursor-link .cursor-dot {
+
+/* Over a round, icon-only control (social icons, carousel prev/next and
+   dots, back to top) — same halo, 30px smaller than a text link's, so
+   it doesn't swallow up neighbouring icons the way the full-size one
+   would over a tightly packed row. */
+html.cursor-button .cursor-ring {
+  width: 90px;
+  height: 90px;
+  margin: -45px 0 0 -45px;
+  border-color: rgba(36, 85, 230, 0.35);
+  background-color: rgba(36, 85, 230, 0.08);
+}
+
+html.cursor-link .cursor-dot,
+html.cursor-button .cursor-dot {
   opacity: 0.2;
   width: 2px;
   height: 2px;
@@ -4252,13 +4277,10 @@ html.cursor-link .cursor-dot {
 
 /* Over a project card or zoomable image: a labelled translucent blue disc */
 html.cursor-label-on .cursor-ring {
-  /*border-color: rgba(36, 85, 230, 0.6);*/
   width: 120px;
   height: 120px;
   margin: -60px 0 0 -60px;
-  /*border-color: rgba(36, 85, 230, 1);*/
   background-color: rgba(36, 85, 230, 0.2);
-  /*border-color: rgba(230, 230, 230, 0.8);*/
   border-color: rgb(110, 145, 252);
 }
 html.cursor-label-on .cursor-label {
@@ -4274,10 +4296,12 @@ html.cursor-label-on .cursor-dot {
   opacity: 0.2;
   width: 2px;
   height: 2px;
+  margin: -1px 0 0 -1px;
 }
 
 /* Over a zoomable image: a magnifying lens — a ring whose inside (.cursor-lens) shows the image
-   under it magnified; script.js paints its background. */
+   under it magnified; script.js paints its background. Square, like the
+   ring's own resting shape (border-radius: 4px, inherited from .cursor-ring). */
 html.cursor-plus .cursor-ring {
   width: 180px;
   height: 180px;
@@ -4293,7 +4317,7 @@ html.cursor-plus .cursor-dot {
 .cursor-lens {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
+  border-radius: 4px;
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 0.25s ease;

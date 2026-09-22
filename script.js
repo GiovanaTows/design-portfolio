@@ -1733,17 +1733,23 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     let text = '';
     let icon = '';
     let isLink = false;
+    let isButton = false;
     let zoomImg = null;
     if (target && target.closest) {
       if (target.closest('.lightbox-img-wrap img')) { icon = 'plus'; zoomImg = target.closest('img'); }
       else if (target.closest('.project-card a')) text = 'View';
       else if (target.closest('.project-hero img, .project-figure img, .carousel-slide img')) { icon = 'plus'; zoomImg = target.closest('img'); }
+      // Round, icon-only controls (checked first, so they win over the
+      // plainer "any link/button" rule below): social icons, carousel
+      // prev/next and dots, back to top.
+      else if (target.closest('.social-links a, .social-links .copy-email-btn, .carousel-prev, .carousel-next, .carousel-dot, .back-to-top')) isButton = true;
       else if (target.closest('a, button, summary, [role="button"], label, .has-tooltip')) isLink = true;
     }
     if (text) label.textContent = text;
     root.classList.toggle('cursor-label-on', !!text);
     root.classList.toggle('cursor-plus', icon === 'plus');
     root.classList.toggle('cursor-link', isLink);
+    root.classList.toggle('cursor-button', isButton);
     lensImg = zoomImg;
     if (lensImg && !running) {
       running = true;
