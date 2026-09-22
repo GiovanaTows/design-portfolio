@@ -1667,6 +1667,37 @@ body {
   }
 }
 
+/* Plots */
+#plots-role { width: 215px; }
+#plots-tools { width: 100px; }
+#plots-timeline { width: 340px; }
+
+@media (max-width: 1072px) {
+  #plots-role { width: 112px; }
+}
+
+@media (max-width: 970px) {
+  #plots-timeline { width: 200px; }
+}
+
+@media (max-width: 840px) {
+  #plots-role { width: 215px; }
+  #plots-timeline { width: 340px; }
+}
+
+@media (max-width: 799px) {
+  #plots-role { width: 112px; }
+}
+
+@media (max-width: 696px) {
+  #plots-timeline { width: 200px; }
+}
+
+@media (max-width: 556px) {
+  #plots-role { width: 100%; }
+  #plots-tools { width: 100%; }
+  #plots-timeline { width: 100%; }
+}
 
 /* Civi */
 #civi-role { width: 155px; }
@@ -1676,10 +1707,6 @@ body {
 @media (max-width: 1106px) {
   #civi-timeline { width: 100%; }
 }
-
-/*@media (max-width: 900px) {
-  #civi-tools { max-width: min(450px, 100%); }
-}*/
 
 @media (max-width: 870px) {
   #civi-role { width: 100%; }
@@ -1832,11 +1859,17 @@ body {
 
 @media (max-width: 1034px) {
   #civi-marketing-timeline { width: 100%; }
-  #civi-marketing-tools { width: 400px; }
+  #civi-marketing-tools { max-width: 400px; }
 }
 
 @media (max-width: 932px) {
  #civi-marketing-role { width: 100%; }
+  #civi-marketing-timeline { width: 100%; }
+}
+
+@media (max-width: 932px) {
+ #civi-marketing-role { width: 100%; }
+  #civi-marketing-tools { width: 100%; }
   #civi-marketing-timeline { width: 100%; }
 }
 
@@ -1947,7 +1980,24 @@ body {
 #motion-graphics-tools { width: 265px; }
 #motion-graphics-timeline { width: 115px; }
 
-@media (max-width: 1102px) {
+@media (max-width: 1105px) {
+  #motion-graphics-role { width: 150px; }
+  #motion-graphics-tools { width: 140px; }
+}
+
+@media (max-width: 842px) {
+  #motion-graphics-role { width: 100%; }
+  #motion-graphics-tools { width: 100%; }
+  #motion-graphics-timeline { width: 100%; }
+}
+
+@media (max-width: 840px) {
+  #motion-graphics-role { width: 150px; }
+  #motion-graphics-tools { width: 140px; }
+  #motion-graphics-timeline { width: 115px; }
+}
+
+@media (max-width: 602px) {
   #motion-graphics-role { width: 100%; }
   #motion-graphics-tools { width: 100%; }
   #motion-graphics-timeline { width: 100%; }
@@ -1966,15 +2016,18 @@ body {
 #motion-graphics-portpass-tools,
 #motion-graphics-balaroti-tools { width: 364px; }
 
+
 #motion-graphics-loadsmart-timeline { width: 165px; }
 #motion-graphics-portpass-timeline { width: 260px; }
+
 #motion-graphics-balaroti-timeline { width: 140px; }
+
+#motion-graphics-timeline { width: 120px; }
 
 
 
 /* Age Nutrilatina, Regenerate Pro, and Prodiet only used two Tools
    (no Lottie), so they get their own narrower width. */
-
 #motion-graphics-age-tools,
 #motion-graphics-regenerate-pro-tools,
 #motion-graphics-prodiet-tools { width: 265px; }
@@ -2065,18 +2118,21 @@ body {
   #omnitrack-catalogue-tools { width: 260px; }
 }
 
-/* Plots */
-#plots-role { width: 215px; }
-#plots-tools { width: 100px; }
-#plots-timeline { width: 340px; }
+@media (max-width: 424px) {
+  #omnitrack-catalogue-role { width: 100%; }
+  #omnitrack-catalogue-tools { width: 100%; }
+  #omnitrack-catalogue-timeline { width: 100%; }
+}
+
+
 
 /* No breakpoints at all above, so timeline (340px) overflows a phone
    screen outright — same fix as Enkontra/Haus/Omnitrack Website. */
-@media (max-width: 640px) {
+/*@media (max-width: 640px) {
   #plots-role { width: 100%; }
   #plots-tools { width: 100%; }
   #plots-timeline { width: 100%; }
-}
+}*/
 
 /* SupplyCyber */
 #supplycyber-role { width: 240px; }
@@ -2085,6 +2141,11 @@ body {
 
 @media (max-width: 1097px) {
   #supplycyber-timeline { width: 100%; }
+}
+
+@media (max-width: 608px) {
+  #supplycyber-role { width: 100%; }
+#supplycyber-tools { width: 100%; }
 }
 
 
@@ -2364,12 +2425,12 @@ a:active .badge-specs {
   padding-left: 2rem;*/
 }
 
-.project-index-plots {
-  min-width: 210px;
-}
+/*.project-index-plots {
+  min-width: 210px !important;
+}*/
 
 .project-index-civi {
-  min-width: 280px;
+  min-width: 260px !important;
 }
 
 .project-index-label {
