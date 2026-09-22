@@ -2950,6 +2950,18 @@ a:active .badge-specs {
   transform: scale(1.25);
 }
 
+.carousel-dot.active:hover {
+  background-color: var(--link-hover);
+}
+
+/* Excludes the active dot — it's already bigger and its own color, so a
+   hover on it shouldn't compete with that. */
+.carousel-dot:not(.active):hover,
+.carousel-dot:not(.active):focus-visible {
+  background-color: #a8a498;
+  transform: scale(1.2);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carousel-dot,
   .project-carousel .carousel-caption {
