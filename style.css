@@ -446,25 +446,9 @@ body {
   padding-right: 1.5rem;
 }
 
-.section-contact {
-  padding-top: 0 !important;
-}
-
-/*@media (max-width: 1300px) {
-  .section {
-    padding: 0rem 1.5rem 1.5rem ;
-  }
-}*/
-
 .section-about {
   padding-top: 2rem;
 }
-
-/*@media (max-width: 900px) {
-  .section {
-    padding-top: 1.5rem;
-  }
-}*/
 
 .section h2 {
   font-family: var(--display-font);
@@ -755,8 +739,6 @@ body {
   padding: 2rem;
   color: var(--muted);
   font-size: clamp(0.9rem, 3vw, 1rem) !important;
-  /*line-height: 2rem;*/
-  /*background-color: #2232c1;*/
 }
 
 .site-footer-small {
@@ -1456,7 +1438,6 @@ body {
 .project-specs > div {
   /*flex: 0 1 auto;*/
   max-width: 260px;
-  /*ackground-color:#2455e6;*/
 }
 
 /* Float-based alternative to .project-specs' flexbox, same goal:
@@ -1467,15 +1448,6 @@ body {
    its content. Its .badge-specs children are inline-flex, which
    behaves like inline-block for line-wrapping: they flow and wrap
    within .badge-block's max-width on their own, no flex-wrap needed. */
-/*.project-specs-new {
-  display: flow-root;
-  width: 100%;
-  background-color: #00ff00;
-}*/
-
-.about-specs{
-  top: 3rem;
-}
 
 /* Role/Tools/Timeline badges inside a page section (Motion Graphics has
    six of these). Their .badge-block children float, so without this the
@@ -1492,7 +1464,6 @@ body {
   position: relative;
   float: left;
   margin-right: 3rem;
-  /*background-color: #ff0000;*/
   margin-bottom: 1rem;
   /* A float never shrinks below its own declared width — if the
      specs column gets narrower than a block's fixed px width (the
@@ -1507,16 +1478,9 @@ body {
   max-width: 100%;
 }
 
-/*@media (max-width: 900px) {
-  .badge-block {
-    width: 100% !important;
-  }
-}*/
-
 #specs-about-desktop{
   display: flow-root; /* contains the floated .badge-block children so this element doesn't collapse to zero height */
   width: 100%;
-  /*background-color: #00ff00;*/
 }
 
 #specs-about-mobile{
@@ -1598,7 +1562,6 @@ body {
 }
 
 .split-column-about{
-  /*background-color: #0000ff;*/
   width: 100%;
   height: auto;
   position: relative;
@@ -1619,31 +1582,13 @@ body {
 }
 
 
-/*
-@media (max-width: 1153px) {
-  #about-based-in, #about-based-in-mobile{ width: 190px; }
-}
-@media (max-width: 1084px) {
-  #about-availability, #about-availability-mobile{ width: 188px; }
-}
-@media (max-width: 1023px) {
-  #about-availability, #about-availability-mobile{ width: 210px; }
-  #about-contact, #about-contact-mobile{ width: 100%; }
-
-  #about-languages, #about-languages-mobile{margin-right: 0px;}
-}
-@media (max-width: 1002px) {
-  #about-languages, #about-languages-mobile{ width: 420px; }
-}
-*/
 @media (max-width: 884px) {
   #specs-about-desktop{ display: none; }
 
   #specs-about-mobile{
     display: grid; /* contains the floated .badge-block children so this element doesn't collapse to zero height */
     width: 100%;
-    /*background-color: #00ff00;*/
-    grid-template-columns: 204px auto !important;
+      grid-template-columns: 204px auto !important;
     gap: 2rem;
   }
 
@@ -2368,14 +2313,6 @@ a:active .badge-specs {
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   scroll-margin-top: 6rem;
-
-  /*font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.7rem;
-  margin-top: 2rem;*/
 }
 
 .project-body h4 {
@@ -2400,8 +2337,6 @@ a:active .badge-specs {
   line-height: 1.8rem;
   padding-bottom: 1.5rem;
 }
-/*AQUI*/
-
 /* Forces the homepage tagline onto two lines instead of leaving it to
    wrap naturally — below 460px the typewriter's changing word length
    pushed it to 3 lines, with just one or two words stranded alone on
@@ -2482,13 +2417,11 @@ a:active .badge-specs {
 
 .figure-row .project-figure {
   margin: 0;
-  /*flex-shrink: 0;*/
 }
 
 .figure-row .project-figure img {
   width: auto;
   height: 200px;
-  /*max-width: 100%;*/
 }
 
 @media (max-width: 1120px) {
@@ -2550,11 +2483,6 @@ a:active .badge-specs {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-/*@media (max-width: 700px) {
-  .figure-grid-4 {
-    grid-template-columns: 1fr 1fr;
-  }
-}*/
 
 /* Carousel: alternates between however many .carousel-slide elements
    are inside it. script.js builds the dots and wires up prev/next —
@@ -2562,7 +2490,6 @@ a:active .badge-specs {
 .project-carousel {
   position: relative;
   margin: 2rem 0;
-  /*background-color: #1d5e29;*/
 }
 
 .carousel-viewport {
@@ -3070,8 +2997,6 @@ a:active .badge-specs {
 
 @media (max-width: 900px) {
   .topic-divider{
-    /*padding-top: 2rem;
-    padding-bottom: 0.5rem;*/
     scroll-margin-top: calc(3.25rem - 20px);
   }
 
@@ -3082,8 +3007,6 @@ a:active .badge-specs {
 
 @media (max-width: 600px) {
   .topic-divider{
-    /*padding-top: 1.5rem;
-    padding-bottom: 0rem;*/
     scroll-margin-top: calc(2.5rem - 20px);
   }
 
@@ -3103,15 +3026,6 @@ a:active .badge-specs {
   margin-top: 2rem;
   padding: 0;
   justify-content: center;
-}
-
-.about-header-columns {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  margin-top: 2rem;
-  padding: 0;
-  /*border-bottom: 1px solid #e4e2db;*/
 }
 
 @media (max-width: 840px) {
@@ -3164,12 +3078,9 @@ a:active .badge-specs {
 
   .project-index {
     position: absolute;
-    /*top: -160px;*/
     top: -200px;
-    /*right: 6rem;*/
     right: 0;
     width: 260px;
-    /*background-color: none;*/
   }
 }
 
@@ -3343,12 +3254,6 @@ a:active .badge-specs {
   }
 }
 
-/*@media (max-width: 800px) {
-  .figma-imbeded {
-    aspect-ratio: 5 / 4;
-  }
-}*/
-
 @media (max-width: 700px) {
   .figma-imbeded {
     aspect-ratio: 1 / 1;
@@ -3365,7 +3270,6 @@ a:active .badge-specs {
   border: 1px solid rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
   margin-bottom: 2rem;
-  /*margin-bottom: 1.5rem;*/
 }
 
 /* A self-hosted, autoplaying, silent loop used like an animated GIF —
@@ -3376,7 +3280,6 @@ a:active .badge-specs {
 .video{
   display: block;
   object-fit: cover;
-  /*border-radius: var(--image-radius);*/
 }
 
 .inline-video {
@@ -3390,13 +3293,11 @@ a:active .badge-specs {
 
 .video-carousel {
   width: 100%;
-  /*max-width: 700px;*/
   height: auto;
   /*aspect-ratio: 5 / 3;*/
   background-color: var(--paper);
 }
 
-/*AQUI*/
 .project-nav {
   max-width: 1200px; /* 720px */
   margin: 0 auto;
@@ -3415,9 +3316,6 @@ a:active .badge-specs {
    with a single child, space-between would otherwise leave it on the left. */
 .project-nav-end {
   justify-content: flex-end;
-  /* Same gutter as .section, so the link lines up with the project
-     grid's right edge above it. */
-  /*padding-right: 1.5rem;*/
 }
 
 .project-nav a {
@@ -3465,7 +3363,6 @@ a:active .badge-specs {
 
 @media (max-width: 640px) {
   .timeline-group h3 {
-    /*margin-left: 60px;*/
     display: none;
   }
 }
@@ -3538,7 +3435,6 @@ a:active .badge-specs {
   align-items: flex-end;
   gap: 0.5rem;
   padding-top: 0.15rem;
-  /*padding-right: 2rem;*/
 }
 
 /* TIME LINE PIN*/
@@ -3552,8 +3448,6 @@ a:active .badge-specs {
   height: 5px;
   margin-left: -4px;
   border-radius: 50%;
-  /*background-color: var(--muted);*/
-  /*background-color: #b1b0aa;*/
 }
 
 /* Reuses the same pill look as the project pages' Role/Tool/Timeline
@@ -3595,7 +3489,6 @@ a:active .badge-specs {
 @media (max-width: 640px) {
   .timeline-group::before,
   .timeline-group-compact::before{
-    /*display: none;*/
     left: 24px;
   }
 
@@ -3616,20 +3509,6 @@ a:active .badge-specs {
   .timeline-date .badge {
     font-size: 0.8rem;
   }
-
-  /* TRIANGLE BADGE */
-  /*.timeline-date .badge:first-child::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -6px;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-right: 6px solid var(--index);
-  }*/
 
   .timeline-date .badge:first-child::after {
     display:none;
@@ -3684,7 +3563,6 @@ a:active .badge-specs {
 
 .timeline-compact-entry .timeline-title-row {
   gap: 0.6rem;
-  /*margin-bottom: 0.15rem;*/
 }
 
 .timeline-compact-body {
@@ -3723,7 +3601,6 @@ a:active .badge-specs {
 
 .link {
   display: inline-block;
-  /*margin-top: 1rem;*/
   font-size: 0.85rem;
 }
 
@@ -3891,7 +3768,6 @@ a:active .badge-specs {
   gap: 1rem;
   margin-top: 0.7rem;
   margin-bottom: 2.2rem;
-  /*background-color: #00ff00;*/
 }
 
 .graphic-motion{ max-width: 400px; }
@@ -4335,15 +4211,7 @@ html.cursor-label-on .cursor-ring {
   background-color: rgba(36, 85, 230, 0.2);
   border-color: rgb(110, 145, 252);
 }
-html.cursor-label-on .cursor-label {
-  /*opacity: 1;
-  color: #fff;*/
-}
 html.cursor-label-on .cursor-dot {
-  /*opacity: 0;
-  transition-delay: 0s;
-  transition-duration: 0.2s;*/
-  /*background-color: #fff;*/
   background-color: rgb(202, 216, 255);
   opacity: 0.2;
   width: 2px;
