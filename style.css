@@ -2085,7 +2085,19 @@ a:active .badge-specs {
   font-weight: 600;
 }
 
-.badge-tooltip span {
+/* Flag next to a language tooltip's title (English/Portuguese/Spanish
+   only — see about.html). aria-hidden, since the language name in the
+   text next to it already says as much; a screen reader announcing the
+   emoji's own name ("flag: United Kingdom") would just be noise. */
+.tooltip-flag {
+  margin-right: 0.35em;
+}
+
+/* Excludes .tooltip-flag: a flag should stay full-color, not fade to
+   the tooltip's muted off-white body-text color like the rest of its
+   spans — it's the color rule a browser falls back to for the flag's
+   own glyph if it can't render the full-color version. */
+.badge-tooltip span:not(.tooltip-flag) {
   color: rgba(250, 249, 246, 0.78);
 }
 
