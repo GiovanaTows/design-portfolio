@@ -2937,22 +2937,52 @@ a:active .badge-specs {
 .carousel-dots {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
   margin-top: 0.75rem;
 }
 
 .carousel-dot {
-  width: 8px;
-  height: 8px;
-  /* var(--image-radius) (4px) would round this into a circle again at
-     this size — needs a proportionally smaller radius to actually
-     read as a tiny square instead. */
-  border-radius: 2px;
+  /* box-sizing: border-box (site-wide reset) makes padding eat into
+     width/height rather than add to them, so the box is sized for an
+     8x8 visible dot plus 8px of padding on every side (8 + 8+8 = 24),
+     not just 8x8 — otherwise the padding below would shrink the dot
+     itself instead of surrounding it. */
+  width: 24px;
+  height: 24px;
+  /* Rounds the outer (padded, clickable) box into a soft pill rather
+     than the small square the visible dot itself still reads as —
+     background-clip below confines the fill to the unrounded content
+     box, where padding this size (8px, more than the radius) brings
+     its own corners back down close to flat. */
+  border-radius: 10px;
   border: none;
-  padding: 0;
+  /* A bigger clickable/tappable area than the dot itself reads as —
+     the gap that used to sit between dots (on .carousel-dots, now
+     removed) is transparent padding here instead, and background-clip
+     keeps the fill confined to the original 8x8 box so the dot looks
+     exactly the same size at rest. */
+  padding: 8px;
   background-color: #d8d5cc;
+  background-clip: content-box;
   cursor: pointer;
   transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+@media (max-width: 640px) {
+  .carousel-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 8px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .carousel-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 7px;
+    padding: 6px;
+  }
 }
 
 /* Alternate carousel controls layout, buttons below the image instead
@@ -3579,7 +3609,7 @@ a:active .badge-specs {
 .project-index a:not(.project-index-current):hover,
 .project-index a:not(.project-index-current):focus-visible {
   color: var(--link-hover) !important;
-  /*font-weight: 450;*/
+  font-weight: 450;
 }
 
   /*
