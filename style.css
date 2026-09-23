@@ -3478,7 +3478,13 @@ a:active .badge-specs {
      name instead of "On this page", so the pointer cursor is scoped to
      this breakpoint too rather than sitting on the (inert) element at
      every width. */
-  .index-label-desktop{ display: block; cursor: pointer; }
+  .index-label-desktop{
+    display: block;
+    cursor: pointer;
+    padding:0.5rem;
+    margin-bottom: 0 !important;
+    /*background-color: #4ade80;*/
+  }
   .index-label-mobile{ display: none; }
 
   /*FLOATING INDEX*/
@@ -3558,6 +3564,7 @@ a:active .badge-specs {
   color: var(--link);
   text-decoration: none;
   transition: color 0.2s ease;
+  padding: 0.5rem;
 }
 
 .project-index a.project-index-current {
