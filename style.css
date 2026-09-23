@@ -1163,11 +1163,20 @@ body {
 /* ============================================
    8. PROJECT PAGE (used by files inside /projects/)
    ============================================ */
+
 .project-header {
   max-width: 1200px; /* 720px */
-  margin: 0 auto;
   padding: 3rem 1.5rem 2rem;
+  /*padding: 3rem 0 2rem;*/
+
+  /*margin: 0 20% 0 auto;*/
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: 12rem;
 }
+
+
 
 
 
@@ -1602,40 +1611,10 @@ body {
   #about-availability-mobile{ width: 100%; }
 }
 
-/* Omnitrack Website */
-#omnitrack-website-role{ width: 146px; }
-#omnitrack-website-tools{ width: 358px; }
-#omnitrack-website-timeline{ width: 192px; }
 
-@media (max-width: 1128px) {
-  #omnitrack-website-tools{ width: 360px; }
-  #omnitrack-website-timeline{ width: 370px; }
-}
-
-@media (max-width: 892px) {
-  #omnitrack-website-role{ width: 100%; }
-  #omnitrack-website-timeline{ width: 100%; }
-}
-
-@media (max-width: 840px) {
-  #omnitrack-website-role{ width: 146px; }
-  #omnitrack-website-tools{ width: 358px; }
-  #omnitrack-website-timeline{ width: 100%; }
-}
-
-@media (max-width: 648px) {
-  #omnitrack-website-role{ width: 100%; }
-  #omnitrack-website-tools{ width: 358px; }
-}
-
-/* Tools is still fixed-width at this point — same overflow as
-   Enkontra/Haus above, so cap it to 100% for phones too. */
-@media (max-width: 640px) {
-  #omnitrack-website-tools{ width: 100%; }
-}
 
 .team-block{ 
-  max-width: 700px;
+  max-width: 850px;
   margin-right: 0px !important;
 }
 
@@ -1645,7 +1624,7 @@ body {
 
 @media (max-width: 840px) {
   .team-block{
-    max-width: auto;
+    /*max-width: auto;*/
     width: 100%;    
   }
 }
@@ -1683,22 +1662,29 @@ body {
 }
 
 /* Civi */
-#civi-role { width: 155px; }
-#civi-tools { width: 320px; }
-#civi-timeline { width: 195px; }
+#civi-role { width: 286px; }
+#civi-tools { width: 450px; }
+#civi-timeline { width: 262px; margin-right: 0;}
 
-@media (max-width: 1106px) {
+@media (max-width: 1600px) {
+  #civi-role { width: 155px; }
+  #civi-tools { width: 320px; }
+  #civi-timeline { width: 195px;}
+}
+
+@media (max-width: 1124px) {
+  #civi-timeline { width: 162px; }
+}
+
+@media (max-width: 1080px) {
   #civi-timeline { width: 100%; }
 }
 
-@media (max-width: 870px) {
+@media (max-width: 919px) {
   #civi-role { width: 100%; }
-  #civi-tools { width: 520px; }
+  #civi-tools { width: 460px; }
 }
 
-@media (max-width: 620px) {
-  #civi-tools { width: 100%; }
-}
 
 /* Civi - Save Places */
 #civi-save-places-role { width: 283px; }
@@ -1788,6 +1774,7 @@ body {
 #civi-submission-flow-role { width: 283px; }
 #civi-submission-flow-tools { width: 99px; }
 #civi-submission-flow-timeline { width: 66px; }
+#civi-submission-flow-team { min-width: 800px; }
 
 @media (max-width: 894px) {
   #civi-submission-flow-role { width: 148px; }
@@ -1835,10 +1822,19 @@ body {
   #civi-onboarding-role { width: 100%; }
 }
 
-/* Civi */
-#civi-marketing-role { width: 146px; }
-#civi-marketing-tools { width: 280px; }
-#civi-marketing-timeline { width: 174px; }
+/* Civi - Brand and communication */
+#civi-marketing-role { width: 290px; }
+#civi-marketing-tools { width: 400px; }
+#civi-marketing-timeline { width: 350px; }
+
+@media (max-width: 1600px) {
+  #civi-marketing-role { width: 146px; }
+  #civi-marketing-timeline { width: 174px; }
+}
+
+@media (max-width: 1124px) {
+  #civi-marketing-tools { width: 280px; }
+}
 
 @media (max-width: 1034px) {
   #civi-marketing-timeline { width: 100%; }
@@ -1856,6 +1852,99 @@ body {
   #civi-marketing-timeline { width: 100%; }
 }
 
+/* Omnitrack Website */
+#omnitrack-website-role{ width: 286px; }
+#omnitrack-website-tools{ width: 358px; }
+#omnitrack-website-timeline{ width: 370px; }
+
+@media (max-width: 1600px) {
+  #omnitrack-website-role{ width: 146px; }
+  #omnitrack-website-tools{ width: 358px; }
+  #omnitrack-website-timeline{ width: 192px; }
+}
+
+@media (max-width: 1128px) {
+  #omnitrack-website-tools{ width: 360px; }
+  #omnitrack-website-timeline{ width: 370px; }
+}
+
+@media (max-width: 892px) {
+  #omnitrack-website-role{ width: 100%; }
+  #omnitrack-website-timeline{ width: 100%; }
+}
+
+@media (max-width: 840px) {
+  #omnitrack-website-role{ width: 146px; }
+  #omnitrack-website-tools{ width: 358px; }
+  #omnitrack-website-timeline{ width: 100%; }
+}
+
+@media (max-width: 648px) {
+  #omnitrack-website-role{ width: 100%; }
+  #omnitrack-website-tools{ width: 358px; }
+}
+
+/* Tools is still fixed-width at this point — same overflow as
+   Enkontra/Haus above, so cap it to 100% for phones too. */
+@media (max-width: 640px) {
+  #omnitrack-website-tools{ width: 100%; }
+}
+
+
+
+
+
+/* Enkontra */
+#enkontra-role { width: 135px; }
+#enkontra-tools { width: 364px; }
+#enkontra-timeline { width: 255px; }
+
+@media (max-width: 1086px) {
+  #enkontra-tools { width: 242px; }
+}
+
+@media (max-width: 1064px) {
+  #enkontra-timeline { width: 160px; }
+}
+
+@media (max-width: 969px) {
+  #enkontra-tools { width: 364px; }
+  #enkontra-timeline { width: 255px; }
+}
+
+@media (max-width: 640px) {
+  #enkontra-tools { width: 100%; }
+  #enkontra-timeline { width: 100%; }
+}
+
+/* Haus */
+#haus-role { width: 134px; }
+#haus-tools { width: 364px; }
+#haus-timeline { width: 256px; }
+
+@media (max-width: 1186px) {
+  #haus-tools { width: 242px; }
+}
+
+@media (max-width: 1067px) {
+  #haus-timeline { width: 160px; }
+}
+
+@media (max-width: 1067px) {
+  #haus-role { width: 100%; }
+  #haus-tools { width: 100%; }
+  #haus-timeline { width: 100%; }
+}
+
+@media (max-width: 840px) {
+  #haus-role { width: 134px; }
+  #haus-tools { width: 364px; }
+}
+
+@media (max-width: 640px) {
+  #haus-role { width: 100%; }
+  #haus-tools { width: 100%; }
+}
 
 /* Differential Motor */
 #differential-motor-role { width: 240px; }
@@ -1897,71 +1986,15 @@ body {
   #differential-motor-timeline { width: 132px; }
 }
 
-
-/* Enkontra */
-#enkontra-role { width: 135px; }
-#enkontra-tools { width: 364px; }
-#enkontra-timeline { width: 255px; }
-
-@media (max-width: 1086px) {
-  #enkontra-tools { width: 242px; }
-}
-
-@media (max-width: 1064px) {
-  #enkontra-timeline { width: 160px; }
-}
-
-@media (max-width: 969px) {
-  #enkontra-tools { width: 364px; }
-  #enkontra-timeline { width: 255px; }
-}
-
-/* Below that, on phones, none of the widths above leave enough room —
-   .badge-block's own max-width: 100% safety net doesn't reliably
-   catch this because the grid column it sits in sizes itself to fit
-   the badge's declared width in the first place, so the fixed px
-   width just wins and overflows past the header's padding on both
-   sides (the column is centered, so it bleeds evenly left and right). */
-@media (max-width: 640px) {
-  #enkontra-tools { width: 100%; }
-  #enkontra-timeline { width: 100%; }
-}
-
-/* Haus */
-#haus-role { width: 134px; }
-#haus-tools { width: 364px; }
-#haus-timeline { width: 256px; }
-
-@media (max-width: 1186px) {
-  #haus-tools { width: 242px; }
-}
-
-@media (max-width: 1067px) {
-  #haus-timeline { width: 160px; }
-}
-
-@media (max-width: 1067px) {
-  #haus-role { width: 100%; }
-  #haus-tools { width: 100%; }
-  #haus-timeline { width: 100%; }
-}
-
-@media (max-width: 840px) {
-  #haus-role { width: 134px; }
-  #haus-tools { width: 364px; }
-}
-
-/* ...but that re-fixes them wider than a phone screen — same overflow
-   as Enkontra above, so cap them back to 100% below that. */
-@media (max-width: 640px) {
-  #haus-role { width: 100%; }
-  #haus-tools { width: 100%; }
-}
-
 /* Motion Graphics */
-#motion-graphics-role { width: 290px; }
-#motion-graphics-tools { width: 265px; }
+#motion-graphics-role { width: 390px; }
+#motion-graphics-tools { width: 365px; }
 #motion-graphics-timeline { width: 115px; }
+
+@media (max-width: 1600px) {
+  #motion-graphics-role { width: 290px; }
+  #motion-graphics-tools { width: 265px; }
+}
 
 @media (max-width: 1105px) {
   #motion-graphics-role { width: 150px; }
@@ -2006,8 +2039,6 @@ body {
 #motion-graphics-balaroti-timeline { width: 140px; }
 
 #motion-graphics-timeline { width: 120px; }
-
-
 
 /* Age Nutrilatina, Regenerate Pro, and Prodiet only used two Tools
    (no Lottie), so they get their own narrower width. */
@@ -2075,10 +2106,35 @@ body {
   #motion-graphics-prodiet-timeline { width: 100%; }
 }
 
+/* SupplyCyber */
+
+#supplycyber-role { width: 390px; }
+#supplycyber-tools { width: 360px; }
+#supplycyber-timeline { width: 280px; }
+
+@media (max-width: 1600px) {
+  #supplycyber-role { width: 240px; }
+  #supplycyber-tools { width: 224px; }
+  #supplycyber-timeline { width: 180px; }
+}
+
+@media (max-width: 1097px) {
+  #supplycyber-timeline { width: 100%; }
+}
+
+@media (max-width: 608px) {
+  #supplycyber-role { width: 100%; }
+#supplycyber-tools { width: 100%; }
+}
+
 /* Omnitrack Catalogue */
 #omnitrack-catalogue-role { width: 150px; }
 #omnitrack-catalogue-tools { width: 260px; }
-#omnitrack-catalogue-timeline { width: 250px; }
+#omnitrack-catalogue-timeline { width: 600px; }
+
+@media (max-width: 1600px) {
+  #omnitrack-catalogue-timeline { width: 250px; }
+}
 
 @media (max-width: 1092px) {
   #omnitrack-catalogue-tools { width: 504px; }
@@ -2106,31 +2162,6 @@ body {
   #omnitrack-catalogue-tools { width: 100%; }
   #omnitrack-catalogue-timeline { width: 100%; }
 }
-
-
-
-/* No breakpoints at all above, so timeline (340px) overflows a phone
-   screen outright — same fix as Enkontra/Haus/Omnitrack Website. */
-/*@media (max-width: 640px) {
-  #plots-role { width: 100%; }
-  #plots-tools { width: 100%; }
-  #plots-timeline { width: 100%; }
-}*/
-
-/* SupplyCyber */
-#supplycyber-role { width: 240px; }
-#supplycyber-tools { width: 224px; }
-#supplycyber-timeline { width: 180px; }
-
-@media (max-width: 1097px) {
-  #supplycyber-timeline { width: 100%; }
-}
-
-@media (max-width: 608px) {
-  #supplycyber-role { width: 100%; }
-#supplycyber-tools { width: 100%; }
-}
-
 
 .badge-specs {
   display: inline-flex;
@@ -2325,7 +2356,7 @@ a:active .badge-specs {
 }
 
 .block-text{
-  max-width: 700px;
+  /*max-width: 700px;*/
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
 }
@@ -2354,6 +2385,9 @@ a:active .badge-specs {
 }
 
 
+/*.project-specs-new {
+  margin-bottom: 1.5rem;
+}*/
 
 .project-specs-new dt,
 .project-specs dt {
@@ -2372,8 +2406,9 @@ a:active .badge-specs {
 
 
 .project-header-content{
-  padding-right: 280px;
+  /*padding-right: 280px;*/
   width: 100%;
+  margin-bottom: 1.5rem;
 }
 
 .project-header-content-full{
@@ -2392,202 +2427,30 @@ a:active .badge-specs {
   /*letter-spacing: 0.06em;*/
 }
 
-
-
-/* Table of contents, auto-built by script.js from the page's H2/H3s */
-.project-index {
-  min-width: 210px;
-  align-items: center; /* start | end | center | stretch */
-  background-color: var(--index);
-  border-radius: 4px;
-  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.1);
-
-  padding: 1.5rem;
-  
-  /*border-left: 1px solid rgb(228, 226, 219);
-  padding-left: 2rem;*/
-}
-
-/*.project-index-plots {
-  min-width: 210px !important;
-}*/
-
-.project-index-civi {
-  min-width: 260px !important;
-}
-
-.project-index-civi-onboarding {
-  min-width: 290px !important;
-}
-
-/* Floating duplicate of the header's "On this page" index (civi.html
-   only, for now), pinned to the bottom-left corner of the viewport
-   instead of scrolling away with the header — only turned on past
-   1700px, where there's enough spare margin beside the page's own
-   1200px-wide column for it not to crowd the content or sit under the
-   image carousels. max-height/overflow-y guard against a short window:
-   at 15 links deep (case studies' own sub-list included) this can run
-   taller than the viewport on a wide-but-short screen. */
-.floating-page-index {
-  display: none;
-}
-
-@media (min-width: 1700px) {
-  .floating-page-index {
-    display: block;
-    position: fixed;
-    left: 1.5rem;
-    bottom: 1.5rem;
-    z-index: 20;
-    max-height: calc(100vh - 3rem);
-    overflow-y: auto;
-    /* Plain text floating over the page's own background, not another
-       boxed-off card — drop the pill look the header's copy of this
-       index has (background, padding, shadow) and read quieter (muted
-       instead of link-blue at rest, smaller type, tighter line gaps)
-       so it sits in the corner as a quiet aid rather than competing
-       with the page content. */
-    background-color: transparent;
-    padding: 0;
-    box-shadow: none;
-    margin-left: 1rem;
-    margin-bottom: 3rem;
-    /* Hidden until the page has actually scrolled down to the first
-       section — .floating-page-index-visible is toggled by the same
-       scrollspy logic that picks the current section in script.js
-       (initFloatingPageIndexScrollspy), since "no current section yet"
-       already means exactly that. Opacity/pointer-events, not
-       display: none, so it fades rather than popping in and out. */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .floating-page-index.floating-page-index-visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .floating-page-index {
-      transition: none;
-    }
-  }
-
-  .floating-page-index .project-index-label {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-  }
-
-  /* .floating-page-index.project-index — not just .floating-page-index
-     — for enough specificity to beat .project-index ul's own gap:
-     0.5rem further down the file (same selector "weight" otherwise, so
-     without the extra class here that later rule would win on source
-     order alone). */
-  .floating-page-index.project-index ul {
-    gap: 0.2rem;
-  }
-
-  .floating-page-index a {
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-decoration: none;
-    /* Font-weight itself still snaps (browsers don't interpolate it
-       between two static weights of a non-variable font), but the
-       color change — muted at rest, dark ink once current, link-blue
-       on hover — eases instead of cutting. */
-    transition: color 0.2s ease;
-  }
-
-  /* Scrollspy: whichever section is currently at the top of the screen
-     (toggled by initFloatingPageIndexScrollspy in script.js), or the
-     one just clicked (pinFloatingIndexCurrent, same file) reads as dark
-     ink + bold instead of the muted resting color, so the index doubles
-     as a "you are here" marker. :not(.floating-page-index-current) on
-     the hover/focus rule below keeps that ink+bold once clicked instead
-     of the link immediately flashing hover-blue underneath the pointer
-     that just clicked it — unlike the carousel/social buttons further
-     up, a plain text link reads fine without hover feedback on the one
-     that's already marked current. */
-  .floating-page-index a.floating-page-index-current {
-    color: var(--ink);
-    font-weight: 700;
-  }
-
-  .floating-page-index a:not(.floating-page-index-current):hover,
-  .floating-page-index a:not(.floating-page-index-current):focus-visible {
-    color: var(--link-hover);
-  }
-
-  .floating-page-index .project-index-sublist {
-    gap: 0.25rem !important;
-  }
-
-  .floating-page-index .project-index-sublist a {
-    font-size: 0.7rem;
-  }
-}
-
-.project-index-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
-}
-
-.project-index ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  
-}
-
-.project-index a {
-  position: relative;
-  display: inline-block;
-}
-
-/* Case studies' own sub-links, nested under that entry — go straight to
-   the case-study page instead of scrolling to the section on this one.
-   Smaller and indented (with a rail borrowed from the timeline's own
-   connecting lines) to read as children of "Case studies", not as their
-   own numbered top-level entries. */
-.project-index-sublist {
-  margin-top: 0.4rem;
-  margin-left: 0.6rem;
-  padding-left: 0.75rem;
-  border-left: 1px solid #e4e2db;
-  gap: 0.4rem !important;
-}
-
-.project-index-sublist a {
-  font-size: 0.8rem;
-}
-
-
-
 .project-header a {
   color: var(--link);
   text-decoration: none;
   font-size: 0.9rem;
 }
 
-/*.project-index a {
-  font-size: 0.8rem !important;
-}*/
-
 .project-header a:hover,
 .project-header a:focus-visible {
   color: var(--link-hover);
 }
 
+
+
+
+
+
 .project-hero {
   max-width: 1200px;
-  margin: 0 auto 3rem;
   padding: 0 1.5rem;
+
+  margin-top: 0;
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: 12rem;
 }
 
 .project-hero-static {
@@ -2626,19 +2489,61 @@ a:active .badge-specs {
   }
 }
 
+
 .project-body {
   max-width: 1200px; /* 720px */
-  margin: 0 auto;
-  margin-top: 2rem;
-  /*padding: 0 1.5rem 2rem;*/
   padding-bottom: 1rem;
+
+  /*margin: 2rem 10rem 0px auto;*/
+  margin-top: 2rem;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: 12rem;
 }
 
 @media (max-width: 1300px) {
-  .project-body {
-    padding: 0rem 1.5rem 1rem 1.5rem;
-  }
+  .project-body { padding: 0rem 1.5rem 1rem 1.5rem; }
 }
+
+
+
+
+
+
+
+
+
+@media (max-width: 1800px) {
+  .project-header { margin-right: 10rem; }
+  .project-hero { margin-right: 10rem; }
+  .project-body { margin-right: 10rem; }
+}
+
+@media (max-width: 1750px) {
+  .project-header { margin-right: 8rem; }
+  .project-hero { margin-right: 8rem; }
+  .project-body { margin-right: 8rem; }
+}
+
+@media (max-width: 1700px) {
+  .project-header { margin-right: 7rem; }
+  .project-hero { margin-right: 7rem; }
+  .project-body { margin-right: 7rem; }
+}
+
+@media (max-width: 1650px) {
+  .project-header { margin-right: 6rem; }
+  .project-hero { margin-right: 6rem; }
+  .project-body { margin-right: 6rem; }
+}
+
+@media (max-width: 1600px) {
+  .project-header { margin-left: auto; margin-right: auto; }
+  .project-hero { margin-left: auto; margin-right: auto; }
+  .project-body { margin-left: auto; margin-right: auto; }
+}
+
+
 
 @media (max-width: 560px) {
   .project-body {
@@ -3409,87 +3314,18 @@ a:active .badge-specs {
 /* Project header: stats (3fr) next to the "On this page" index (1fr).
    Below 900px there isn't room for both, so the index drops under the
    stats and both go full width. */
+   /*AQUI*/
 .project-header-columns {
   display: grid;
+  grid-template-columns: auto 260px;
   align-items: start;
-  gap: 0;
-  margin-top: 2rem;
-  padding: 0;
-  justify-content: center;
+
+  /*background-color: #ffff00;*/
 }
 
 .project-header-columns-full {
   padding-right: 0 !important;
 }
-
-@media (max-width: 840px) {
-  .project-header-columns {
-    grid-template-columns: 1fr;
-  }
-  
-
-  .project-index {
-    max-width: 250px;
-    min-width: 210px;
-    background-color: var(--index);
-    border-radius: 4px;
-    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-  }
-
-  .project-index ul {
-    gap: 0.2rem;
-    
-  }
-
-  
-
-  .project-index-label {
-    margin-bottom: 0.35rem;
-  }
-}
-
-/* Desktop: the index floats to the right of the specs instead of
-   sharing a grid track with them — reserve room on the right for it
-   (padding-right) and pin it there (position: absolute, relative to
-   this container so it lines up with the top of the specs row
-   regardless of how tall the H1/subtitle above happen to be). It's
-   positioned only — it scrolls away normally with the rest of the
-   header, it doesn't stay pinned as you scroll the page. Scoped to
-   .project-header-columns .project-index (not just .project-index)
-   so it doesn't also catch civi.html's .floating-page-index, which
-   reuses the same classes for its own, unrelated position: fixed. */
-@media (min-width: 840px) {
-  .project-header-columns {
-    position: relative;
-    grid-template-columns: 1fr;
-    padding-right: 240px;
-  }
-
-  /* Both columns share the single grid cell instead of stacking into
-     two rows — the second one (wrapping the now absolutely-positioned
-     .project-index) is otherwise empty, but a grid row still gets
-     created for it, and gap still adds space above that empty row
-     even though nothing visible is there to see. */
-  .project-header-columns > .split-column {
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  .project-header-columns .project-index {
-    position: absolute;
-    top: -200px;
-    right: 0;
-    width: 260px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .project-header-columns .project-index {
-    right: 0;
-  }
-}
-
 
 /* Two-column layout: put images in one .split-column and text in the
    other. Order in the HTML decides left vs. right — put the images
@@ -3506,10 +3342,14 @@ a:active .badge-specs {
 }
 
 .split-column .project-figure:first-child {
-  margin-top: 0;
-  
+  margin-top: 0;  
 }
 
+/*AQUI*/
+.split-column {
+  width: 100%;
+  /*background-color: #ffff00;*/
+}
 
 @media (max-width: 856px) {
   .split-columns-tool-kit {
@@ -3524,6 +3364,7 @@ a:active .badge-specs {
     gap: 1.5rem;
   }
 }
+
 
 
 
@@ -3587,6 +3428,163 @@ a:active .badge-specs {
     gap: 1.5rem;
   }
 }
+
+.column-index{
+  /*background-color: #2455e6;*/
+  width: 100%;
+  height: 100%;
+  align-content: center;
+}
+
+/*INDEX*/
+.project-index {
+  /*background-color: #4ade80;*/
+
+  position: relative;
+  padding-left: 2rem;
+  width: 260px;
+
+  background-color: var(--index);
+  padding: 1.5rem 2rem;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.1);
+
+  /*backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);*/
+}
+
+.index-label-desktop{ display: none; }
+.index-label-mobile{ display: block; }
+
+@media (min-width: 1600px) {
+  .project-header-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .index-label-desktop{ display: block; }
+  .index-label-mobile{ display: none; }
+  
+  /*FLOATING INDEX*/
+  .project-index {
+    /*background-color: #ffff00;*/
+    position: fixed;
+    left: 4rem;
+    bottom: 4rem;
+    z-index: 20;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    /*padding: 0;*/
+    /*padding-left: 0;*/
+    /*pointer-events: none;*/
+    transition: opacity 0.3s ease;
+    margin-top: 0 !important;
+    align-content: end;
+
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 840px) {
+  .project-header-columns {
+    grid-template-columns: 100%;
+  }
+
+  .project-index {
+    /*background-color: #ff00ff;*/
+    position: relative;
+    padding-left: 0;
+    margin-top: 0 !important;
+    bottom: auto;
+    top: auto;
+    width: 100%;
+
+    background-color: transparent;
+    padding: 0 0 0 4rem;
+    box-shadow: none;
+  }
+}
+
+.project-index-label {
+  /*font-size: 0.75rem;*/
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  /*margin-bottom: 0.75rem;*/
+
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-index ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  /*gap: 0.5rem;*/
+
+  gap: 0.2rem !important;
+}
+
+.project-index a {
+  /*position: relative;
+  display: inline-block;*/
+
+  font-size: 0.8rem !important;
+  /*color: var(--muted) !important;*/
+  /*text-decoration: none;*/
+  transition: color 0.2s ease;
+}
+
+.project-index a.project-index-current {
+  color: var(--ink) !important;
+  font-weight: 700;
+}
+
+/*.project-index a:hover{
+  color: var(--link-hover) !important;
+}*/
+
+.project-index a:not(.project-index-current):hover,
+.project-index a:not(.project-index-current):focus-visible {
+  color: var(--link-hover) !important;
+  /*font-weight: 450;*/
+}
+
+  /*
+  .project-index .project-index-sublist {
+    gap: 0.25rem !important;
+  }
+
+  .project-index .project-index-sublist a {
+    font-size: 0.7rem;
+  }*/
+
+/* Case studies' own sub-links, nested under that entry — go straight to
+   the case-study page instead of scrolling to the section on this one.
+   Smaller and indented (with a rail borrowed from the timeline's own
+   connecting lines) to read as children of "Case studies", not as their
+   own numbered top-level entries. */
+.project-index-sublist {
+  margin-top: 0.4rem;
+  margin-left: 0.6rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid #e4e2db;
+  gap: 0.4rem !important;
+}
+
+/*.project-index-sublist a {
+  font-size: 0.8rem;
+}*/
+
+
+
+
+
+
+
+
 
 /* Figma embed: always keeps a 16:9 frame — width fills its container,
    height is derived from that width rather than a fixed pixel value,

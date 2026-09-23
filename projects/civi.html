@@ -59,16 +59,16 @@
   </header>
 
   <header class="project-header">
-    <div class="project-header-content">
-      <nav class="project-nav project-nav-top">
-        <a href="../index.html#projects">← All projects</a>
-      </nav>
-      <h1>Civi — Mobile App</h1>
-      <p class="project-meta divider">Creating a personal-safety app from scratch, used across São Paulo, Brazil</p>
-    </div>
-
+    
     <div class="project-header-columns">
       <div class="split-column">
+        <div class="project-header-content">
+          <nav class="project-nav project-nav-top">
+            <a href="../index.html#projects">← All projects</a>
+          </nav>
+          <h1>Civi — Mobile App</h1>
+          <p class="project-meta divider">Creating a personal-safety app from scratch, used across São Paulo, Brazil</p>
+        </div>
 
         <div class="project-specs-new">
           <div class="badge-block" id="civi-role">
@@ -98,24 +98,25 @@
         <div class="project-specs-new badge-block team-block">
           <div>
             <div class="block-title">Team</div>
-            <div class="block-text">I worked as Civi's in-house product designer from the company's founding until its end. I was the only designer for over a year, until the team started growing up to 25 people.</div>
+            <div class="block-text">I was the only designer in the company for over a year. In 2023 the company reached 25 employers, including the head of product <a class="inline-link" href="https://www.linkedin.com/in/rodrigokleinert/" target="_blank" rel="noopener noreferrer">Rodrigo Kleinert</a> / <a class="inline-link" href="https://www.linkedin.com/in/alextandy/" target="_blank" rel="noopener noreferrer">Alex Tandy</a> and the designers <a class="inline-link" href="https://www.linkedin.com/in/viviane-d-73535a124/" target="_blank" rel="noopener noreferrer">Viviane Ducarme</a> and <a class="inline-link" href="https://www.carolinetoscano.com/" target="_blank" rel="noopener noreferrer">Caroline Toscano</a>. I worked as Civi's in-house product designer from the company's founding until its end.</div>
           </div>
         </div>
-
+        <!--
         <div class="project-specs-new">
-          <div class="badge-block">
+          <div class="badge-block team-role-block">
             <div class="block-title">Head of Product</div>
             <div class="block-text"><a class="inline-link" href="https://www.linkedin.com/in/alextandy/" target="_blank" rel="noopener noreferrer">Alex Tandy</a>: Sep 2020 - Sep 2021 (1 year)<br><a class="inline-link" href="https://www.linkedin.com/in/rodrigokleinert/" target="_blank" rel="noopener noreferrer">Rodrigo Kleinert</a>: Aug 2021 - Feb 2023 (1.6 years)</div>
           </div>
-          <div class="badge-block">
+          <div class="badge-block team-role-block" style="margin-right: 0;">
             <div class="block-title">Product Designer</div>
             <div class="block-text"><a class="inline-link" href="https://www.linkedin.com/in/viviane-d-73535a124/" target="_blank" rel="noopener noreferrer">Viviane Ducarme</a>: May 2021 - Jul 2022 (1.3 years)<br><a class="inline-link" href="https://www.carolinetoscano.com/" target="_blank" rel="noopener noreferrer">Caroline Toscano</a>: Oct 2022 - Feb 2023 (5 months)</div>
           </div>
-        </div>
+        </div>-->
       </div>
-      <div class="split-column">
-        <nav class="project-index project-index-civi" aria-label="On this page" style="align-self: center;">
-          <p class="project-index-label">On this page</p>
+      <div class="split-column column-index">
+        <nav class="project-index" aria-label="On this page" id="index-civi">
+          <p class="project-index-label index-label-mobile">On this page</p>
+          <p class="project-index-label index-label-desktop">Civi — Mobile App</p>
           <ul>
             <li><a href="#context">1. Context</a></li>
             <li><a href="#measuring-success">2. Measuring success</a></li>
@@ -126,12 +127,12 @@
             <li>
               <a href="#case-studies">7. Case studies</a>
               <ul class="project-index-sublist">
-                <li><a href="civi-save-places.html">Save Places</a></li>
-                <li><a href="civi-design-sprint.html">Design Sprint 2.0</a></li>
-                <li><a href="civi-event-icons-redesign.html">Event icons redesign</a></li>
-                <li><a href="civi-event-submission-flow.html">Event submission flow</a></li>
-                <li><a href="civi-premium-plan.html">Premium plan &amp; free trial</a></li>
-                <li><a href="civi-onboarding-redesign.html">Onboarding redesign</a></li>
+                <li><a href="civi-save-places.html">7.1 Save Places</a></li>
+                <li><a href="civi-design-sprint.html">7.2 Design Sprint 2.0</a></li>
+                <li><a href="civi-event-icons-redesign.html">7.3 Event icons redesign</a></li>
+                <li><a href="civi-event-submission-flow.html">7.4 Event submission flow</a></li>
+                <li><a href="civi-premium-plan.html">7.5 Premium plan &amp; free trial</a></li>
+                <li><a href="civi-onboarding-redesign.html">7.6 Onboarding redesign</a></li>
               </ul>
             </li>
             <li><a href="#brand-communication">8. Brand and communication</a></li>
@@ -141,40 +142,6 @@
       </div>
     </div>
   </header>
-
-  <!-- Floating "On this page" index — same links as the one above, kept
-       in view while scrolling on very wide screens (≥1700px, see
-       .floating-page-index in style.css) where there's enough spare
-       margin beside the 1200px-wide page body for it not to crowd the
-       content. Duplicates the header's own index rather than moving
-       it, so aria-hidden + tabindex="-1" keep it out of the
-       accessibility tree/tab order — the header nav above still does
-       that job for keyboard and screen-reader users. -->
-  <nav class="project-index project-index-civi floating-page-index" aria-label="On this page" aria-hidden="true">
-    <!--<p class="project-index-label">On this page</p>-->
-    <p class="project-index-label">Civi — Mobile App</p>
-    <ul>
-      <li><a href="#context" tabindex="-1">Context</a></li>
-      <li><a href="#measuring-success" tabindex="-1">Measuring success</a></li>
-      <li><a href="#first-wireframe" tabindex="-1">First wireframe</a></li>
-      <li><a href="#interface-overtime" tabindex="-1">Interface overtime</a></li>
-      <li><a href="#main-functionalities" tabindex="-1">Main functionalities</a></li>
-      <li><a href="#design-system" tabindex="-1">Design system</a></li>
-      <li>
-        <a href="#case-studies" tabindex="-1">Case studies</a>
-        <ul class="project-index-sublist">
-          <li><a href="civi-save-places.html" tabindex="-1">Save Places</a></li>
-          <li><a href="civi-design-sprint.html" tabindex="-1">Design Sprint 2.0</a></li>
-          <li><a href="civi-event-icons-redesign.html" tabindex="-1">Event icons redesign</a></li>
-          <li><a href="civi-event-submission-flow.html" tabindex="-1">Event submission flow</a></li>
-          <li><a href="civi-premium-plan.html" tabindex="-1">Premium plan &amp; free trial</a></li>
-          <li><a href="civi-onboarding-redesign.html" tabindex="-1">Onboarding redesign</a></li>
-        </ul>
-      </li>
-      <li><a href="#brand-communication" tabindex="-1">Brand and communication</a></li>
-      <li><a href="#the-end" tabindex="-1">The end of Civi</a></li>
-    </ul>
-  </nav>
 
   <div class="project-hero">
     <picture>
