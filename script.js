@@ -22,7 +22,7 @@ let stopAnchorTracking = () => {};
 // link the instant you click one, rather than leaving it to catch up
 // once the scroll (or a late-loading image nudging the final resting
 // position after it) settles. No-op until that setup runs.
-let pinprojectIndexCurrent = () => {};
+let pinProjectIndexCurrent = () => {};
 
 if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.style.scrollBehavior = 'auto';
@@ -158,7 +158,7 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     e.preventDefault();
     stopAnchorTracking();
     forceRevealSection(target);
-    pinprojectIndexCurrent(hash);
+    pinProjectIndexCurrent(hash);
     const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
     chaseTo(() => window.scrollY + target.getBoundingClientRect().top - margin);
   });
@@ -171,7 +171,7 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     const hashTarget = document.getElementById(decodeURIComponent(hash.slice(1)));
     if (hashTarget) {
       forceRevealSection(hashTarget);
-      pinprojectIndexCurrent(hash);
+      pinProjectIndexCurrent(hash);
       trackAnchor(hashTarget);
       lenis.scrollTo(hashTarget, { immediate: true });
     }
@@ -1062,6 +1062,19 @@ if (zoomableImages.length) {
   });
 }
 
+// Shared by the back-to-top FAB and .index-label-desktop below — the
+// same click-to-top gesture, just from two different triggers.
+// youtubePlayers is populated further down the file (see the YouTube
+// coordination block there) — defined later, but this only ever runs
+// on a later click, by which point the rest of the script has already
+// finished running once.
+function scrollToTop() {
+  stopAnchorTracking();
+  if (lenis) lenis.scrollTo(0);
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+  youtubePlayers.forEach(pauseIfPlaying);
+}
+
 // Back-to-top FAB: only on project pages (.project-body), appears once
 // you've scrolled past one screen height, smooth-scrolls to top on click.
 if (document.querySelector('.project-body')) {
@@ -1079,17 +1092,25 @@ if (document.querySelector('.project-body')) {
   toggleBackToTop();
   window.addEventListener('scroll', toggleBackToTop, { passive: true });
 
-  backToTop.addEventListener('click', () => {
-    stopAnchorTracking();
-    if (lenis) lenis.scrollTo(0);
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
-    // youtubePlayers is populated further down the file (see the
-    // YouTube coordination block below) — defined later, but this
-    // callback only ever runs on a later click, by which point the
-    // rest of the script has already finished running once.
-    youtubePlayers.forEach(pauseIfPlaying);
-  });
+  backToTop.addEventListener('click', scrollToTop);
 }
+
+// The index's own project-name label (.index-label-desktop — shown in
+// place of "On this page" once the index is pinned to the corner past
+// 1600px, see style.css) doubles as a back-to-top trigger: same gesture
+// as the FAB above, just from the top of the index instead of its own
+// floating button. It's a <p>, not a real button, so role/tabindex/
+// keydown fill in what that would have given it for free.
+document.querySelectorAll('.index-label-desktop').forEach((label) => {
+  label.setAttribute('role', 'button');
+  label.setAttribute('tabindex', '0');
+  label.addEventListener('click', scrollToTop);
+  label.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    scrollToTop();
+  });
+});
 
 // Lazy-load heavy iframes (Figma embeds, YouTube players): each one is
 // a full app running inside the page, and loading a dozen of them at
@@ -1827,7 +1848,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
       // Round, icon-only controls (checked first, so they win over the
       // plainer "any link/button" rule below): social icons, carousel
       // prev/next and dots, back to top, the lightbox's own buttons.
-      else if (target.closest('.social-links a, .social-links .copy-email-btn, .carousel-prev, .carousel-next, .carousel-dot, .back-to-top, .lightbox-btn')) isButton = true;
+      else if (target.closest('.social-links a, .social-links .copy-email-btn, .carousel-prev, .carousel-next, .carousel-dot, .back-to-top, .lightbox-btn, .index-label-desktop')) isButton = true;
       else if (target.closest('a, button, summary, [role="button"], label, .has-tooltip')) isLink = true;
     }
     if (text) label.textContent = text;
@@ -2002,7 +2023,7 @@ document.querySelectorAll('.project-card .cover-video').forEach((video) => {
   // .project-hero commented out), down to the first section instead.
   const visibilityTrigger = document.querySelector('.project-hero') || entries[0].target;
 
-  // Set (by pinprojectIndexCurrent, below) the instant a link here —
+  // Set (by pinProjectIndexCurrent, below) the instant a link here —
   // or the header's own copy of this index, or any other same-page
   // anchor — is clicked, so the section you asked for reads as current
   // right away. Otherwise this stays purely geometry-driven, and would
@@ -2040,7 +2061,7 @@ document.querySelectorAll('.project-card .cover-video').forEach((video) => {
   };
 
   
-  pinprojectIndexCurrent = (hash) => {
+  pinProjectIndexCurrent = (hash) => {
     pinnedHash = hash;
     projectIndex.classList.add('project-index-visible');
     entries.forEach(({ link }) => {

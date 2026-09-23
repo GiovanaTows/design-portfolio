@@ -3456,14 +3456,19 @@ a:active .badge-specs {
 .index-label-desktop{ display: none; }
 .index-label-mobile{ display: block; }
 
-@media (min-width: 1600px) {
+@media (min-width: 1600px) and (min-height: 700px) {
   .project-header-columns {
     grid-template-columns: 1fr;
   }
 
-  .index-label-desktop{ display: block; }
+  /* Doubles as a back-to-top trigger here (see .index-label-desktop in
+     script.js) — only makes sense once it's showing as the project's
+     name instead of "On this page", so the pointer cursor is scoped to
+     this breakpoint too rather than sitting on the (inert) element at
+     every width. */
+  .index-label-desktop{ display: block; cursor: pointer; }
   .index-label-mobile{ display: none; }
-  
+
   /*FLOATING INDEX*/
   .project-index {
     /*background-color: #ffff00;*/
@@ -3719,10 +3724,29 @@ a:active .badge-specs {
 .project-nav a {
   position: relative;
   display: inline-block;
-  color: var(--muted);
+  color: var(--muted) !important;
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s ease;
+}
+
+.back-link-index a{
+  color: var(--muted) !important;
+  font-size: 0.9rem !important;
+}
+
+.back-link-index {
+  margin-bottom: 2rem !important;
+  display: none;
+}
+
+.back-link-project {
+  display: block;
+}
+
+@media (min-width: 1600px) and (min-height: 700px) {
+  .back-link-index { display: block; }
+  .back-link-project { display: none; }
 }
 
 /* The dark link blue, same as the top-menu and other link hovers, with
