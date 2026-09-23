@@ -92,9 +92,9 @@
 
   <header class="project-header project-header-about">
     <div class="project-header-content">
-      <!--<nav class="project-nav">
-        <a href="index.html">← Projects</a>
-      </nav>-->
+      <nav class="project-nav project-nav-top back-link-project">
+        <a href="index.html#projects">← Projects</a>
+      </nav>
       <div class="about-portrait-row">
         <img src="images/about/giovana-tows-portrait.webp" alt="Portrait of Giovana Tows" class="about-portrait">
         <div class="divider" style="width: 100%;">
@@ -106,6 +106,29 @@
     </div>
 
   </header>
+
+  <!-- Same "On this page" index as the project pages (including its own
+       "← Projects" back-link copy, .back-link-index, which is why the
+       header's own .back-link-project above needs it — see style.css
+       for how the two take turns being the visible one), but only ever
+       shown pinned to the bottom-left corner (.project-index-about in
+       style.css hides it below that breakpoint, unlike .project-index
+       on its own — which the project pages also show, repositioned,
+       at every other width) — there's no equivalent stacked/sticky
+       state for it here, since the About page has no two-column
+       header to sit inside at those widths the way project pages do. -->
+  <nav class="project-index project-index-about" aria-label="On this page">
+    <div class="back-link-index"><a href="index.html#projects">← Projects</a></div>
+
+    <p class="project-index-label">On this page</p>
+    <ul>
+      <li><a href="#bio">1. About</a></li>
+      <li><a href="#experience">2. Experience</a></li>
+      <li><a href="#education">3. Education &amp; certifications</a></li>
+      <li><a href="#skills">4. Toolkit</a></li>
+      <li><a href="#get-in-touch">5. Get in contact</a></li>
+    </ul>
+  </nav>
 
   <main class="project-body">
 

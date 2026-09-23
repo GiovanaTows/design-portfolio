@@ -3453,12 +3453,24 @@ a:active .badge-specs {
   -webkit-backdrop-filter: blur(8px) saturate(180%);*/
 }
 
+/* The About page's index (unlike a project page's) has no stacked/
+   sticky state at smaller widths — there's no two-column header for it
+   to sit inside there — so it's simply hidden until the same
+   min-width/min-height breakpoint pins it to the corner below. */
+.project-index-about {
+  display: none;
+}
+
 .index-label-desktop{ display: none; }
 .index-label-mobile{ display: block; }
 
 @media (min-width: 1600px) and (min-height: 700px) {
   .project-header-columns {
     grid-template-columns: 1fr;
+  }
+
+  .project-index-about {
+    display: block;
   }
 
   /* Doubles as a back-to-top trigger here (see .index-label-desktop in
@@ -3538,7 +3550,13 @@ a:active .badge-specs {
 
   font-size: 0.8rem !important;
   /*color: var(--muted) !important;*/
-  /*text-decoration: none;*/
+  /* color/text-decoration explicit here, not relied on via
+     .project-header a's own rules — those only reach a .project-index
+     nested inside .project-header (every project page's), not the
+     About page's, which sits outside it. Left unstyled (default link
+     blue, underlined) there instead of matching the rest, until now. */
+  color: var(--link);
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
