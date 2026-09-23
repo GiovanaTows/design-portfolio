@@ -1169,6 +1169,8 @@ body {
   padding: 3rem 1.5rem 2rem;
 }
 
+
+
 .project-header-about{
   padding: 2rem 1.5rem 0 !important;
 }
@@ -2418,6 +2420,114 @@ a:active .badge-specs {
   min-width: 290px !important;
 }
 
+/* Floating duplicate of the header's "On this page" index (civi.html
+   only, for now), pinned to the bottom-left corner of the viewport
+   instead of scrolling away with the header — only turned on past
+   1700px, where there's enough spare margin beside the page's own
+   1200px-wide column for it not to crowd the content or sit under the
+   image carousels. max-height/overflow-y guard against a short window:
+   at 15 links deep (case studies' own sub-list included) this can run
+   taller than the viewport on a wide-but-short screen. */
+.floating-page-index {
+  display: none;
+}
+
+@media (min-width: 1700px) {
+  .floating-page-index {
+    display: block;
+    position: fixed;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 20;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    /* Plain text floating over the page's own background, not another
+       boxed-off card — drop the pill look the header's copy of this
+       index has (background, padding, shadow) and read quieter (muted
+       instead of link-blue at rest, smaller type, tighter line gaps)
+       so it sits in the corner as a quiet aid rather than competing
+       with the page content. */
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    margin-left: 1rem;
+    margin-bottom: 3rem;
+    /* Hidden until the page has actually scrolled down to the first
+       section — .floating-page-index-visible is toggled by the same
+       scrollspy logic that picks the current section in script.js
+       (initFloatingPageIndexScrollspy), since "no current section yet"
+       already means exactly that. Opacity/pointer-events, not
+       display: none, so it fades rather than popping in and out. */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .floating-page-index.floating-page-index-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-page-index {
+      transition: none;
+    }
+  }
+
+  .floating-page-index .project-index-label {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  /* .floating-page-index.project-index — not just .floating-page-index
+     — for enough specificity to beat .project-index ul's own gap:
+     0.5rem further down the file (same selector "weight" otherwise, so
+     without the extra class here that later rule would win on source
+     order alone). */
+  .floating-page-index.project-index ul {
+    gap: 0.2rem;
+  }
+
+  .floating-page-index a {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    /* Font-weight itself still snaps (browsers don't interpolate it
+       between two static weights of a non-variable font), but the
+       color change — muted at rest, dark ink once current, link-blue
+       on hover — eases instead of cutting. */
+    transition: color 0.2s ease;
+  }
+
+  /* Scrollspy: whichever section is currently at the top of the screen
+     (toggled by initFloatingPageIndexScrollspy in script.js), or the
+     one just clicked (pinFloatingIndexCurrent, same file) reads as dark
+     ink + bold instead of the muted resting color, so the index doubles
+     as a "you are here" marker. :not(.floating-page-index-current) on
+     the hover/focus rule below keeps that ink+bold once clicked instead
+     of the link immediately flashing hover-blue underneath the pointer
+     that just clicked it — unlike the carousel/social buttons further
+     up, a plain text link reads fine without hover feedback on the one
+     that's already marked current. */
+  .floating-page-index a.floating-page-index-current {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .floating-page-index a:not(.floating-page-index-current):hover,
+  .floating-page-index a:not(.floating-page-index-current):focus-visible {
+    color: var(--link-hover);
+  }
+
+  .floating-page-index .project-index-sublist {
+    gap: 0.25rem !important;
+  }
+
+  .floating-page-index .project-index-sublist a {
+    font-size: 0.7rem;
+  }
+}
+
 .project-index-label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -2432,6 +2542,7 @@ a:active .badge-specs {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  
 }
 
 .project-index a {
@@ -2463,6 +2574,10 @@ a:active .badge-specs {
   text-decoration: none;
   font-size: 0.9rem;
 }
+
+/*.project-index a {
+  font-size: 0.8rem !important;
+}*/
 
 .project-header a:hover,
 .project-header a:focus-visible {
@@ -3266,7 +3381,7 @@ a:active .badge-specs {
 }
 
 .topic-divider-first{
-  padding-top: 0.5rem;
+  padding-top: 2rem;
 }
 
 /* The site header is the same height at every viewport width (its own
@@ -3323,8 +3438,11 @@ a:active .badge-specs {
   }
 
   .project-index ul {
-    gap: 0.3rem;
+    gap: 0.2rem;
+    
   }
+
+  
 
   .project-index-label {
     margin-bottom: 0.35rem;
@@ -3337,7 +3455,10 @@ a:active .badge-specs {
    this container so it lines up with the top of the specs row
    regardless of how tall the H1/subtitle above happen to be). It's
    positioned only — it scrolls away normally with the rest of the
-   header, it doesn't stay pinned as you scroll the page. */
+   header, it doesn't stay pinned as you scroll the page. Scoped to
+   .project-header-columns .project-index (not just .project-index)
+   so it doesn't also catch civi.html's .floating-page-index, which
+   reuses the same classes for its own, unrelated position: fixed. */
 @media (min-width: 840px) {
   .project-header-columns {
     position: relative;
@@ -3355,7 +3476,7 @@ a:active .badge-specs {
     grid-column: 1;
   }
 
-  .project-index {
+  .project-header-columns .project-index {
     position: absolute;
     top: -200px;
     right: 0;
@@ -3364,7 +3485,7 @@ a:active .badge-specs {
 }
 
 @media (max-width: 1200px) {
-  .project-index {
+  .project-header-columns .project-index {
     right: 0;
   }
 }
@@ -3876,6 +3997,19 @@ a:active .badge-specs {
 .timeline-link:hover,
 .timeline-link:focus-visible {
   color: var(--link-hover);
+}
+
+/* Most timeline links name the project ("View Plots project →") — on
+   phones, where the timeline is already narrower (see .timeline-entry
+   below), that qualifier is dropped for a shorter "View project →",
+   since the project it's under is already clear from context. A link
+   whose entry holds two of these (Haus, Enkontra — see about.html)
+   keeps its qualifier at every width, since dropping it there would
+   leave both links reading identically. */
+@media (max-width: 640px) {
+  .timeline-link-qualifier {
+    display: none;
+  }
 }
 
 .link {

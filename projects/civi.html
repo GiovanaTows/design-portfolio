@@ -134,13 +134,47 @@
                 <li><a href="civi-onboarding-redesign.html">Onboarding redesign</a></li>
               </ul>
             </li>
-            <li><a href="civi-brand-communication.html">8. Brand and communication</a></li>
+            <li><a href="#brand-communication">8. Brand and communication</a></li>
             <li><a href="#the-end">9. The end of Civi</a></li>
           </ul>
         </nav>
       </div>
     </div>
   </header>
+
+  <!-- Floating "On this page" index — same links as the one above, kept
+       in view while scrolling on very wide screens (≥1700px, see
+       .floating-page-index in style.css) where there's enough spare
+       margin beside the 1200px-wide page body for it not to crowd the
+       content. Duplicates the header's own index rather than moving
+       it, so aria-hidden + tabindex="-1" keep it out of the
+       accessibility tree/tab order — the header nav above still does
+       that job for keyboard and screen-reader users. -->
+  <nav class="project-index project-index-civi floating-page-index" aria-label="On this page" aria-hidden="true">
+    <!--<p class="project-index-label">On this page</p>-->
+    <p class="project-index-label">Civi — Mobile App</p>
+    <ul>
+      <li><a href="#context" tabindex="-1">Context</a></li>
+      <li><a href="#measuring-success" tabindex="-1">Measuring success</a></li>
+      <li><a href="#first-wireframe" tabindex="-1">First wireframe</a></li>
+      <li><a href="#interface-overtime" tabindex="-1">Interface overtime</a></li>
+      <li><a href="#main-functionalities" tabindex="-1">Main functionalities</a></li>
+      <li><a href="#design-system" tabindex="-1">Design system</a></li>
+      <li>
+        <a href="#case-studies" tabindex="-1">Case studies</a>
+        <ul class="project-index-sublist">
+          <li><a href="civi-save-places.html" tabindex="-1">Save Places</a></li>
+          <li><a href="civi-design-sprint.html" tabindex="-1">Design Sprint 2.0</a></li>
+          <li><a href="civi-event-icons-redesign.html" tabindex="-1">Event icons redesign</a></li>
+          <li><a href="civi-event-submission-flow.html" tabindex="-1">Event submission flow</a></li>
+          <li><a href="civi-premium-plan.html" tabindex="-1">Premium plan &amp; free trial</a></li>
+          <li><a href="civi-onboarding-redesign.html" tabindex="-1">Onboarding redesign</a></li>
+        </ul>
+      </li>
+      <li><a href="#brand-communication" tabindex="-1">Brand and communication</a></li>
+      <li><a href="#the-end" tabindex="-1">The end of Civi</a></li>
+    </ul>
+  </nav>
 
   <div class="project-hero">
     <picture>

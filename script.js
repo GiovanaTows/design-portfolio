@@ -17,6 +17,12 @@
 // of starting a native smooth scroll that fights it.
 let lenis = null;
 let stopAnchorTracking = () => {};
+// Set by initFloatingPageIndexScrollspy further down, so the anchor
+// click handler above it can pin the floating page index's current
+// link the instant you click one, rather than leaving it to catch up
+// once the scroll (or a late-loading image nudging the final resting
+// position after it) settles. No-op until that setup runs.
+let pinFloatingIndexCurrent = () => {};
 
 if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.style.scrollBehavior = 'auto';
@@ -119,6 +125,29 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     }).observe(document.body);
   }
 
+  // Jumping straight to a section (the click handler and the hash-on-
+  // load handling just below) can land on content the scroll-reveal
+  // IntersectionObserver further down this file never got a chance to
+  // mark .in-view — several scroll ticks or a fast wheel flick can move
+  // a section from "below the viewport" straight to "above it" without
+  // it ever registering as intersecting in between, leaving it stuck
+  // invisible once you arrive. Called right before scrolling to a
+  // target, this reveals it (and anything reveal-tagged inside it)
+  // immediately instead. Safe to call even where nothing's tagged yet
+  // (reduced motion, or this running before the reveal setup further
+  // down) — the selector then just matches nothing.
+  function forceRevealSection(target) {
+    const revealSelector = '.h1-reveal, .h2-reveal, .timeline-logo-reveal, .about-portrait-reveal, .p-reveal, .image-reveal, .carousel-reveal';
+    const els = [
+      ...(target.matches(revealSelector) ? [target] : []),
+      ...target.querySelectorAll(revealSelector),
+    ];
+    els.forEach((el) => {
+      el.style.transitionDelay = '';
+      el.classList.add('in-view');
+    });
+  }
+
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"]');
     if (!link) return;
@@ -128,6 +157,8 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     if (!target) return;
     e.preventDefault();
     stopAnchorTracking();
+    forceRevealSection(target);
+    pinFloatingIndexCurrent(hash);
     const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
     chaseTo(() => window.scrollY + target.getBoundingClientRect().top - margin);
   });
@@ -136,8 +167,11 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
   // Case Studies section) has the same problem: the browser's own hash
   // jump runs before the lazy images load.
   if (location.hash.length > 1) {
-    const hashTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    const hash = location.hash;
+    const hashTarget = document.getElementById(decodeURIComponent(hash.slice(1)));
     if (hashTarget) {
+      forceRevealSection(hashTarget);
+      pinFloatingIndexCurrent(hash);
       trackAnchor(hashTarget);
       lenis.scrollTo(hashTarget, { immediate: true });
     }
@@ -217,8 +251,16 @@ function setUpUnderlineHover(el) {
   setUpSweepHover(el, 'underline-hover-overlay', 'underline', 350);
 }
 
+// .floating-page-index's own links are excluded here (unlike the
+// header's copy of this index, which still gets the sweep) — clicking
+// one should read as "you're now reading this section" (dark ink +
+// bold, via .floating-page-index-current below), not as a text link
+// you just followed, so it skips the underline entirely.
 document.querySelectorAll('.index-nav a, .back-link, .timeline-link, .link a, .project-nav a, .inline-link, .project-index a')
-  .forEach(setUpUnderlineHover);
+  .forEach((el) => {
+    if (el.closest('.floating-page-index')) return;
+    setUpUnderlineHover(el);
+  });
 
 // Click feedback for the carousel arrows and the footer's social/copy
 // buttons: a quick scale pulse (see the "icon-pulse" keyframes in
@@ -1917,4 +1959,103 @@ document.querySelectorAll('.project-card .cover-video').forEach((video) => {
     card.addEventListener('pointerleave', reset);
     card.addEventListener('blur', reset);
   });
+})();
+
+// Floating page index (civi.html, for now — see .floating-page-index in
+// style.css): highlights whichever section is currently being read by
+// giving its link the .floating-page-index-current class (styled dark
+// ink + bold there), the same idea as a typical scrollspy nav. Only the
+// links pointing at an in-page section (href="#...") can ever become
+// current — the case studies' own sub-links go to separate pages, so
+// there's no section here for them to highlight. The index itself also
+// only fades in once scrolled down to the page's image hero — or the
+// first section, on a page with no hero (.floating-page-index-visible)
+// — rather than sitting over the page header before there's really "a
+// page" to navigate yet.
+(function initFloatingPageIndexScrollspy() {
+  const floatingIndex = document.querySelector('.floating-page-index');
+  if (!floatingIndex) return;
+
+  const entries = Array.from(floatingIndex.querySelectorAll('a[href^="#"]'))
+    .map((link) => ({ link, target: document.getElementById(link.getAttribute('href').slice(1)) }))
+    .filter((entry) => entry.target);
+  if (!entries.length) return;
+
+  // The current section is whichever one's heading most recently
+  // scrolled up past this line — i.e. among the headings already above
+  // it, the closest one to it. Deliberately not "whichever heading is
+  // nearest the top of the viewport": a short section's heading can
+  // still be well above this line (correctly no longer current) while
+  // sitting at a smaller/more-negative getBoundingClientRect().top than
+  // the section actually on screen below it, which picked the wrong
+  // one when this compared raw top values directly against each other
+  // instead of against the line.
+  const activationLine = (document.querySelector('.site-header')?.getBoundingClientRect().height || 0) + 8;
+
+  // The index itself only appears once scrolled down to the page's
+  // image hero — or, on a page with no hero (some project pages leave
+  // .project-hero commented out), down to the first section instead.
+  const visibilityTrigger = document.querySelector('.project-hero') || entries[0].target;
+
+  // Set (by pinFloatingIndexCurrent, below) the instant a link here —
+  // or the header's own copy of this index, or any other same-page
+  // anchor — is clicked, so the section you asked for reads as current
+  // right away. Otherwise this stays purely geometry-driven, and would
+  // occasionally leave the very section you just clicked unmarked: the
+  // scroll-margin-top a click lands on sits close enough to the
+  // activation line below that a late-loading image nudging the page's
+  // height after the scroll animation has already settled — or simply
+  // the chase settling a couple of pixels short — can leave it just
+  // outside the line. Cleared on the next real scroll input (wheel/
+  // touch/key — a mouse-drag on the scrollbar isn't caught here, same
+  // gap as stopAnchorTracking above), handing the decision back to
+  // setCurrent's own geometry.
+  let pinnedHash = null;
+
+  const setCurrent = () => {
+    floatingIndex.classList.toggle(
+      'floating-page-index-visible',
+      visibilityTrigger.getBoundingClientRect().top <= activationLine
+    );
+
+    if (pinnedHash) return;
+
+    let current = null;
+    let bestTop = -Infinity;
+    entries.forEach(({ target }) => {
+      const top = target.getBoundingClientRect().top;
+      if (top <= activationLine && top > bestTop) {
+        bestTop = top;
+        current = target;
+      }
+    });
+    entries.forEach(({ link, target }) => {
+      link.classList.toggle('floating-page-index-current', target === current);
+    });
+  };
+
+  pinFloatingIndexCurrent = (hash) => {
+    pinnedHash = hash;
+    floatingIndex.classList.add('floating-page-index-visible');
+    entries.forEach(({ link }) => {
+      link.classList.toggle('floating-page-index-current', link.getAttribute('href') === hash);
+    });
+  };
+
+  ['wheel', 'touchstart', 'keydown'].forEach((evt) => {
+    window.addEventListener(evt, () => {
+      if (!pinnedHash) return;
+      pinnedHash = null;
+      setCurrent();
+    }, { passive: true });
+  });
+
+  // A plain scroll listener, not an IntersectionObserver: setCurrent's
+  // own verdict can flip from a single pixel of scroll (a section's top
+  // crossing the activation line), finer-grained than any one
+  // IntersectionObserver threshold band would reliably catch on every
+  // change — same reasoning as the back-to-top button's own toggle,
+  // above.
+  window.addEventListener('scroll', setCurrent, { passive: true });
+  setCurrent();
 })();
