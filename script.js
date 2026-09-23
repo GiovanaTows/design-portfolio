@@ -220,8 +220,28 @@ function setUpUnderlineHover(el) {
 document.querySelectorAll('.index-nav a, .back-link, .timeline-link, .link a, .project-nav a, .inline-link, .project-index a')
   .forEach(setUpUnderlineHover);
 
+// Click feedback for the carousel arrows and the footer's social/copy
+// buttons: a quick scale pulse (see the "icon-pulse" keyframes in
+// style.css) instead of the hover-stroke outline the other icon
+// buttons use. Driven by a class rather than a plain :active rule so
+// the animation always plays in full even on a fast tap/click, instead
+// of cutting off the instant the mouse/finger lifts. Forces a reflow
+// before re-adding the class so a second click while one pulse is
+// still finishing (or landing on the same frame it just ended)
+// restarts the animation instead of being a no-op.
+function setUpClickPulse(el) {
+  el.addEventListener('click', () => {
+    el.classList.remove('icon-pulse');
+    void el.offsetWidth;
+    el.classList.add('icon-pulse');
+  });
+  el.addEventListener('animationend', (e) => {
+    if (e.animationName === 'icon-pulse') el.classList.remove('icon-pulse');
+  });
+}
+
 document.querySelectorAll('.social-links a, .social-links .copy-email-btn')
-  .forEach(setUpHoverStroke);
+  .forEach(setUpClickPulse);
 
 // Mobile menu toggle: shows/hides the nav links and swaps the
 // hamburger icon for a close icon (both are Material Symbols,
@@ -371,8 +391,8 @@ document.querySelectorAll('.project-carousel').forEach((carousel) => {
   const dotsWrap = carousel.querySelector('.carousel-dots');
   if (!track || slides.length < 2) return;
 
-  if (prevBtn) setUpHoverStroke(prevBtn);
-  if (nextBtn) setUpHoverStroke(nextBtn);
+  if (prevBtn) setUpClickPulse(prevBtn);
+  if (nextBtn) setUpClickPulse(nextBtn);
 
   const dots = slides.map((slide, index) => {
     const dot = document.createElement('button');

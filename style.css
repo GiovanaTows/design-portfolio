@@ -914,13 +914,12 @@ body {
   pointer-events: none;
 }
 
-/* Shared round icon-button look, used by the lightbox controls (close,
-   prev/next, zoom in/out) and the carousel's prev/next — a translucent
-   frosted-glass circle rather than a flat/bare icon, so every "button
-   floating over an image" on the site reads as the same kind of
-   control. Dark ink icon on a light frosted pill reads clearly against
-   both the lightbox's near-black overlay and the carousel's dark
-   viewport background. */
+/* Shared round icon-button box model, used by the lightbox controls
+   (close, prev/next, zoom in/out) and the carousel's prev/next. The
+   lightbox's own buttons keep a translucent frosted-glass pill (below)
+   so they read clearly over the lightbox's near-black overlay; the
+   carousel's prev/next are bare icons instead — their own visual
+   style lives further down, with the rest of the carousel's rules. */
 .lightbox-btn,
 .carousel-prev,
 .carousel-next {
@@ -928,16 +927,13 @@ body {
   height: 44px;
   position: relative;
   border: none;
-  background-color: var(--button);
-  backdrop-filter: blur(8px) saturate(180%);
-  -webkit-backdrop-filter: blur(8px) saturate(180%);
-  color: var(--ink);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-  transition: transform 0.1s ease-out, background-color 0.2s ease;
+  /* Square corners to match the logo's mark (see .back-to-top,
+     .carousel-dot and .lightbox-zoom for the same treatment). */
+  border-radius: var(--image-radius);
   /* The close button gets focused programmatically on open (for
      keyboard users tabbing through afterward), which was showing the
      browser's default blue focus ring even though nobody "selected"
@@ -946,34 +942,21 @@ body {
   outline: none;
 }
 
-/* Square corners to match the logo's mark (see .back-to-top,
-   .carousel-dot and .lightbox-zoom for the same treatment). */
-.lightbox-btn,
-.carousel-prev,
-.carousel-next {
-  border-radius: var(--image-radius);
+.lightbox-btn {
+  background-color: var(--button);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  color: var(--ink);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s ease-out, background-color 0.2s ease;
 }
 
-.lightbox-btn:hover,
-.carousel-prev:hover,
-.carousel-next:hover {
+.lightbox-btn:hover {
   background-color: var(--button-hover);
   color: var(--ink-hover);
 }
 
-/* Carousel prev/next specifically (not the lightbox's own buttons, which
-   keep the plain frosted look above): dark-blue fill with a white icon
-   — the animated hover-stroke-overlay's border picks up the same white
-   for free via currentColor. */
-.carousel-prev:hover,
-.carousel-next:hover {
-  background-color: var(--link-hover);
-  color: #fff;
-}
-
-.lightbox-btn:active,
-.carousel-prev:active,
-.carousel-next:active {
+.lightbox-btn:active {
   transform: scale(0.9);
 }
 
@@ -992,9 +975,7 @@ body {
 }
 
 @supports not (backdrop-filter: blur(1px)) {
-  .lightbox-btn,
-  .carousel-prev,
-  .carousel-next {
+  .lightbox-btn {
     background-color: rgba(250, 249, 246, 0.92);
   }
 }
@@ -1523,7 +1504,7 @@ body {
 .badge-specs.copy-email-btn:hover,
 .badge-specs.copy-email-btn:focus-visible {
   background-color: #e4e2db;
-  color: var(--link-hover);
+  color: var(--link-hover) !important;
   transform: translateY(-2px);
   box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
 }
@@ -2819,9 +2800,17 @@ a:active .badge-specs {
   cursor: zoom-in;
 }
 
-/* Visual style (size, background, hover/active) lives on the shared
-   .lightbox-btn, .carousel-prev, .carousel-next rule near the lightbox
-   styles — this is just positioning within the carousel. */
+/* Box model (size, centering) lives on the shared .lightbox-btn,
+   .carousel-prev, .carousel-next rule near the lightbox styles; this is
+   positioning within the carousel plus the carousel's own bare-icon
+   look — no fill, blur or shadow, just the icon itself, so it reads as
+   part of the image rather than a control floating on top of it.
+   --pulse-base-transform carries the translateY(-50%) this needs at
+   rest into the hover/pulse transforms below (which would otherwise
+   overwrite it and knock the button out of vertical center) — set back
+   to nothing wherever a carousel lays its buttons out in normal flow
+   instead (see .carousel-controls-row below), so the same hover/pulse
+   rules keep working there without change. */
 .carousel-prev,
 .carousel-next {
   position: absolute;
@@ -2830,12 +2819,64 @@ a:active .badge-specs {
      dots below the image, so top:50% there landed below the image's
      actual center. Now this 50% is against just the image area. */
   top: 50%;
-  transform: translateY(-50%);
+  --pulse-base-transform: translateY(-50%);
+  --icon-hover-scale: 1.3;
+  transform: var(--pulse-base-transform);
+  background-color: transparent;
+  color: var(--ink);
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.carousel-prev:active,
-.carousel-next:active {
-  transform: translateY(-50%) scale(0.9);
+.carousel-prev:hover,
+.carousel-next:hover {
+  color: var(--link-hover);
+  transform: var(--pulse-base-transform) scale(var(--icon-hover-scale));
+}
+
+/* Click feedback, added/removed by setUpClickPulse in script.js
+   (shared with the footer's social/copy buttons — see "SOCIAL LINKS"
+   below): a quick press-and-release dip rather than a grow, since a
+   click only ever happens once the icon is already at its hovered
+   size — dipping smaller and settling back at --icon-hover-scale reads
+   as "pressed", where growing past it read as a strange second, bigger
+   hover. The color dips too, from --link-hover to the brighter --link
+   and back, for the same "pressed in, released back" reading. Both
+   start and end on --link-hover (not each button's own resting color)
+   since the click always starts mid-hover. var(--pulse-base-transform, )
+   keeps the same translateY(-50%)-preserving trick the hover rule
+   above uses — it falls back to nothing (not the keyword none, which
+   isn't valid combined with a scale() in the same transform) for every
+   button that never sets the variable: the footer's, and this
+   carousel layout's own reset just below. */
+.carousel-prev.icon-pulse,
+.carousel-next.icon-pulse,
+.social-links a.icon-pulse,
+.social-links .copy-email-btn.icon-pulse {
+  animation: icon-pulse 0.35s ease;
+}
+
+@keyframes icon-pulse {
+  0% {
+    transform: var(--pulse-base-transform, ) scale(var(--icon-hover-scale, 1));
+    color: var(--link-hover);
+  }
+  40% {
+    transform: var(--pulse-base-transform, ) scale(0.9);
+    color: var(--link);
+  }
+  100% {
+    transform: var(--pulse-base-transform, ) scale(var(--icon-hover-scale, 1));
+    color: var(--link-hover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-prev.icon-pulse,
+  .carousel-next.icon-pulse,
+  .social-links a.icon-pulse,
+  .social-links .copy-email-btn.icon-pulse {
+    animation: none;
+  }
 }
 
 .carousel-prev {
@@ -2894,19 +2935,22 @@ a:active .badge-specs {
   transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
-/* ---- TEST: alternate carousel controls layout, buttons below the
-   image instead of overlaid on top of it, flanking the caption/dots.
-   Scoped with :has() to carousels that actually have a
-   .carousel-controls-row, so every other .project-carousel on the
-   site (still using the default overlay buttons) is untouched — no
-   HTML changes needed anywhere except the carousels being tried out. */
+/* Alternate carousel controls layout, buttons below the image instead
+   of overlaid on top of it, flanking the caption/dots. Scoped with
+   :has() to carousels that actually have a .carousel-controls-row, so
+   every other .project-carousel on the site (still using the default
+   overlay buttons) is untouched — no HTML changes needed anywhere
+   except the carousels using this layout. Visual style (bare icon,
+   hover/pulse) is entirely inherited from the shared .carousel-prev,
+   .carousel-next rules above; this just switches from absolute
+   overlay positioning to sitting in normal flow next to the
+   caption/dots. Resetting --pulse-base-transform to empty cancels the
+   translateY the default overlay position sets (see the shared rule's
+   comment) so the inherited hover/pulse transforms don't knock these
+   buttons out of the row — set to empty, not the keyword none, which
+   isn't valid combined with a scale() in the same transform. */
 .project-carousel:has(.carousel-controls-row) .carousel-prev,
 .project-carousel:has(.carousel-controls-row) .carousel-next {
-  /* relative, not static — it still needs to be a positioned element
-     so its .hover-stroke-overlay child (position: absolute; inset:
-     5px, from setUpHoverStroke in script.js) stays contained inside
-     the button's own 44px box instead of escaping to size itself
-     against the next positioned ancestor up (.project-carousel). */
   position: relative;
   /* The default overlay rule's left: 0.75rem / right: 0.75rem (meant
      to inset the button from the image's edge when it was absolutely
@@ -2917,47 +2961,21 @@ a:active .badge-specs {
   left: auto;
   right: auto;
   flex-shrink: 0;
-  /* Without this, the default overlay rule's transform:
-     translateY(-50%) (meant to center the button against the image
-     when it was absolutely positioned) keeps applying here too — it
-     doesn't require position: absolute to take effect, so it was
-     quietly shifting the button up by half its own height at rest,
-     making the hover/active states below (which replace this value,
-     not add to it) look like they move the wrong way. */
+  --pulse-base-transform: ;
   transform: none;
   /* Nudges the buttons down from the row's centered position so they
      line up with the caption/dots text instead of sitting above it. */
   margin-top: 8px;
-  /* Same hover/active treatment as the homepage social-bar buttons
-     (e.g. the mail icon), but fully transparent at rest rather than
-     their faint paper tint — these buttons sit lower, over the page's
-     dotted background and sometimes over a carousel's own drop
-     shadow, where any visible fill at rest reads as a stray box/edge
-     instead of a bare icon. */
-  background-color: transparent;
-  box-shadow: none;
-  /* The default overlay button's frosted-glass blur still applies
-     here otherwise — transparent background-color alone doesn't
-     remove it, since backdrop-filter blurs/saturates whatever's
-     behind the button regardless of its own fill. */
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* This selector's own transform: none above (needed at rest, to cancel
+   the default overlay position's translateY — see the comment above)
+   is more specific than the shared .carousel-prev:hover rule further
+   up, so it would keep winning over that rule's transform even while
+   hovered without this explicit reset here. */
 .project-carousel:has(.carousel-controls-row) .carousel-prev:hover,
 .project-carousel:has(.carousel-controls-row) .carousel-next:hover {
-  background-color: var(--link-hover);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
-}
-
-.project-carousel:has(.carousel-controls-row) .carousel-prev:active,
-.project-carousel:has(.carousel-controls-row) .carousel-next:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  transition-duration: 0.05s;
+  transform: scale(var(--icon-hover-scale));
 }
 
 .carousel-controls-row {
@@ -4077,59 +4095,47 @@ a.badge:active {
   justify-content: center;
   width: auto;
   height: auto;
-  /* Same frosted-glass treatment as the carousel arrows/lightbox
-     controls/back-to-top, but a bit bigger and more transparent at
-     rest — this row reads better with a lighter touch than the
-     buttons floating over photos do. Negative margin cancels the
-     padding's effect on the row's own gap, so the icon-to-icon
-     spacing stays what it was before this box existed. */
+  /* No fill/blur/shadow — a bare icon, like the carousel's own
+     prev/next buttons further up this file. The padding is purely a
+     bigger invisible hit/hover target than the icon's own glyph;
+     negative margin cancels its effect on the row's own gap, so the
+     icon-to-icon spacing stays what it was when this box had a
+     visible fill. */
   padding: 16px;
   margin: -16px;
-  background-color: rgba(250, 249, 246, 0.15);
-  backdrop-filter: blur(8px) saturate(180%);
-  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  background-color: transparent;
   border: none;
-  border-radius: var(--image-radius);
   cursor: pointer;
-  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  --icon-hover-scale: 1.3;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-@supports not (backdrop-filter: blur(1px)) {
-  .social-links a,
-  .social-links .copy-email-btn {
-    background-color: rgba(250, 249, 246, 0.92);
-  }
-}
-
-/* Background alone — not color — applies on hover regardless of the
-   copied state, so clicking the email icon doesn't make the visible
-   hover background suddenly fade back down to the barely-there rest
-   opacity right as the mouse is still sitting over it. */
+/* Icon grows and turns the site's dark link-blue on hover — no
+   background, so :focus-visible needs the same treatment as :hover to
+   stay a visible focus indicator for keyboard users. */
 .social-links a:hover,
 .social-links a:focus-visible,
-.social-links .copy-email-btn:hover {
-  background-color: var(--link-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 16px -6px rgba(0, 0, 0, 0.18);
+.social-links .copy-email-btn:not(.copied):hover,
+.social-links .copy-email-btn:focus-visible {
+  /* Excludes .copied on hover (but not on :focus-visible) so the green
+     confirmation color (set globally on .copy-email-btn.copied) isn't
+     overridden back to blue while the mouse is still sitting over the
+     button right after a click. */
+  color: var(--link-hover);
+  transform: scale(var(--icon-hover-scale));
 }
 
-/* Same pressed state as the toolkit/spec badges. */
-.social-links a:active,
+/* Click feedback (a quick scale pulse) is the .icon-pulse rule shared
+   with the carousel's prev/next, near their styles — added/removed on
+   click by setUpClickPulse in script.js. This cancels the base
+   .copy-email-btn:active press-down effect ("10. COPY-EMAIL BUTTON"
+   above, meant for the button's other, non-social-links use inline in
+   body text) so the footer's copy button only ever pulses like its
+   neighboring social icons, instead of also dipping with a shadow on
+   every press underneath the pulse. */
 .social-links .copy-email-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  transition-duration: 0.05s;
-}
-
-.social-links a:hover,
-.social-links a:focus-visible,
-.social-links .copy-email-btn:not(.copied):hover {
-  /* Dark-blue background (above) with a white icon — the stroke
-     picks up the same white for free via currentColor. Excludes .copied
-     so the green confirmation color (set globally on
-     .copy-email-btn.copied) isn't overridden back to white while the
-     mouse is still hovering right after a click. */
-  color: #fff;
+  transform: none;
+  box-shadow: none;
 }
 
 .social-links svg {
@@ -4437,9 +4443,9 @@ html.cursor-link .cursor-ring {
    it doesn't swallow up neighbouring icons the way the full-size one
    would over a tightly packed row. */
 html.cursor-button .cursor-ring {
-  width: 90px;
-  height: 90px;
-  margin: -45px 0 0 -45px;
+  width: 70px;
+  height: 70px;
+  margin: -35px 0 0 -35px;
   border-color: rgba(36, 85, 230, 0.35);
   background-color: rgba(36, 85, 230, 0.08);
 }
