@@ -442,9 +442,8 @@
           <figcaption>Prodiet animation — Product series presentation</figcaption>
         </figure>
         <figure class="project-figure">
-          <video class="video-embed" style="aspect-ratio: 16 / 9;" controls preload="metadata" poster="../images/projects/motion-graphics/prodiet/cover/prodiet-institutional.webp" src="../images/projects/motion-graphics/prodiet/prodiet-institutional.mp4" aria-label="Prodiet animation — Institutional presentation"></video>
-          <!--<iframe class="video-embed" style="aspect-ratio: 16 / 9;" data-src="https://www-ccv.adobe.io/v1/player/ccv/LuK2Bj9BKKo/embed?bgcolor=%23191919&lazyLoading=true&api_key=BehancePro2View" title="Prodiet animation — Institutional presentation" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share" allowfullscreen></iframe>-->
-          <figcaption>Prodiet animation — Institutional presentation</figcaption>
+          <iframe class="video-embed" style="aspect-ratio: 16 / 9;" data-src="https://www.youtube.com/embed/7CB0ufmR85E?cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <figcaption>Prodiet (Dec 2018) – Institutional presentation - Opening video for an event</figcaption>
         </figure>
         <figure class="project-figure">
           <video class="video-embed" style="aspect-ratio: 1 / 1;" controls preload="metadata" poster="../images/projects/motion-graphics/prodiet/cover/prodiet-promax.webp" src="../images/projects/motion-graphics/prodiet/prodiet-promax.mp4" aria-label="Prodiet animation — Product benefits"></video>
@@ -469,6 +468,11 @@
   <footer class="site-footer"></footer>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <!-- Only needed on pages with YouTube embeds (see the video-embed
+       iframe in the Prodiet section above) — lets script.js pause other
+       videos when one starts playing, and pause a playing one once it
+       scrolls out of view. -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="../footer.js"></script>
   <script src="../script.js"></script>
   <!-- Renders the Loadsmart Lottie animation live in the browser (Loadsmart section). -->
