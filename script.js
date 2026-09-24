@@ -1155,24 +1155,54 @@ document.querySelectorAll('.figma-note[data-mobile-text]').forEach((note) => {
   note.append(desktop, mobile);
 });
 
-// Coordinates every YouTube embed on the page through the official
-// IFrame Player API (loaded from a CDN <script> tag placed before this
-// file — see civi.html/civi-marketing.html, the only pages with
-// YouTube embeds) so that playing one pauses every other one, and
+// Coordinates every .video-embed on the page — YouTube iframes (via
+// the official IFrame Player API, loaded from a CDN <script> tag
+// placed before this file) and plain <video controls> ones alike, e.g.
+// Motion Graphics' Prodiet section mixes both — so that playing one
+// pauses every other one on the page, whichever kind it is, and
 // scrolling a playing one out of view pauses it too — also what the
-// back-to-top button (above) drains on click. Player objects can only
-// wrap an iframe that already has a real embed src, so wrapping
+// back-to-top button (above) drains on click. YT Player objects can
+// only wrap an iframe that already has a real embed src, so wrapping
 // happens right after the lazy-load observer below swaps in
 // data-src — youtubeApiReady/pendingYouTubeIframes cover the (likely)
 // case where that happens before the API itself has finished loading.
 const youtubePlayers = [];
 let youtubeApiReady = false;
 const pendingYouTubeIframes = [];
+// Native <video> embeds load with a real src from the start (no lazy-
+// swap to wait on), so these are just gathered once, up front. Carousel-
+// slide videos are excluded, same as inlineVideos further down — their
+// own play/pause is already driven by which slide is active.
+const nativeVideoEmbeds = Array.from(document.querySelectorAll('video.video-embed')).filter(
+  (video) => !video.closest('.carousel-slide')
+);
 
+// Duck-typed: a YT.Player (checked via getPlayerState, which only that
+// has) or a plain <video> — either way, pause it if it's currently playing.
 function pauseIfPlaying(player) {
-  if (typeof player.getPlayerState === 'function' && player.getPlayerState() === YT.PlayerState.PLAYING) {
-    player.pauseVideo();
+  if (typeof player.getPlayerState === 'function') {
+    if (player.getPlayerState() === YT.PlayerState.PLAYING) player.pauseVideo();
+  } else if (!player.paused) {
+    player.pause();
   }
+}
+
+function pauseOtherEmbeds(current) {
+  youtubePlayers.forEach((other) => { if (other !== current) pauseIfPlaying(other); });
+  nativeVideoEmbeds.forEach((other) => { if (other !== current) pauseIfPlaying(other); });
+}
+
+// threshold: 0 fires only once the very last pixel leaves the
+// viewport, not the first — so normal scrolling past a video mid-
+// playback doesn't cut it off the instant its edge touches the
+// viewport boundary.
+function pauseOnceOffscreen(el, player) {
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) pauseIfPlaying(player);
+    });
+  }, { threshold: 0 });
+  visibilityObserver.observe(el);
 }
 
 function wrapYouTubeIframe(iframe) {
@@ -1180,22 +1210,12 @@ function wrapYouTubeIframe(iframe) {
     events: {
       onStateChange: (e) => {
         if (e.data !== YT.PlayerState.PLAYING) return;
-        youtubePlayers.forEach((other) => { if (other !== player) pauseIfPlaying(other); });
+        pauseOtherEmbeds(player);
       },
     },
   });
   youtubePlayers.push(player);
-
-  // threshold: 0 fires only once the very last pixel leaves the
-  // viewport, not the first — so normal scrolling past a video mid-
-  // playback doesn't cut it off the instant its edge touches the
-  // viewport boundary.
-  const visibilityObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) pauseIfPlaying(player);
-    });
-  }, { threshold: 0 });
-  visibilityObserver.observe(iframe);
+  pauseOnceOffscreen(iframe, player);
 }
 
 window.onYouTubeIframeAPIReady = () => {
@@ -1222,6 +1242,11 @@ if (lazyIframes.length) {
 
   lazyIframes.forEach(iframe => iframeObserver.observe(iframe));
 }
+
+nativeVideoEmbeds.forEach((video) => {
+  video.addEventListener('play', () => pauseOtherEmbeds(video));
+  pauseOnceOffscreen(video, video);
+});
 
 // Pause/resume looping inline videos based on visibility — they decode
 // continuously while playing, so there's no reason to keep spending
