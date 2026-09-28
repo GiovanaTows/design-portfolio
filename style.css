@@ -3842,12 +3842,6 @@ a:active .badge-specs {
   font-size: clamp(0.9rem, 2vw, 1rem) !important;
 }
 
-@media (max-width: 640px) {
-  .timeline-group h3 {
-    display: none;
-  }
-}
-
 .timeline-entry {
   display: grid;
   grid-template-columns: 175px 1fr;
@@ -4016,6 +4010,19 @@ a:active .badge-specs {
   .timeline-date .badge:first-child::after {
     display:none;
   }
+
+  /* Role and company wrap onto separate lines at this width, so the
+     divider between them would be left stranded at the end of the
+     role line instead of sitting between the two. */
+
+     /*AQUI*/
+  .timeline-divider {
+    display: none;
+  }
+
+  .timeline-group h3 {
+    display: none;
+  }
 }
 
 
@@ -4026,7 +4033,26 @@ a:active .badge-specs {
   font-weight: 700;
 }
 
+.timeline-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
 .timeline-company {
+  color: var(--muted);
+  font-size: 1rem !important;
+}
+
+.timeline-divider{
+  font-size: 1rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  font-size: 1.2rem;
+}
+
+.timeline-details {
   color: var(--muted);
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
@@ -4035,7 +4061,7 @@ a:active .badge-specs {
 .timeline-title-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .timeline-logo-link {
@@ -4056,6 +4082,7 @@ a:active .badge-specs {
   border-radius: 4px;
   object-fit: cover;
   flex-shrink: 0;
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-entry p {
@@ -4076,16 +4103,32 @@ a:active .badge-specs {
   color: var(--link-hover);
 }
 
-/* Most timeline links name the project ("View Plots project →") — on
+@media (max-width: 640px) {
+  /* Most timeline links name the project ("View Plots project →") — on
    phones, where the timeline is already narrower (see .timeline-entry
    below), that qualifier is dropped for a shorter "View project →",
    since the project it's under is already clear from context. A link
    whose entry holds two of these (Haus, Enkontra — see about.html)
    keeps its qualifier at every width, since dropping it there would
    leave both links reading identically. */
-@media (max-width: 640px) {
   .timeline-link-qualifier {
     display: none;
+  }
+  
+  .timeline-company {
+    font-size: 0.9rem !important;
+    margin-bottom: 0;
+    width: 100%;
+  }
+  
+  .timeline-role {
+    font-weight: 600;
+    margin-bottom: -0.2rem;
+    width: 100%;
+  }
+
+  .timeline-title-row {
+    align-items: start;
   }
 }
 

@@ -1519,8 +1519,9 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   // reveals as one block, so its own heading isn't revealed separately on
   // top of that. Those headings are marked .in-view up front so the
   // first-paint hiding in style.css (which excludes anything .in-view)
-  // never hides them.
-  const revealToolkit = document.querySelectorAll('.toolkit-category');
+  // never hides them. The Skills section's badge grid reveals the same
+  // way (its own h2 is already covered by revealH2s above).
+  const revealToolkit = document.querySelectorAll('.toolkit-category, #skills-list .badge-grid');
   const revealText = [];
   revealTextAll.forEach(el => {
     if (el.closest('.toolkit-category')) el.classList.add('in-view');
