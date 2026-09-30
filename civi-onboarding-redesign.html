@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QHD9L3C45"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8QHD9L3C45');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+
+  <!-- Tells the CSS "script.js will play the opening animation", so the
+       first screen's content can be hidden from the very first paint
+       (script.js sits at the end of the page and may run after the
+       browser has already painted — everything would flash visible and
+       skip the animation). If script.js never takes over, the classes are
+       dropped after 4 seconds so nothing stays hidden. -->
+  <script>
+    document.documentElement.classList.add('js-reveal', 'js-reveal-all');
+    setTimeout(function () { document.documentElement.classList.remove('js-reveal', 'js-reveal-all'); }, 4000);
+  </script>
+  <title>Onboarding Redesign — Civi | Giovana Tows</title>
+  <meta name="description" content="Case study: redesigning Civi's onboarding flow to cut drop-off, by Giovana Tows.">
+  <link rel="canonical" href="https://design.giovanatows.com/civi-onboarding-redesign.html">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="icon" type="image/svg+xml" href="images/branding/favicon-giovana-tows.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#projects" class="logo-link">
+        <img src="images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <nav class="project-nav project-nav-top back-link-project">
+        <a href="civi.html#case-studies">← Civi</a>
+      </nav>
+      <h1>Civi — Onboarding Redesign</h1>
+      <p class="project-meta divider subtitle">Balancing a fast and easy signup with the user information Civi needed</p>
+    </div>
+
+    <div class="project-header-columns">
+      <div class="split-column">
+        <div class="project-specs-new">
+          <div class="badge-block" id="civi-onboarding-role">
+            <div class="block-title">Role</div>
+            <div class="badge-specs">Product Designer</div>
+            <div class="badge-specs">UX/UI Designer</div>
+          </div>
+          <div class="badge-block" id="civi-onboarding-tool">
+            <div class="block-title">Tool</div>
+            <a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 200 300" class="badge-icon" aria-hidden="true"><path fill="#0acf83" d="M50 300c27.6 0 50-22.4 50-50v-50H50c-27.6 0-50 22.4-50 50s22.4 50 50 50z"/><path fill="#a259ff" d="M0 150c0-27.6 22.4-50 50-50h50v100H50c-27.6 0-50-22.4-50-50z"/><path fill="#f24e1e" d="M0 50C0 22.4 22.4 0 50 0h50v100H50C22.4 100 0 77.6 0 50z"/><path fill="#ff7262" d="M100 0h50c27.6 0 50 22.4 50 50s-22.4 50-50 50h-50V0z"/><path fill="#1abcfe" d="M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z"/></svg>Figma</div></a>
+          </div>
+          <div class="badge-block timeline-block" id="civi-onboarding-timeline">
+            <div class="block-title">Timeline</div>
+            <div class="badge-specs">2022 – 2023</div>
+          </div>
+        </div>
+        <div class="project-specs-new badge-block team-block">
+          <div>
+            <div class="block-title">Team</div>
+            <div class="block-text">I worked on the redesign of the onboarding flow together with the head of product <a class="inline-link" href="https://www.linkedin.com/in/rodrigokleinert/" target="_blank" rel="noopener noreferrer">Rodrigo Kleinert</a> and the product designer <a class="inline-link" href="https://www.linkedin.com/in/viviane-d-73535a124/" target="_blank" rel="noopener noreferrer">Viviane Ducarme</a>. I was the only designer working on the follow-up improvements: pending permissions, virtual contact and places suggestions.</div>
+          </div>
+        </div>
+      </div>
+      <div class="split-column column-index">
+        <nav class="project-index" aria-label="On this page" style="align-self: center;">
+          <div class="back-link-index"><a href="civi.html#case-studies">← Civi</a></div>
+
+          <p class="project-index-label index-label-mobile">On this page</p>
+          <p class="project-index-label index-label-desktop">Civi — <br>Onboarding Redesign</p>
+          <ul>
+            <li><a href="#onboarding">1. Onboarding flow</a></li>
+            <li><a href="#pending-permissions">2. Pending permissions and settings</a></li>
+            <li><a href="#civiana">3. Virtual contact "Civiana"</a></li>
+            <li><a href="#places-suggestions">4. Places suggestions</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!--<div class="project-hero">
+    <picture>
+      <img src="images/projects/civi/onboarding/civi-onboarding-flow.webp" alt="Civi app">
+    </picture>
+  </div>-->
+
+  <main class="project-body" style="margin-top: 0;">
+
+    <div class="topic-divider topic-divider-first" id="onboarding">
+      <h2>Onboarding flow</h2>
+      <h4>Problem</h4>
+      <p style="max-width: 700px;">
+        Onboarding was one of the app's most elaborate flows, with a high drop-off rate — largely because it asked for a lot of personal information upfront: home address, work address, device location, and more.
+      </p>
+
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          
+          <h4>Solution</h4>
+          <p>
+            Together with another designer, we redesigned the onboarding flow to strike a better balance — collecting what we needed while keeping it short and easy to get through.
+          </p>
+          
+        </div>
+        <div class="split-column">
+          <div>
+            <iframe class="video-embed" data-src="https://www.youtube.com/embed/UKZROPB4vg4?cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+
+      <div class="project-carousel">
+        <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 2 / 1;">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="Civi onboarding flow">
+              <img src="images/projects/civi/onboarding/civi-onboarding-flow.webp" alt="Civi onboarding flow" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Sign up">
+              <img src="images/projects/civi/onboarding/steps/01-signup.webp" alt="Onboarding step 1: sign up" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Foreground location permission">
+              <img src="images/projects/civi/onboarding/steps/02-foreground-location.webp" alt="Onboarding step 2: foreground location permission" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Notifications permission">
+              <img src="images/projects/civi/onboarding/steps/03-notification.webp" alt="Onboarding step 3: notifications permission" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Background location permission">
+              <img src="images/projects/civi/onboarding/steps/04-background-location.webp" alt="Onboarding step 4: background location permission" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Profile">
+              <img src="images/projects/civi/onboarding/steps/05-profile.webp" alt="Onboarding step 5: profile" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Save places">
+              <img src="images/projects/civi/onboarding/steps/06-save-places.webp" alt="Onboarding step 6: save places" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Contacts">
+              <img src="images/projects/civi/onboarding/steps/07-contacts.webp" alt="Onboarding step 7: contacts" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Premium plan">
+              <img src="images/projects/civi/onboarding/steps/08-premium-plan.webp" alt="Onboarding step 8: premium plan" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Premium plan settings review">
+              <img src="images/projects/civi/onboarding/steps/09-premium-plan-settings-review.webp" alt="Onboarding step 9: premium plan settings review" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Map">
+              <img src="images/projects/civi/onboarding/steps/10-map.webp" alt="Onboarding step 10: map" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls-row">
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <div class="carousel-meta">
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="figma-note" data-mobile-text="Check the flow on Figma →" style="max-width:700px;">
+        Check the flow below, or <a class="inline-link" href="https://www.figma.com/file/l9DevMvXAbZuC00267zT3g/Portfolio-%2F-Civi?node-id=105%3A6214" target="_blank" rel="noopener noreferrer">open it in a new tab →</a>
+      </p>
+      <div class="figma-imbeded-div">
+        <div class="figma-loading-spinner" aria-hidden="true"></div>
+        <iframe class="figma-imbeded" data-src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl9DevMvXAbZuC00267zT3g%2FPortfolio-%252F-Civi%3Fnode-id%3D105%253A6214" allowfullscreen onload="this.previousElementSibling.style.display='none'"></iframe>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="pending-permissions">
+      <h2>Pending permissions and settings</h2>
+      <h4>Problem</h4>
+      <p style="max-width: 700px;">
+        Civi's value depended on device permissions like location and notifications, and on users saving places and adding contacts.
+        Many users were finishing onboarding without turning these on, so the app couldn't deliver its full value, and retention suffered.
+      </p>
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          
+            
+            <h4>Solution</h4>
+            <p>
+              To fix this, I designed a pending-settings carousel and a settings review flow that explained why each permission mattered and how it kept users safer.
+            </p>
+        </div>
+        <div class="split-column">
+          <div>
+            <iframe
+              class="video-embed"
+              data-src="https://www.youtube.com/embed/pbJ5GcEu06Y?cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="civiana">
+      <h2>Virtual contact "Civiana"</h2>
+      <div class="split-columns" style="align-items: end;">
+        <div class="split-column">
+          <h4>Problem</h4>
+          <p>
+            Civi also depended on users adding contacts — friends and family who could see each other's location, get nearby alerts, and receive automatic notifications when someone arrived at or left a saved place. However, data showed a low rate of sent invitations, and an even lower rate of accepted ones.
+          </p>
+        </div>
+        <div class="split-column">
+          <p>
+            In user interviews, I found that many people rushed through onboarding without reading the explanations — they wanted to finish registering as fast as possible so they could explore the app and learn by using it. Without seeing what the app could do, they had no reason to invite anyone.
+          </p>
+        </div>
+      </div>
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h4>Solution</h4>
+            <p>
+              To solve this, I created Civiana — a virtual contact that shows users what an added contact looks like in the app, complete with location, distance, battery level, and nearby events. I gave her a home and work address too, to demonstrate the auto-check-in feature.
+            </p>
+            <p>
+              This way, users could see the value of adding contacts firsthand. Contact invitations went up significantly as a result.
+            </p>
+        </div>
+        <div class="split-column">
+          <div>
+            <iframe
+              class="video-embed"
+              data-src="https://www.youtube.com/embed/0LVOZrRJZw0?cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; encrypted-media; gyroscope; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="places-suggestions">
+      <h2>Places suggestions</h2>
+      <div class="split-columns" style="align-items: end;">
+        <div class="split-column">
+          <h4>Context</h4>
+          <p style="max-width: 700px;">
+            I built an auto-check-in and auto-check-out function that notifies users when a contact arrives at or leaves a saved place — for example, "Mary arrived home" or "John left work."
+          </p>
+          <h4>Problem</h4>
+          <p style="max-width: 700px;">
+            Users were adding contacts but not places for them — someone might add a partner but never their office, so the feature couldn't work for that place.
+          </p>
+        </div>
+        <div class="split-column">
+          <video class="video inline-video" muted loop playsinline aria-label="Animation showing how Civi's auto check-in feature works" src="images/projects/civi/animation-auto-checkin.mp4" data-src-desktop="images/projects/civi/animation-auto-checkin.mp4" data-src-mobile="images/projects/civi/animation-auto-checkin-mobile.mp4"></video>
+        </div>
+      </div>
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h4>Solution</h4>
+          <p>
+            I added a list of suggested places, pulled from the places a user's contacts had already saved. It became much easier for users to add these places and use the auto-check-in feature.
+          </p>
+        </div>
+        <div class="split-column">
+          <div>
+            <iframe class="video-embed" data-src="https://www.youtube.com/embed/T06TQwA0BG8?cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="project-nav">
+      <a href="civi.html#case-studies">← Civi</a>
+      <!--<a href="civi-event-icons-redesign.html" class="highlight-link">Next case study<span class="nav-detail">: Event icons redesign</span> →</a>-->
+    </nav>
+  </main>
+
+  
+
+  <footer class="site-footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <!-- Only needed on pages with YouTube embeds (see the video-embed
+       iframes above) — lets script.js pause other videos when one
+       starts playing, and pause a playing one once it scrolls out of
+       view. -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="footer.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

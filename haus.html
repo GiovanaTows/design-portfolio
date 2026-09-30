@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QHD9L3C45"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8QHD9L3C45');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+
+  <!-- Tells the CSS "script.js will play the opening animation", so the
+       first screen's content can be hidden from the very first paint
+       (script.js sits at the end of the page and may run after the
+       browser has already painted — everything would flash visible and
+       skip the animation). If script.js never takes over, the classes are
+       dropped after 4 seconds so nothing stays hidden. -->
+  <script>
+    document.documentElement.classList.add('js-reveal', 'js-reveal-all');
+    setTimeout(function () { document.documentElement.classList.remove('js-reveal', 'js-reveal-all'); }, 4000);
+  </script>
+  <title>Haus Website and App | Giovana Tows</title>
+  <meta name="description" content="Concept design for an interior design website and companion decoration app, by Giovana Tows.">
+  <link rel="canonical" href="https://design.giovanatows.com/haus.html">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="icon" type="image/svg+xml" href="images/branding/favicon-giovana-tows.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#projects" class="logo-link">
+        <img src="images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column">
+        <div class="project-header-content">
+          <nav class="project-nav project-nav-top back-link-project">
+            <a href="index.html#projects">← All projects</a>
+          </nav>
+          <h1>Haus Website and App</h1>
+          <p class="project-meta divider subtitle">A concept for an interior design website and a companion decoration app</p>
+        </div>
+        
+        <div class="project-specs-new">
+          <div class="badge-block" id="haus-role">
+            <div class="block-title">Role</div>
+            <div class="badge-specs">UI/UX Designer</div>
+          </div>
+          <div class="badge-block" id="haus-tools">
+            <div class="block-title">Tools</div>
+            <a href="https://www.sketch.com/" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 24 24" class="badge-icon" style="fill:#F7B500;" aria-hidden="true"><path d="M12 1.25l6.75 6.637V2L12 1.25zm0 0l-6.05 7h12.1l-6.05-7zm0 0L5.25 2v5.887L12 1.25zM5.25 2L0 9l4.416-.68L5.25 2zM0 9l11.959 13.703.008-.014L4.443 9H0zm18.75-7l.834 6.32L24 9l-5.25-7zM24 9h-4.506l-7.523 13.69.029.06L24 9zM12 22.75l-.031-.057-.008.012.039.045zM5.436 9l6.533 13.686L18.564 9H5.436Z"/></svg>Sketch</div></a>
+            <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 24 24" class="badge-icon" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#001E36"/><text x="12" y="16.7" text-anchor="middle" font-size="11" font-weight="700" fill="#31A8FF" font-family="Helvetica, Arial, sans-serif">Ps</text></svg>Photoshop</div></a>
+            <a href="https://www.adobe.com/products/illustrator.html" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 24 24" class="badge-icon" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#330000"/><text x="12" y="16.7" text-anchor="middle" font-size="11" font-weight="700" fill="#FF9A00" font-family="Helvetica, Arial, sans-serif">Ai</text></svg>Illustrator</div></a>
+          </div>
+          <div class="badge-block timeline-block" id="haus-timeline">
+            <div class="block-title">Timeline</div>
+            <div class="badge-specs">2015</div>
+            <div class="badge-specs">2 weeks</div>
+            <div class="badge-specs">Part-time</div>
+          </div>
+        </div>
+
+        <div class="project-specs-new badge-block team-block">
+          <div>
+            <div class="block-title">Team</div>
+            <div class="block-text">Gazeta do Povo, publisher of the HAUS magazine, approached the agency I worked for to design this concept. I was the only designer involved in this project.</div>
+          </div>
+        </div>
+      </div>
+      <div class="split-column column-index">
+        <nav class="project-index project-index-plots" aria-label="On this page" style="align-self: center;">
+          <div class="back-link-index"><a href="index.html#projects">← All projects</a></div>
+
+          <p class="project-index-label index-label-mobile">On this page</p>
+          <p class="project-index-label index-label-desktop">Haus <br>Website and App</p>
+          <ul>
+            <li><a href="#context">1. Context</a></li>
+            <li><a href="#benchmarking">2. Benchmarking</a></li>
+            <li><a href="#landing-page">3. Landing page</a></li>
+            <li><a href="#projects-page">4. Projects page</a></li>
+            <li><a href="#architect-page">5. Architect page</a></li>
+            <li><a href="#products-page">6. Products page</a></li>
+            <li><a href="#app">7. Mobile app</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!--<div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="images/projects/haus/haus-cover-mobile.webp">
+      <source media="(max-width: 900px)" srcset="images/projects/haus/haus-cover-medium.webp">
+      <img src="images/projects/haus/haus-cover.webp" alt="Haus landing page shown on an iMac">
+    </picture>
+  </div>-->
+
+  <main class="project-body" style="margin-top:-1rem">
+
+    <div class="topic-divider topic-divider-first" id="context">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Context</h2>
+          <p style="max-width:700px;">
+            HAUS is Gazeta do Povo's multiplatform product focused on architecture, interior design, style, and culture — its main platform was a printed magazine.
+          </p>
+          <p style="max-width:700px;">
+            Gazeta do Povo contacted the agency I worked for to design a website showcasing the projects, architects, and products featured in the magazine.
+          </p>
+          <p style="max-width:700px;">
+            This was one of my first projects as a UI/UX designer, taking around two weeks from benchmark research to generating alternatives and idealizing the concept.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport" style="aspect-ratio: 1200 / 936; background-color:#383838;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="HAUS magazine covers — by Renata Silveira">
+                  <img src="images/projects/haus/magazine/haus-01.webp" alt="HAUS magazine covers" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="HAUS magazine spread — by Renata Silveira">
+                  <img src="images/projects/haus/magazine/haus-02.webp" alt="HAUS magazine spread" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="HAUS magazine spread — by Renata Silveira">
+                  <img src="images/projects/haus/magazine/haus-03.webp" alt="HAUS magazine spread" loading="lazy">
+                </div>
+                <!--<div class="carousel-slide" data-caption="HAUS magazine — Museums feature spread">
+                  <img src="images/projects/haus/magazine/haus-04.webp" alt="HAUS magazine spread on contemporary museums" loading="lazy">
+                </div>-->
+                <div class="carousel-slide" data-caption="HAUS magazine spread — by Renata Silveira">
+                  <img src="images/projects/haus/magazine/haus-05.webp" alt="HAUS magazine spread" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="HAUS magazine spread — by Renata Silveira">
+                  <img src="images/projects/haus/magazine/haus-06.webp" alt="HAUS magazine spread" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="HAUS magazine spread — by Renata Silveira">
+                  <img src="images/projects/haus/magazine/haus-07.webp" alt="HAUS magazine spread" loading="lazy">
+                </div>
+                <!--<div class="carousel-slide" data-caption="Printed issues of HAUS magazine">
+                  <img src="images/projects/haus/magazine/haus-08.webp" alt="Stack of printed HAUS magazine issues" loading="lazy">
+                </div>-->
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            The challenge was to design a website connecting three pillars: a gallery of real projects for inspiration, a shop of decor products, and a directory of architects — all cross-linked, so a piece you like in a project leads straight to buying it or learning more about the architect behind it.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            I also idealized a <a href="#app" class="inline-link">mobile app</a>, letting people simulate furniture and decor items in their own space using a photo of their interior.
+          </p>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="topic-divider" id="benchmarking">
+      <h2>Benchmarking</h2>
+      
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            Before sketching any screens, I ran a heuristic evaluation of five sites with similar goals — HC Store, Etch, Grovemade, Fubiz Shop, and Joined &amp; Jointed — to map out what worked well and what didn't, and to catch requirements the brief hadn't covered.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            I checked a few pages of each site against the six usability heuristics below, tagging every finding with the principle it related to, so patterns across the five sites were easy to spot. Green arrows mark good practices; red arrows mark issues.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <figure class="project-figure" style="max-width: 300px;">
+            <img src="images/projects/haus/benchmarking/heuristics-legend.webp" alt="Legend for the six usability heuristics" loading="lazy">
+            <figcaption>Legend for the six usability heuristics</figcaption>
+          </figure>
+        </div>
+
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-white" style="aspect-ratio: 16 / 9;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Benchmarking — HC Store — Product listing page">
+                  <img src="images/projects/haus/benchmarking/benchmarking-hc-store-1.webp" alt="Benchmarking — HC Store product listing page, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — HC Store — Product detail page">
+                  <img src="images/projects/haus/benchmarking/benchmarking-hc-store-2.webp" alt="Benchmarking — HC Store product detail page, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Etch — Homepage">
+                  <img src="images/projects/haus/benchmarking/benchmarking-etch-1.webp" alt="Benchmarking — Etch homepage, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Etch — Contact overlay">
+                  <img src="images/projects/haus/benchmarking/benchmarking-etch-2.webp" alt="Benchmarking — Etch contact overlay, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Grovemade — Homepage hero">
+                  <img src="images/projects/haus/benchmarking/benchmarking-grovemade-1.webp" alt="Benchmarking — Grovemade homepage hero, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Grovemade — Category filters">
+                  <img src="images/projects/haus/benchmarking/benchmarking-grovemade-2.webp" alt="Benchmarking — Grovemade category filters, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Grovemade — Product hover state">
+                  <img src="images/projects/haus/benchmarking/benchmarking-grovemade-3.webp" alt="Benchmarking — Grovemade product hover state, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Fubiz Shop — Homepage">
+                  <img src="images/projects/haus/benchmarking/benchmarking-fubiz-shop-1.webp" alt="Benchmarking — Fubiz Shop homepage, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Fubiz Shop — Product listing">
+                  <img src="images/projects/haus/benchmarking/benchmarking-fubiz-shop-2.webp" alt="Benchmarking — Fubiz Shop product listing, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Fubiz Shop — News preview">
+                  <img src="images/projects/haus/benchmarking/benchmarking-fubiz-shop-3.webp" alt="Benchmarking — Fubiz Shop news preview, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Fubiz Shop — Search overlay">
+                  <img src="images/projects/haus/benchmarking/benchmarking-fubiz-shop-4.webp" alt="Benchmarking — Fubiz Shop search overlay, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Joined &amp; Jointed — Homepage hero">
+                  <img src="images/projects/haus/benchmarking/benchmarking-joined-jointed-1.webp" alt="Benchmarking — Joined and Jointed homepage hero, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Joined &amp; Jointed — Product listing">
+                  <img src="images/projects/haus/benchmarking/benchmarking-joined-jointed-2.webp" alt="Benchmarking — Joined and Jointed product listing, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Joined &amp; Jointed — Gallery grid">
+                  <img src="images/projects/haus/benchmarking/benchmarking-joined-jointed-3.webp" alt="Benchmarking — Joined and Jointed gallery grid, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Joined &amp; Jointed — Shopping cart">
+                  <img src="images/projects/haus/benchmarking/benchmarking-joined-jointed-4.webp" alt="Benchmarking — Joined and Jointed shopping cart, annotated with usability notes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Benchmarking — Joined &amp; Jointed — Designer profiles">
+                  <img src="images/projects/haus/benchmarking/benchmarking-joined-jointed-5.webp" alt="Benchmarking — Joined and Jointed designer profiles, annotated with usability notes" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 >Key takeaways</h3>
+        <ul>
+          <li>Large, focused product photography consistently read as more premium than cluttered grids.</li>
+          <li>Clear category filters and visible navigation cues reduced user errors.</li>
+          <li>Overlays that dim the whole page, like on hover, can pull focus away from the product itself.</li>
+          <li>Showing stock and availability directly on listing pages helped users decide faster.</li>
+          <li>A dedicated page per designer or maker made craftspeople feel like part of the brand story.</li>
+        </ul>
+    </div>
+
+    <div class="topic-divider" id="landing-page">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Landing page</h2>
+          <p style="max-width:700px;">
+            "Inspire-se, decore, inove" — get inspired, decorate, innovate. The landing page opens with a rotating gallery of decorated spaces, then surfaces the three pillars of the site side by side: Products, Architects, and Projects.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 3156 / 2158;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Haus — Landing page mockup">
+                  <img src="images/projects/haus/haus-mockup.webp" alt="Haus — Landing page mockup" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Haus — Landing page">
+                  <img src="images/projects/haus/landing-page.webp" alt="Haus — Landing page" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="topic-divider" id="projects-page">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Projects page</h2>
+          <p style="max-width:700px;">
+            Every month, Haus publishes a new decorated space. The projects page leads with that month's featured room, alongside the products used in it, and a grid of the month's other submissions below.
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="images/projects/haus/projects-page.webp" alt="Haus — Projects page" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="architect-page">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Architect page</h2>
+          <p style="max-width:700px;">
+            Opening a project introduces the architect behind it, along with their description of the space and the products they used — or similar pieces that would fit the same style.
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="images/projects/haus/projects-detail.webp" alt="Haus — Project detail, with the architect's profile and related products" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="topic-divider" id="products-page">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Products page</h2>
+          <p style="max-width:700px;">
+            Each product page covers material, dimensions, country of origin, available colors, and live stock count, plus "Related" and "Suggested for you" shelves to keep people browsing.
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="images/projects/haus/products-page.webp" alt="Haus — Product detail page" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="topic-divider" id="app">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Mobile app</h2>
+          <p style="max-width:700px;">
+            The idea for the Haus app was to lets people place images of real products from the website into a photo of their own interior to simulate a full decoration. This tool would allow users to visualize how products interact with their actual space before buying it.
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="images/projects/haus/app-overview.webp" alt="Haus decoration app shown across three phones" loading="lazy">
+          </figure>
+        </div>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="project-figure">
+          <img src="images/projects/haus/app-step-1.webp" alt="Haus app — Step 1, take a photo of the room" loading="lazy">
+          <figcaption>1. Take a photo of the room you want to decorate</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="images/projects/haus/app-step-2.webp" alt="Haus app — Step 2, select room type and object category" loading="lazy">
+          <figcaption>2. Select the room type and the category of object you want</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="images/projects/haus/app-step-3.webp" alt="Haus app — Step 3, place and resize the object" loading="lazy">
+          <figcaption>3. Choose an object, then resize and reposition it as you like</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="images/projects/haus/app-step-4.webp" alt="Haus app — Step 4, share or buy the decorated room" loading="lazy">
+          <figcaption>4. Share your dream room with friends, or buy the products used to create it</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <nav class="project-nav">
+      <a href="index.html#projects">← All projects</a>
+      <a href="enkontra.html" class="highlight-link">Next project<span class="nav-detail">: Enkontra.com</span> →</a>
+    </nav>
+  </main>
+
+  
+
+  <footer class="site-footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="footer.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

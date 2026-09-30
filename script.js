@@ -362,7 +362,7 @@ if (siteHeader) {
 }
 
 // Project page table of contents. If a project page already writes its
-// own <nav class="project-toc"> (see projects/plots.html for an example
+// own <nav class="project-toc"> (see plots.html for an example
 // you can copy/edit directly), this leaves it alone. Otherwise it's a
 // fallback: auto-builds one from whatever H2/H3s exist in .project-body
 // and wraps it with the Role/Tool/Timeline/Team stats in
@@ -423,7 +423,7 @@ if (projectStats && projectBody && !hasStaticToc) {
 
 // Carousel: alternates between however many .carousel-slide elements
 // are inside a .project-carousel. Builds the dots to match, and wires
-// up the prev/next buttons — see projects/plots.html for an example.
+// up the prev/next buttons — see plots.html for an example.
 document.querySelectorAll('.project-carousel').forEach((carousel) => {
   const track = carousel.querySelector('.carousel-track');
   const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
@@ -1525,7 +1525,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   const revealText = [];
   revealTextAll.forEach(el => {
     if (el.closest('.toolkit-category')) el.classList.add('in-view');
-    else if (el.closest('#experience .timeline-entry')) return; // revealed with its entry, below
+    else if (el.closest('#experience .timeline-entry, #education .timeline-entry')) return; // revealed with its entry, below
     else revealText.push(el);
   });
   // Images: hero shots, case-study figures, and every project/case-study

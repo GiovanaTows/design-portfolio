@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QHD9L3C45"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8QHD9L3C45');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+
+  <!-- Tells the CSS "script.js will play the opening animation", so the
+       first screen's content can be hidden from the very first paint
+       (script.js sits at the end of the page and may run after the
+       browser has already painted — everything would flash visible and
+       skip the animation). If script.js never takes over, the classes are
+       dropped after 4 seconds so nothing stays hidden. -->
+  <script>
+    document.documentElement.classList.add('js-reveal', 'js-reveal-all');
+    setTimeout(function () { document.documentElement.classList.remove('js-reveal', 'js-reveal-all'); }, 4000);
+  </script>
+  <title>Enkontra.com Website | Giovana Tows</title>
+  <meta name="description" content="Concept design for a Brazilian long-term housing rental website, by Giovana Tows.">
+  <link rel="canonical" href="https://design.giovanatows.com/enkontra.html">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="icon" type="image/svg+xml" href="images/branding/favicon-giovana-tows.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#projects" class="logo-link">
+        <img src="images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column">
+        <div class="project-header-content">
+          <nav class="project-nav project-nav-top back-link-project">
+            <a href="index.html#projects">← All projects</a>
+          </nav>
+          <h1>Enkontra.com Website</h1>
+          <p class="project-meta divider subtitle">A concept for a long-term housing rental website, built for Brazil</p>
+        </div>
+        
+        <div class="project-specs-new">
+          <div class="badge-block" id="enkontra-role">
+            <div class="block-title">Role</div>
+            <div class="badge-specs">UI/UX Designer</div>
+          </div>
+          <div class="badge-block" id="enkontra-tools">
+            <div class="block-title">Tools</div>
+            <a href="https://www.sketch.com/" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 24 24" class="badge-icon" style="fill:#F7B500;" aria-hidden="true"><path d="M12 1.25l6.75 6.637V2L12 1.25zm0 0l-6.05 7h12.1l-6.05-7zm0 0L5.25 2v5.887L12 1.25zM5.25 2L0 9l4.416-.68L5.25 2zM0 9l11.959 13.703.008-.014L4.443 9H0zm18.75-7l.834 6.32L24 9l-5.25-7zM24 9h-4.506l-7.523 13.69.029.06L24 9zM12 22.75l-.031-.057-.008.012.039.045zM5.436 9l6.533 13.686L18.564 9H5.436Z"/></svg>Sketch</div></a>
+            <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 24 24" class="badge-icon" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#001E36"/><text x="12" y="16.7" text-anchor="middle" font-size="11" font-weight="700" fill="#31A8FF" font-family="Helvetica, Arial, sans-serif">Ps</text></svg>Photoshop</div></a>
+            <a href="https://www.adobe.com/products/illustrator.html" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 24 24" class="badge-icon" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#330000"/><text x="12" y="16.7" text-anchor="middle" font-size="11" font-weight="700" fill="#FF9A00" font-family="Helvetica, Arial, sans-serif">Ai</text></svg>Illustrator</div></a>
+          </div>
+          <div class="badge-block timeline-block" id="enkontra-timeline">
+            <div class="block-title">Timeline</div>
+            <div class="badge-specs">2015</div>
+            <div class="badge-specs">1 month</div>
+            <div class="badge-specs">Part-time</div>
+          </div>
+        </div>
+
+        <div class="project-specs-new badge-block team-block">
+          <div>
+            <div class="block-title">Team</div>
+            <div class="block-text">I worked together with the project manager <a class="inline-link" href="https://www.linkedin.com/in/rafaelonopasquini/" target="_blank" rel="noopener noreferrer">Rafael Ono Pasquini</a> and the product designer <a class="inline-link" href="https://viniciusmanzano.com/" target="_blank" rel="noopener noreferrer">Vinicius Manzano</a>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="split-column column-index">
+        <nav class="project-index project-index-plots" aria-label="On this page" style="align-self: center;">
+          <div class="back-link-index"><a href="index.html#projects">← All projects</a></div>
+
+          <p class="project-index-label index-label-mobile">On this page</p>
+          <p class="project-index-label index-label-desktop">Enkontra.com <br>Website</p>
+          <ul>
+            <li><a href="#context">1. Context</a></li>
+            <li><a href="#landing-page">2. Landing page</a></li>
+            <li><a href="#search-filters">3. Search &amp; filters</a></li>
+            <li><a href="#property-page">4. Property page</a></li>
+            <li><a href="#rental-process">5. Rental process</a></li>
+            <li><a href="#owner-panel">6. Owner panel</a></li>
+            <li><a href="#conclusion">7. Conclusion</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!--<div class="project-hero">
+    <picture>
+      <source media="(max-width: 700px)" srcset="images/projects/enkontra/enkontra-cover-mobile.webp">
+      <source media="(max-width: 900px)" srcset="images/projects/enkontra/enkontra-cover-medium.webp">
+      <img src="images/projects/enkontra/enkontra-cover.webp" alt="Enkontra.com landing page shown on an iMac">
+    </picture>
+  </div>-->
+
+  <main class="project-body">
+
+    <div class="topic-divider topic-divider-first" id="context">
+      <h2>Context</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            Enkontra.com launched in October 2014 as a classifieds marketplace by <a class="inline-link" href="https://grpcom.com.br/" target="_blank" rel="noopener noreferrer">Grupo Paranaense de Comunicação (GRPCOM)</a> (Brazil), where people could buy and sell houses, apartments, cars, electronics, and more, combining listings from <a class="inline-link" href="https://www.gazetadopovo.com.br/economia/nova-plataforma-de-classificados-enkontracom-ja-esta-no-ar-ef71lpwon55rru05iz3xxv2ha/" target="_blank" rel="noopener noreferrer">Gazeta do Povo</a>, Tribuna, and Paraná Online.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            The proposal for this new interface was "hassle-free rental". Unlike Airbnb, the site works around long-term contracts, and the main goal was to simplify the rental process as much as possible, cutting down on paperwork and bureaucracy.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <p style="max-width:700px;">
+            Our team designed the full flow — a landing page built to convert, a search experience with map and filters, a property page detailed enough to rent sight-unseen, a guided multi-step rental process, and a panel for owners to manage their listings and talk to prospective tenants — generating more than 40 screens in total.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 4 / 3;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Enkontra.com — Homepage">
+                  <img src="images/projects/enkontra/screens/enkontra-01.webp" alt="Enkontra.com homepage shown on a laptop" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Search for the house of your dreams">
+                  <img src="images/projects/enkontra/screens/enkontra-02.webp" alt="Enkontra.com search results with filters and map" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Check all information you want">
+                  <img src="images/projects/enkontra/screens/enkontra-03.webp" alt="Enkontra.com property page with details and photos" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Select the way you want to pay">
+                  <img src="images/projects/enkontra/screens/enkontra-04.webp" alt="Enkontra.com rental process — payment method selection" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Select period you want to rent">
+                  <img src="images/projects/enkontra/screens/enkontra-05.webp" alt="Enkontra.com rental process — selecting the rental period" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="For your safety, add an insurance to your rent">
+                  <img src="images/projects/enkontra/screens/enkontra-06.webp" alt="Enkontra.com rental process — optional insurance add-ons" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Fill the payment info to finish the rental process">
+                  <img src="images/projects/enkontra/screens/enkontra-07.webp" alt="Enkontra.com rental process — payment details" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="40+ screens designed">
+                  <img src="images/projects/enkontra/screens/enkontra-08.webp" alt="Overview of Enkontra.com screens shown across three laptops" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="landing-page">
+      
+      <h2>Landing page</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            The new landing page is cleaner, with bigger images and less text, and leads with "Your dream home, however and wherever you need it".
+          </p>
+          <p style="max-width:700px;">
+            The main feature is a search bar that lets people search by tags — such as family, pool, countryside, and great view — instead of rigid filters, focusing on the experience a property offers rather than just its specs.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            This page includes a section with the featured listings by neighborhood.
+          </p>
+          <p style="max-width:700px;">
+            The client also asked us to include a <a class="inline-link" href="haus.html">Haus</a> section, connecting this rental site with their decoration portal.
+          </p>
+        </div>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="project-figure">
+          <h3>Before</h3>
+          <img src="images/projects/enkontra/old/01-homepage.webp" alt="Enkontra.com landing page — Before" loading="lazy">
+          <figcaption>Landing page - Before</figcaption>
+        </figure>
+        <div>
+          <h3>After</h3>
+          <div class="project-carousel" style="margin: 0;">
+            <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 1440 / 2939;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Landing page - After">
+                  <img src="images/projects/enkontra/new/01-homepage-2.webp" alt="Enkontra.com landing page — After" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Landing page - After">
+                  <img src="images/projects/enkontra/new/01-homepage.webp" alt="Enkontra.com landing page — After, alternate view" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="search-filters">
+      <h2>Search &amp; filters</h2>
+      <p style="max-width:700px;">
+        The new design simplified the search and filtering experience. Results can be refined by area, price, and minimum stay, or browsed directly on a map — useful for renters who care more about location than any single spec.
+      </p>
+
+      <div class="figure-grid">
+        <figure class="project-figure">
+          <h3>Before</h3>
+          <img src="images/projects/enkontra/old/02-search-result-2.webp" alt="Enkontra.com search bar and filters — Before" loading="lazy">
+          <figcaption>Search and filters — Before</figcaption>
+        </figure>
+
+        <div>
+          <h3>After</h3>
+          <div class="project-carousel" style="margin: 0;">
+            <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 1440 / 1024;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Search and filters — After">
+                  <img src="images/projects/enkontra/new/02-search-result.webp" alt="Enkontra.com search bar and filters — After" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Search and filters — After">
+                  <img src="images/projects/enkontra/new/02-search-result-2.webp" alt="Enkontra.com search bar and filters — After, alternate view" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Search and filters — After">
+                  <img src="images/projects/enkontra/new/02-search-result-3.webp" alt="Enkontra.com search bar and filters — After, alternate view" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="property-page">
+      <h2>Property page</h2>
+      <p style="max-width:700px;">
+        The new design breaks each listing down room by room — bedrooms, kitchen, bathrooms, living room — with its own photos and details. It also includes a chat where logged-in users can ask the owner questions directly without leaving the page.
+      </p>
+
+      <div class="figure-grid">
+        <!--<figure class="project-figure">
+          <h3>Before</h3>
+          <img src="images/projects/enkontra/old/03-property-view.webp" alt="Enkontra.com property view — Before" loading="lazy">
+          <figcaption>Property view — Before</figcaption>
+        </figure>-->
+        <div>
+          <h3>Before</h3>
+          <div class="project-carousel" style="margin: 0;">
+            <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 2 / 4.85;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Property view — Before">
+                  <img src="images/projects/enkontra/old/03-property-view.webp" alt="Enkontra.com property view — Before" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Property view — Before">
+                  <img src="images/projects/enkontra/old/04-rental-process.webp" alt="Enkontra.com property view — Before" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <figure class="project-figure">
+          <h3>After</h3>
+          <img src="images/projects/enkontra/new/03-property-view.webp" alt="Enkontra.com property view — After" loading="lazy">
+          <figcaption>Property view — After</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="rental-process">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Rental process</h2>
+          <p style="max-width:700px;">
+            Renting a property is a guided, six-step flow. This step lets the renter pick their move-in and move-out dates against the owner's minimum stay, then choose between paying month to month or paying the full period upfront for a discount.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 45 / 32;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Step 1 — Confirm your details and payment method">
+                  <img src="images/projects/enkontra/new/rent/rent-1.webp" alt="Enkontra.com rental process — confirm details and payment method" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Step 2 — Select the rental period">
+                  <img src="images/projects/enkontra/new/rent/rent-2.webp" alt="Enkontra.com rental process — select the rental period" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Step 3 — Add optional insurance">
+                  <img src="images/projects/enkontra/new/rent/rent-3.webp" alt="Enkontra.com rental process — add optional insurance" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Step 4 — Review and accept the contract">
+                  <img src="images/projects/enkontra/new/rent/rent-4.webp" alt="Enkontra.com rental process — review and accept the contract" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Step 5 — Enter your card details">
+                  <img src="images/projects/enkontra/new/rent/rent-5.webp" alt="Enkontra.com rental process — enter card details" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Step 6 — Booking confirmed">
+                  <img src="images/projects/enkontra/new/rent/rent-6.webp" alt="Enkontra.com rental process — booking confirmed" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="topic-divider" id="owner-panel">
+      <div class="text-image-columns">
+      <div class="split-column" style="max-width:700px;">
+        <h2>Owner panel</h2>
+        <p style="max-width:700px;">
+          Owners get their own management panel to track views and proposals on each listing, reply to renter questions and manage visits.
+        </p>
+      </div>
+      <div class="split-column">
+        <div class="project-carousel">
+          <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 8 / 7;">
+            <div class="carousel-track">
+              <div class="carousel-slide" data-caption="Owner panel — Listings and messages">
+                <img src="images/projects/enkontra/owner-panel.webp" alt="Enkontra.com owner panel — listings and renter messages" loading="lazy">
+              </div>
+              <div class="carousel-slide" data-caption="Owner panel — Visit schedule">
+                <img src="images/projects/enkontra/new/schedule.webp" alt="Enkontra.com owner panel — calendar of scheduled visits" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <div class="carousel-controls-row">
+            <button type="button" class="carousel-prev" aria-label="Previous image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <div class="carousel-meta">
+              <p class="carousel-caption"></p>
+              <div class="carousel-dots"></div>
+            </div>
+            <button type="button" class="carousel-next" aria-label="Next image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="conclusion">
+      <h2>Conclusion</h2>
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            Together with Rafael and Vinicius, we delivered in a month a full redesign of Enkontra's rental experience — more than 40 screens covering the landing page, search, property details, rental flow, and the owner's management panel.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            The result turned a traditionally bureaucratic process into a guided, self-service flow. Besides that, the link to <a class="inline-link" href="haus.html">Haus</a> opened the door for renters to decorate their dream home right after signing.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="project-nav">
+      <a href="index.html#projects">← All projects</a>
+      <a href="differential-motor.html" class="highlight-link">Next project<span class="nav-detail">: Differential Motor Presentation</span> →</a>
+    </nav>
+  </main>
+
+  
+
+  <footer class="site-footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="footer.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

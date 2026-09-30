@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QHD9L3C45"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8QHD9L3C45');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+
+  <!-- Tells the CSS "script.js will play the opening animation", so the
+       first screen's content can be hidden from the very first paint
+       (script.js sits at the end of the page and may run after the
+       browser has already painted — everything would flash visible and
+       skip the animation). If script.js never takes over, the classes are
+       dropped after 4 seconds so nothing stays hidden. -->
+  <script>
+    document.documentElement.classList.add('js-reveal', 'js-reveal-all');
+    setTimeout(function () { document.documentElement.classList.remove('js-reveal', 'js-reveal-all'); }, 4000);
+  </script>
+  <title>Design Sprint 2.0 — Civi | Giovana Tows</title>
+  <meta name="description" content="Facilitating a four-day Design Sprint 2.0 to explore a participatory, network-building experience for Civi's mobile app, by Giovana Tows.">
+  <link rel="canonical" href="https://design.giovanatows.com/civi-design-sprint.html">
+
+  <!-- Material Design icon font, used for the mobile menu (hamburger/close) icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0" rel="stylesheet">
+
+  <!-- Note the "" — this file lives inside /projects/, so it needs to
+       step one folder UP to find style.css sitting next to index.html -->
+  <link rel="icon" type="image/svg+xml" href="images/branding/favicon-giovana-tows.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER: same site nav as the homepage, links point back at its sections ===== -->
+  <header class="site-header">
+    <div class="header-row">
+      <nav class="index-nav" aria-label="Section navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close">close</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#projects" class="logo-link">
+        <img src="images/branding/logo-giovana-tows.svg" alt="Giovana Tows" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <header class="project-header">
+    <div class="project-header-content">
+      <nav class="project-nav project-nav-top back-link-project">
+        <a href="civi.html#case-studies">← Civi</a>
+      </nav>
+      <h1>Civi — Design Sprint 2.0</h1>
+      <p class="project-meta divider subtitle">Facilitating a four-day sprint to design, prototype, and test a more collaborative Civi</p>
+    </div>
+
+    <!-- Two columns: stats on the left, jump-to-section index on the right.-->
+    <div class="project-header-columns">
+      <div class="split-column">
+        <div class="project-specs-new">
+          <div class="badge-block" id="civi-design-sprint-role">
+            <div class="block-title">Role</div>
+            <div class="badge-specs">Product Designer</div>
+            <div class="badge-specs">UX/UI Designer</div>
+          </div>
+          <div class="badge-block" id="civi-design-sprint-tools">
+            <div class="block-title">Tools</div>
+            <a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 200 300" class="badge-icon" aria-hidden="true"><path fill="#0acf83" d="M50 300c27.6 0 50-22.4 50-50v-50H50c-27.6 0-50 22.4-50 50s22.4 50 50 50z"/><path fill="#a259ff" d="M0 150c0-27.6 22.4-50 50-50h50v100H50c-27.6 0-50-22.4-50-50z"/><path fill="#f24e1e" d="M0 50C0 22.4 22.4 0 50 0h50v100H50C22.4 100 0 77.6 0 50z"/><path fill="#ff7262" d="M100 0h50c27.6 0 50 22.4 50 50s-22.4 50-50 50h-50V0z"/><path fill="#1abcfe" d="M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z"/></svg>Figma</div></a>
+            <a href="https://miro.com/" target="_blank" rel="noopener noreferrer"><div class="badge-specs"><svg viewBox="0 0 24 24" class="badge-icon" style="fill:#050038;" aria-hidden="true"><path d="M17.392 0H13.9L17 4.808 10.444 0H6.949l3.102 6.3L3.494 0H0l3.05 8.131L0 24h3.494L10.05 6.985 6.949 24h3.494L17 5.494 13.899 24h3.493L24 3.672 17.392 0z"/></svg>Miro</div></a>
+          </div>
+          <div class="badge-block timeline-block" id="civi-design-sprint-timeline">
+            <div class="block-title">Timeline</div>
+            <div class="badge-specs">2022</div>
+            <div class="badge-specs">4 days</div>
+          </div>
+        </div>
+
+        <div class="project-specs-new badge-block team-block team-block">
+          <div>
+            <div class="block-title">Team</div>
+            <div class="block-text">I worked as the sprint facilitator. Other 9 people from Civi participated: the product designer <a class="inline-link" href="https://www.linkedin.com/in/viviane-d-73535a124/" target="_blank" rel="noopener noreferrer">Viviane Ducarme</a> as moderator, the CEO as decider, the head of product <a class="inline-link" href="https://www.linkedin.com/in/rodrigokleinert/" target="_blank" rel="noopener noreferrer">Rodrigo Kleinert</a>, two product managers, a front-end developer, and three more people from marketing and supply.</div>
+          </div>
+        </div>
+      </div>
+      <div class="split-column column-index">
+        <nav class="project-index project-index-civi" aria-label="On this page" style="align-self: center;">
+          <div class="back-link-index"><a href="civi.html#case-studies">← Civi</a></div>
+
+          <p class="project-index-label index-label-mobile">On this page</p>
+          <p class="project-index-label index-label-desktop">Civi — <br>Design Sprint 2.0</p>
+          <ul>
+            <li><a href="#context">1. Context</a></li>
+            <li><a href="#day-1">2. Day 1: Map &amp; sketch</a></li>
+            <li><a href="#day-2">3. Day 2: Decide &amp; storyboard</a></li>
+            <li><a href="#day-3">4. Day 3: Prototype &amp; test script</a></li>
+            <li><a href="#day-4">5. Day 4: Let's test it</a></li>
+            <li><a href="#conclusion">6. Conclusion</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-hero-static" style="background-color: #CE44F6;">
+    <picture>
+      <img src="images/projects/design-sprint-civi/hero.webp" alt="Design Sprint 2.0 schedule: Map, Sketch, Decide, Storyboard, Prototype, Test">
+    </picture>
+  </div>
+
+  <main class="project-body">
+
+    <div class="topic-divider topic-divider-first" id="context">
+      <h2>Context</h2>
+      <p style="max-width:700px;">
+        <a class="inline-link" href="civi.html">Civi</a> was a mobile app focused on making cities safer, giving people security-related information and notifications in real time. It was live in São Paulo, Brazil.
+      </p>
+      <p style="max-width:700px;">
+        In 2022, our team ran a Design Sprint 2.0 — a four-day process for answering a critical business question through sketching, prototyping, and testing with real users — to explore one challenge: how might we give users a participatory, collaborative experience in the app that creates a network?
+      </p>
+    </div>
+
+    <div class="topic-divider" id="day-1">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Day 1: Map &amp; sketch</h2>
+          <p style="max-width:700px;">
+            We opened by introducing the process and the challenge, then went around the room letting each specialist answer a set of core questions about the product, its users, and its risks — so everyone started from the same understanding before we began generating ideas.
+          </p>
+          <p style="max-width:700px;">
+            From there, we turned what came up into "How might we" notes, clustered and voted on them, then wrote long-term goals and the sprint questions that could get in our way.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 1920 / 1487;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="Ask the Experts — grounding the team in a shared understanding of the product">
+                  <img src="images/projects/design-sprint-civi/day1-ask-experts.webp" alt="Ask the Experts session with the whole team" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Clustering and voting on How Might We notes">
+                  <img src="images/projects/design-sprint-civi/day1-hmw.webp" alt="How Might We notes clustered on the wall" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Mapping the simplified user journey — discover, learn, use">
+                  <img src="images/projects/design-sprint-civi/day1-user-journey.webp" alt="Simplified user journey map" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="One of the final Day 1 solution sketches">
+                  <img src="images/projects/design-sprint-civi/day1-sketch-solution.webp" alt="A finished 4-Step Sketch solution" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            With that foundation, we mapped a simplified user journey — discover, learn, use — and matched each "How might we" to the step it applied to, so we knew exactly where to focus the rest of the sprint.
+          </p>
+          <p style="max-width:700px;">
+            After lunch, each of us researched a few outside references relevant to the challenge and presented one to the group.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            We closed the day with individual sketching — loose notes first, then Crazy Eights (eight quick variations on one idea), and finally a single, fully worked solution: three screens sketched on paper with a title and a plain-language explanation of how each one would work.
+          </p>
+        </div>
+      </div>
+      
+      
+    </div>
+
+    <div class="topic-divider" id="day-2">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Day 2: Decide &amp; storyboard</h2>
+          <p style="max-width:700px;">
+            Every solution from Day 1 went up on the wall for an "Art Museum" session — everyone walked through in silence, voting on the ideas that stood out and leaving questions on sticky notes wherever they had doubts.
+          </p>
+          <p style="max-width:700px;">
+            From there, the facilitator walked the group through where the votes landed, each of us pitched one idea in under a minute, and our decider spent two supervotes committing to a direction — combining the strongest parts of a couple of different solutions.
+          </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 322 / 432;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="&quot;Grupos Civi&quot; — one of the solutions on the wall during Art Museum voting">
+                  <img src="images/projects/design-sprint-civi/day2-solutions-1.webp" alt="Grupos Civi solution sketch with dot votes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Another solution up for the team's vote">
+                  <img src="images/projects/design-sprint-civi/day2-solutions-2.webp" alt="Solution sketch with dot votes" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Another solution up for the team's vote">
+                  <img src="images/projects/design-sprint-civi/day2-solutions-3.webp" alt="Solution sketch with dot votes" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            We wrote out user steps for the chosen flow, then spent close to two hours turning it into an eight-panel storyboard.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            We closed the day by planning the test itself — who to recruit (people who'd never used Civi, a mix of ages and backgrounds), how many (five, plus two on standby), and what we wanted to learn from them.
+          </p>
+        </div>
+      </div>
+
+      <figure class="project-figure">
+        <img src="images/projects/design-sprint-civi/day2-storyboard.webp" alt="Eight-panel storyboard sketched on craft paper" loading="lazy">
+        <figcaption>The 8-panel storyboard — the screens the prototype would need, with our hypotheses noted alongside each one</figcaption>
+      </figure>
+    </div>
+
+    <div class="topic-divider" id="day-3">
+      
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Day 3: Prototype &amp; test script</h2>
+          <p style="max-width:700px;">
+            This was my favorite part of the whole process: prototyping. That day, I built the interactive prototype in Figma from the previous day's storyboard, while Viviane wrote the test script — we reviewed both together once they were done.
+          </p>
+          <p style="max-width:700px;">
+            The script paired a few background questions — age, occupation, family, safety concerns — with hands-on tasks built directly from the hypotheses we'd written the day before, so we could observe how people actually behaved rather than just ask their opinion.
+          </p>
+          <!--<p style="max-width:700px;">
+            Here's the prototype I built that day.
+          </p>-->
+          <p class="figma-note" data-mobile-text="Try the interactive prototype on Figma →" style="max-width:700px; margin-top: 1.5rem;">
+            Try the interactive prototype here, or <a class="inline-link" href="https://www.figma.com/proto/3OYq3ZTuS0cg8SQkyUKe4C/Design-Sprint---Civi?node-id=0-9635&viewport=3531%2C1726%2C0.69&scaling=contain&content-scaling=fixed&starting-point-node-id=0%3A9635&page-id=0%3A1" target="_blank" rel="noopener noreferrer">open it in a new tab →</a>
+          </p>
+          <p>
+            <a class="inline-link" href="https://www.figma.com/design/3OYq3ZTuS0cg8SQkyUKe4C/Civi---Design-Sprint-2.0?node-id=0-1&t=Rua0tl48skVhXd30-1" target="_blank" rel="noopener noreferrer">Check the full flow on Figma →</a>
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure figma-imbeded-div">
+            <div class="figma-loading-spinner" aria-hidden="true"></div>
+            <iframe class="figma-imbeded" style="aspect-ratio: 1 / 1;" data-src="https://embed.figma.com/proto/3OYq3ZTuS0cg8SQkyUKe4C/Design-Sprint---Civi?node-id=0-9635&viewport=3531%2C1726%2C0.69&scaling=contain&content-scaling=fixed&starting-point-node-id=0%3A9635&page-id=0%3A1&embed-host=share" allowfullscreen onload="this.previousElementSibling.style.display='none'"></iframe>
+          </figure>
+
+        </div>
+      </div>
+
+      <div class="project-carousel">
+        <div class="carousel-viewport carousel-bg-grey" style="aspect-ratio: 3 / 1;">
+          <div class="carousel-track">
+            <div class="carousel-slide" data-caption="The full prototype flow in Figma">
+              <img src="images/projects/design-sprint-civi/day3-prototype-flow.webp" alt="Full Figma prototype flow, showing every connected screen" loading="lazy">
+            </div>
+            <div class="carousel-slide" data-caption="Viviane and Giovana working on the interactive prototype and the test script">
+              <img src="images/projects/design-sprint-civi/day3-prototyping.webp" alt="Viviane and Giovana working on the interactive prototype and the test script" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls-row">
+          <button type="button" class="carousel-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <div class="carousel-meta">
+            <p class="carousel-caption"></p>
+            <div class="carousel-dots"></div>
+          </div>
+          <button type="button" class="carousel-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-divider" id="day-4">
+      <h2>Day 4: Let's test it!</h2>
+      
+      <div class="split-columns">
+        <div class="split-column">
+          <p style="max-width:700px;">
+            This day was reserved entirely for user interviews. We tested with 5 people — 4 remotely over Zoom, 1 in person — each session split into a 30-minute intro, 30 minutes testing the prototype against real tasks, and a 30-minute debrief with the team.
+          </p>
+        </div>
+        <div class="split-column">
+          <p style="max-width:700px;">
+            For the remote interviews, I moderated from a separate room while the facilitator shared the call on a screen in the main room, so the rest of the team could watch live without crowding the interviewee.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <p style="max-width:700px;">
+            I set up a shared Miro board so everyone could log observations in real time as they watched: orange for anything a participant got confused about, green for what worked as planned, yellow for neutral notes.
+          </p>
+          <p style="max-width:700px;">
+        One insight stood out: the product resonated more with an older audience, which put accessibility front and center, since older users were often less comfortable with technology and could struggle with small text or low-contrast screens.
+      </p>
+        </div>
+        <div class="split-column">
+          <div class="project-carousel">
+            <div class="carousel-viewport carousel-bg-grey" style="background-color: #ffffff; aspect-ratio: 5 / 4;">
+              <div class="carousel-track">
+                <div class="carousel-slide" data-caption="The Miro board, logging observations from all 5 interviews">
+                  <img src="images/projects/design-sprint-civi/day4-miro-board.webp" alt="Miro board with observations from all five interviews, color-coded by sentiment" loading="lazy">
+                </div>
+                <div class="carousel-slide" data-caption="Our remote testing setup — Miro, Figma, and Zoom running side by side">
+                  <img src="images/projects/design-sprint-civi/day4-remote-testing.webp" alt="Remote testing setup — Miro board, Figma prototype, and Zoom call" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-controls-row">
+              <button type="button" class="carousel-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <div class="carousel-meta">
+                <p class="carousel-caption"></p>
+                <div class="carousel-dots"></div>
+              </div>
+              <button type="button" class="carousel-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="topic-divider" id="conclusion">
+      <div class="text-image-columns">
+        <div class="split-column" style="max-width:700px;">
+          <h2>Conclusion</h2>
+          <p style="max-width:700px;">
+            The results gave us confidence to move forward. A few weeks later, after polishing the design for clarity and accessibility and running a few more rounds of testing, we launched the feature.
+          </p>
+          <p style="max-width:700px;">
+            This was my first Design Sprint in person with the team (I usually worked remotely). It was four very productive days — together we created something that would otherwise have taken more than a month to develop and validate on our own. It was also a great learning experience, and it brought the team closer for the challenges ahead.
+          </p>
+        </div>
+        <div class="split-column">
+          <figure class="project-figure">
+            <img src="images/projects/design-sprint-civi/team-photo.webp" alt="The whole team that participated in this Design Sprint" loading="lazy">
+            <figcaption>The team that participated in this Design Sprint</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <nav class="project-nav">
+      <a href="civi.html#case-studies">← Civi</a>
+      <a href="civi-event-icons-redesign.html" class="highlight-link">Next case study<span class="nav-detail">: Event icons redesign</span> →</a>
+    </nav>
+  </main>
+
+  
+  
+
+  <footer class="site-footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="footer.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
